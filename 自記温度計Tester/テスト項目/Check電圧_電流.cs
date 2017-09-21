@@ -16,8 +16,8 @@ namespace 自記温度計Tester
         {
             bool result = false;
             Double measData = 0;
-            double Max = 0;
-            double Min = 0;
+            double SpecMax = 0;
+            double SpecMin = 0;
 
             try
             {
@@ -30,37 +30,37 @@ namespace 自記温度計Tester
                         switch (ch)
                         {
                             case VOL_CH._5V:
-                                Max = State.TestSpec.Vol5vMax;
-                                Min = State.TestSpec.Vol5vMin;
+                                SpecMax = State.TestSpec.Vol5vMax;
+                                SpecMin = State.TestSpec.Vol5vMin;
                                 General.SetK5(true);//
                                 break;
 
                             case VOL_CH._3V:
-                                Max = State.TestSpec.Vol3vMax;
-                                Min = State.TestSpec.Vol3vMin;
+                                SpecMax = State.TestSpec.Vol3vMax;
+                                SpecMin = State.TestSpec.Vol3vMin;
                                 General.SetK4(true);//
                                 break;
 
                             case VOL_CH.CN3:
-                                Max = State.TestSpec.VolCn3Max;
-                                Min = State.TestSpec.VolCn3Min;
+                                SpecMax = State.TestSpec.VolCn3Max;
+                                SpecMin = State.TestSpec.VolCn3Min;
                                 General.SetK7(true);//
                                 break;
 
                             case VOL_CH.CN9On:
-                                Max = State.TestSpec.VolCn9Max;
-                                Min = State.TestSpec.VolCn9Min;
+                                SpecMax = State.TestSpec.VolCn9OnMax;
+                                SpecMin = State.TestSpec.VolCn9OnMin;
                                 General.SetK3(true);//
                                 break;
                             case VOL_CH.CN9Off:
-                                Max = 1.0;
-                                Min = 0.0;
+                                SpecMax = State.TestSpec.VolCn9OffMax;
+                                SpecMin = State.TestSpec.VolCn9OffMin;
                                 General.SetK3(true);//
                                 break;
 
                             case VOL_CH.BT1:
-                                Max = State.TestSpec.VolBt1Max;
-                                Min = State.TestSpec.VolBt1Min;
+                                SpecMax = State.TestSpec.VolBt1Max;
+                                SpecMin = State.TestSpec.VolBt1Min;
                                 General.SetK1(true);//
                                 break;
                         }
@@ -68,9 +68,9 @@ namespace 自記温度計Tester
                         if (ch == VOL_CH.CN9On)
                         {
                             if (!Target232_BT.SendData("3700ODB,6on", DoAnalysis: false)) return false;//充電許可信号を通信で制御
-                            Thread.Sleep(500);
+                            Thread.Sleep(300);
                             if (!Target232_BT.SendData("3700ODB,7on", DoAnalysis: false)) return false;//充電許可信号をHi
-                            Thread.Sleep(2500);
+                            Thread.Sleep(1000);
 
                             //マルチメータでCN9の電圧を測定し、8Vくらい出てることを確認する
                             if (!General.multimeter.GetDcVoltage()) return false;
@@ -78,14 +78,14 @@ namespace 自記温度計Tester
 
                             State.VmTestResults.VolCn9On = measData.ToString("F3") + "V";
 
-                            return result = (measData > Min && measData < Max);
+                            return result = (measData > SpecMin && measData < SpecMax);
                         }
                         else if (ch == VOL_CH.CN9Off)
                         {
                             if (!Target232_BT.SendData("3700ODB,6on", DoAnalysis: false)) return false;//充電許可信号を通信で制御
-                            Thread.Sleep(500);
+                            Thread.Sleep(300);
                             if (!Target232_BT.SendData("3700ODB,7of", DoAnalysis: false)) return false;//充電許可信号をLo
-                            Thread.Sleep(500);
+                            Thread.Sleep(1000);
 
                             //マルチメータでCN9の電圧を測定し、8Vくらい出てることを確認する
                             if (!General.multimeter.GetDcVoltage()) return false;
@@ -93,14 +93,14 @@ namespace 自記温度計Tester
 
                             State.VmTestResults.VolCn9Off = measData.ToString("F3") + "V";
 
-                            return result = (measData > Min && measData < Max);
+                            return result = (measData > SpecMin && measData < SpecMax);
                         }
                         else
                         {
                             Thread.Sleep(1000);
                             if (!General.multimeter.GetDcVoltage()) return false;
                             measData = General.multimeter.VoltData;
-                            return result = (measData > Min && measData < Max);
+                            return result = (measData > SpecMin && measData < SpecMax);
                         }
                     }
                     catch
@@ -154,29 +154,7 @@ namespace 自記温度計Tester
                 //NGだった場合、エラー詳細情報の規格値を更新する
                 if (!result)
                 {
-                    switch (ch)
-                    {
-                        case VOL_CH._5V:
-                            State.VmTestStatus.Spec = "規格値 : " + State.TestSpec.Vol5vMin.ToString("F3") + "～" + State.TestSpec.Vol5vMax.ToString("F3") + "V";
-                            break;
-                        case VOL_CH._3V:
-                            State.VmTestStatus.Spec = "規格値 : " + State.TestSpec.Vol3vMin.ToString("F3") + "～" + State.TestSpec.Vol3vMax.ToString("F3") + "V";
-                            break;
-                        case VOL_CH.CN3:
-                            State.VmTestStatus.Spec = "規格値 : " + State.TestSpec.VolCn3Min.ToString("F3") + "～" + State.TestSpec.VolCn3Max.ToString("F3") + "V";
-                            break;
-                        case VOL_CH.CN9On:
-                            State.VmTestStatus.Spec = "規格値 : " + State.TestSpec.VolCn9Min.ToString("F3") + "～" + State.TestSpec.VolCn9Max.ToString("F3") + "V";
-                            break;
-                        case VOL_CH.CN9Off:
-                            State.VmTestStatus.Spec = "規格値 : " + "0.0" + "～" + "1.0" + "V";
-                            break;
-                        case VOL_CH.BT1:
-                            State.VmTestStatus.Spec = "規格値 : " + State.TestSpec.VolBt1Min.ToString("F3") + "～" + State.TestSpec.VolBt1Max.ToString("F3") + "V";
-                            break;
-
-                    }
-
+                    State.VmTestStatus.Spec = "規格値 : " + SpecMin.ToString("F3") + "～" + SpecMax.ToString("F3") + "V";
                     State.VmTestStatus.MeasValue = "計測値 : " + measData.ToString("F3") + "V";
 
                 }

@@ -20,8 +20,11 @@ namespace 自記温度計Tester
         public double VolCn3Max { get; set; }
         public double VolCn3Min { get; set; }
 
-        public double VolCn9Max { get; set; }
-        public double VolCn9Min { get; set; }
+        public double VolCn9OnMax { get; set; }
+        public double VolCn9OnMin { get; set; }
+
+        public double VolCn9OffMax { get; set; }
+        public double VolCn9OffMin { get; set; }
 
         public double VolBt1Max { get; set; }
         public double VolBt1Min { get; set; }
