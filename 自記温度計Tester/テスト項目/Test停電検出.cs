@@ -41,7 +41,7 @@ namespace 自記温度計Tester
 
                     //CN9に擬似バッテリ（8V）を接続
                     General.ResetRelay_Multimeter();
-                    General.pmx18.SetVol(8.0m);
+                    General.pmx18.SetVol(8.0);
                     General.pmx18.VolOn();
                     General.SetRL1(true);
 

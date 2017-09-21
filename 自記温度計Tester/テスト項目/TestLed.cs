@@ -283,37 +283,6 @@ namespace 自記温度計Tester
 
                     General.cam2.FlagLabeling = true;
 
-                    var tm = new GeneralTimer(15000);
-                    tm.start();
-                    //製品側がコマンドを受け付け可能になるまで待つ
-                    while (true)
-                    {
-                        if (tm.FlagTimeout) return false;
-                        Target232_BT.SendData(Data: Constants.OnLed1, DoAnalysis: false);
-                        Thread.Sleep(300);
-                        var blobInfo = General.cam2.blobs.Clone();
-                        if (blobInfo.Count == 1)
-                        {
-                            var blob = blobInfo.ToList();
-
-                            int _x = (int)blob[0].Value.Centroid.X;
-                            int _y = (int)blob[0].Value.Centroid.Y;
-                            int _x_Led1 = Int32.Parse(State.cam2Prop.LED1.Split('/').ToArray()[0]);
-                            int _y_Led1 = Int32.Parse(State.cam2Prop.LED1.Split('/').ToArray()[1]);
-
-                            //X座標の確認
-                            if ((_x < _x_Led1 - 15 || _x > _x_Led1 + 15)) continue;
-
-                            //Y座標の確認
-                            if (_y < _y_Led1 - 15 || (_y > _y_Led1 + 15)) continue;
-
-                            tm.stop();
-                            break;
-                        }
-                    }
-
-
-
                     return allResult = ListLedSpec.All(l =>
                     {
                         //テストログの更新

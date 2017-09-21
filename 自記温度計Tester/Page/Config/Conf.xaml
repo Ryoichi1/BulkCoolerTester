@@ -46,7 +46,7 @@
 
         <TabControl x:Name="TabMenu" Height="652" Width="1284" Canvas.Left="6" FlowDirection="RightToLeft" Canvas.Top="2" >
             <TabItem x:Name="TabMente" Header="メンテナンス" Margin="1120,28,-1120,-27" Width="127" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Loaded="TabMente_Loaded" Controls:ControlsHelper.HeaderFontSize="18" >
-                <Frame x:Name="FrameMente" FlowDirection="LeftToRight" Margin="16,-16,177,122" />
+                <Frame x:Name="FrameMente" FlowDirection="LeftToRight" Margin="16,-16,177,-25" />
             </TabItem>
             <TabItem x:Name="TabCamera1" Header="カメラ1設定" Margin="994,62,-994,-61" Width="127" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Controls:ControlsHelper.HeaderFontSize="18" Loaded="TabCamera1_Loaded" >
                 <Frame x:Name="FrameCamera1" FlowDirection="LeftToRight" Margin="-1,-22,172,-20" />

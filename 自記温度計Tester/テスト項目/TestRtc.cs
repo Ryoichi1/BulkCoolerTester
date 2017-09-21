@@ -18,7 +18,7 @@ namespace 自記温度計Tester
                 {
                     General.ResetRelay_Multimeter();
                     Thread.Sleep(500);
-                    General.pmx18.SetVol(3.0m);
+                    General.pmx18.SetVol(3.0);
                     General.pmx18.VolOn();
                     General.SetK2(true);
                     Thread.Sleep(500);

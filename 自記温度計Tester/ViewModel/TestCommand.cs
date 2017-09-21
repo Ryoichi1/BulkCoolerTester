@@ -206,16 +206,19 @@ namespace 自記温度計Tester
                     {
                         if (!Flags.PowOn)
                         {
-                            Target232_BT.ChangeMode(Target232_BT.MODE.PC);
-                            await Task.Delay(500);
+                            var flagComm = false;
                             General.PowSupply(true);
-                            await Task.Delay(8000);
+                            await Task.Run(() =>
+                            {
+                                flagComm = General.CheckComm();
+                            });
+                            if(!flagComm) goto FAIL;
                         }
                     }
                     else
                     {
                         General.PowSupply(false);
-                        await Task.Delay(200);
+                        await Task.Delay(100);
                     }
 
                     switch (d.s.Key)
@@ -233,40 +236,42 @@ namespace 自記温度計Tester
                             if (await Check電圧_電流.CheckJP1()) break;
                             goto case 5000;
 
-                        case 200://3Vライン消費電流チェック
-                            if (await Check電圧_電流.CheckCurr3v()) break;
-                            goto case 5000;
-
-                        case 201://6Vライン消費電流チェック
-                            if (await Check電圧_電流.CheckCurr6v()) break;
-                            goto case 5000;
-
-                        case 202://電源電圧チェック 5V
-                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH._5V)) break;
-                            goto case 5000;
-
-                        case 203://電源電圧チェック 3.3V
-                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH._3V)) break;
-                            goto case 5000;
-
-                        case 204://CN3出力電圧チェック
-                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN3)) break;
-                            goto case 5000;
-
-                        case 205://CN9出力電圧チェック
-                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9On)) break;
-                            goto case 5000;
-
-                        case 206://CN9出力電圧チェック
-                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9Off)) break;
-                            goto case 5000;
-
-                        case 300://テストプログラム書き込み
+                        case 200://テストプログラム書き込み
                             if (State.VmTestStatus.CheckWriteFw == true) break;
                             if (await 書き込み.WriteFw(書き込み.WriteMode.TEST)) break;
                             goto case 5000;
 
+                        case 300://3Vライン消費電流チェック
+                            if (await Check電圧_電流.CheckCurr3v()) break;
+                            goto case 5000;
+
+                        case 301://6Vライン消費電流チェック
+                            if (await Check電圧_電流.CheckCurr6v()) break;
+                            goto case 5000;
+
+                        case 302://電源電圧チェック 5V
+                            General.PowSupply(true);
+                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH._5V)) break;
+                            goto case 5000;
+
+                        case 303://電源電圧チェック 3.3V
+                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH._3V)) break;
+                            goto case 5000;
+
+                        case 304://CN3出力電圧チェック
+                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN3)) break;
+                            goto case 5000;
+
+                        case 305://CN9出力電圧チェック
+                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9On)) break;
+                            goto case 5000;
+
+                        case 306://CN9出力電圧チェック
+                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9Off)) break;
+                            goto case 5000;
+
                         case 400:
+                            await Task.Delay(1000);
                             if (await TestLed.CheckColor()) break;
                             goto case 5000;
                         case 401:
@@ -313,6 +318,14 @@ namespace 自記温度計Tester
                             goto case 5000;
                         case 1000:
                             if (await Test停電検出.Check停電検出()) break;
+                            goto case 5000;
+
+                        case 1100:
+                            if (await TestBattLow.CheckBattLow()) break;
+                            goto case 5000;
+
+                        case 1200:
+                            if (await Test警報リレー出力.CheckRelay() ) break;
                             goto case 5000;
 
 

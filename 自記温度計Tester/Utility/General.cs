@@ -343,6 +343,11 @@ namespace 自記温度計Tester
         {
             if (Flags.PowOn == sw) return;
 
+            if (sw)
+            {
+                Target232_BT.ChangeMode(Target232_BT.MODE.PC);
+            }
+
             SetAC100(sw);
             SetPowSw2(sw);
             Flags.PowOn = sw;
@@ -481,7 +486,7 @@ namespace 自記温度計Tester
         public static void CheckAll周辺機器フラグ()
         {
             Flags.AllOk周辺機器接続 = (Flags.StateEpx64 && Flags.State34461A && Flags.StatePMX18 && Flags.StateCamera1 && Flags.StateCamera2 &&
-                          Flags.StateLTM2882 && Flags.StateCOM1PD );
+                          Flags.StateLTM2882 && Flags.StateCOM1PD);
         }
 
 
@@ -674,12 +679,87 @@ namespace 自記温度計Tester
             });
         }
 
+
+        //PMX18の出力電圧微調整
+        public static bool CalbPmx18(double outValue)
+        {
+            bool result = false;
+            double Max = outValue + 0.01;
+            double Min = outValue - 0.01;
+
+            double setValue = outValue;
+
+            try
+            {
+                //PMX18の校正
+                ResetRelay_Multimeter();
+                Thread.Sleep(200);
+                General.pmx18.SetVol(setValue);
+                General.pmx18.VolOn();
+                Thread.Sleep(500);
+                General.SetK12(true);
+                Thread.Sleep(1000);
+
+
+
+                var tm = new GeneralTimer(15000);
+                tm.start();
+                while (true)//15秒以内に調整できなかったらアウト
+                {
+                    if (tm.FlagTimeout) return false;
+
+                    multimeter.GetDcVoltage();
+                    var Pmx18OutData = multimeter.VoltData;
+
+                    var resultPmx18 = (Pmx18OutData >= Min && Pmx18OutData <= Max);
+                    if (resultPmx18)
+                    {
+                        tm.stop();
+                        SetK12(false);
+                        Thread.Sleep(500);
+                        return result = true;
+                    }
+                    if (Pmx18OutData < Min)
+                    {
+                        setValue += 0.001;
+                    }
+                    else
+                    {
+                        setValue -= 0.001;
+                    }
+                    General.pmx18.SetVol(setValue);
+                    Thread.Sleep(1000);
+                }
+            }
+            finally
+            {
+                SetK12(false);
+                if (!result) pmx18.VolOff();
+            }
+
+        }
+
+        //電源基板のSW2（スライドスイッチ）切り替え
         public static void SetPowSw2(bool sw)
         {
             SetK17(sw);
         }
 
-
+        public static bool CheckComm()
+        {
+            Target232_BT.ChangeMode(Target232_BT.MODE.PC);
+            var tm = new GeneralTimer(12000);
+            tm.start();
+            while (true)
+            {
+                if (tm.FlagTimeout) return false;
+                if (Target232_BT.SendData("3700ODB,6of"))
+                {
+                    return true;
+                }
+                Thread.Sleep(300);
+            }
+        }
 
         public static void ResetRelay_Multimeter()
         {
@@ -699,7 +779,7 @@ namespace 自記温度計Tester
             General.SetK16(false);
         }
 
-        //試験機リレー制御
+        //試験機リレー制御、ソレノイド押し、LED照明制御
         public static void SetK1(bool sw) { General.io.OutBit(EPX64S.PORT.P0, EPX64S.BIT.b0, sw ? EPX64S.OUT.H : EPX64S.OUT.L); }
         public static void SetK2(bool sw) { General.io.OutBit(EPX64S.PORT.P0, EPX64S.BIT.b1, sw ? EPX64S.OUT.H : EPX64S.OUT.L); }
         public static void SetK3(bool sw) { General.io.OutBit(EPX64S.PORT.P0, EPX64S.BIT.b2, sw ? EPX64S.OUT.H : EPX64S.OUT.L); }
@@ -732,6 +812,10 @@ namespace 自記温度計Tester
         public static void SetSw3(bool sw) { General.io.OutBit(EPX64S.PORT.P3, EPX64S.BIT.b1, sw ? EPX64S.OUT.H : EPX64S.OUT.L); }
         public static void SetSw4(bool sw) { General.io.OutBit(EPX64S.PORT.P3, EPX64S.BIT.b2, sw ? EPX64S.OUT.H : EPX64S.OUT.L); }
         private static void SetStamp(bool sw) { General.io.OutBit(EPX64S.PORT.P3, EPX64S.BIT.b3, sw ? EPX64S.OUT.H : EPX64S.OUT.L); }
+        public static void SetSw1OnByFet(bool sw) { General.io.OutBit(EPX64S.PORT.P3, EPX64S.BIT.b4, sw ? EPX64S.OUT.H : EPX64S.OUT.L); }
+        public static void SetSw2OnByFet(bool sw) { General.io.OutBit(EPX64S.PORT.P3, EPX64S.BIT.b5, sw ? EPX64S.OUT.H : EPX64S.OUT.L); }
+        public static void SetSw3OnByFet(bool sw) { General.io.OutBit(EPX64S.PORT.P3, EPX64S.BIT.b6, sw ? EPX64S.OUT.H : EPX64S.OUT.L); }
+        public static void SetSw4OnByFet(bool sw) { General.io.OutBit(EPX64S.PORT.P3, EPX64S.BIT.b7, sw ? EPX64S.OUT.H : EPX64S.OUT.L); }
         public static void SetLight(bool sw) { General.io.OutBit(EPX64S.PORT.P5, EPX64S.BIT.b5, sw ? EPX64S.OUT.H : EPX64S.OUT.L); }
 
 

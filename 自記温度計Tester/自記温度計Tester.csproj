@@ -161,6 +161,8 @@
     <Compile Include="ViewModel\ViewModelCamera2Point.cs" />
     <Compile Include="ViewModel\ViewModelCamera1Point.cs" />
     <Compile Include="ViewModel\ViewModelTh.cs" />
+    <Compile Include="テスト項目\TestBattLow.cs" />
+    <Compile Include="テスト項目\Test警報リレー出力.cs" />
     <Compile Include="テスト項目\Test停電検出.cs" />
     <Compile Include="テスト項目\TestPowSw2.cs" />
     <Compile Include="テスト項目\TestCt.cs" />

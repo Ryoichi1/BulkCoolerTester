@@ -417,7 +417,7 @@ namespace 自記温度計Tester
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            General.SetPowSw2(false);
+            General.SetSw1OnByFet(true);
         }
 
         bool FlagLight;
@@ -435,6 +435,16 @@ namespace 自記温度計Tester
             }
 
             FlagLight = !FlagLight;
+        }
+
+        private void ssss_Click(object sender, RoutedEventArgs e)
+        {
+            General.SetSw1OnByFet(false);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Target232_BT.Close232();
         }
     }
 }

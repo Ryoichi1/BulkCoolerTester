@@ -47,7 +47,7 @@ namespace 自記温度計Tester
                     port232.Parity = System.IO.Ports.Parity.None;
                     port232.StopBits = System.IO.Ports.StopBits.One;
                     port232.NewLine = (char)0x03 + "\r\n";//コマンドの例 [STX]TH_HARD+1[ETX][CR][LF]
-                    port232.ReadTimeout = 1000;
+                    port232.ReadTimeout = 500;
                     //ポートオープン
                     port232.Open();
                 }

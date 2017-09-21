@@ -216,8 +216,6 @@ namespace 自記温度計Tester
             {
                 return await Task<bool>.Run(() =>
                 {
-                    Target232_BT.ChangeMode(Target232_BT.MODE.PC);
-                    Thread.Sleep(10000);
 
                     ResetViewModel();
 

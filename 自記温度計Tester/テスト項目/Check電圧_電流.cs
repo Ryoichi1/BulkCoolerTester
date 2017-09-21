@@ -67,9 +67,15 @@ namespace 自記温度計Tester
 
                         if (ch == VOL_CH.CN9On)
                         {
-                            if (!Target232_BT.SendData("3700ODB,6on", DoAnalysis: false)) return false;//充電許可信号を通信で制御
-                            Thread.Sleep(300);
-                            if (!Target232_BT.SendData("3700ODB,7on", DoAnalysis: false)) return false;//充電許可信号をHi
+                            var tm = new GeneralTimer(15000);
+                            tm.start();
+                            while (true)
+                            {
+                                if (tm.FlagTimeout) return false;
+                                if (Target232_BT.SendData("3700ODB,6on")) break;//充電許可信号を通信で制御
+                                Thread.Sleep(400);
+                            }
+                            if (!Target232_BT.SendData("3700ODB,7on")) return false;//充電許可信号をHi
                             Thread.Sleep(1000);
 
                             //マルチメータでCN9の電圧を測定し、8Vくらい出てることを確認する
@@ -82,9 +88,9 @@ namespace 自記温度計Tester
                         }
                         else if (ch == VOL_CH.CN9Off)
                         {
-                            if (!Target232_BT.SendData("3700ODB,6on", DoAnalysis: false)) return false;//充電許可信号を通信で制御
+                            if (!Target232_BT.SendData("3700ODB,6on")) return false;//充電許可信号を通信で制御
                             Thread.Sleep(300);
-                            if (!Target232_BT.SendData("3700ODB,7of", DoAnalysis: false)) return false;//充電許可信号をLo
+                            if (!Target232_BT.SendData("3700ODB,7of")) return false;//充電許可信号をLo
                             Thread.Sleep(1000);
 
                             //マルチメータでCN9の電圧を測定し、8Vくらい出てることを確認する
@@ -273,19 +279,14 @@ namespace 自記温度計Tester
             }
         }
 
-
         public static async Task<bool> CheckCurr3v()
         {
             bool result = false;
             bool resultPmx18 = false;
             double measData = 0;
-            Decimal Value3v = 0;
             double Pmx18OutData = 0;
             double Max = State.TestSpec.Curr3vMax;
             double Min = State.TestSpec.Curr3vMin;
-
-            const double _3vMax = 3.0 * 1.001;
-            const double _3vMin = 3.0 * 0.999;
 
             try
             {
@@ -300,41 +301,8 @@ namespace 自記温度計Tester
                         Thread.Sleep(300);
 
                         //PMX18の校正
-                        Value3v = 3.000m;
-                        General.pmx18.SetVol(Value3v);
-                        General.pmx18.VolOn();
-                        Thread.Sleep(500);
-                        General.SetK12(true);
-                        Thread.Sleep(1000);
-
-                        var tm = new GeneralTimer(15000);
-                        tm.start();
-                        while (true)//15秒以内に調整できなかったらアウト
-                        {
-                            if (tm.FlagTimeout) return false;
-
-                            General.multimeter.GetDcVoltage();
-                            Pmx18OutData = General.multimeter.VoltData;
-
-                            resultPmx18 = (Pmx18OutData >= _3vMin && Pmx18OutData <= _3vMax);
-                            if (resultPmx18)
-                            {
-                                tm.stop();
-                                General.SetK12(false);
-                                Thread.Sleep(500);
-                                break;
-                            }
-                            if (Pmx18OutData < _3vMin)
-                            {
-                                Value3v += 0.001m;
-                            }
-                            else
-                            {
-                                Value3v -= 0.001m;
-                            }
-                            General.pmx18.SetVol(Value3v);
-                            Thread.Sleep(1000);
-                        }
+                        if (!General.CalbPmx18(3.0)) return false;
+                        //この時点でpmx18からは正確に3Vが出力されている
 
                         General.multimeter.SetDcCurrent();
 
@@ -344,7 +312,10 @@ namespace 自記温度計Tester
                         Thread.Sleep(2500);
                         General.PowSupply(false);
 
-                        tm.start(30000);
+                        if (!General.multimeter.GetDcCurrent()) return false;
+                        if (!General.multimeter.GetDcCurrent()) return false;
+                        var tm = new GeneralTimer(30000);
+                        tm.start();
                         while (true)
                         {
                             if (tm.FlagTimeout) return false;
@@ -370,6 +341,7 @@ namespace 自記温度計Tester
             finally
             {
                 General.pmx18.VolOff();
+                General.PowSupply(false);
 
                 //リレーを初期化する処理
                 General.ResetRelay_Multimeter();

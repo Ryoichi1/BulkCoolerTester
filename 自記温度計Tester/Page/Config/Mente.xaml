@@ -7,7 +7,7 @@
 	x:Name="Page"
 	WindowTitle="Page"
 	FlowDirection="LeftToRight"
-	Unloaded="Page_Unloaded" Height="845" Width="1048" Loaded="Page_Loaded">
+	Unloaded="Page_Unloaded" Height="632" Width="1048" Loaded="Page_Loaded">
 
     <Page.Resources>
         <Style TargetType="{x:Type Label}">
@@ -38,7 +38,7 @@
     </Page.Triggers>
 
     <Canvas>
-        <Canvas x:Name="CanvasComm232" Height="156" Canvas.Left="25" Canvas.Top="322" Width="727">
+        <Canvas x:Name="CanvasComm232" Height="272" Canvas.Left="25" Canvas.Top="322" Width="727">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="11"/>
@@ -55,9 +55,9 @@
             <Canvas.Background>
                 <SolidColorBrush Color="#FF44BDEC" Opacity="0.2"/>
             </Canvas.Background>
-            <Label Content="{Binding RS232C_TX}" Height="26" Canvas.Left="30" Canvas.Top="84" Width="400" BorderBrush="White" BorderThickness="1" FontSize="14" Padding="5,0,0,0"/>
-            <Label Content="{Binding RS232C_RX}" Height="26" Canvas.Left="30" Canvas.Top="114" Width="687" BorderBrush="White" BorderThickness="1" FontSize="14" Padding="5,0,0,0"/>
-            <TextBlock x:Name="textBlock2_Copy" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="86" Canvas.Left="8">
+            <Label Content="{Binding RS232C_TX}" Height="55" Canvas.Left="30" Canvas.Top="139" Width="687" BorderBrush="White" BorderThickness="1" FontSize="14" Padding="5,0,0,0"/>
+            <Label Content="{Binding RS232C_RX}" Height="57" Canvas.Left="30" Canvas.Top="205" Width="687" BorderBrush="White" BorderThickness="1" FontSize="14" Padding="5,0,0,0"/>
+            <TextBlock x:Name="textBlock2_Copy" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="155" Canvas.Left="8">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -67,7 +67,7 @@
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <TextBlock x:Name="textBlock2_Copy1" TextWrapping="Wrap" Text="Rx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="22" RenderTransformOrigin="0.5,0.5" Canvas.Top="117" Canvas.Left="7">
+            <TextBlock x:Name="textBlock2_Copy1" TextWrapping="Wrap" Text="Rx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="22" RenderTransformOrigin="0.5,0.5" Canvas.Top="222" Canvas.Left="7">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -93,11 +93,11 @@
                 </Label.Effect>
             </Label>
             <Button x:Name="buttonSend232" Content="送信"  Height="29" Canvas.Left="31" Canvas.Top="43" Width="90" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="#FF566B85" Click="buttonSend232_Click"/>
-            <TextBox x:Name="tbCommand232" Height="29" Canvas.Left="132" TextWrapping="Wrap" Canvas.Top="43" Width="298" FontSize="18" Background="{x:Null}"/>
-            <Canvas Height="82" Canvas.Left="439" Canvas.Top="2" Width="123">
+            <TextBox x:Name="tbCommand232" Height="57" Canvas.Left="30" TextWrapping="Wrap" Canvas.Top="77" Width="687" FontSize="18" Background="{x:Null}"/>
+            <Canvas Height="70" Canvas.Left="439" Canvas.Top="2" Width="212">
                 <RadioButton x:Name="rb232AT" Content="RS232C AT" Height="25" Canvas.Left="4" Canvas.Top="4" Width="95" Checked="rb232AT_Checked"/>
-                <RadioButton x:Name="rb232PC" Content="RS232C PC" Height="25" Canvas.Left="4" Canvas.Top="29" Width="95" Checked="rb232PC_Checked"/>
-                <RadioButton x:Name="rbBluetooth" Content="Bluetooth" Height="25" Canvas.Left="4" Canvas.Top="54" Width="95" Checked="rbBluetooth_Checked"/>
+                <RadioButton x:Name="rb232PC" Content="RS232C PC" Height="25" Canvas.Left="104" Canvas.Top="4" Width="95" Checked="rb232PC_Checked"/>
+                <RadioButton x:Name="rbBluetooth" Content="Bluetooth" Height="25" Canvas.Left="4" Canvas.Top="34" Width="95" Checked="rbBluetooth_Checked"/>
             </Canvas>
             <Controls:ProgressRing x:Name="RingComm" Foreground="{DynamicResource AccentColorBrush}" Canvas.Left="46" Canvas.Top="31" Height="58" Width="58" IsActive="{Binding IsActive}" Opacity="0.7"/>
         </Canvas>
@@ -214,7 +214,9 @@
             <Label Content="{Binding ResTh45}" Background="{Binding ColResTh45}" Height="26" Canvas.Left="341" Canvas.Top="198" Width="92" BorderBrush="White" BorderThickness="1" Padding="0"/>
             <Label Content="{Binding ResTh90}" Background="{Binding ColResTh90}" Height="26" Canvas.Left="341" Canvas.Top="228" Width="92" BorderBrush="White" BorderThickness="1" Padding="0"/>
         </Canvas>
-        <Button Content="Button" Height="54" Canvas.Left="770" Canvas.Top="322" Width="194" Click="Button_Click"/>
+        <Button Content="Button" Height="35" Canvas.Left="770" Canvas.Top="322" Width="115" Click="Button_Click"/>
+        <Button x:Name="ssss" Content="Button" Height="36" Canvas.Left="770" Canvas.Top="362" Width="115" Click="ssss_Click"/>
+        <Button Content="Button" Height="45" Canvas.Left="770" Canvas.Top="450" Width="115" Click="Button_Click_1"/>
 
     </Canvas>
 </Page>
