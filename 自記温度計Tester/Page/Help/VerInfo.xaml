@@ -1,0 +1,30 @@
+﻿<Page
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="自記温度計Tester.VerInfo"
+	x:Name="Page"
+	WindowTitle="Page"
+	FlowDirection="LeftToRight"
+	WindowWidth="640" WindowHeight="480" Width="641.646" Height="372" Loaded="Page_Loaded">
+
+
+    <Grid x:Name="LayoutRoot" HorizontalAlignment="Left" Width="632">
+        <Grid.Effect>
+            <DropShadowEffect Color="#FF00F3FF" BlurRadius="30" Direction="0" ShadowDepth="0"/>
+        </Grid.Effect>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="73"/>
+            <RowDefinition Height="74"/>
+            <RowDefinition Height="159"/>
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap" Text="オリオン 自記温度計 検査システム" FontSize="36" Foreground="White"/>
+        <TextBlock Grid.Row="2" TextWrapping="Wrap" 
+		Text="警告:この製品は、著作権に関する法律により保護されています。&#10; この製品の全部または一部を無断で複製したり、無断で複製物を頒布すると、&#10;著作権の侵害になりますのでご注意ください。" Foreground="White" FontSize="14"/>
+        <Image Grid.Row="3" Source="/自記温度計Tester;component/Resources/Azbil_logo.png" HorizontalAlignment="Left" Margin="0,0,0,29" Width="622"/>
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <TextBlock x:Name="tbAssemblyVer" TextWrapping="Wrap" Text="アセンブリVer 1.50" FontSize="20" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock x:Name="tbParameterVer" TextWrapping="Wrap" Text="パラメータファイルVer 3.0" FontSize="20" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0"/>
+        </StackPanel>
+    </Grid>
+</Page>

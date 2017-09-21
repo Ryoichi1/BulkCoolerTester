@@ -1,0 +1,46 @@
+﻿<Page
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="自記温度計Tester.ErrInfoコネクタチェック"
+	xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+	x:Name="Page"
+	WindowTitle="Page"
+	FlowDirection="LeftToRight"
+	Height="600" Width="1300">
+    <Canvas>
+        <Button x:Name="buttonReturn" Content="テスト画面に戻る" Height="57" Canvas.Left="10" Canvas.Top="10" Width="174" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" FontSize="18" Click="buttonReturn_Click"  />
+        <TextBlock Height="30" Canvas.Left="23" TextWrapping="Wrap" Text="NGリスト" Canvas.Top="98" Width="119" Foreground="White" FontSize="20"/>
+        <TextBox Height="190" Canvas.Left="23" TextWrapping="Wrap" Text="{Binding NgList}" Canvas.Top="133" Width="141" FontSize="18" Background="{x:Null}" BorderBrush="#FF08BCFF"/>
+        <Image Height="558" Canvas.Left="220" Canvas.Top="19" Width="828" Source="/自記温度計Tester;component/Resources/自記温度計シルク図.jpg" IsEnabled="False"/>
+        <Rectangle x:Name="RecCN1" Height="41" Canvas.Left="606" Canvas.Top="528" Width="149" Visibility="{Binding VisCN1}">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#FFF03CBF" Opacity="0.5"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="RecCN2" Height="41" Canvas.Left="879" Canvas.Top="527" Width="53" Visibility="{Binding VisCN2}">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#FFF03CBF" Opacity="0.5"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="RecCN3" Height="42" Canvas.Left="760" Canvas.Top="527" Width="51" Visibility="{Binding VisCN3}">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#FFF03CBF" Opacity="0.5"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="RecCN4_1" Height="42" Canvas.Left="807" Canvas.Top="482" Width="61" Visibility="{Binding VisCN4}">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#FFF03CBF" Opacity="0.5"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="RecCN4_2" Height="38" Canvas.Left="816" Canvas.Top="524" Width="58" Visibility="{Binding VisCN4}">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#FFF03CBF" Opacity="0.5"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="RecCN9" Height="25" Canvas.Left="964" Canvas.Top="32" Width="34" Visibility="{Binding VisCN9}">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#FFF03CBF" Opacity="0.5"/>
+            </Rectangle.Fill>
+        </Rectangle>
+    </Canvas>
+</Page>

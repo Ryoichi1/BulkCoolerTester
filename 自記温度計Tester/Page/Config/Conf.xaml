@@ -1,0 +1,67 @@
+﻿<Page
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+	x:Class="自記温度計Tester.Conf"
+	x:Name="Page"
+	WindowTitle="Page"
+	FlowDirection="LeftToRight"
+	Width="1300" Height="680.233">
+
+    <Canvas x:Name="LayoutRoot">
+
+        <Canvas.Resources>
+            <Style TargetType="Label">
+                <!--<Style.Setters>コンテンツプロパティのため省略可能-->
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="BorderBrush" Value="White"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="Opacity" Value="0.7"/>
+                <!--<Setter Property="Effect">
+					<Setter.Value>
+						<DropShadowEffect Direction="0" Color="Aqua"  BlurRadius="10" ShadowDepth="0"/>
+					</Setter.Value>
+				</Setter>-->
+            </Style>
+
+            <Style TargetType="TextBlock">
+                <!--<Style.Setters>コンテンツプロパティのため省略可能-->
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Opacity" Value="0.7"/>
+                <!--<Setter Property="Effect">
+					<Setter.Value>
+						<DropShadowEffect Direction="0" Color="Aqua"  BlurRadius="15" ShadowDepth="0"/>
+					</Setter.Value>
+				</Setter>-->
+            </Style>
+        </Canvas.Resources>
+
+
+        <TabControl x:Name="TabMenu" Height="652" Width="1284" Canvas.Left="6" FlowDirection="RightToLeft" Canvas.Top="2" >
+            <TabItem x:Name="TabMente" Header="メンテナンス" Margin="1120,28,-1120,-27" Width="127" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Loaded="TabMente_Loaded" Controls:ControlsHelper.HeaderFontSize="18" >
+                <Frame x:Name="FrameMente" FlowDirection="LeftToRight" Margin="16,-16,177,122" />
+            </TabItem>
+            <TabItem x:Name="TabCamera1" Header="カメラ1設定" Margin="994,62,-994,-61" Width="127" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Controls:ControlsHelper.HeaderFontSize="18" Loaded="TabCamera1_Loaded" >
+                <Frame x:Name="FrameCamera1" FlowDirection="LeftToRight" Margin="-1,-22,172,-20" />
+            </TabItem>
+            <TabItem x:Name="TabCamera2" Header="カメラ2設定" Margin="868,96,-868,-95" Width="127" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Controls:ControlsHelper.HeaderFontSize="18" Loaded="TabCamera2_Loaded" >
+                <Frame x:Name="FrameCamera2" FlowDirection="LeftToRight" Margin="-1,-16,172,1" />
+            </TabItem>
+            <TabItem x:Name="TabOperator" Header="作業者リスト" Margin="741,130,-741,-131" Width="130" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Loaded="TabOperator_Loaded" Controls:ControlsHelper.HeaderFontSize="18">
+                <Frame x:Name="FrameEdit" FlowDirection="LeftToRight" Margin="4,-13,175,1"/>
+            </TabItem>
+            <TabItem x:Name="TabTheme" Header="テーマ" Margin="615,165,-647,-165" Loaded="TabTheme_Loaded" Controls:ControlsHelper.HeaderFontSize="18">
+                <Frame x:Name="FrameTheme" FlowDirection="LeftToRight" Margin="24,-28,160,10" Width="1043" />
+            </TabItem>
+        </TabControl>
+        <Border VerticalAlignment="Stretch" Height="580" BorderBrush="White" BorderThickness="1" HorizontalAlignment="Right" Canvas.Left="178" Canvas.Top="10"/>
+    </Canvas>
+
+</Page>

@@ -1,0 +1,183 @@
+﻿<Page
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="自記温度計Tester.Camera1Conf"
+	xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+	x:Name="Page"
+	WindowTitle="Page"
+	FlowDirection="LeftToRight"
+	Height="650.833" Width="1140" Unloaded="Page_Unloaded" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <Style TargetType="Label">
+            <!--<Style.Setters>コンテンツプロパティのため省略可能-->
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Opacity" Value="0.7"/>
+            <!--<Setter Property="Effect">
+				<Setter.Value>
+					<DropShadowEffect Direction="0" Color="Aqua"  BlurRadius="10" ShadowDepth="0"/>
+				</Setter.Value>
+			</Setter>-->
+        </Style>
+
+
+    </Page.Resources>
+    <Canvas>
+        <Canvas Height="333" Width="361" Canvas.Left="671" Canvas.Top="5">
+            <Border BorderBrush="#FF00DCFF" BorderThickness="1" Height="323" Width="356">
+                <Controls:ToggleSwitch x:Name="toggleSw" FontFamily="Meiryo UI" Foreground="White" ThumbIndicatorDisabledBrush="#FF1758C9" OffSwitchBrush="#FFD3DBE2" ThumbIndicatorBrush="#FF35A9D4" OnSwitchBrush="#CC0A99FD" FlowDirection="RightToLeft" Margin="147,0,0,283" OffLabel="Closing" OnLabel="Opening" Checked="toggleSw_Checked" Unchecked="toggleSw_Unchecked" HorizontalAlignment="Left" Width="152" HorizontalContentAlignment="Right" />
+            </Border>
+            <Label Content="カメラプロパティ" Height="30" Canvas.Left="6" Canvas.Top="6" Width="147" Foreground="#FF0EC2D4" BorderBrush="{x:Null}"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy14" Height="17" Canvas.Left="24" TextWrapping="Wrap" Canvas.Top="43" Width="47" Foreground="White" FontSize="14" Text="明るさ"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy15" Height="21" Canvas.Left="23" TextWrapping="Wrap" Canvas.Top="64" Width="48" Foreground="White" FontSize="14" Text="ｺﾝﾄﾗｽﾄ"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy1" Height="21" Canvas.Left="24" TextWrapping="Wrap" Canvas.Top="88" Width="48" Foreground="White" FontSize="14" Text="色合い"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy2" Height="21" Canvas.Left="12" TextWrapping="Wrap" Canvas.Top="112" Width="57" Foreground="White" FontSize="14" Text="鮮やかさ"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy3" Height="21" Canvas.Left="23" TextWrapping="Wrap" Canvas.Top="136" Width="48" Foreground="White" FontSize="14" Text="鮮明度"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy16" Height="21" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="160" Width="31" Foreground="White" FontSize="14" Text="ｶﾞﾝﾏ"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy18" Height="21" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="185" Width="32" Foreground="White" FontSize="14" Text="露出"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy19" Height="21" Canvas.Left="13" TextWrapping="Wrap" Canvas.Top="208" Width="56" Foreground="White" FontSize="14" Text="傾き補正"/>
+            <Slider x:Name="sliderCamPropP" Height="8" Canvas.Left="77" Canvas.Top="140" Width="199" Value="{Binding Sharpness}" IsSnapToTickEnabled="True" Maximum="7" Minimum="1" Style="{DynamicResource FlatSlider}"/>
+            <Slider x:Name="sliderCamPropY" Height="8" Canvas.Left="76" Canvas.Top="164" Width="200" Maximum="300" Value="{Binding Gamma}" IsSnapToTickEnabled="True" Minimum="100" Style="{DynamicResource FlatSlider}"/>
+            <Slider x:Name="sliderCamPropC" Height="8" Canvas.Left="77" Canvas.Top="69" Width="199" Maximum="95" Value="{Binding Contrast}" IsSnapToTickEnabled="True" Style="{DynamicResource FlatSlider}"/>
+            <Slider x:Name="sliderCamPropH" Height="8" Canvas.Left="76" Canvas.Top="92" Width="199" Maximum="2000" Minimum="-2000" Value="{Binding Hue}" IsSnapToTickEnabled="True" Style="{DynamicResource FlatSlider}"/>
+            <Slider x:Name="sliderCamPropS" Height="8" Canvas.Left="77" Canvas.Top="116" Width="199" Value="{Binding Saturation}" IsSnapToTickEnabled="True" Maximum="100" Style="{DynamicResource FlatSlider}"/>
+            <Slider x:Name="sliderCamPropB" Height="8" Canvas.Left="76" Canvas.Top="45" Width="200" Minimum="-64" Value="{Binding Brightness}" IsSnapToTickEnabled="True" Maximum="64" Style="{DynamicResource FlatSlider}"/>
+            <Slider x:Name="sliderCamPropE" Height="8" Canvas.Left="76" Canvas.Top="188" Width="199" Maximum="0" Minimum="-7" Value="{Binding Exposure}" IsSnapToTickEnabled="True" Style="{DynamicResource FlatSlider}"/>
+            <TextBlock x:Name="tbCamPropB" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropB}" Canvas.Top="40" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock x:Name="tbCamPropC" Height="16" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropC}" Canvas.Top="67" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock x:Name="tbCamPropH" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropH}" Canvas.Top="88" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock x:Name="tbCamPropS" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropS}" Canvas.Top="112" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock x:Name="tbCamPropP" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropP}" Canvas.Top="136" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock x:Name="tbCamPropY" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropY}" Canvas.Top="161" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock x:Name="tbCamPropE" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropE}" Canvas.Top="185" Width="60" Foreground="White" FontSize="14"/>
+
+            <Slider x:Name="sliderCamPropTheta" Height="8" Canvas.Left="77" Canvas.Top="212" Width="199" Value="{Binding Theta}" TickFrequency="0.05" IsSnapToTickEnabled="True" SmallChange="0.05" Maximum="180" Style="{DynamicResource FlatSlider}"/>
+            <TextBlock x:Name="tbCamPropTheta" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropTheta}" Canvas.Top="208" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy" Height="21" Canvas.Left="6" TextWrapping="Wrap" Canvas.Top="232" Width="71" Foreground="White" FontSize="14" Text="二値化Lev"/>
+            <Slider x:Name="sliderBinLev" Height="8" Canvas.Left="77" Canvas.Top="236" Width="199" Value="{Binding BinLevel}" TickFrequency="0.05" IsSnapToTickEnabled="True" SmallChange="0.05" Maximum="250" Style="{DynamicResource FlatSlider}"/>
+            <TextBlock x:Name="tbCamPropBinLev" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderBinLev}" Canvas.Top="232" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy4" Height="21" Canvas.Left="11" TextWrapping="Wrap" Canvas.Top="255" Width="61" Foreground="White" FontSize="14" Text="拡張回数"/>
+            <Slider x:Name="sliderOpenCnt" Height="8" Canvas.Left="77" Canvas.Top="259" Width="199" Value="{Binding openCnt}" TickFrequency="0.05" IsSnapToTickEnabled="True" SmallChange="1" Maximum="5" Style="{DynamicResource FlatSlider}"/>
+            <TextBlock x:Name="tbCamPropOpenCnt" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderOpenCnt}" Canvas.Top="255" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy5" Height="21" Canvas.Left="11" TextWrapping="Wrap" Canvas.Top="280" Width="60" Foreground="White" FontSize="14" Text="収縮回数"/>
+            <Slider x:Name="sliderCloseCnt" Height="8" Canvas.Left="77" Canvas.Top="284" Width="199" Value="{Binding closeCnt}" TickFrequency="0.05" IsSnapToTickEnabled="True" SmallChange="1" Maximum="5" Style="{DynamicResource FlatSlider}"/>
+            <TextBlock x:Name="tbCamPropCloseCnt" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCloseCnt}" Canvas.Top="280" Width="60" Foreground="White" FontSize="14"/>
+        </Canvas>
+        <Border BorderBrush="#FF00DCFF" BorderThickness="1" Height="370" Width="650" Canvas.Left="11" Canvas.Top="3"/>
+        <Canvas x:Name="CanvasImg" Canvas.Left="16" Canvas.Top="8" Width="640" Height="360">
+            <Image x:Name="im" Stretch="UniformToFill" Source="{Binding source}" MouseLeave="im_MouseLeave" MouseEnter="im_MouseEnter" MouseMove="im_MouseMove" Width="640" Height="360" />
+            <Controls:ProgressRing x:Name="Ring" Foreground="{DynamicResource AccentColorBrush}" Canvas.Left="285" Canvas.Top="134" Height="68" Width="68" IsActive="{Binding IsActive}"/>
+            <TextBlock x:Name="tbPoint" Height="20" Canvas.Left="517" TextWrapping="Wrap" Text="XY=100/100" Width="113" Foreground="White" RenderTransformOrigin="2.258,7.602" Canvas.Top="6"/>
+            <TextBlock x:Name="tbHsv" Height="20" Canvas.Left="517" TextWrapping="Wrap" Text="HSV=100,100,100" Width="115" Foreground="White" RenderTransformOrigin="2.258,7.602" Canvas.Top="26"/>
+        </Canvas>
+        <Button x:Name="buttonSave" Content="変更を保存"  Height="45" Canvas.Left="13" Canvas.Top="389" Width="156" FontSize="20" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Click="buttonSave_Click" BorderThickness="1" Background="{x:Null}">
+        </Button>
+        <Canvas x:Name="canvasLdPoint" Height="269" Canvas.Left="186" Canvas.Top="378" Width="551">
+            <Canvas.Resources>
+                <Style TargetType="Label">
+                    <!--<Style.Setters>コンテンツプロパティのため省略可能-->
+
+                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="Height" Value="26"/>
+                    <!--<Setter Property="Effect">
+
+				</Setter>-->
+                </Style>
+            </Canvas.Resources>
+            <Canvas.Background>
+                <SolidColorBrush Color="#FF4997C3" Opacity="0.2"/>
+            </Canvas.Background>
+            <Label Content="{Binding LD1a}"  Canvas.Left="46" Canvas.Top="21" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD1b}"  Canvas.Left="46" Canvas.Top="51" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD1c}"  Canvas.Left="46" Canvas.Top="81" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD1d}"  Canvas.Left="46" Canvas.Top="111" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD1e}"  Canvas.Left="46" Canvas.Top="141" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD1f}"  Canvas.Left="46" Canvas.Top="171" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD1g}"  Canvas.Left="46" Canvas.Top="201" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD1dp}"  Canvas.Left="46" Canvas.Top="231" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD2a}"  Canvas.Left="234" Canvas.Top="20" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD2b}"  Canvas.Left="234" Canvas.Top="50" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD2c}"  Canvas.Left="234" Canvas.Top="80" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD2d}"  Canvas.Left="234" Canvas.Top="110" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD2e}"  Canvas.Left="234" Canvas.Top="140" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD2f}"  Canvas.Left="234" Canvas.Top="170" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD2g}"  Canvas.Left="234" Canvas.Top="200" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD2dp}"  Canvas.Left="234" Canvas.Top="230" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD3a}"  Canvas.Left="407" Canvas.Top="21" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD3b}"  Canvas.Left="407" Canvas.Top="51" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD3c}"  Canvas.Left="407" Canvas.Top="81" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD3d}"  Canvas.Left="407" Canvas.Top="111" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD3e}"  Canvas.Left="407" Canvas.Top="141" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD3f}"  Canvas.Left="407" Canvas.Top="171" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD3g}"  Canvas.Left="407" Canvas.Top="201" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding LD3dp}"  Canvas.Left="407" Canvas.Top="231" Width="75" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label  Canvas.Left="124" Canvas.Top="21" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD1a}"/>
+            <Label  Canvas.Left="124" Canvas.Top="51" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD1b}"/>
+            <Label  Canvas.Left="124" Canvas.Top="81" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD1c}"/>
+            <Label  Canvas.Left="124" Canvas.Top="111" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD1d}"/>
+            <Label  Canvas.Left="124" Canvas.Top="141" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD1e}"/>
+            <Label  Canvas.Left="124" Canvas.Top="171" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD1f}"/>
+            <Label  Canvas.Left="124" Canvas.Top="201" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD1g}"/>
+            <Label  Canvas.Left="124" Canvas.Top="231" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD1dp}"/>
+            <Label  Canvas.Left="312" Canvas.Top="20" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD2a}"/>
+            <Label  Canvas.Left="312" Canvas.Top="50" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD2b}"/>
+            <Label  Canvas.Left="312" Canvas.Top="80" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD2c}"/>
+            <Label  Canvas.Left="312" Canvas.Top="110" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD2d}"/>
+            <Label  Canvas.Left="312" Canvas.Top="140" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD2e}"/>
+            <Label  Canvas.Left="312" Canvas.Top="170" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD2f}"/>
+            <Label  Canvas.Left="312" Canvas.Top="200" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD2g}"/>
+            <Label  Canvas.Left="312" Canvas.Top="230" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD2dp}"/>
+            <Label  Canvas.Left="485" Canvas.Top="21" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD3a}"/>
+            <Label  Canvas.Left="485" Canvas.Top="51" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD3d}"/>
+            <Label  Canvas.Left="485" Canvas.Top="81" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD3c}"/>
+            <Label  Canvas.Left="485" Canvas.Top="111" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD3d}"/>
+            <Label  Canvas.Left="485" Canvas.Top="141" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD3e}"/>
+            <Label  Canvas.Left="485" Canvas.Top="171" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD3f}"/>
+            <Label  Canvas.Left="485" Canvas.Top="201" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD3g}"/>
+            <Label  Canvas.Left="485" Canvas.Top="231" Width="50" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LumLD3dp}"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy6" Height="16" Canvas.Left="72" TextWrapping="Wrap" Canvas.Top="4" Width="30" Foreground="White" Text="座標"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy7" Height="16" Canvas.Left="132" TextWrapping="Wrap" Canvas.Top="4" Width="30" Foreground="White" Text="輝度"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy8" Height="16" Canvas.Left="257" TextWrapping="Wrap" Canvas.Top="4" Width="30" Foreground="White" Text="座標"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy9" Height="16" Canvas.Left="317" TextWrapping="Wrap" Canvas.Top="4" Width="30" Foreground="White" Text="輝度"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy10" Height="16" Canvas.Left="430" TextWrapping="Wrap" Canvas.Top="4" Width="30" Foreground="White" Text="座標"/>
+            <TextBlock x:Name="tbSmoothParm1_Copy11" Height="16" Canvas.Left="490" TextWrapping="Wrap" Canvas.Top="4" Width="30" Foreground="White" Text="輝度"/>
+            <TextBlock Height="16" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="25" Width="36" Foreground="White" Text="LD1a"/>
+            <TextBlock Height="16" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="56" Width="36" Foreground="White" Text="LD1b"/>
+            <TextBlock Height="16" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="87" Width="36" Foreground="White" Text="LD1c"/>
+            <TextBlock Height="16" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="118" Width="36" Foreground="White" Text="LD1d"/>
+            <TextBlock Height="16" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="145" Width="36" Foreground="White" Text="LD1e"/>
+            <TextBlock Height="16" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="176" Width="36" Foreground="White" Text="LD1f"/>
+            <TextBlock Height="16" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="205" Width="36" Foreground="White" Text="LD1g"/>
+            <TextBlock Height="16" Canvas.Left="4" TextWrapping="Wrap" Canvas.Top="236" Width="42" Foreground="White" Text="LD1dp"/>
+            <TextBlock Height="16" Canvas.Left="197" TextWrapping="Wrap" Canvas.Top="25" Width="36" Foreground="White" Text="LD2a"/>
+            <TextBlock Height="16" Canvas.Left="197" TextWrapping="Wrap" Canvas.Top="56" Width="36" Foreground="White" Text="LD2b"/>
+            <TextBlock Height="16" Canvas.Left="197" TextWrapping="Wrap" Canvas.Top="87" Width="36" Foreground="White" Text="LD2c"/>
+            <TextBlock Height="16" Canvas.Left="197" TextWrapping="Wrap" Canvas.Top="118" Width="36" Foreground="White" Text="LD2d"/>
+            <TextBlock Height="16" Canvas.Left="197" TextWrapping="Wrap" Canvas.Top="145" Width="36" Foreground="White" Text="LD2e"/>
+            <TextBlock Height="16" Canvas.Left="197" TextWrapping="Wrap" Canvas.Top="176" Width="36" Foreground="White" Text="LD2f"/>
+            <TextBlock Height="16" Canvas.Left="197" TextWrapping="Wrap" Canvas.Top="205" Width="36" Foreground="White" Text="LD2g"/>
+            <TextBlock Height="16" Canvas.Left="191" TextWrapping="Wrap" Canvas.Top="236" Width="42" Foreground="White" Text="LD2dp"/>
+            <TextBlock Height="16" Canvas.Left="370" TextWrapping="Wrap" Canvas.Top="25" Width="36" Foreground="White" Text="LD3a"/>
+            <TextBlock Height="16" Canvas.Left="370" TextWrapping="Wrap" Canvas.Top="56" Width="36" Foreground="White" Text="LD3b"/>
+            <TextBlock Height="16" Canvas.Left="370" TextWrapping="Wrap" Canvas.Top="87" Width="36" Foreground="White" Text="LD3c"/>
+            <TextBlock Height="16" Canvas.Left="370" TextWrapping="Wrap" Canvas.Top="118" Width="36" Foreground="White" Text="LD3d"/>
+            <TextBlock Height="16" Canvas.Left="370" TextWrapping="Wrap" Canvas.Top="145" Width="36" Foreground="White" Text="LD3e"/>
+            <TextBlock Height="16" Canvas.Left="370" TextWrapping="Wrap" Canvas.Top="176" Width="36" Foreground="White" Text="LD3f"/>
+            <TextBlock Height="16" Canvas.Left="370" TextWrapping="Wrap" Canvas.Top="205" Width="36" Foreground="White" Text="LD3g"/>
+            <TextBlock Height="16" Canvas.Left="364" TextWrapping="Wrap" Canvas.Top="236" Width="42" Foreground="White" Text="LD3dp"/>
+        </Canvas>
+        <Button x:Name="buttonLedOnOff" Content="LED全点灯"  Height="30" Canvas.Left="15" Canvas.Top="442" Width="100" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Click="buttonLedOnOff_Click" Background="{x:Null}" BorderThickness="1" Padding="0"/>
+        <Button x:Name="buttonGrid" Content="グリッド表示"  Height="30" Canvas.Left="15" Canvas.Top="545" Width="100" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Background="{x:Null}" Click="buttonGrid_Click" BorderThickness="1" Padding="0"/>
+        <Button x:Name="buttonBin" Content="二値化"  Height="30" Canvas.Left="15" Canvas.Top="510" Width="100" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Background="{x:Null}" Click="buttonBin_Click" BorderThickness="1" Padding="0"/>
+        <Button x:Name="buttonLight" Content="照明"  Height="30" Canvas.Left="15" Canvas.Top="580" Width="100" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Background="{x:Null}" Click="buttonLight_Click" BorderThickness="1" Padding="0"/>
+        <Button x:Name="buttonLabeling" Content="ラベリング"  Height="30" Canvas.Left="15" Canvas.Top="476" Width="100" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Background="{x:Null}" BorderThickness="1" Padding="0" Click="buttonLabeling_Click"/>
+
+
+    </Canvas>
+</Page>
