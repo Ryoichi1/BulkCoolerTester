@@ -207,12 +207,13 @@ namespace 自記温度計Tester
                         if (!Flags.PowOn)
                         {
                             var flagComm = false;
+                            Thread.Sleep(1000);
                             General.PowSupply(true);
                             await Task.Run(() =>
                             {
                                 flagComm = General.CheckComm();
                             });
-                            if(!flagComm) goto FAIL;
+                            if (!flagComm) goto FAIL;
                         }
                     }
                     else
@@ -262,71 +263,84 @@ namespace 自記温度計Tester
                             if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN3)) break;
                             goto case 5000;
 
-                        case 305://CN9出力電圧チェック
+                        case 305://CN9On出力電圧チェック
                             if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9On)) break;
                             goto case 5000;
 
-                        case 306://CN9出力電圧チェック
+                        case 306://CN9Off出力電圧チェック
                             if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9Off)) break;
                             goto case 5000;
 
-                        case 400:
+                        //通信チェック
+                        //////////////////////////////////////////////////////
+                        case 400://Bluetooth通信確認
+                            if (await Test通信.CheckBluetooth()) break;
+                            goto case 5000;
+                        case 401://AT通信確認
+                            if (await Test通信.CheckAtMode()) break;
+                            goto case 5000;
+
+                        case 402://RS485通信確認
+                            if (await Test通信.CheckRs485()) break;
+                            goto case 5000;
+
+                        case 500://LEDチェック
                             await Task.Delay(1000);
                             if (await TestLed.CheckColor()) break;
                             goto case 5000;
-                        case 401:
+                        case 501:
                             if (await TestLed.CheckLum()) break;
                             goto case 5000;
 
-                        case 402:
+                        case 502:
                             if (await Test7Seg.CheckLum()) break;
                             goto case 5000;
 
-                        case 500:
+                        case 600://タクトスイッチ確認
                             if (await スイッチチェック.CheckSw1_4()) break;
                             goto case 5000;
 
-                        case 501:
+                        case 601://DIPスイッチ確認
                             if (await スイッチチェック.CheckS1()) break;
                             goto case 5000;
 
-                        case 600:
+                        case 700://カレントセンサ確認
                             if (await TestCt.CheckInput()) break;
                             goto case 5000;
 
-                        case 700:
+                        case 800://サーミスタ調整 5℃
                             if (await TestTH.AdjTh5()) break;
                             goto case 5000;
 
-                        case 701:
+                        case 801://サーミスタチェック
                             if (await TestTH.CheckTh()) break;
                             goto case 5000;
 
-                        case 800:
+                        case 900://電源基板SW2チェック
                             if (await TestPowSw2.CheckSw2()) break;
                             goto case 5000;
-                        case 900:
-                            if (await TestRtc.CheckRtc()) break;
-                            goto case 5000;
 
-                        case 901:
-                            await TestRtc.SetBattery();
-                            break;
-
-                        case 902:
-                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.BT1)) break;
-                            goto case 5000;
-                        case 1000:
+                        case 1000://停電検出チェック
                             if (await Test停電検出.Check停電検出()) break;
                             goto case 5000;
 
-                        case 1100:
+                        case 1100://バッテリLowチェック
                             if (await TestBattLow.CheckBattLow()) break;
                             goto case 5000;
 
-                        case 1200:
-                            if (await Test警報リレー出力.CheckRelay() ) break;
+                        case 1200://警報リレーチェック
+                            if (await Test警報リレー出力.CheckRelay()) break;
                             goto case 5000;
+
+                        case 1300://EEPROMチェック
+                            if (await TestEEPROM.CheckEEPROM()) break;
+                            goto case 5000;
+
+                        case 1400://RTCチェック
+                            if (await TestRtc.CheckRtc()) break;
+                            goto case 5000;
+
+
 
 
 
@@ -369,7 +383,6 @@ namespace 自記温度計Tester
                 //↓↓すべての項目が合格した時の処理です↓↓
                 General.ResetIo();
                 await Task.Delay(500);
-
                 State.VmTestStatus.Message = Constants.MessRemove;
 
                 //通しで試験が合格したときの処理です(検査データを保存して、シリアルナンバーをインクリメントする)
@@ -493,13 +506,16 @@ namespace 自記温度計Tester
 
                 General.cam1.ResetFlag();
                 General.cam2.ResetFlag();
-                General.ResetViewModel();
                 RefreshDataContext();
 
                 if (Flags.ShowLabelPage)
                 {
                     State.uriOtherInfoPage = new Uri("Page/Test/ラベル貼り付け.xaml", UriKind.Relative);
                     State.VmMainWindow.TabIndex = 3;
+                }
+                else
+                {
+                    General.ResetViewModel();
                 }
             }
 

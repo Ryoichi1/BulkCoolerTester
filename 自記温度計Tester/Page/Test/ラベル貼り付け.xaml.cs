@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Microsoft.Practices.Prism.Mvvm;
 using System.Linq;
+using System.Windows.Media.Animation;
 
 namespace 自記温度計Tester
 {
@@ -11,24 +12,8 @@ namespace 自記温度計Tester
     {
         public class vm : BindableBase
         {
-            private Visibility _VisCN1 = Visibility.Hidden;
-            public Visibility VisCN1 { get { return _VisCN1; } set { SetProperty(ref _VisCN1, value); } }
-
-            private Visibility _VisCN2 = Visibility.Hidden;
-            public Visibility VisCN2 { get { return _VisCN2; } set { SetProperty(ref _VisCN2, value); } }
-
-            private Visibility _VisCN3 = Visibility.Hidden;
-            public Visibility VisCN3 { get { return _VisCN3; } set { SetProperty(ref _VisCN3, value); } }
-
-            private Visibility _VisCN4 = Visibility.Hidden;
-            public Visibility VisCN4 { get { return _VisCN4; } set { SetProperty(ref _VisCN4, value); } }
-
-            private Visibility _VisCN9 = Visibility.Hidden;
-            public Visibility VisCN9 { get { return _VisCN9; } set { SetProperty(ref _VisCN9, value); } }
-
-
-            private string _NgList;
-            public string NgList { get { return _NgList; } set { SetProperty(ref _NgList, value); } }
+            private string _DcLabel;
+            public string DcLabel { get { return _DcLabel; } internal set { SetProperty(ref _DcLabel, value); } }
 
         }
 
@@ -36,50 +21,52 @@ namespace 自記温度計Tester
 
         public ラベル貼り付け()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+
+            State.VmMainWindow.ThemeOpacity = 0.0;
+
+            (FindResource("Blink") as Storyboard).Begin();
+            (FindResource("Blink2") as Storyboard).Begin();
+
             viewmodel = new vm();
             this.DataContext = viewmodel;
-            SetErrInfo();
+
         }
 
-        private void SetErrInfo()
+        private void SetLabel()
         {
-            if (コネクタチェック.ListCnSpec == null) return;
-            var NgList = コネクタチェック.ListCnSpec.Where(cn => !cn.result);
+            //デートコード表記の設定
 
-            foreach (var cn in NgList)
-            {
-                switch (cn.name)
-                {
-                    case コネクタチェック.NAME.CN1:
-                        viewmodel.VisCN1 = Visibility.Visible;
-                        viewmodel.NgList += "CN1\r\n";
-                        break;
-                    case コネクタチェック.NAME.CN2:
-                        viewmodel.VisCN2 = Visibility.Visible;
-                        viewmodel.NgList += "CN2\r\n";
-                        break;
-                    case コネクタチェック.NAME.CN3:
-                        viewmodel.VisCN3 = Visibility.Visible;
-                        viewmodel.NgList += "CN3\r\n";
-                        break;
-                    case コネクタチェック.NAME.CN4:
-                        viewmodel.VisCN4 = Visibility.Visible;
-                        viewmodel.NgList += "CN4\r\n";
-                        break;
-                    case コネクタチェック.NAME.CN9:
-                        viewmodel.VisCN9 = Visibility.Visible;
-                        viewmodel.NgList += "CN9\r\n";
-                        break;
-                }
-
-            }
+            viewmodel.DcLabel = State.VmMainWindow.SerialNumber;
         }
+
 
         private void buttonReturn_Click(object sender, RoutedEventArgs e)
-        {
+        {            
+            //テーマ透過度を元に戻す
+            State.VmMainWindow.ThemeOpacity = State.CurrentThemeOpacity;
+
+            General.ResetViewModel();
+            Flags.ShowLabelPage = false;
             State.VmMainWindow.TabIndex = 0;
-            
+
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetLabel();
+            buttonReturn.Focus();
+        }
+
+        private void buttonReturn_GotFocus(object sender, RoutedEventArgs e)
+        {
+            buttonReturn.Background = General.OnBrush;
+        }
+
+        private void buttonReturn_LostFocus(object sender, RoutedEventArgs e)
+        {
+            buttonReturn.Background = General.OffBrush;
+
         }
     }
 }

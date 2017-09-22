@@ -12,7 +12,6 @@ namespace 自記温度計Tester
         {
             bool resultOn = false;
             bool resultOff = false;
-            const int WAIT_TIME = 13000;
             double TimeOnToSleep = 0;
 
             Flags.AddDecision = false;
@@ -74,10 +73,16 @@ namespace 自記温度計Tester
                         resultOff = (blob1Info.Count == 0) && (blob2Info.Count == 0);
                         if (resultOff)
                         {
+                            //念のためもう１回確認
+                            Thread.Sleep(500);
+                            blob1Info = General.cam1.blobs.Clone();
+                            blob2Info = General.cam2.blobs.Clone();
+                            resultOff = (blob1Info.Count == 0) && (blob2Info.Count == 0);
+                            if (!resultOff) continue;
                             stopWatch.Stop();
                             TimeOnToSleep = stopWatch.ElapsedMilliseconds / 1000;
                             State.VmTestStatus.TestLog += "---PASS";
-                            State.VmTestStatus.TestLog += "\r\nスリープ突入までの時間 " + TimeOnToSleep.ToString("F0") + "秒\r\n";
+                            State.VmTestStatus.TestLog += "\r\n( スリープ突入までの時間 " + TimeOnToSleep.ToString("F0") + "秒 )\r\n";
                             Thread.Sleep(500);
                             break;
                         }
@@ -115,7 +120,7 @@ namespace 自記温度計Tester
                     blob1Info = General.cam1.blobs.Clone();
                     blob2Info = General.cam2.blobs.Clone();
                     resultOn = (blob1Info.Count != 0) || (blob2Info.Count != 0);
-  
+
                     if (resultOn)
                     {
                         State.VmTestStatus.TestLog += "---PASS";

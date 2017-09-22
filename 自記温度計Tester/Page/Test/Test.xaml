@@ -690,9 +690,9 @@
                     <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
                 </Label.Effect>
             </Label>
-            <Label x:Name="labelStateRetry_Copy2" Content="PC" Height="16" Canvas.Left="209" Width="43" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" Canvas.Top="7" Background="{Binding ColorRS232C}" Visibility="{Binding RetryLabelVis}" FontSize="10" Padding="0"/>
-            <Label x:Name="labelStateRetry_Copy3" Content="AT" Height="16" Canvas.Left="259" Width="43" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" Canvas.Top="7" Background="{Binding ColorRS485}" Visibility="{Binding RetryLabelVis}" FontSize="10" Padding="0"/>
-            <Label x:Name="labelStateRetry_Copy4" Content="BlueTooth" Height="16" Canvas.Left="309" Width="58" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" Canvas.Top="7" Background="{Binding ColorBT}" Visibility="{Binding RetryLabelVis}" FontSize="10" Padding="0"/>
+            <Label x:Name="labelStateRetry_Copy2" Content="PC" Height="16" Canvas.Left="209" Width="43" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" Canvas.Top="7" Background="{Binding ColorLabelPC}" FontSize="10" Padding="0"/>
+            <Label x:Name="labelStateRetry_Copy3" Content="AT" Height="16" Canvas.Left="259" Width="43" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" Canvas.Top="7" Background="{Binding ColorLabelAT}"  FontSize="10" Padding="0"/>
+            <Label x:Name="labelStateRetry_Copy4" Content="BlueTooth" Height="16" Canvas.Left="309" Width="58" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" Canvas.Top="7" Background="{Binding ColorLabelBT}" FontSize="10" Padding="0"/>
         </Canvas>
         <Controls:ProgressRing x:Name="RingWait" Canvas.Left="112" Canvas.Top="146" Height="120" Width="120" IsActive="{Binding IsActiveRing}">
             <Controls:ProgressRing.Effect>

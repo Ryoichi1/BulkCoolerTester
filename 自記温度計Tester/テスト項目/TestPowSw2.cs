@@ -26,7 +26,7 @@ namespace 自記温度計Tester
                     General.cam1.FlagLabeling = true;
 
                     General.SetPowSw2(false);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(2500);
 
                     var blobInfo = General.cam1.blobs.Clone();
                     if (blobInfo.Count != 3) return false;

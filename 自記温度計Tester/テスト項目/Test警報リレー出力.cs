@@ -40,12 +40,7 @@ namespace 自記温度計Tester
                         if (!Target232_BT.SendData(CommandOn)) return false;
 
                         //製品のSW1を長押しする
-                        State.VmTestStatus.IsActiveRing = true;
-                        General.SetSw1OnByFet(true);
-                        Thread.Sleep(4000);
-                        General.SetSw1OnByFet(false);
-                        Thread.Sleep(13000);
-                        State.VmTestStatus.IsActiveRing = false;
+                        General.Set集乳ボタン();
 
                         if (!Target232_BT.SendData(CommandInit)) return false;
 

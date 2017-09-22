@@ -169,7 +169,7 @@
             </Label>
             <Button x:Name="buttonSend485" Content="通信"  Height="29" Canvas.Left="31" Canvas.Top="43" Width="115" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="#FF566B85" Click="buttonSend485_Click"/>
         </Canvas>
-        <Canvas x:Name="canvasTh" Height="274" Canvas.Left="505" Canvas.Top="26" Width="446">
+        <Canvas x:Name="canvasTh" Height="274" Canvas.Left="505" Canvas.Top="26" Width="533">
             <Canvas.Background>
                 <SolidColorBrush Color="#FF44BDEC" Opacity="0.2"/>
             </Canvas.Background>
@@ -213,6 +213,9 @@
             <Label Content="{Binding ResTh30}" Background="{Binding ColResTh30}" Height="26" Canvas.Left="341" Canvas.Top="168" Width="92" BorderBrush="White" BorderThickness="1" Padding="0"/>
             <Label Content="{Binding ResTh45}" Background="{Binding ColResTh45}" Height="26" Canvas.Left="341" Canvas.Top="198" Width="92" BorderBrush="White" BorderThickness="1" Padding="0"/>
             <Label Content="{Binding ResTh90}" Background="{Binding ColResTh90}" Height="26" Canvas.Left="341" Canvas.Top="228" Width="92" BorderBrush="White" BorderThickness="1" Padding="0"/>
+            <RadioButton x:Name="rbShort" Content="SHORT" Height="25" Canvas.Left="231" Canvas.Top="40" Width="68" Checked="rbShort_Checked"/>
+            <Label Content="{Binding ResTh8}" Background="{Binding ColResTh8}" Height="26" Canvas.Left="298" Canvas.Top="39" Width="92" BorderBrush="White" BorderThickness="1" Padding="0"/>
+            <RadioButton x:Name="rbOpen" Content="OPEN" Height="25" Canvas.Left="145" Canvas.Top="40" Width="68" Checked="rbOpen_Checked"/>
         </Canvas>
         <Button Content="Button" Height="35" Canvas.Left="770" Canvas.Top="322" Width="115" Click="Button_Click"/>
         <Button x:Name="ssss" Content="Button" Height="36" Canvas.Left="770" Canvas.Top="362" Width="115" Click="ssss_Click"/>

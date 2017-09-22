@@ -120,10 +120,10 @@ namespace 自記温度計Tester
             var s1 = asciiList[1];
 
             //DIPスイッチの状態を解析
-            var s1_1 = (s1 & 0x08) == 0x00;
-            var s1_2 = (s1 & 0x04) == 0x00;
-            var s1_3 = (s1 & 0x02) == 0x00;
-            var s1_4 = (s1 & 0x01) == 0x00;
+            var s1_1 = (s1 & 0x01) == 0x00;
+            var s1_2 = (s1 & 0x02) == 0x00;
+            var s1_3 = (s1 & 0x04) == 0x00;
+            var s1_4 = (s1 & 0x08) == 0x00;
 
             //ビューモデルの更新
             //期待値の設定
@@ -240,7 +240,7 @@ namespace 自記温度計Tester
 
                             //ONチェック
                             if (!SetInputSw14(L.name, true)) return false;
-                            Thread.Sleep(1000);
+                            Thread.Sleep(500);
 
                             if (!Target232_BT.SendData("3700ODB,8of000")) return false;
                             var onBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
@@ -334,6 +334,7 @@ namespace 自記温度計Tester
         {
             bool resultOn = false;
             bool resultOff = false;
+            bool resultDefault = false;
 
             try
             {
@@ -363,7 +364,14 @@ namespace 自記温度計Tester
 
                         resultOn = ListS1Specs.All(list =>
                         {
-                            return list.inPut;
+                            if (list.name == NAME_S1.S1_1)
+                            {
+                                return !list.inPut;
+                            }
+                            else
+                            {
+                                return list.inPut;
+                            }
                         });
 
                         if (!resultOn)
@@ -371,14 +379,13 @@ namespace 自記温度計Tester
                             General.PowSupply(false);
                             General.ResetIo();
                             General.PlaySound(General.soundAlarm);
-                            State.VmTestStatus.Message = "S1をすべてONにしてください";
+                            State.VmTestStatus.Message = "S1の2~4をONにしてください";
                             while (General.CheckPress()) ;
                             while (!General.CheckPress()) ;
 
                             State.VmTestStatus.Message = Constants.MessWait;
                             General.PowSupply(true);
-                            Target232_BT.ChangeMode(Target232_BT.MODE.PC);
-                            Thread.Sleep(10000);
+                            if (!General.CheckComm()) return false;
                             ResetViewModel();
                             InitListS1();//テストスペック毎回初期化
                         }
@@ -389,7 +396,14 @@ namespace 自記温度計Tester
 
                         resultOn = ListS1Specs.All(list =>
                         {
-                            return list.inPut;
+                            if (list.name == NAME_S1.S1_1)
+                            {
+                                return !list.inPut;
+                            }
+                            else
+                            {
+                                return list.inPut;
+                            }
                         });
 
 
@@ -411,14 +425,13 @@ namespace 自記温度計Tester
                         General.PowSupply(false);
                         General.ResetIo();
                         General.PlaySound(General.soundAlarm);
-                        State.VmTestStatus.Message = "S1の4番だけをONにしてください";
+                        State.VmTestStatus.Message = "S1をすべてOFFにしてください";
                         while (General.CheckPress()) ;
                         while (!General.CheckPress()) ;
 
                         State.VmTestStatus.Message = Constants.MessWait;
                         General.PowSupply(true);
-                        Target232_BT.ChangeMode(Target232_BT.MODE.PC);
-                        Thread.Sleep(10000);
+                        if (!General.CheckComm()) return false;
 
                         if (!Target232_BT.SendData("3700ODB,8of000")) return false;
 
@@ -427,6 +440,43 @@ namespace 自記温度計Tester
                         AnalysisDataS1(offBuff, false);
 
                         resultOff = ListS1Specs.All(list =>
+                        {
+                            return !list.inPut;
+                        });
+
+                        if (resultOff)
+                        {
+                            //テストログの更新
+                            State.VmTestStatus.TestLog += "---PASS";
+                        }
+                        else
+                        {
+                            //テストログの更新
+                            State.VmTestStatus.TestLog += "---FAIL";
+                            return false;
+                        }
+
+                        //出荷設定
+                        //テストログの更新
+                        State.VmTestStatus.TestLog += "\r\nALL 出荷設定 4番On";
+                        General.PowSupply(false);
+                        General.ResetIo();
+                        General.PlaySound(General.soundAlarm);
+                        State.VmTestStatus.Message = "S1の4番だけをONにしてください";
+                        while (General.CheckPress()) ;
+                        while (!General.CheckPress()) ;
+
+                        State.VmTestStatus.Message = Constants.MessWait;
+                        General.PowSupply(true);
+                        if (!General.CheckComm()) return false;
+
+                        if (!Target232_BT.SendData("3700ODB,8of000")) return false;
+
+                        var OnOnly4Buff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
+
+                        AnalysisDataS1(OnOnly4Buff, false);
+
+                        resultDefault = ListS1Specs.All(list =>
                         {
                             if (list.name == NAME_S1.S1_4)
                             {
@@ -438,7 +488,7 @@ namespace 自記温度計Tester
                             }
                         });
 
-                        if (resultOff)
+                        if (resultDefault)
                         {
                             //テストログの更新
                             State.VmTestStatus.TestLog += "---PASS";
@@ -466,7 +516,7 @@ namespace 自記温度計Tester
                 Thread.Sleep(200);
 
 
-                if (!resultOn || !resultOff)
+                if (!resultOn || !resultOff || !resultDefault)
                 {
                     State.VmTestStatus.Spec = "規格値 : ---";
                     State.VmTestStatus.MeasValue = "計測値 : ---";

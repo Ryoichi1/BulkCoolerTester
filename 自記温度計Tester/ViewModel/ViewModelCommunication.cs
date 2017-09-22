@@ -44,25 +44,25 @@ namespace 自記温度計Tester
             set { SetProperty(ref _Command, value); }
         }
 
-        private Brush _ColorRS232C;
-        public Brush ColorRS232C
+        private Brush _ColorLabelPC;
+        public Brush ColorLabelPC
         {
-            get { return _ColorRS232C; }
-            set { SetProperty(ref _ColorRS232C, value); }
+            get { return _ColorLabelPC; }
+            set { SetProperty(ref _ColorLabelPC, value); }
         }
 
-        private Brush _ColorRS485;
-        public Brush ColorRS485
+        private Brush _ColorLabelAT;
+        public Brush ColorLabelAT
         {
-            get { return _ColorRS485; }
-            set { SetProperty(ref _ColorRS485, value); }
+            get { return _ColorLabelAT; }
+            set { SetProperty(ref _ColorLabelAT, value); }
         }
 
-        private Brush _ColorBT;
-        public Brush ColorBT
+        private Brush _ColorLabelBT;
+        public Brush ColorLabelBT
         {
-            get { return _ColorBT; }
-            set { SetProperty(ref _ColorBT, value); }
+            get { return _ColorLabelBT; }
+            set { SetProperty(ref _ColorLabelBT, value); }
         }
 
     }

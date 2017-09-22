@@ -112,7 +112,7 @@ namespace 自記温度計Tester
 
             InitMainForm();//メインフォーム初期
 
-            this.WindowState = WindowState.Maximized;
+            //this.WindowState = WindowState.Maximized;
 
             //メタルモード設定（デフォルトは禁止とする）
             Flags.MetalModeSw = false;
@@ -242,9 +242,14 @@ namespace 自記温度計Tester
                 // 入力した工番の検査データが存在しているかどうか確認する
                 if (!System.IO.File.Exists(dataFilePath))
                 {
-                    //データファイルが存在しなければ、必然的にシリアルナンバーは0001です
+                    //システム時計から、デートコードを生成する
+                    DateTime dt = DateTime.Now;
+                    string DcYear = dt.ToString("yy");
+                    string DcMonth = (Int32.Parse(dt.ToString("MM"))*4).ToString("D2");
+
+                    //データファイルが存在しなければ、必然的にシリアルナンバーは001です
                     State.NewSerial = 1;
-                    State.VmMainWindow.SerialNumber = State.VmMainWindow.Opecode + "-" + State.NewSerial.ToString("D4") + State.CheckerNumber;
+                    State.VmMainWindow.SerialNumber = DcYear + DcMonth + "Ne" + State.NewSerial.ToString("D3");
                     return;
                 }
 
@@ -254,14 +259,11 @@ namespace 自記温度計Tester
                 {
                     try
                     {
-                        // State.LastSerialの例  3-41-1234-000-0006-0001  ※1号機で試験した工番3-41-1234-000の0006番
-                        var reg1 = new Regex(@"\d-\d\d-\d\d\d\d-\d\d\d-");//工番部分を正規表現で表す
-                        var reg2 = new Regex(@"-\d\d\d\d");//末尾の号機番号を正規表現で表す
-                        var buff = reg1.Replace(State.LastSerial, "");//工番部分を空白で置換する
-                        buff = reg2.Replace(buff, "");//号機番号部分を空白で置換する
+                        // State.LastSerialの例  1736Ne001番
+                        var buff = State.LastSerial.Substring(6);//連番部分を抽出
                         int lastSerial = Int32.Parse(buff);
                         State.NewSerial = lastSerial + 1;
-                        State.VmMainWindow.SerialNumber = State.VmMainWindow.Opecode + "-" + State.NewSerial.ToString("D4") + State.CheckerNumber;
+                        State.VmMainWindow.SerialNumber =  State.LastSerial.Substring(0,6) + State.NewSerial.ToString("D3");
                     }
                     catch
                     {

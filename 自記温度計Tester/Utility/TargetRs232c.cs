@@ -82,7 +82,7 @@ namespace 自記温度計Tester
                     portBt.Parity = System.IO.Ports.Parity.None;
                     portBt.StopBits = System.IO.Ports.StopBits.One;
                     portBt.NewLine = (char)0x03 + "\r\n";//コマンドの例 [STX]TH_HARD+1[ETX][CR][LF]
-                    portBt.ReadTimeout = 600;
+                    portBt.ReadTimeout = 3000;
                     //ポートオープン
                     portBt.Open();
                 }
@@ -123,6 +123,10 @@ namespace 自記温度計Tester
                     port232.BaudRate = 9600;
                     port232.Parity = System.IO.Ports.Parity.Odd;
                     CurrentMode = MODE.AT;
+                    port232.NewLine = "\r";
+                    State.VmComm.ColorLabelPC = General.OffBrush;
+                    State.VmComm.ColorLabelAT = General.OnBrush;
+                    State.VmComm.ColorLabelBT = General.OffBrush;
 
                 }
                 else if (mode == MODE.PC)
@@ -135,6 +139,10 @@ namespace 自記温度計Tester
                     port232.BaudRate = 38400;
                     port232.Parity = System.IO.Ports.Parity.None;
                     CurrentMode = MODE.PC;
+                    port232.NewLine = (char)0x03 + "\r\n";//コマンドの例 [STX]TH_HARD+1[ETX][CR][LF]
+                    State.VmComm.ColorLabelPC = General.OnBrush;
+                    State.VmComm.ColorLabelAT = General.OffBrush;
+                    State.VmComm.ColorLabelBT = General.OffBrush;
                 }
                 else if (mode == MODE.BT)
                 {
@@ -142,6 +150,9 @@ namespace 自記温度計Tester
                     General.SetRL3(false);
 
                     CurrentMode = MODE.BT;
+                    State.VmComm.ColorLabelPC = General.OffBrush;
+                    State.VmComm.ColorLabelAT = General.OffBrush;
+                    State.VmComm.ColorLabelBT = General.OnBrush;
                 }
                 else if (mode == MODE.WRITE)
                 {
@@ -149,6 +160,9 @@ namespace 自記温度計Tester
                     General.SetRL3(true);
 
                     CurrentMode = MODE.WRITE;
+                    State.VmComm.ColorLabelPC = General.OffBrush;
+                    State.VmComm.ColorLabelAT = General.OffBrush;
+                    State.VmComm.ColorLabelBT = General.OffBrush;
                 }
 
                 return true;
@@ -161,9 +175,7 @@ namespace 自記温度計Tester
 
 
         //**************************************************************************
-        //ターゲットにコマンドを送る
-        //引数：なし
-        //戻値：bool
+        //ターゲットにコマンドを送る RS232C（PCモード）、Bluetooth通信用
         //**************************************************************************
         public static bool SendData(string Data, int Wait = 3000, bool setLog = true, bool DoAnalysis = true)
         {
@@ -185,8 +197,16 @@ namespace 自記温度計Tester
             {
                 State.VmComm.RS232C_TX = "";
                 State.VmComm.RS232C_RX = "";
+                string sendData = "";
 
-                string sendData = (char)0x02 + Data;
+                if (CurrentMode == MODE.AT)
+                {
+                    sendData = "\n" + Data;
+                }
+                else
+                {
+                    sendData = (char)0x02 + Data;
+                }
 
                 ClearBuff();//受信バッファのクリア
 
@@ -218,13 +238,19 @@ namespace 自記温度計Tester
 
         }
 
-
         private static bool AnalysisData(string data, bool setLog = true)
         {
             bool result = false;
 
             try
             {
+                if (CurrentMode == MODE.AT)
+                {
+                    RecieveData = data;
+                    return result = true;
+                }
+
+
                 var stx = ((char)0x02).ToString();
                 //受信データのフレームが正しいかチェックする（先頭STX）
                 if (!data.StartsWith(stx))
@@ -258,9 +284,9 @@ namespace 自記温度計Tester
         //**************************************************************************
         private static void ClearBuff()
         {
-            if(port232.IsOpen)
+            if (port232.IsOpen)
                 port232.DiscardInBuffer();
-            if(portBt.IsOpen)
+            if (portBt.IsOpen)
                 portBt.DiscardInBuffer();
         }
     }

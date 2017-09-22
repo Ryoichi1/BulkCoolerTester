@@ -141,7 +141,7 @@ namespace 自記温度計Tester
 
 
 
-
+        public static bool OkRs485Com = false;
         public static void Rs485Task()
         {
             const string 接続確認 = "92020193";
@@ -154,6 +154,9 @@ namespace 自記温度計Tester
             const string re積算乳温 = "2911032520110OK**";
             const string 積算ランプ = "920205197";
             const string re積算ランプ = "290205**";
+
+            OkRs485Com = false;
+            int Count通常時 = 0;
 
             var t = Task.Run(() =>
             {
@@ -174,6 +177,11 @@ namespace 自記温度計Tester
                             break;
 
                         case 積算乳温:
+                            Count通常時++;
+                            if (Count通常時 >= 5)
+                            {
+                                OkRs485Com = true;
+                            }
                             SendData(re積算乳温);
                             break;
 
@@ -181,6 +189,7 @@ namespace 自記温度計Tester
                             SendData(re積算ランプ);
                             break;
                         default:
+
                             SendData(re積算乳温);
                             break;
 

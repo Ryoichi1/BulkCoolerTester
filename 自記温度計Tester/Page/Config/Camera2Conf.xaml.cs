@@ -178,12 +178,12 @@ namespace 自記温度計Tester
             if (LedOn)
             {
                 buttonLedOnOff.Background = General.OnBrush;
-                General.PowSupply(true);
-                await Task.Delay(2500);
-
-                Target232_BT.ChangeMode(Target232_BT.MODE.PC);
-                await Task.Delay(1500);
-                Target232_BT.SendData("3700ODB,8onOOO");
+                await Task.Run(() =>
+                {
+                    General.PowSupply(true);
+                    General.CheckComm();
+                    Target232_BT.SendData("3700ODB,8onOOO");
+                });
             }
             else
             {

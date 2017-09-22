@@ -216,7 +216,7 @@ namespace 自記温度計Tester
 
 
 
-        private enum CH_TH { TH2, TH3, TH4, TH5, TH6, TH7, TH8, TH10, TH20, TH30, TH45, TH90, }
+        private enum CH_TH { TH2, TH3, TH4, TH5, TH6, TH7, TH8, TH10, TH20, TH30, TH45, TH90, SHORT, OPEN }
         private CH_TH chTh;
 
         bool flagRbThOn = false;
@@ -444,7 +444,24 @@ namespace 自記温度計Tester
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Target232_BT.Close232();
+            TargetRs485.Close();
+            //Target232_BT.Close232();
+        }
+
+        private void rbOpen_Checked(object sender, RoutedEventArgs e)
+        {
+                        flagRbThOn = true;
+            General.SetThShort();
+            chTh = CH_TH.SHORT;
+            General.SetThOpen();
+        }
+
+        private void rbShort_Checked(object sender, RoutedEventArgs e)
+        {
+            flagRbThOn = true;
+            General.SetThShort();
+            chTh = CH_TH.SHORT;
+
         }
     }
 }

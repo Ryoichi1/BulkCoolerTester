@@ -351,6 +351,14 @@ namespace 自記温度計Tester
             SetAC100(sw);
             SetPowSw2(sw);
             Flags.PowOn = sw;
+
+            if (!sw)
+            {
+                State.VmComm.ColorLabelPC = General.OffBrush;
+                State.VmComm.ColorLabelAT = General.OffBrush;
+                State.VmComm.ColorLabelBT = General.OffBrush;
+            }
+
         }
 
         //電源基板のSW2はOFFしないで、100VだけをOFFする（停電確認用）
@@ -428,7 +436,7 @@ namespace 自記温度計Tester
 
         public static void ResetViewModel()//TODO:
         {
-            State.VmMainWindow.SerialNumber = State.VmMainWindow.Opecode + "-" + State.NewSerial.ToString("D4") + State.CheckerNumber;
+            State.VmMainWindow.SerialNumber = State.VmMainWindow.SerialNumber.Substring(0,6) + State.NewSerial.ToString("D3");
             //ViewModel OK台数、NG台数、Total台数の更新
             State.VmTestStatus.OkCount = State.Setting.TodayOkCount.ToString() + "台";
             State.VmTestStatus.NgCount = State.Setting.TodayNgCount.ToString() + "台";
@@ -759,6 +767,21 @@ namespace 自記温度計Tester
                 }
                 Thread.Sleep(300);
             }
+        }
+
+        public static void WaitWithRing(int milliSeconds)
+        {
+            State.VmTestStatus.IsActiveRing = true;
+            Thread.Sleep(milliSeconds);
+            State.VmTestStatus.IsActiveRing = false;
+        }
+
+        public static void Set集乳ボタン()
+        {
+            SetSw1OnByFet(true);
+            WaitWithRing(4000);
+            SetSw1OnByFet(false);
+            WaitWithRing(13000);
         }
 
         public static void ResetRelay_Multimeter()

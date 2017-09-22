@@ -27,12 +27,13 @@ namespace 自記温度計Tester
                     General.PowSupply(false);
                     Thread.Sleep(5000);
                     General.PowSupply(true);
-                    Target232_BT.ChangeMode(Target232_BT.MODE.PC);
-                    Thread.Sleep(8000);
+                    if (!General.CheckComm()) return false;
                     return CheckTime();
                 }
                 finally
                 {
+                    General.SetK2(false);
+                    Thread.Sleep(500);
                     General.pmx18.VolOff();
                 }
             });
@@ -138,45 +139,58 @@ namespace 自記温度計Tester
         }
 
 
+        //以下、基板単体試験でコイン電池をセットしない理由
 
-        public static async Task SetBattery()
-        {
-            await Task.Run(() =>
-            {
-                try
-                {
-                    General.PlaySound(General.soundAlarm);
-                    State.VmTestStatus.Message = "リチウム電池をセットしてください";
-                    while (General.CheckPress()) ;
-                    while (!General.CheckPress()) ;
+        //>>きのう藤原さんと話したのですが
+        //>>コイン電池は、耐圧試験後にセット
+        //>>した方が良いですか？？
+        //>>コイン電池の電圧をチェックしたいので
+        //>>できれば基板単体試験時にセットしたいですが。。。
+        //>
+        //>耐圧試験は２次側の信号を全てつなげて、FGとの耐圧を測るので
+        //>全てつなげた時点で電池がショートとなります。
+        //>だから電池は耐圧後と言ったのではないでしょうか
 
-                }
-                finally
-                {
+        //そういうことですね、失礼しました
+        //コイン電池の電圧チェックはやめます
 
-                }
-            });
-        }
+        //public static async Task SetBattery()
+        //{
+        //    await Task.Run(() =>
+        //    {
+        //        try
+        //        {
+        //            General.PlaySound(General.soundAlarm);
+        //            State.VmTestStatus.Message = "リチウム電池をセットしてください";
+        //            while (General.CheckPress()) ;
+        //            while (!General.CheckPress()) ;
 
-        public static async Task<bool> FinalSetRtc()
-        {
-            return await Task<bool>.Run(() =>
-            {
-                try
-                {
-                    if (!SetTime()) return false;
-                    General.PowSupply(false);
-                    Thread.Sleep(5000);
-                    General.PowSupply(true);
-                    Target232_BT.ChangeMode(Target232_BT.MODE.PC);
-                    Thread.Sleep(8000);
-                    return CheckTime();
-                }
-                finally
-                {
-                }
-            });
-        }
+        //        }
+        //        finally
+        //        {
+
+        //        }
+        //    });
+        //}
+
+        //public static async Task<bool> FinalSetRtc()
+        //{
+        //    return await Task<bool>.Run(() =>
+        //    {
+        //        try
+        //        {
+        //            if (!SetTime()) return false;
+        //            General.PowSupply(false);
+        //            Thread.Sleep(5000);
+        //            General.PowSupply(true);
+        //            if (!General.CheckComm()) return false;
+        //            return CheckTime();
+        //        }
+        //        finally
+        //        {
+        //        }
+        //    });
+        //}
 
     }
 

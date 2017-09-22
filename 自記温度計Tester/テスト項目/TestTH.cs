@@ -136,7 +136,10 @@ namespace 自記温度計Tester
                 {
                     try
                     {
-                        Target232_BT.ChangeMode(Target232_BT.MODE.PC);
+                        Thread.Sleep(1000);
+                        General.PowSupply(true);
+                        if (!General.CheckComm()) return false;
+
                         //基準抵抗（5℃の抵抗）を接続する
                         General.SetTh5();
                         Thread.Sleep(5000);
@@ -204,7 +207,7 @@ namespace 自記温度計Tester
             bool allResult = false;
             double temp = 0;
             double stdTemp = 0;
-            double err = 0.6;
+            double err = 0.5;
             string Spec = "";
 
             try
@@ -219,10 +222,11 @@ namespace 自記温度計Tester
                         Target232_BT.ChangeMode(Target232_BT.MODE.PC);
                         //基準抵抗（5℃の抵抗）を接続する
 
+                        State.VmTestStatus.TestLog += "\r\n";
                         return allResult = ListThSpecs.All(L =>
                         {
                             //テストログの更新
-                            State.VmTestStatus.TestLog += "\r\n" + L.name.ToString() + "℃ チェック";
+                            State.VmTestStatus.TestLog += L.name.ToString() + "℃ チェック";
                             switch (L.name)
                             {
                                 case NAME._2:
@@ -281,18 +285,19 @@ namespace 自記温度計Tester
                                     break;
 
                                 case NAME._90:
-                                    stdTemp = 90.0;
+                                    stdTemp = 91.5;
                                     Spec = "90.0℃";
                                     break;
                             }
                             SetTh(L.name);
                             Thread.Sleep(3000);
 
+
                             if (!Target232_BT.SendData("3700ODB,8of000")) return false;
                             var tempBuff = Target232_BT.RecieveData.Substring(14, 3);//3700O00,of,>7,032,021,0100 この場合 032が温度（小数点を省いているので3.2℃）
                             temp = Double.Parse(tempBuff) / 10.0;
                             var tempString = temp.ToString("F1") + "℃";
-                            var result = (temp >= stdTemp - err && temp <= stdTemp + err);
+                            var result = (temp > stdTemp - err && temp < stdTemp + err);
                             switch (L.name)
                             {
                                 case NAME._2:
@@ -360,7 +365,7 @@ namespace 自記温度計Tester
                             if (result)
                             {
                                 //テストログの更新
-                                State.VmTestStatus.TestLog += "---PASS";
+                                State.VmTestStatus.TestLog += "---PASS\r\n";
                                 return true;
                             }
                             else
@@ -385,7 +390,7 @@ namespace 自記温度計Tester
                 await Task.Delay(500);
                 if (!allResult)
                 {
-                    State.VmTestStatus.Spec = "規格値 : " + Spec + "±" + err.ToString("F1") +"℃";
+                    State.VmTestStatus.Spec = "規格値 : " + Spec + "±" + err.ToString("F1") + "℃";
                     State.VmTestStatus.MeasValue = "計測値 : " + temp.ToString("F1") + "℃";
                 }
             }
