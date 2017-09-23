@@ -217,9 +217,8 @@
             <Label Content="{Binding ResTh8}" Background="{Binding ColResTh8}" Height="26" Canvas.Left="298" Canvas.Top="39" Width="92" BorderBrush="White" BorderThickness="1" Padding="0"/>
             <RadioButton x:Name="rbOpen" Content="OPEN" Height="25" Canvas.Left="145" Canvas.Top="40" Width="68" Checked="rbOpen_Checked"/>
         </Canvas>
-        <Button Content="Button" Height="35" Canvas.Left="770" Canvas.Top="322" Width="115" Click="Button_Click"/>
-        <Button x:Name="ssss" Content="Button" Height="36" Canvas.Left="770" Canvas.Top="362" Width="115" Click="ssss_Click"/>
-        <Button Content="Button" Height="45" Canvas.Left="770" Canvas.Top="450" Width="115" Click="Button_Click_1"/>
+        <Button Content="Button" Height="54" Canvas.Left="826" Canvas.Top="384" Width="101" Click="Button_Click_2"/>
+        <Button Content="Button" Height="58" Canvas.Left="807" Canvas.Top="494" Width="151" Click="Button_Click_3"/>
 
     </Canvas>
 </Page>

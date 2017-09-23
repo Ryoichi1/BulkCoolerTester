@@ -52,6 +52,14 @@ namespace 自記温度計Tester
 
             });
 
+            ラベル貼り付け.RefreshDataContextFromLabelForm = (() =>
+            {
+                Canvas検査データ.DataContext = State.VmTestResults;
+                canvasLedTest.DataContext = State.VmTestResults;
+                tbTestLog.DataContext = State.VmTestStatus;
+
+            });
+
             //ストーリーボードの初期化
             State.testCommand.SbRingLoad = (() => { (FindResource("StoryboardRingLoad") as Storyboard).Begin(); });
             State.testCommand.SbPass = (() => { (FindResource("StoryboardDecision") as Storyboard).Begin(); });
@@ -78,6 +86,7 @@ namespace 自記温度計Tester
             }
             else
             {
+
                 //フォームの初期化
                 SetUnitTest();
                 State.VmTestStatus.DecisionVisibility = System.Windows.Visibility.Hidden;

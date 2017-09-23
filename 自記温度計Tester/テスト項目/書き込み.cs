@@ -25,21 +25,15 @@ namespace 自記温度計Tester
                 string Sum = (mode == WriteMode.PRODUCT) ? State.TestSpec.FwSum : "";
                 bool calcSum = (mode == WriteMode.PRODUCT) ? true : false;
 
-
-                //製品CN6の5、6、7番を短絡する処理（書き込みモードに変更する）
-                Target232_BT.ChangeMode(Target232_BT.MODE.WRITE);
-                await Task.Delay(500);
-
                 //RS232C用のポートが既に開いているため、一度閉じる
                 Target232_BT.Close232();
 
                 //電源ON
                 General.PowSupply(true);
+                await Task.Delay(300);
+                //製品CN6の5、6、7番を短絡する処理（書き込みモードに変更する）
+                Target232_BT.ChangeMode(Target232_BT.MODE.WRITE);
                 await Task.Delay(500);
-                General.SetPowSw2(true);
-                await Task.Delay(500);
-                
-
 
                 return await FlashProgrammer.WriteFirmware(RfpPath, Sum, calcSum);
 

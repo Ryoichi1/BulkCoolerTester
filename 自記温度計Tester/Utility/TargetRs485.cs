@@ -8,7 +8,7 @@ namespace 自記温度計Tester
     {
         private const string ComName = "COM-1PD(USB)H";
         private static SerialPort port;
-        public static string RecieveData { get; private set; }//披検査基板から受信した生データ
+        public static string RecieveData { get; set; }//披検査基板から受信した生データ
 
         //コンストラクタ
         static TargetRs485()
@@ -140,67 +140,6 @@ namespace 自記温度計Tester
         }
 
 
-
-        public static bool OkRs485Com = false;
-        public static void Rs485Task()
-        {
-            const string 接続確認 = "92020193";
-            const string re接続確認 = "290501OK0**";
-            const string 初期化 = "9202089A";
-            const string re初期化 = "290208**";
-            const string 温度補正値 = "920502-0226";
-            const string re温度補正値 = "290202**";
-            const string 積算乳温 = "92020300095";
-            const string re積算乳温 = "2911032520110OK**";
-            const string 積算ランプ = "920205197";
-            const string re積算ランプ = "290205**";
-
-            OkRs485Com = false;
-            int Count通常時 = 0;
-
-            var t = Task.Run(() =>
-            {
-                while (true)
-                {
-                    switch (RecieveData)
-                    {
-                        case 接続確認:
-                            SendData(re接続確認);
-                            break;
-
-                        case 初期化:
-                            SendData(re初期化);
-                            break;
-
-                        case 温度補正値:
-                            SendData(re温度補正値);
-                            break;
-
-                        case 積算乳温:
-                            Count通常時++;
-                            if (Count通常時 >= 5)
-                            {
-                                OkRs485Com = true;
-                            }
-                            SendData(re積算乳温);
-                            break;
-
-                        case 積算ランプ:
-                            SendData(re積算ランプ);
-                            break;
-                        default:
-
-                            SendData(re積算乳温);
-                            break;
-
-                    }
-
-                    ReadRecieveData();
-                    if (!Flags.Rs485Task) return;
-                    Thread.Sleep(1000);
-                }
-            });
-        }
 
         //**************************************************************************
         //受信バッファをクリアする

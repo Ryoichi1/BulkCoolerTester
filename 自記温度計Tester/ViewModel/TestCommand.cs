@@ -280,8 +280,12 @@ namespace 自記温度計Tester
                             if (await Test通信.CheckAtMode()) break;
                             goto case 5000;
 
-                        case 402://RS485通信確認
-                            if (await Test通信.CheckRs485()) break;
+                        case 402://RS485通信確認1
+                            if (await Test通信.CheckRs485(Test通信.経路.経路1)) break;
+                            goto case 5000;
+
+                        case 403://RS485通信確認2
+                            if (await Test通信.CheckRs485(Test通信.経路.経路2)) break;
                             goto case 5000;
 
                         case 500://LEDチェック
@@ -349,7 +353,9 @@ namespace 自記温度計Tester
                             FailStepNo = d.s.Key;
                             FailTitle = d.s.Value;
 
-                            State.VmTestStatus.IsActiveRing = false;//熱伝対調整でNGだった場合リング表示を消す
+                            General.PowSupply(false);
+                            General.ResetIo();
+                            State.VmTestStatus.IsActiveRing = false;//リング表示してる可能性があるので念のため消す処理
 
                             if (RetryCnt++ != Constants.RetryCount)
                             {
@@ -506,7 +512,7 @@ namespace 自記温度計Tester
 
                 General.cam1.ResetFlag();
                 General.cam2.ResetFlag();
-                RefreshDataContext();
+
 
                 if (Flags.ShowLabelPage)
                 {
@@ -516,6 +522,7 @@ namespace 自記温度計Tester
                 else
                 {
                     General.ResetViewModel();
+                    RefreshDataContext();
                 }
             }
 

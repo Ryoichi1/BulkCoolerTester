@@ -199,19 +199,19 @@ namespace 自記温度計Tester
 
         private void buttonSend485_Click(object sender, RoutedEventArgs e)
         {
-            if (!Flags.StateCOM1PD) return;
+            //if (!Flags.StateCOM1PD) return;
 
-            if (Flags.Rs485Task)
-            {
-                buttonSend485.Background = Brushes.Transparent;
-                Flags.Rs485Task = false;
-            }
-            else
-            {
-                buttonSend485.Background = ButtonOnBrush;
-                Flags.Rs485Task = true;
-                TargetRs485.Rs485Task();
-            }
+            //if (Flags.Rs485Task)
+            //{
+            //    buttonSend485.Background = Brushes.Transparent;
+            //    Flags.Rs485Task = false;
+            //}
+            //else
+            //{
+            //    buttonSend485.Background = ButtonOnBrush;
+            //    Flags.Rs485Task = true;
+            //    //TargetRs485.Rs485Task();
+            //}
         }
 
 
@@ -462,6 +462,19 @@ namespace 自記温度計Tester
             General.SetThShort();
             chTh = CH_TH.SHORT;
 
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Target232_BT.Close232();
+            TargetRs485.Close();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            General.SetSw1OnByFet(true);
+            Thread.Sleep(5000);
+            General.SetSw1OnByFet(false);
         }
     }
 }

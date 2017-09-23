@@ -12,7 +12,6 @@ namespace 自記温度計Tester
 
     public static class Test停電検出
     {
-
         public static async Task<bool> Check停電検出()
         {
             try

@@ -2,6 +2,8 @@
 using Microsoft.Practices.Prism.Mvvm;
 using System.Linq;
 using System.Windows.Media.Animation;
+using System.Threading.Tasks;
+using System;
 
 namespace 自記温度計Tester
 {
@@ -10,6 +12,8 @@ namespace 自記温度計Tester
     /// </summary>
     public partial class ラベル貼り付け
     {
+        public static Action RefreshDataContextFromLabelForm;//Test.Xaml内でテスト結果をクリアするために使用すする
+
         public class vm : BindableBase
         {
             private string _DcLabel;
@@ -25,8 +29,8 @@ namespace 自記温度計Tester
 
             State.VmMainWindow.ThemeOpacity = 0.0;
 
-            (FindResource("Blink") as Storyboard).Begin();
-            (FindResource("Blink2") as Storyboard).Begin();
+            (FindResource("Blink1") as Storyboard).Begin();
+
 
             viewmodel = new vm();
             this.DataContext = viewmodel;
@@ -42,7 +46,7 @@ namespace 自記温度計Tester
 
 
         private void buttonReturn_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             //テーマ透過度を元に戻す
             State.VmMainWindow.ThemeOpacity = State.CurrentThemeOpacity;
 
@@ -50,12 +54,17 @@ namespace 自記温度計Tester
             Flags.ShowLabelPage = false;
             State.VmMainWindow.TabIndex = 0;
 
+            General.ResetViewModel();
+            RefreshDataContextFromLabelForm();
+
         }
+
+
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             SetLabel();
-            buttonReturn.Focus();
         }
 
         private void buttonReturn_GotFocus(object sender, RoutedEventArgs e)
@@ -68,5 +77,9 @@ namespace 自記温度計Tester
             buttonReturn.Background = General.OffBrush;
 
         }
+
+
+
+
     }
 }

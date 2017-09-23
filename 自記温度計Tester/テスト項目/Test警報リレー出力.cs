@@ -89,7 +89,7 @@ namespace 自記温度計Tester
                         {
                             if (tm.FlagTimeout)
                             {
-                                State.VmTestStatus.TestLog += "---FAIL";
+                                State.VmTestStatus.TestLog += "---FAIL\r\n";
                                 return false;
                             }
                             General.io.ReadInputData(EPX64S.PORT.P7);
@@ -100,7 +100,7 @@ namespace 自記温度計Tester
                             State.VmTestResults.ColRy2Out = ry2Out ? General.OnBrush : General.OffBrush;
                             if (!ry1Out && !ry2Out)
                             {
-                                State.VmTestStatus.TestLog += "---PASS";
+                                State.VmTestStatus.TestLog += "---PASS\r\n";
                                 return true;
                             }
                         }

@@ -64,43 +64,44 @@ namespace 自記温度計Tester
             new TestSpecs(101, "CN4未半田チェック", false),
             new TestSpecs(102, "JP1短絡ソケットチェック", false),
 
-            //new TestSpecs(200, "検査ソフト書き込み", false),
+            new TestSpecs(200, "検査ソフト書き込み", false),
 
-            //new TestSpecs(300, "3Vライン消費電流チェック", false),
-            //new TestSpecs(301, "6Vライン消費電流チェック", false),
-            //new TestSpecs(302, "電源電圧チェック 5V", false),
-            //new TestSpecs(303, "電源電圧チェック 3.3V", true),
-            //new TestSpecs(304, "CN3 出力電圧チェック", true),
-            //new TestSpecs(305, "CN9On出力電圧チェック", true),
-            //new TestSpecs(306, "CN9Off出力電圧チェック", true),
+            new TestSpecs(300, "3Vライン消費電流チェック", false),
+            new TestSpecs(301, "6Vライン消費電流チェック", false),
+            new TestSpecs(302, "電源電圧チェック 5V", false),
+            new TestSpecs(303, "電源電圧チェック 3.3V", true),
+            new TestSpecs(304, "CN3 出力電圧チェック", true),
+            new TestSpecs(305, "CN9On出力電圧チェック", true),
+            new TestSpecs(306, "CN9Off出力電圧チェック", true),
 
-            //new TestSpecs(400, "Bluetooth通信確認", true),
-            //new TestSpecs(401, "AT通信確認", true),
-            //new TestSpecs(402, "RS485通信確認", true),
+            new TestSpecs(400, "Bluetooth通信確認", true),
+            new TestSpecs(401, "AT通信確認", true),
+            new TestSpecs(402, "RS485通信確認1", true),
+            new TestSpecs(403, "RS485通信確認2", true),
 
-            //new TestSpecs(500, "粒LEDカラーチェック", false),
-            //new TestSpecs(501, "粒LED輝度チェック", true),
-            //new TestSpecs(502, "7セグ 輝度チェック", true),
+            new TestSpecs(500, "粒LEDカラーチェック", false),
+            new TestSpecs(501, "粒LED輝度チェック", true),
+            new TestSpecs(502, "7セグ 輝度チェック", true),
 
-            //new TestSpecs(600, "SW1-SW4チェック", true),
-            //new TestSpecs(601, "S1チェック", true),
+            new TestSpecs(600, "SW1-SW4チェック", true),
+            new TestSpecs(601, "S1チェック", true),
 
-            //new TestSpecs(700, "カレントセンサチェック", true),
+            new TestSpecs(700, "カレントセンサチェック", true),
 
-            //new TestSpecs(800, "サーミスタ調整 5℃", false),
-            //new TestSpecs(801, "サーミスタチェック", true),
+            new TestSpecs(800, "サーミスタ調整 5℃", false),
+            new TestSpecs(801, "サーミスタチェック", true),
 
-            //new TestSpecs(900, "電源基板SW2チェック", true),
+            new TestSpecs(900, "電源基板SW2チェック", true),
 
-            //new TestSpecs(1000, "停電検出チェック", true),
+            new TestSpecs(1000, "停電検出チェック", true),
 
-            //new TestSpecs(1100, "バッテリLowチェック", true),
+            new TestSpecs(1100, "バッテリLowチェック", true),
 
-            //new TestSpecs(1200, "警報リレー出力チェック", true),
+            new TestSpecs(1200, "警報リレー出力チェック", true),
 
-            //new TestSpecs(1300, "EEPROMチェック", true),
+            new TestSpecs(1300, "EEPROMチェック", true),
 
-            //new TestSpecs(1400, "RTCチェック", true),
+            new TestSpecs(1400, "RTCチェック", true),
 
         };
 

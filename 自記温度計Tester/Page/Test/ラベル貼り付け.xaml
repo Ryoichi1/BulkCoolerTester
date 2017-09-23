@@ -8,27 +8,25 @@
 	FlowDirection="LeftToRight"
 	Height="600" Width="1300" Loaded="Page_Loaded">
     <Page.Resources>
-        <Storyboard x:Key="Blink">
-            <DoubleAnimation
-				Storyboard.TargetName="labelMessage" 
-				Storyboard.TargetProperty="Opacity"
-				From="0.35"
-				To="1"
-				Duration="0:0:0:1" 
-				AutoReverse="True"
-				RepeatBehavior="Forever"/>
+        <Storyboard x:Key="Blink1" AutoReverse="True" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(Brush.Opacity)" Storyboard.TargetName="labelMessage">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="buttonReturn">
+                <EasingColorKeyFrame KeyTime="0" Value="#FF1961CB"/>
+            </ColorAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(Brush.Opacity)" Storyboard.TargetName="buttonReturn">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-         <Storyboard x:Key="Blink2">
-            <DoubleAnimation
-				Storyboard.TargetName="buttonReturn" 
-				Storyboard.TargetProperty="Opacity"
-				From="0.35"
-				To="1"
-				Duration="0:0:0:1" 
-				AutoReverse="True"
-				RepeatBehavior="Forever"/>
-        </Storyboard>
+
     </Page.Resources>
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Blink1}"/>
+        </EventTrigger>
+    </Page.Triggers>
     <Canvas>
         <Canvas.Resources>
             <Style TargetType="Label">
@@ -42,7 +40,7 @@
                 </Setter>
             </Style>
         </Canvas.Resources>
-        <Button x:Name="buttonReturn" Content="確認" Height="37" Canvas.Left="13" Canvas.Top="15" Width="129" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" FontSize="18" Click="buttonReturn_Click" GotFocus="buttonReturn_GotFocus" LostFocus="buttonReturn_LostFocus"  />
+        <Button x:Name="buttonReturn" Content="確認" Height="37" Canvas.Left="13" Canvas.Top="15" Width="129" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" FontSize="18" Click="buttonReturn_Click" Cursor="Hand"  />
         <Image Height="534" Canvas.Left="13" Canvas.Top="66" Width="1256" Source="/自記温度計Tester;component/Resources/ラベル貼り付け.jpg" IsEnabled="False" Opacity="0.5"/>
         <Label Height="32" Canvas.Left="949" Canvas.Top="153" Width="100" Background="#FF09F2FD" Foreground="#FF060606" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" Content="{Binding DcLabel}" FontSize="16"/>
         <Label Height="32" Canvas.Left="1" Canvas.Top="324" Width="100" Background="#FF09F2FD" Foreground="#FF060606" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" RenderTransformOrigin="0.5,0.5" Content="{Binding DcLabel}">
@@ -56,6 +54,6 @@
             </Label.RenderTransform>
         </Label>
         <Label x:Name="labelMessage" Content="デートコード・シリアルラベルを貼り付けてください" Height="31" Canvas.Left="166" Canvas.Top="20" Width="494" FontSize="20"/>
-        <Label Height="34" Canvas.Left="662" Canvas.Top="18" Width="129" Background="#FF09F2FD" Foreground="#FF060606" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" Content="{Binding DcLabel}" FontSize="20"/>
+        <Label x:Name="labelSample" Height="34" Canvas.Left="662" Canvas.Top="18" Width="129" Background="#FF09F2FD" Foreground="#FF060606" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" Content="{Binding DcLabel}" FontSize="20"/>
     </Canvas>
 </Page>

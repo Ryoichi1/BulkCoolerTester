@@ -86,32 +86,98 @@ namespace 自記温度計Tester
             });
         }
 
-        public static async Task<bool> CheckRs485()
+
+
+        public enum 経路 { 経路1, 経路2 }//RS485 CN4は２連になっているので、経路1（1,2,3番ピン）と経路2（4,5,6番ピン）の両方チェックする
+        public static async Task<bool> CheckRs485(経路 route)
         {
             return await Task<bool>.Run(() =>
             {
                 try
                 {
-                    Flags.Rs485Task = true;
-                    TargetRs485.Rs485Task();
-                    var tm = new GeneralTimer(25000);
-                    tm.start();
-                    while (true)
+                    if (route == 経路.経路1)
                     {
-                        if (tm.FlagTimeout) return false;
-                        if (TargetRs485.OkRs485Com) return true;
-                        Thread.Sleep(500);
+                        General.SetK15(false);
                     }
+                    else
+                    {
+                        General.SetK15(true);
+                    }
+
+                    return Rs485Task();
 
                 }
                 finally
                 {
-                    Flags.Rs485Task = false;
+                    General.SetK15(false);
                     Thread.Sleep(1000);
                     General.PowSupply(false);
                 }
             });
         }
+
+
+        public static bool Rs485Task()
+        {
+            const string 接続確認 = "92020193";
+            const string re接続確認 = "290501OK0**";
+            const string 初期化 = "9202089A";
+            const string re初期化 = "290208**";
+            const string 温度補正値 = "920502-0226";
+            const string re温度補正値 = "290202**";
+            const string 積算乳温 = "92020300095";
+            const string re積算乳温 = "2911032520110OK**";
+            const string 積算ランプ = "920205197";
+            const string re積算ランプ = "290205**";
+
+            bool flag接続確認 = false;
+            bool flag初期化 = false;
+            bool flag温度補正値 = false;
+            bool flag積算乳温 = false;
+            bool flag積算ランプ = false;
+
+            var tm = new GeneralTimer(15000);
+            tm.start();
+            while (true)
+            {
+                if (tm.FlagTimeout) return false;
+                switch (TargetRs485.RecieveData)
+                {
+                    case 接続確認:
+                        TargetRs485.SendData(re接続確認);
+                        flag接続確認 = true;
+                        break;
+
+                    case 初期化:
+                        TargetRs485.SendData(re初期化);
+                        flag初期化 = true;
+                        break;
+
+                    case 温度補正値:
+                        TargetRs485.SendData(re温度補正値);
+                        flag温度補正値 = true;
+                        break;
+
+                    case 積算乳温:
+                        TargetRs485.SendData(re積算乳温);
+                        flag積算乳温 = true;
+                        break;
+
+                    case 積算ランプ:
+                        TargetRs485.SendData(re積算ランプ);
+                        flag積算ランプ = true;
+                        break;
+                    default:
+                        break;
+
+                }
+
+                if (flag初期化 && flag接続確認 && flag温度補正値 && flag積算ランプ && flag積算乳温) return true;
+                TargetRs485.ReadRecieveData();
+                Thread.Sleep(200);
+            }
+        }
+
 
     }
 

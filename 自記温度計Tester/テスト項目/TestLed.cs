@@ -64,85 +64,98 @@ namespace 自記温度計Tester
                     General.cam2.ResetFlag();//カメラのフラグを初期化 リトライ時にフラグが初期化できてないとだめ
                                              //例 ＮＧリトライ時は、General.cam.FlagFrame = trueになっていてNGフレーム表示の無限ループにいる
                     General.SetLight(true);
+                    Thread.Sleep(500);
+                    General.cam2.Exposure = 0;
                     Thread.Sleep(2000);
+                    General.cam2.Exposure = -7;
+                    Thread.Sleep(2000);
+                    General.cam2.Exposure = State.cam1Prop.Exposure;
+                    Thread.Sleep(1500);
+
                     //cam0の画像を取得する処理
                     General.cam2.FlagTestPic = true;
                     while (General.cam2.FlagTestPic) ;
                     source = General.cam2.imageForTest;
                     using (IplImage hsv = new IplImage(640, 360, BitDepth.U8, 3)) // グレースケール画像格納用の変数
                     {
-                        //RGBからHSVに変換
-                        Cv.CvtColor(source, hsv, ColorConversion.BgrToHsv);
-                        OpenCvSharp.CPlusPlus.Mat mat = new OpenCvSharp.CPlusPlus.Mat(hsv, true);
-
-                        ListLedSpec.ForEach(l =>
+                        try
                         {
+                            //RGBからHSVに変換
+                            Cv.CvtColor(source, hsv, ColorConversion.BgrToHsv);
+                            OpenCvSharp.CPlusPlus.Mat mat = new OpenCvSharp.CPlusPlus.Mat(hsv, true);
 
-                            switch (l.name)
+                            ListLedSpec.ForEach(l =>
                             {
-                                case NAME.LED1:
-                                    X = Int32.Parse(State.cam2Prop.LED1.Split('/').ToArray()[0]);
-                                    Y = Int32.Parse(State.cam2Prop.LED1.Split('/').ToArray()[1]);
-                                    refHue = Int32.Parse(State.cam2Prop.HueLED1);
-                                    break;
 
-                                case NAME.LED2:
-                                    X = Int32.Parse(State.cam2Prop.LED2.Split('/').ToArray()[0]);
-                                    Y = Int32.Parse(State.cam2Prop.LED2.Split('/').ToArray()[1]);
-                                    refHue = Int32.Parse(State.cam2Prop.HueLED2);
-                                    break;
-
-                                case NAME.LED3:
-                                    X = Int32.Parse(State.cam2Prop.LED3.Split('/').ToArray()[0]);
-                                    Y = Int32.Parse(State.cam2Prop.LED3.Split('/').ToArray()[1]);
-                                    refHue = Int32.Parse(State.cam2Prop.HueLED3);
-                                    break;
-
-                                case NAME.LED4:
-                                    X = Int32.Parse(State.cam2Prop.LED4.Split('/').ToArray()[0]);
-                                    Y = Int32.Parse(State.cam2Prop.LED4.Split('/').ToArray()[1]);
-                                    refHue = Int32.Parse(State.cam2Prop.HueLED4);
-                                    break;
-
-                                case NAME.LED5:
-                                    X = Int32.Parse(State.cam2Prop.LED5.Split('/').ToArray()[0]);
-                                    Y = Int32.Parse(State.cam2Prop.LED5.Split('/').ToArray()[1]);
-                                    refHue = Int32.Parse(State.cam2Prop.HueLED5);
-                                    break;
-
-                                case NAME.LED6:
-                                    X = Int32.Parse(State.cam2Prop.LED6.Split('/').ToArray()[0]);
-                                    Y = Int32.Parse(State.cam2Prop.LED6.Split('/').ToArray()[1]);
-                                    refHue = Int32.Parse(State.cam2Prop.HueLED6);
-                                    break;
-
-                                case NAME.LED7:
-                                    X = Int32.Parse(State.cam2Prop.LED7.Split('/').ToArray()[0]);
-                                    Y = Int32.Parse(State.cam2Prop.LED7.Split('/').ToArray()[1]);
-                                    refHue = Int32.Parse(State.cam2Prop.HueLED7);
-                                    break;
-                            }
-
-                            ListH.Clear();
-                            foreach (var i in Enumerable.Range(0, side))
-                            {
-                                foreach (var j in Enumerable.Range(0, side))
+                                switch (l.name)
                                 {
-                                    var re = mat.At<OpenCvSharp.CPlusPlus.Vec3b>(Y - (side / 2) + i, X - (side / 2) + j);
-                                    if (re[0] != 0)
+                                    case NAME.LED1:
+                                        X = Int32.Parse(State.cam2Prop.LED1.Split('/').ToArray()[0]);
+                                        Y = Int32.Parse(State.cam2Prop.LED1.Split('/').ToArray()[1]);
+                                        refHue = Int32.Parse(State.cam2Prop.HueLED1);
+                                        break;
+
+                                    case NAME.LED2:
+                                        X = Int32.Parse(State.cam2Prop.LED2.Split('/').ToArray()[0]);
+                                        Y = Int32.Parse(State.cam2Prop.LED2.Split('/').ToArray()[1]);
+                                        refHue = Int32.Parse(State.cam2Prop.HueLED2);
+                                        break;
+
+                                    case NAME.LED3:
+                                        X = Int32.Parse(State.cam2Prop.LED3.Split('/').ToArray()[0]);
+                                        Y = Int32.Parse(State.cam2Prop.LED3.Split('/').ToArray()[1]);
+                                        refHue = Int32.Parse(State.cam2Prop.HueLED3);
+                                        break;
+
+                                    case NAME.LED4:
+                                        X = Int32.Parse(State.cam2Prop.LED4.Split('/').ToArray()[0]);
+                                        Y = Int32.Parse(State.cam2Prop.LED4.Split('/').ToArray()[1]);
+                                        refHue = Int32.Parse(State.cam2Prop.HueLED4);
+                                        break;
+
+                                    case NAME.LED5:
+                                        X = Int32.Parse(State.cam2Prop.LED5.Split('/').ToArray()[0]);
+                                        Y = Int32.Parse(State.cam2Prop.LED5.Split('/').ToArray()[1]);
+                                        refHue = Int32.Parse(State.cam2Prop.HueLED5);
+                                        break;
+
+                                    case NAME.LED6:
+                                        X = Int32.Parse(State.cam2Prop.LED6.Split('/').ToArray()[0]);
+                                        Y = Int32.Parse(State.cam2Prop.LED6.Split('/').ToArray()[1]);
+                                        refHue = Int32.Parse(State.cam2Prop.HueLED6);
+                                        break;
+
+                                    case NAME.LED7:
+                                        X = Int32.Parse(State.cam2Prop.LED7.Split('/').ToArray()[0]);
+                                        Y = Int32.Parse(State.cam2Prop.LED7.Split('/').ToArray()[1]);
+                                        refHue = Int32.Parse(State.cam2Prop.HueLED7);
+                                        break;
+                                }
+
+                                ListH.Clear();
+                                foreach (var i in Enumerable.Range(0, side))
+                                {
+                                    foreach (var j in Enumerable.Range(0, side))
                                     {
-                                        ListH.Add(re[0]);
+                                        var re = mat.At<OpenCvSharp.CPlusPlus.Vec3b>(Y - (side / 2) + i, X - (side / 2) + j);
+                                        if (re[0] != 0)
+                                        {
+                                            ListH.Add(re[0]);
+                                        }
                                     }
                                 }
-                            }
-                            string Hue = (ListH.Count != 0) ? ListH.Average().ToString("F0") : "0";
+                                string Hue = (ListH.Count != 0) ? ListH.Average().ToString("F0") : "0";
 
-                            l.Hue = ListH.Average();
+                                l.Hue = ListH.Average();
 
-                            l.resultHue = l.Hue >= refHue * (1 - (errHue / 100.0)) && l.Hue <= refHue * (1 + (refHue / 100.0));
+                                l.resultHue = l.Hue >= refHue * (1 - (errHue / 100.0)) && l.Hue <= refHue * (1 + (refHue / 100.0));
 
-                        });
-
+                            });
+                        }
+                        catch
+                        {
+                            return false;
+                        }
                     }
                     return ListLedSpec.All(l => l.resultHue);
 
@@ -409,7 +422,14 @@ namespace 自記温度計Tester
             }
             finally
             {
-                if (!allResult) General.cam2.FlagNgFrame = true;
+                if (allResult)
+                {
+                    General.cam2.FlagLabeling = false;
+                }
+                else
+                {
+                    General.cam2.FlagNgFrame = true;
+                }
             }
 
         }

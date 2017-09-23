@@ -233,8 +233,70 @@ namespace 自記温度計Tester
                 System.DateTime.Now.ToString("yyyy年MM月dd日(ddd) HH:mm:ss"),
                 State.VmMainWindow.Operator,
 
-                State.TestSpec.FwVer,
-                State.TestSpec.FwSum,
+                State.VmTestResults.Curr3v,
+                State.VmTestResults.Curr6v,
+
+                State.VmTestResults.Vol5v,
+                State.VmTestResults.Vol3v,
+                State.VmTestResults.VolCn3,
+                State.VmTestResults.VolCn9On,
+                State.VmTestResults.VolCn9Off,
+
+                State.VmTestResults.HueLed1,
+                State.VmTestResults.HueLed2,
+                State.VmTestResults.HueLed3,
+                State.VmTestResults.HueLed4,
+                State.VmTestResults.HueLed5,
+                State.VmTestResults.HueLed6,
+                State.VmTestResults.HueLed7,
+
+                State.VmTestResults.LumLed1,
+                State.VmTestResults.LumLed2,
+                State.VmTestResults.LumLed3,
+                State.VmTestResults.LumLed4,
+                State.VmTestResults.LumLed5,
+                State.VmTestResults.LumLed6,
+                State.VmTestResults.LumLed7,
+
+                State.VmTestResults.LD1a,
+                State.VmTestResults.LD1b,
+                State.VmTestResults.LD1c,
+                State.VmTestResults.LD1d,
+                State.VmTestResults.LD1e,
+                State.VmTestResults.LD1f,
+                State.VmTestResults.LD1g,
+                State.VmTestResults.LD1dp,
+
+                State.VmTestResults.LD2a,
+                State.VmTestResults.LD2b,
+                State.VmTestResults.LD2c,
+                State.VmTestResults.LD2d,
+                State.VmTestResults.LD2e,
+                State.VmTestResults.LD2f,
+                State.VmTestResults.LD2g,
+                State.VmTestResults.LD2dp,
+
+                State.VmTestResults.LD3a,
+                State.VmTestResults.LD3b,
+                State.VmTestResults.LD3c,
+                State.VmTestResults.LD3d,
+                State.VmTestResults.LD3e,
+                State.VmTestResults.LD3f,
+                State.VmTestResults.LD3g,
+                State.VmTestResults.LD3dp,
+
+                State.VmTestResults.Th2,
+                State.VmTestResults.Th3,
+                State.VmTestResults.Th4,
+                State.VmTestResults.Th5,
+                State.VmTestResults.Th6,
+                State.VmTestResults.Th7,
+                State.VmTestResults.Th8,
+                State.VmTestResults.Th10,
+                State.VmTestResults.Th20,
+                State.VmTestResults.Th30,
+                State.VmTestResults.Th45,
+                State.VmTestResults.Th90,
 
             };
 
@@ -337,6 +399,9 @@ namespace 自記温度計Tester
             io.OutByte(EPX64S.PORT.P5, 0x00);
 
             Flags.PowOn = false;
+            State.VmComm.ColorLabelPC = General.OffBrush;
+            State.VmComm.ColorLabelAT = General.OffBrush;
+            State.VmComm.ColorLabelBT = General.OffBrush;
         }
 
         public static void PowSupply(bool sw)
@@ -436,7 +501,7 @@ namespace 自記温度計Tester
 
         public static void ResetViewModel()//TODO:
         {
-            State.VmMainWindow.SerialNumber = State.VmMainWindow.SerialNumber.Substring(0,6) + State.NewSerial.ToString("D3");
+            State.VmMainWindow.SerialNumber = State.VmMainWindow.SerialNumber.Substring(0, 6) + State.NewSerial.ToString("D3");
             //ViewModel OK台数、NG台数、Total台数の更新
             State.VmTestStatus.OkCount = State.Setting.TodayOkCount.ToString() + "台";
             State.VmTestStatus.NgCount = State.Setting.TodayNgCount.ToString() + "台";

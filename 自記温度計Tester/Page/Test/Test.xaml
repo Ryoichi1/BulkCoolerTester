@@ -107,7 +107,7 @@
                 <TextBlock TextWrapping="Wrap" Text="3V系" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="18" Canvas.Left="2" Canvas.Top="25" Width="30"/>
                 <Label Content="{Binding Curr3v}" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Background="{Binding ColCurr3v}"  Canvas.Left="35" Canvas.Top="24" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </Canvas>
-            <Canvas Height="85" Canvas.Left="8" Width="101" Canvas.Top="159">
+            <Canvas Height="85" Canvas.Left="8" Width="101" Canvas.Top="109">
                 <Canvas.Resources>
                     <Style TargetType="{x:Type Label}">
                         <Setter Property="Height" Value="14"/>
@@ -142,24 +142,6 @@
                 <Label BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Canvas.Left="21" Canvas.Top="35" Width="35" Background="{Binding ColCtPExp}"/>
                 <Label BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Canvas.Left="61" Canvas.Top="35" Width="34" Background="{Binding ColCtPOut}" />
             </Canvas>
-            <Canvas Height="49" Width="111" Canvas.Top="106" Canvas.Left="10">
-                <TextBlock TextWrapping="Wrap" Text="●リチウム電池" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="18" Canvas.Left="2" Width="103" Canvas.Top="1"/>
-                <Border BorderBrush="#FF0097FF" BorderThickness="1" Height="1" Canvas.Left="5" Canvas.Top="17" Width="104" Background="#FF0097FF" RenderTransformOrigin="0.5,0.5">
-                    <Border.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="-1"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Border.RenderTransform>
-                    <Border.Effect>
-                        <DropShadowEffect Color="#FF00F3FF" BlurRadius="50" Direction="0" ShadowDepth="0"/>
-                    </Border.Effect>
-                </Border>
-                <TextBlock Text="電圧値" Foreground="White" RenderTransformOrigin="0.5,1.056" Height="18" Canvas.Left="2" Canvas.Top="23" Width="40"/>
-                <Label BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Canvas.Left="44" Canvas.Top="22" Width="55" Background="{Binding ColVolBt1}" Content="{Binding VolBt1}" />
-            </Canvas>
             <Canvas Height="146" Canvas.Left="121" Canvas.Top="29" Width="121">
                 <TextBlock TextWrapping="Wrap" Text="5V" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="18" Canvas.Left="13" Canvas.Top="24" Width="17"/>
                 <Label x:Name="labelVcc1" Content="{Binding Vol5v}" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Background="{Binding ColVol5v}"  Canvas.Left="30" Canvas.Top="24" Width="58"/>
@@ -178,7 +160,7 @@
                 <TextBlock Text="CN9Off" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="18" Canvas.Top="121" Width="43" Canvas.Left="3"/>
                 <Label x:Name="labelVcc_Copy1" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Background="{Binding ColVolCn9Off}"  Canvas.Left="48" Canvas.Top="120" Width="58" Content="{Binding VolCn9Off}" />
             </Canvas>
-            <Canvas Height="81" Canvas.Left="4" Width="110" Canvas.Top="247">
+            <Canvas Height="81" Canvas.Left="4" Width="110" Canvas.Top="205">
                 <Canvas.Resources>
                     <Style TargetType="{x:Type Label}">
                         <Setter Property="Height"  Value="18"/>
@@ -535,7 +517,7 @@
             </Canvas>
         </Canvas>
 
-        <Canvas x:Name="canvasTestSetting" Height="58" Canvas.Left="878" Canvas.Top="146" Width="454" IsEnabled="{Binding TestSettingEnable}">
+        <Canvas x:Name="canvasTestSetting" Height="58" Canvas.Left="878" Canvas.Top="70" Width="454" IsEnabled="{Binding TestSettingEnable}">
             <Canvas.Background>
                 <SolidColorBrush Color="#FF635E5E" Opacity="0.3"/>
             </Canvas.Background>
@@ -577,7 +559,7 @@
                 <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
             </Label.Effect>
         </Label>
-        <Canvas x:Name="CanvasComm_Copy" Height="72" Canvas.Left="878" Canvas.Top="68" Width="454">
+        <Canvas x:Name="CanvasComm_Copy" Height="72" Canvas.Left="1378" Canvas.Top="68" Width="454">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="18"/>
@@ -643,7 +625,7 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
         </Canvas>
-        <Canvas x:Name="CanvasComm232C" Height="85" Canvas.Left="386" Canvas.Top="137" Width="458">
+        <Canvas x:Name="CanvasComm232C" Height="85" Canvas.Left="386" Canvas.Top="137" Width="551">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="11"/>
@@ -660,8 +642,8 @@
             <Canvas.Background>
                 <SolidColorBrush Color="White" Opacity="0.07"/>
             </Canvas.Background>
-            <Label Height="22" Canvas.Left="30" Canvas.Top="31" Width="337" BorderBrush="White" BorderThickness="1" FontSize="13" Padding="5,0,0,0" Content="{Binding RS232C_TX}"/>
-            <Label Content="{Binding RS232C_RX}" Height="22" Canvas.Left="30" Canvas.Top="56" Width="337" BorderBrush="White" BorderThickness="1" FontSize="12" Padding="5,0,0,0"/>
+            <Label Height="22" Canvas.Left="30" Canvas.Top="31" Width="511" BorderBrush="White" BorderThickness="1" FontSize="13" Padding="5,0,0,0" Content="{Binding RS232C_TX}"/>
+            <Label Content="{Binding RS232C_RX}" Height="22" Canvas.Left="30" Canvas.Top="56" Width="511" BorderBrush="White" BorderThickness="1" FontSize="12" Padding="5,0,0,0"/>
             <TextBlock x:Name="textBlock2_Copy" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="32" Canvas.Left="8">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
@@ -685,7 +667,7 @@
             <TextBlock x:Name="textBlock2_Copy2" TextWrapping="Wrap" Text="RS232C/BlueTooth通信" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="184" RenderTransformOrigin="0.5,0.5" Canvas.Top="5" Canvas.Left="8">
 
             </TextBlock>
-            <Label Content="" Height="1" Canvas.Left="8" Canvas.Top="26" Width="363" Background="#FF0388F7">
+            <Label Content="" Height="1" Canvas.Left="8" Canvas.Top="26" Width="533" Background="#FF0388F7">
                 <Label.Effect>
                     <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
                 </Label.Effect>
@@ -702,7 +684,7 @@
                 <SolidColorBrush Color="#CC1BC1FF" Opacity="0.5"/>
             </Controls:ProgressRing.Foreground>
         </Controls:ProgressRing>
-        <Canvas x:Name="CanvasComm485" Height="85" Canvas.Left="386" Canvas.Top="228" Width="458">
+        <Canvas x:Name="CanvasComm485" Height="85" Canvas.Left="386" Canvas.Top="228" Width="551">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="11"/>
@@ -719,8 +701,8 @@
             <Canvas.Background>
                 <SolidColorBrush Color="White" Opacity="0.07"/>
             </Canvas.Background>
-            <Label Height="22" Canvas.Left="30" Canvas.Top="31" Width="337" BorderBrush="White" BorderThickness="1" FontSize="13" Padding="5,0,0,0" Content="{Binding RS485_TX}"/>
-            <Label Content="{Binding RS485_RX}" Height="22" Canvas.Left="30" Canvas.Top="56" Width="337" BorderBrush="White" BorderThickness="1" FontSize="12" Padding="5,0,0,0"/>
+            <Label Height="22" Canvas.Left="30" Canvas.Top="31" Width="511" BorderBrush="White" BorderThickness="1" FontSize="13" Padding="5,0,0,0" Content="{Binding RS485_TX}"/>
+            <Label Content="{Binding RS485_RX}" Height="22" Canvas.Left="30" Canvas.Top="56" Width="511" BorderBrush="White" BorderThickness="1" FontSize="12" Padding="5,0,0,0"/>
             <TextBlock x:Name="textBlock2_Copy3" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="32" Canvas.Left="8">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
@@ -751,7 +733,7 @@
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <Label Content="" Height="1" Canvas.Left="8" Canvas.Top="26" Width="359" Background="#FF0388F7">
+            <Label Content="" Height="1" Canvas.Left="8" Canvas.Top="26" Width="533" Background="#FF0388F7">
                 <Label.Effect>
                     <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
                 </Label.Effect>

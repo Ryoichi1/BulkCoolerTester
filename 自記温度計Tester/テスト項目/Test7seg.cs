@@ -433,7 +433,14 @@ namespace 自記温度計Tester
             }
             finally
             {
-                if (!allResult) General.cam1.FlagNgFrame = true;
+                if (allResult)
+                {
+                    General.cam1.FlagLabeling = false;
+                }
+                else
+                {
+                    General.cam1.FlagNgFrame = true;
+                }
             }
 
         }

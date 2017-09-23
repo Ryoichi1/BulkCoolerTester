@@ -123,18 +123,20 @@ namespace 自記温度計Tester
 
                     if (resultOn)
                     {
-                        State.VmTestStatus.TestLog += "---PASS";
+                        State.VmTestStatus.TestLog += "---PASS\r\n";
                         return true;
                     }
                     else
                     {
-                        State.VmTestStatus.TestLog += "---FAIL";
+                        State.VmTestStatus.TestLog += "---FAIL\r\n";
                         return false;
                     }
                 });
             }
             finally
             {
+                General.cam1.FlagLabeling = false;
+                General.cam2.FlagLabeling = false;
                 General.PowSupply(false);
                 General.pmx18.VolOff();
                 General.SetRL1(false);

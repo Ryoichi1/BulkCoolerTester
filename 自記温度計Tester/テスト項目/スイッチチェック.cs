@@ -113,7 +113,7 @@ namespace 自記温度計Tester
 
         }
 
-        private static void AnalysisDataS1(string data, bool expAllOff)
+        private static void AnalysisDataS1(string data, S1EXP exp)
         {
             //ASCII エンコード 文字列をバイト配列に変換する
             byte[] asciiList = System.Text.Encoding.ASCII.GetBytes(data);
@@ -127,18 +127,25 @@ namespace 自記温度計Tester
 
             //ビューモデルの更新
             //期待値の設定
-            if (expAllOff)
+            if (exp == S1EXP.ALL_OFF)
             {
                 State.VmTestResults.ColS1_1Exp = General.OffBrush;
                 State.VmTestResults.ColS1_2Exp = General.OffBrush;
                 State.VmTestResults.ColS1_3Exp = General.OffBrush;
                 State.VmTestResults.ColS1_4Exp = General.OffBrush;
             }
-            else
+            else if (exp == S1EXP.ALL_ON)
             {
-                State.VmTestResults.ColS1_1Exp = General.OnBrush;
+                State.VmTestResults.ColS1_1Exp = General.OffBrush;
                 State.VmTestResults.ColS1_2Exp = General.OnBrush;
                 State.VmTestResults.ColS1_3Exp = General.OnBrush;
+                State.VmTestResults.ColS1_4Exp = General.OnBrush;
+            }
+            else
+            {
+                State.VmTestResults.ColS1_1Exp = General.OffBrush;
+                State.VmTestResults.ColS1_2Exp = General.OffBrush;
+                State.VmTestResults.ColS1_3Exp = General.OffBrush;
                 State.VmTestResults.ColS1_4Exp = General.OnBrush;
             }
 
@@ -184,19 +191,19 @@ namespace 自記温度計Tester
                 switch (name)
                 {
                     case NAME_SW14.SW1:
-                        General.SetSw1(sw);
+                        General.SetSw1OnByFet(sw);
                         break;
 
                     case NAME_SW14.SW2:
-                        General.SetSw2(sw);
+                        General.SetSw2OnByFet(sw);
                         break;
 
                     case NAME_SW14.SW3:
-                        General.SetSw3(sw);
+                        General.SetSw3OnByFet(sw);
                         break;
 
                     case NAME_SW14.SW4:
-                        General.SetSw4(sw);
+                        General.SetSw4OnByFet(sw);
                         break;
                 }
                 return true;
@@ -216,7 +223,7 @@ namespace 自記温度計Tester
             {
                 return await Task<bool>.Run(() =>
                 {
-
+                    Thread.Sleep(3000);
                     ResetViewModel();
 
                     Flags.AddDecision = false;
@@ -232,6 +239,7 @@ namespace 自記温度計Tester
                     {
                         try
                         {
+                            Thread.Sleep(500);
                             resultOn = false;
                             resultOff = false;
 
@@ -240,11 +248,11 @@ namespace 自記温度計Tester
 
                             //ONチェック
                             if (!SetInputSw14(L.name, true)) return false;
-                            Thread.Sleep(500);
-
-                            if (!Target232_BT.SendData("3700ODB,8of000")) return false;
-                            var onBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
+                            Thread.Sleep(600);
+                            if(!Target232_BT.SendData("3700ODB,8of000")) return false;
                             if (!SetInputSw14(L.name, false)) return false;
+
+                            var onBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
 
                             AnalysisDataSw14(onBuff, L.name, false);
 
@@ -275,7 +283,7 @@ namespace 自記温度計Tester
 
                             //OFFチェック
                             State.VmTestStatus.TestLog += "\r\n" + L.name.ToString() + " OFFチェック";
-                            Thread.Sleep(500);
+                            Thread.Sleep(1000);
 
                             if (!Target232_BT.SendData("3700ODB,8of000")) return false;
 
@@ -330,6 +338,9 @@ namespace 自記温度計Tester
 
         }
 
+
+        private enum S1EXP { ALL_OFF, ALL_ON, ONLY4_ON}
+
         public static async Task<bool> CheckS1()
         {
             bool resultOn = false;
@@ -356,11 +367,11 @@ namespace 自記温度計Tester
 
                         //すべてONの検査
                         //テストログの更新
-                        State.VmTestStatus.TestLog += "\r\nALL ONチェック";
+                        State.VmTestStatus.TestLog += "\r\nALL S1 2~4ON";
 
                         if (!Target232_BT.SendData("3700ODB,8of000")) return false;
                         var onBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
-                        AnalysisDataS1(onBuff, true);
+                        AnalysisDataS1(onBuff, S1EXP.ALL_ON);
 
                         resultOn = ListS1Specs.All(list =>
                         {
@@ -392,7 +403,7 @@ namespace 自記温度計Tester
 
                         if (!Target232_BT.SendData("3700ODB,8of000")) return false;
                         onBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
-                        AnalysisDataS1(onBuff, true);
+                        AnalysisDataS1(onBuff, S1EXP.ALL_ON);
 
                         resultOn = ListS1Specs.All(list =>
                         {
@@ -437,7 +448,7 @@ namespace 自記温度計Tester
 
                         var offBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
 
-                        AnalysisDataS1(offBuff, false);
+                        AnalysisDataS1(offBuff, S1EXP.ALL_OFF);
 
                         resultOff = ListS1Specs.All(list =>
                         {
@@ -474,7 +485,7 @@ namespace 自記温度計Tester
 
                         var OnOnly4Buff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
 
-                        AnalysisDataS1(OnOnly4Buff, false);
+                        AnalysisDataS1(OnOnly4Buff, S1EXP.ONLY4_ON);
 
                         resultDefault = ListS1Specs.All(list =>
                         {
