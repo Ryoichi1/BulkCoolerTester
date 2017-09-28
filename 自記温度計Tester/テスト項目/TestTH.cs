@@ -128,11 +128,14 @@ namespace 自記温度計Tester
 
         public static async Task<bool> AdjTh5()
         {
+            const double firstTargetTemp = 4.8;
+            const double finalTargetTemp = 5.0;
             bool result = false;
             double temp = 0;
+
             try
             {
-                return await Task<bool>.Run(() =>
+                return result = await Task<bool>.Run(() =>
                 {
                     try
                     {
@@ -140,47 +143,80 @@ namespace 自記温度計Tester
                         General.PowSupply(true);
                         if (!General.CheckComm()) return false;
 
+                        //メニューをリードする
+                        if (!Target232_BT.SendData("3700ORI,P,SR000001,00")) return false;
+                        var dataArray = Target232_BT.RecieveData.Split(',');//"3700O00,rP,1,01,-0.2,01,000,0,1,40,8..........."
+                        dataArray[4] = "00.0";//-0.2の部分を00.0に書き換える
+                        var buff = string.Join(",", dataArray);//カンマ区切りに戻す
+                        var finalCommand = "3700OWP" + /*先頭の3700O00,rPを削除*/buff.Substring(10);
+                        if (!Target232_BT.SendData(finalCommand)) return false;
+
+                        //製品のSW1を長押し
+                        if (!General.Set集乳ボタン()) return false;
+
                         //基準抵抗（5℃の抵抗）を接続する
                         General.SetTh5();
                         Thread.Sleep(5000);
-                        //温度データ取り込み
-                        if (!Target232_BT.SendData("3700ODB,8of000")) return false;
-                        var tempString = Target232_BT.RecieveData.Substring(14, 3);//3700O00,of,>7,032,021,0100 この場合 032が温度（小数点を省いているので3.2℃）
-                        temp = Double.Parse(tempString) / 10.0;
-                        State.VmTestResults.ThAdj = temp.ToString("F1") + "℃";
 
+                        //指定時間内に調整できなかったらあきらめる
                         var tm = new GeneralTimer(60000);
                         tm.start();
-                        while (true)
+
+
+                        //ローカル関数の定義
+
+                        double ReadTempData()
                         {
-                            if (tm.FlagTimeout) return false;
-                            if (temp > 5.0)
-                            {
-                                Target232_BT.SendData("TH_HARD+1");
-                            }
-                            else
-                            {
-                                Target232_BT.SendData("TH_HARD-1");
-                            }
-                            Thread.Sleep(800);
                             //温度データ取り込み
-                            if (!Target232_BT.SendData("3700ODB,8of000")) return false;
-                            tempString = Target232_BT.RecieveData.Substring(14, 3);//3700O00,of,>7,032,021,0100 この場合 032が温度（小数点を省いているので3.2℃）
-                            temp = Double.Parse(tempString) / 10.0;
-                            State.VmTestResults.ThAdj = temp.ToString("F1") + "℃";
-                            if (temp == 5.0)
-                            {
-                                Thread.Sleep(3000);
-                                //温度データ取り込み
-                                if (!Target232_BT.SendData("3700ODB,8of000")) return false;
-                                tempString = Target232_BT.RecieveData.Substring(14, 3);//3700O00,of,>7,032,021,0100 この場合 032が温度（小数点を省いているので3.2℃）
-                                temp = Double.Parse(tempString) / 10.0;
-                                State.VmTestResults.ThAdj = temp.ToString("F1") + "℃";
-                                if (temp == 5.0) return result = true;
-                            }
-                            Thread.Sleep(200);
+                            if (!Target232_BT.SendData("3700ODB,8of000")) return 999;
+                            var tempString = Target232_BT.RecieveData.Substring(14, 3);//3700O00,of,>7,032,021,0100 この場合 032が温度（小数点を省いているので3.2℃）
+                            var tempDouble = Double.Parse(tempString) / 10.0;
+                            State.VmTestResults.ThAdj = tempDouble.ToString("F1") + "℃";
+                            return tempDouble;
                         }
 
+                        bool AdjTargetTemp(double dstTemp)
+                        {
+                            while (true)
+                            {
+                                if (tm.FlagTimeout) return false;
+
+                                //温度データ取り込み
+                                temp = ReadTempData();
+
+                                if (temp > dstTemp)
+                                {
+                                    Target232_BT.SendData("TH_HARD+1");
+                                }
+                                else if (temp < dstTemp)
+                                {
+                                    Target232_BT.SendData("TH_HARD-1");
+                                }
+                                if (temp == dstTemp)
+                                {
+                                    Thread.Sleep(1500);
+                                    //温度データ取り込み
+                                    temp = ReadTempData();
+                                    if (temp == dstTemp) return true;
+                                }
+                                Thread.Sleep(800);
+                            }
+                        };
+
+                        //最初は、4.8℃に合わせる
+                        if (!AdjTargetTemp(firstTargetTemp)) return false;
+                        //最初は、5.0℃に合わせる
+                        if (!AdjTargetTemp(finalTargetTemp)) return false;
+
+                        //下側から調整していき、5℃丁度になったら、 "TH_HARD+1"を１回送信して終了する
+                        //これをやることによって、90℃が範囲に入ります → 荒井さんからの指示
+                        //90℃が範囲の上限を超えてしまう場合は、下記のコマンドを最後に１回送ると良い
+
+                        //if (!Target232_BT.SendData("TH_HARD+1")) return false;
+                        //ReadTempData();
+
+                        Thread.Sleep(800);
+                        return true;
                     }
                     catch
                     {
@@ -285,7 +321,7 @@ namespace 自記温度計Tester
                                     break;
 
                                 case NAME._90:
-                                    stdTemp = 91.5;
+                                    stdTemp = 90.0;
                                     Spec = "90.0℃";
                                     break;
                             }

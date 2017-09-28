@@ -4,6 +4,8 @@ using System.Linq;
 
 namespace 自記温度計Tester
 {
+    public enum TEST_MODE { PWA, 本機, 子機 }
+
     public class TestSpecs
     {
         public int Key;
@@ -21,14 +23,15 @@ namespace 自記温度計Tester
 
     public static class State
     {
+        public static TEST_MODE testMode { get; set; }
 
         //データソース（バインディング用）
         public static ViewModelMainWindow VmMainWindow = new ViewModelMainWindow();
         public static ViewModelTestStatus VmTestStatus = new ViewModelTestStatus();
         public static ViewModelTestResult VmTestResults = new ViewModelTestResult();
-        public static ViewModelTh         VmTh          = new ViewModelTh();
-        public static ViewModelCommunication VmComm     = new ViewModelCommunication();
-        public static TestCommand         testCommand   = new TestCommand();
+        public static ViewModelTh VmTh = new ViewModelTh();
+        public static ViewModelCommunication VmComm = new ViewModelCommunication();
+        public static TestCommand testCommand = new TestCommand();
         public static ViewModelCamera1Point VmCamera1Point = new ViewModelCamera1Point();
         public static ViewModelCamera2Point VmCamera2Point = new ViewModelCamera2Point();
 
@@ -52,17 +55,17 @@ namespace 自記温度計Tester
 
         public static int NewSerial { get; set; }
 
-        public static string CheckerNumber { get; set; }//シリアルナンバーの末尾に付ける
 
 
         //リトライ履歴保存用リスト
         public static List<string> RetryLogList = new List<string>();
 
-        public static List<TestSpecs> テスト項目 = new List<TestSpecs>()
+        public static List<TestSpecs> テスト項目Pwa = new List<TestSpecs>()
         {
             new TestSpecs(100, "コネクタ実装チェック", false),
-            new TestSpecs(101, "CN4未半田チェック", false),
-            new TestSpecs(102, "JP1短絡ソケットチェック", false),
+            new TestSpecs(101, "CN4未半田チェック1", false),
+            new TestSpecs(102, "CN4未半田チェック2", false),
+            new TestSpecs(103, "JP1短絡ソケットチェック", false),
 
             new TestSpecs(200, "検査ソフト書き込み", false),
 
@@ -84,7 +87,6 @@ namespace 自記温度計Tester
             new TestSpecs(502, "7セグ 輝度チェック", true),
 
             new TestSpecs(600, "SW1-SW4チェック", true),
-            new TestSpecs(601, "S1チェック", true),
 
             new TestSpecs(700, "カレントセンサチェック", true),
 
@@ -105,24 +107,125 @@ namespace 自記温度計Tester
 
         };
 
+        public static List<TestSpecs> テスト項目本機 = new List<TestSpecs>()
+        {
+
+            new TestSpecs(100, "検査ソフト書き込み", false),
+
+            new TestSpecs(200, "Bluetooth通信確認", true),
+            new TestSpecs(201, "AT通信確認", true),
+            new TestSpecs(202, "RS485通信確認1", true),
+            new TestSpecs(203, "RS485通信確認2", true),
+
+
+            new TestSpecs(300, "カレントセンサチェック", true),
+
+            new TestSpecs(400, "サーミスタチェック", true),
+
+            new TestSpecs(500, "停電検出チェック", true),//本機のみ
+
+            new TestSpecs(600, "バッテリLowチェック", true),//本機のみ
+
+            new TestSpecs(700, "CN9On出力電圧チェック", true),//本機のみ
+            new TestSpecs(701, "CN9Off出力電圧チェック", true),//本機のみ
+
+            new TestSpecs(800, "警報リレー出力チェック", true),//本機のみ
+
+            new TestSpecs(900, "粒LED点灯チェック", true),
+            new TestSpecs(901, "7セグ 点灯チェック", true),
+
+            new TestSpecs(1000, "SW1-SW4チェック", true),
+            new TestSpecs(1001, "S1チェック", true),
+
+            new TestSpecs(1100, "製品FW書き込み", false),
+
+            new TestSpecs(1200, "コイン電池セット", false),//本機のみ
+            new TestSpecs(1201, "RTCチェック", true),//本機のみ
+
+            new TestSpecs(1300, "出荷設定", true),//本機のみ
+
+            new TestSpecs(1400, "CN9 バッテリ接続作業", false),//本機のみ
+            new TestSpecs(1401, "電源基板SW2チェック", true),//本機のみ
+
+        };
+
+        public static List<TestSpecs> テスト項目子機 = new List<TestSpecs>()
+        {
+
+            new TestSpecs(100, "検査ソフト書き込み", false),
+
+            new TestSpecs(200, "Bluetooth通信確認", true),
+            new TestSpecs(201, "AT通信確認", true),
+            new TestSpecs(202, "RS485通信確認1", true),
+            new TestSpecs(203, "RS485通信確認2", true),
+
+
+            new TestSpecs(300, "カレントセンサチェック", true),
+
+            new TestSpecs(400, "サーミスタチェック", true),
+
+            //new TestSpecs(500, "停電検出チェック", true),//本機のみ
+
+            //new TestSpecs(600, "バッテリLowチェック", true),//本機のみ
+
+            //new TestSpecs(700, "CN9On出力電圧チェック", true),//本機のみ
+            //new TestSpecs(701, "CN9Off出力電圧チェック", true),//本機のみ
+
+            //new TestSpecs(800, "警報リレー出力チェック", true),//本機のみ
+
+            new TestSpecs(900, "粒LED点灯チェック", true),
+            new TestSpecs(901, "7セグ 点灯チェック", true),
+
+            new TestSpecs(1000, "SW1-SW4チェック", true),
+            new TestSpecs(1001, "S1チェック", true),
+
+            new TestSpecs(1100, "製品FW書き込み", false),
+
+            //new TestSpecs(1200, "コイン電池セット", false),//本機のみ
+            //new TestSpecs(1201, "RTCチェック", true),//本機のみ
+
+            //new TestSpecs(1300, "出荷設定", true),//本機のみ
+
+            //new TestSpecs(1400, "CN9 バッテリ接続作業", false),//本機のみ
+            //new TestSpecs(1401, "電源基板SW2チェック", true),//本機のみ
+
+        };
+
+
         //個別設定のロード
         public static void LoadConfigData()
         {
             //Configファイルのロード
             Setting = Deserialize<Configuration>(Constants.filePath_Configuration);
-            if (Setting.日付 != DateTime.Now.ToString("yyyyMMdd"))
-            {
-                Setting.日付 = DateTime.Now.ToString("yyyyMMdd");
-                Setting.TodayOkCount = 0;
-                Setting.TodayNgCount = 0;
-            }
+
 
             VmMainWindow.ListOperator = Setting.作業者リスト;
             VmMainWindow.Theme = Setting.PathTheme;
             VmMainWindow.ThemeOpacity = Setting.OpacityTheme;
-            VmTestStatus.OkCount = Setting.TodayOkCount.ToString() + "台";
-            VmTestStatus.NgCount = Setting.TodayNgCount.ToString() + "台";
-            VmTestStatus.TotalCount = Setting.TotalTestCount.ToString() + "台";
+            if (State.testMode == TEST_MODE.PWA)
+            {
+                if (Setting.日付Pwa != DateTime.Now.ToString("yyyyMMdd"))
+                {
+                    Setting.日付Pwa = DateTime.Now.ToString("yyyyMMdd");
+                    Setting.TodayOkCountPwaTest = 0;
+                    Setting.TodayNgCountPwaTest = 0;
+                }
+
+                VmTestStatus.OkCount = Setting.TodayOkCountPwaTest.ToString() + "台";
+                VmTestStatus.NgCount = Setting.TodayNgCountPwaTest.ToString() + "台";
+            }
+            else
+            {
+                if (Setting.日付Unit != DateTime.Now.ToString("yyyyMMdd"))
+                {
+                    Setting.日付Unit = DateTime.Now.ToString("yyyyMMdd");
+                    Setting.TodayOkCountUnitTest = 0;
+                    Setting.TodayNgCountUnitTest = 0;
+                }
+
+                VmTestStatus.OkCount = Setting.TodayOkCountUnitTest.ToString() + "台";
+                VmTestStatus.NgCount = Setting.TodayNgCountUnitTest.ToString() + "台";
+            }
 
             //TestSpecファイルのロード
             TestSpec = Deserialize<TestSpec>(Constants.filePath_TestSpec);
@@ -223,33 +326,33 @@ namespace 自記温度計Tester
             General.cam1.openCnt = cam1Prop.OpenCnt;
             General.cam1.closeCnt = cam1Prop.CloseCnt;
 
-            ////TODO: 座標指定
-            //State.VmCamera1Point.LD1a = cam1Prop.LD1a;
-            //State.VmCamera1Point.LD1b = cam1Prop.LD1b;
-            //State.VmCamera1Point.LD1c = cam1Prop.LD1c;
-            //State.VmCamera1Point.LD1d = cam1Prop.LD1d;
-            //State.VmCamera1Point.LD1e = cam1Prop.LD1e;
-            //State.VmCamera1Point.LD1f = cam1Prop.LD1f;
-            //State.VmCamera1Point.LD1g = cam1Prop.LD1g;
-            //State.VmCamera1Point.LD1dp = cam1Prop.LD1dp;
+            //TODO: 座標指定
+            State.VmCamera1Point.LD1a = cam1Prop.LD1a;
+            State.VmCamera1Point.LD1b = cam1Prop.LD1b;
+            State.VmCamera1Point.LD1c = cam1Prop.LD1c;
+            State.VmCamera1Point.LD1d = cam1Prop.LD1d;
+            State.VmCamera1Point.LD1e = cam1Prop.LD1e;
+            State.VmCamera1Point.LD1f = cam1Prop.LD1f;
+            State.VmCamera1Point.LD1g = cam1Prop.LD1g;
+            State.VmCamera1Point.LD1dp = cam1Prop.LD1dp;
 
-            //State.VmCamera1Point.LD2a = cam1Prop.LD2a;
-            //State.VmCamera1Point.LD2b = cam1Prop.LD2b;
-            //State.VmCamera1Point.LD2c = cam1Prop.LD2c;
-            //State.VmCamera1Point.LD2d = cam1Prop.LD2d;
-            //State.VmCamera1Point.LD2e = cam1Prop.LD2e;
-            //State.VmCamera1Point.LD2f = cam1Prop.LD2f;
-            //State.VmCamera1Point.LD2g = cam1Prop.LD2g;
-            //State.VmCamera1Point.LD2dp = cam1Prop.LD2dp;
+            State.VmCamera1Point.LD2a = cam1Prop.LD2a;
+            State.VmCamera1Point.LD2b = cam1Prop.LD2b;
+            State.VmCamera1Point.LD2c = cam1Prop.LD2c;
+            State.VmCamera1Point.LD2d = cam1Prop.LD2d;
+            State.VmCamera1Point.LD2e = cam1Prop.LD2e;
+            State.VmCamera1Point.LD2f = cam1Prop.LD2f;
+            State.VmCamera1Point.LD2g = cam1Prop.LD2g;
+            State.VmCamera1Point.LD2dp = cam1Prop.LD2dp;
 
-            //State.VmCamera1Point.LD3a = cam1Prop.LD3a;
-            //State.VmCamera1Point.LD3b = cam1Prop.LD3b;
-            //State.VmCamera1Point.LD3c = cam1Prop.LD3c;
-            //State.VmCamera1Point.LD3d = cam1Prop.LD3d;
-            //State.VmCamera1Point.LD3e = cam1Prop.LD3e;
-            //State.VmCamera1Point.LD3f = cam1Prop.LD3f;
-            //State.VmCamera1Point.LD3g = cam1Prop.LD3g;
-            //State.VmCamera1Point.LD3dp = cam1Prop.LD3dp;
+            State.VmCamera1Point.LD3a = cam1Prop.LD3a;
+            State.VmCamera1Point.LD3b = cam1Prop.LD3b;
+            State.VmCamera1Point.LD3c = cam1Prop.LD3c;
+            State.VmCamera1Point.LD3d = cam1Prop.LD3d;
+            State.VmCamera1Point.LD3e = cam1Prop.LD3e;
+            State.VmCamera1Point.LD3f = cam1Prop.LD3f;
+            State.VmCamera1Point.LD3g = cam1Prop.LD3g;
+            State.VmCamera1Point.LD3dp = cam1Prop.LD3dp;
         }
 
         public static void SetCam2Prop()

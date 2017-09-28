@@ -4,6 +4,7 @@ namespace 自記温度計Tester
 {
     public static class Flags
     {
+
         public static bool OtherPage { get; set; }
         public static bool ReturnFromOtherPage { get; set; }
 
@@ -22,16 +23,16 @@ namespace 自記温度計Tester
         public static bool LoveBig { get; set; }
         public static bool BgmOn { get; set; }
 
-        public static bool DcFanOn { get; set; }
-
         public static bool ClickStopButton { get; set; }
         public static bool Click確認Button { get; set; }
 
-        public static bool Flag電池セット { get; set; }
-
         public static bool MeasTH { get; set; }
 
-        public static bool Rs485Task { get; set; }
+        public static bool DialogReturn { get; set; }// OK/CANSELダイアログボックスの戻り値
+
+
+        //public static bool Rs485Task { get; set; }
+        //public static bool Flag電池セット { get; set; }
 
         public static bool PressOpenCheckBeforeTest { get; set; }
 
@@ -171,17 +172,19 @@ namespace 自記温度計Tester
                 {
                     if (State.VmMainWindow.Operator == "畔上")
                     {
-                        State.VmTestStatus.EnableUnitTest = System.Windows.Visibility.Visible;
+                        State.VmTestStatus.UnitTestEnable = true;
                     }
                     else
                     {
-                        State.VmTestStatus.EnableUnitTest = System.Windows.Visibility.Hidden;
+                        State.VmTestStatus.UnitTestEnable = false;
+                        State.VmTestStatus.CheckUnitTest = false;
                     }
                 }
                 else
                 {
                     State.VmMainWindow.Operator = "";
-                    State.VmTestStatus.EnableUnitTest = System.Windows.Visibility.Hidden;
+                    State.VmTestStatus.UnitTestEnable = false;
+                    State.VmTestStatus.CheckUnitTest = false;
                     State.VmMainWindow.SelectIndex = -1;
 
 

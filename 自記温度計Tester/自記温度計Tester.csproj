@@ -136,6 +136,18 @@
     <Compile Include="Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageUnit\Config\Conf.xaml.cs">
+      <DependentUpon>Conf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageUnit\Config\Mente.xaml.cs">
+      <DependentUpon>Mente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageUnit\Test\UnitTest.xaml.cs">
+      <DependentUpon>UnitTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageUnit\Test\銘板ラベル貼り付け.xaml.cs">
+      <DependentUpon>銘板ラベル貼り付け.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Page\Config\Camera2Conf.xaml.cs">
       <DependentUpon>Camera2Conf.xaml</DependentUpon>
     </Compile>
@@ -147,6 +159,12 @@
     </Compile>
     <Compile Include="Page\Test\ラベル貼り付け.xaml.cs">
       <DependentUpon>ラベル貼り付け.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UnitTestWindow.xaml.cs">
+      <DependentUpon>UnitTestWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utility\AGIRENT34401A.cs" />
     <Compile Include="Utility\Camera.cs" />
@@ -216,10 +234,34 @@
     <Compile Include="検査規格\Configuration.cs" />
     <Compile Include="検査規格\TestSpec.cs" />
     <Page Include="Dialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="PageUnit\Config\Conf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageUnit\Config\Mente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageUnit\Test\UnitTest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageUnit\Test\銘板ラベル貼り付け.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UnitTestWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PwaTestWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -231,8 +273,8 @@
     <Compile Include="Utility\EPX64S.cs" />
     <Compile Include="Utility\Flags.cs" />
     <Compile Include="Utility\General.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="PwaTestWindow.xaml.cs">
+      <DependentUpon>PwaTestWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Page\Config\Camera2Conf.xaml">
@@ -315,6 +357,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\銘板.png" />
     <Resource Include="Resources\ラベル貼り付け.jpg" />
     <Resource Include="Resources\自記温度計シルク図.jpg" />
     <Resource Include="Resources\baby5.jpg">
@@ -341,6 +384,8 @@
     <Resource Include="Resources\baby3.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\BRTR_C.png" />
+    <Resource Include="Resources\BRTR_ST.png" />
     <Content Include="Resources\Continue.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -384,9 +429,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Page\Dialog\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <COMReference Include="stdole">
       <Guid>{00020430-0000-0000-C000-000000000046}</Guid>

@@ -201,8 +201,23 @@ namespace 自記温度計Tester
         {
             if (State.RetryLogList.Count() == 0) return true;
 
+            string fileName_RetryLog = "";
+            switch (State.testMode)
+            {
+                case TEST_MODE.PWA:
+                    fileName_RetryLog = Constants.fileName_RetryLogPwa;
+                    break;
+                case TEST_MODE.本機:
+                    fileName_RetryLog = Constants.fileName_RetryLog本機;
+                    break;
+                case TEST_MODE.子機:
+                    fileName_RetryLog = Constants.fileName_RetryLog子機;
+                    break;
+            }
+
+
             //出力用のファイルを開く appendをtrueにすると既存のファイルに追記、falseにするとファイルを新規作成する
-            using (var sw = new System.IO.StreamWriter(Constants.fileName_RetryLog, true, Encoding.GetEncoding("Shift_JIS")))
+            using (var sw = new System.IO.StreamWriter(fileName_RetryLog, true, Encoding.GetEncoding("Shift_JIS")))
             {
                 try
                 {
@@ -223,7 +238,7 @@ namespace 自記温度計Tester
 
 
 
-        private static List<string> MakePassTestData()//TODO:
+        private static List<string> MakePassTestDataPwa()//TODO:
         {
             var ListData = new List<string>
             {
@@ -303,19 +318,99 @@ namespace 自記温度計Tester
             return ListData;
         }
 
+        private static List<string> MakePassTestData子機()//TODO:
+        {
+            var ListData = new List<string>
+            {
+                State.VmMainWindow.SerialNumber,
+                "AssemblyVer " + State.AssemblyInfo,
+                "TestSpecVer " + State.TestSpec.TestSpecVer,
+                System.DateTime.Now.ToString("yyyy年MM月dd日(ddd) HH:mm:ss"),
+                State.VmMainWindow.Operator,
+
+                State.VmTestResults.VolCn9On,
+                State.VmTestResults.VolCn9Off,
+
+                State.VmTestResults.Th2,
+                State.VmTestResults.Th3,
+                State.VmTestResults.Th4,
+                State.VmTestResults.Th5,
+                State.VmTestResults.Th6,
+                State.VmTestResults.Th7,
+                State.VmTestResults.Th8,
+                State.VmTestResults.Th10,
+                State.VmTestResults.Th20,
+                State.VmTestResults.Th30,
+                State.VmTestResults.Th45,
+                State.VmTestResults.Th90,
+
+            };
+
+            return ListData;
+        }
+
+        private static List<string> MakePassTestData本機()//TODO:
+        {
+            var ListData = new List<string>
+            {
+                State.VmMainWindow.SerialNumber,
+                "AssemblyVer " + State.AssemblyInfo,
+                "TestSpecVer " + State.TestSpec.TestSpecVer,
+                System.DateTime.Now.ToString("yyyy年MM月dd日(ddd) HH:mm:ss"),
+                State.VmMainWindow.Operator,
+
+                State.VmTestResults.VolCn9On,
+                State.VmTestResults.VolCn9Off,
+
+                State.VmTestResults.Th2,
+                State.VmTestResults.Th3,
+                State.VmTestResults.Th4,
+                State.VmTestResults.Th5,
+                State.VmTestResults.Th6,
+                State.VmTestResults.Th7,
+                State.VmTestResults.Th8,
+                State.VmTestResults.Th10,
+                State.VmTestResults.Th20,
+                State.VmTestResults.Th30,
+                State.VmTestResults.Th45,
+                State.VmTestResults.Th90,
+
+            };
+
+            return ListData;
+        }
+
         public static bool SaveTestData()
         {
             try
             {
-                var OkDataFilePath = Constants.PassDataFolderPath + State.VmMainWindow.Opecode + ".csv";
+                string PassDataFolderPath = "";
+                List<string> dataList = new List<string>();
+
+                switch (State.testMode)
+                {
+                    case TEST_MODE.PWA:
+                        PassDataFolderPath = Constants.PassDataPwaFolderPath;
+                        dataList = MakePassTestDataPwa();
+                        break;
+                    case TEST_MODE.本機:
+                        PassDataFolderPath = Constants.PassData本機FolderPath;
+                        dataList = MakePassTestData本機();
+                        break;
+                    case TEST_MODE.子機:
+                        PassDataFolderPath = Constants.PassData子機FolderPath;
+                        dataList = MakePassTestData子機();
+                        break;
+                }
+
+                var OkDataFilePath = PassDataFolderPath + State.VmMainWindow.Opecode + ".csv";
 
                 if (!System.IO.File.Exists(OkDataFilePath))
                 {
                     //既存検査データがなければ新規作成
-                    File.Copy(Constants.PassDataFolderPath + "Format.csv", OkDataFilePath);
+                    File.Copy(PassDataFolderPath + "Format.csv", OkDataFilePath);
                 }
 
-                var dataList = MakePassTestData();
                 // リストデータをすべてカンマ区切りで連結する
                 string stCsvData = string.Join(",", dataList);
 
@@ -347,11 +442,29 @@ namespace 自記温度計Tester
         {
             try
             {
-                var NgDataFilePath = Constants.FailDataFolderPath + State.VmMainWindow.Opecode + ".csv";
-                if (!System.IO.File.Exists(NgDataFilePath))
+                string FailDataFolderPath = "";
+
+                switch (State.testMode)
+                {
+                    case TEST_MODE.PWA:
+                        FailDataFolderPath = Constants.FailDataPwaFolderPath;
+                        dataList = MakePassTestDataPwa();
+                        break;
+                    case TEST_MODE.本機:
+                        FailDataFolderPath = Constants.FailData本機FolderPath;
+                        dataList = MakePassTestData本機();
+                        break;
+                    case TEST_MODE.子機:
+                        FailDataFolderPath = Constants.FailData子機FolderPath;
+                        dataList = MakePassTestData子機();
+                        break;
+                }
+
+                var NgDataFilePath = FailDataFolderPath + State.VmMainWindow.Opecode + ".csv";
+                if (!File.Exists(NgDataFilePath))
                 {
                     //既存検査データがなければ新規作成
-                    File.Copy(Constants.FailDataFolderPath + "FormatNg.csv", NgDataFilePath);
+                    File.Copy(FailDataFolderPath + "FormatNg.csv", NgDataFilePath);
                 }
 
                 var stArrayData = dataList.ToArray();
@@ -414,7 +527,10 @@ namespace 自記温度計Tester
             }
 
             SetAC100(sw);
-            SetPowSw2(sw);
+            if (State.testMode == TEST_MODE.PWA)
+            {
+                SetPowSw2(sw);
+            }
             Flags.PowOn = sw;
 
             if (!sw)
@@ -501,19 +617,29 @@ namespace 自記温度計Tester
 
         public static void ResetViewModel()//TODO:
         {
-            State.VmMainWindow.SerialNumber = State.VmMainWindow.SerialNumber.Substring(0, 6) + State.NewSerial.ToString("D3");
-            //ViewModel OK台数、NG台数、Total台数の更新
-            State.VmTestStatus.OkCount = State.Setting.TodayOkCount.ToString() + "台";
-            State.VmTestStatus.NgCount = State.Setting.TodayNgCount.ToString() + "台";
-            State.VmTestStatus.TotalCount = State.Setting.TotalTestCount.ToString() + "台";
+            if (State.testMode == TEST_MODE.PWA)
+            {
+                State.VmMainWindow.SerialNumber = State.VmMainWindow.SerialNumber.Substring(0, 6) + State.NewSerial.ToString("D3");
+                //ViewModel OK台数、NG台数、Total台数の更新
+                State.VmTestStatus.OkCount = State.Setting.TodayOkCountPwaTest.ToString() + "台";
+                State.VmTestStatus.NgCount = State.Setting.TodayNgCountPwaTest.ToString() + "台";
+                State.VmTestStatus.Message = Constants.MessSetPwa;
+                General.cam1.ImageOpacity = Constants.OpacityImgMin;
+                General.cam2.ImageOpacity = Constants.OpacityImgMin;
+            }
+            else
+            {
+                //ViewModel OK台数、NG台数、Total台数の更新
+                State.VmTestStatus.OkCount = State.Setting.TodayOkCountUnitTest.ToString() + "台";
+                State.VmTestStatus.NgCount = State.Setting.TodayNgCountUnitTest.ToString() + "台";
+                State.VmTestStatus.Message = Constants.MessSetUnit;
+
+            }
 
 
             State.VmTestStatus.DecisionVisibility = System.Windows.Visibility.Hidden;
             State.VmTestStatus.ErrInfoVisibility = System.Windows.Visibility.Hidden;
-
             State.VmTestStatus.RingVisibility = System.Windows.Visibility.Visible;
-
-
 
             State.VmTestStatus.TestTime = "00:00";
             State.VmTestStatus.進捗度 = 0;
@@ -534,7 +660,6 @@ namespace 自記温度計Tester
             State.VmComm.RS485_TX = "";
             State.VmComm.RS485_RX = "";
 
-            State.VmTestStatus.Message = Constants.MessSet;
             State.VmMainWindow.EnableOtherButton = true;
 
             //各種フラグの初期化
@@ -550,9 +675,6 @@ namespace 自記温度計Tester
             State.VmTestStatus.TestSettingEnable = true;
             State.VmMainWindow.OperatorEnable = true;
 
-
-            General.cam1.ImageOpacity = Constants.OpacityImgMin;
-            General.cam2.ImageOpacity = Constants.OpacityImgMin;
         }
 
 
@@ -649,48 +771,57 @@ namespace 自記温度計Tester
 
             //カメラ1（CMS_V37BK）の初期化
             bool StopCAMERA1 = false;
-            Task.Run(() =>
-            {
-                cam1 = new Camera(State.cam1Prop.CamNumber);
-                State.SetCam1Prop();
-
-                while (true)
-                {
-                    if (Flags.StopInit周辺機器)
-                    {
-                        break;
-                    }
-
-                    Flags.StateCamera1 = cam1.InitCamera();
-                    if (Flags.StateCamera1) break;
-
-                    Thread.Sleep(500);
-                }
-                StopCAMERA1 = true;
-            });
-
-            //カメラ2（CMS_V37BK）の初期化
             bool StopCAMERA2 = false;
-            Task.Run(() =>
+            if (State.testMode == TEST_MODE.PWA)
             {
-                cam2 = new Camera(State.cam2Prop.CamNumber);
-                State.SetCam2Prop();
-
-                while (true)
+                Task.Run(() =>
                 {
-                    if (Flags.StopInit周辺機器)
+                    cam1 = new Camera(State.cam1Prop.CamNumber);
+                    State.SetCam1Prop();
+
+                    while (true)
                     {
-                        break;
+                        if (Flags.StopInit周辺機器)
+                        {
+                            break;
+                        }
+
+                        Flags.StateCamera1 = cam1.InitCamera();
+                        if (Flags.StateCamera1) break;
+
+                        Thread.Sleep(500);
                     }
+                    StopCAMERA1 = true;
+                });
 
-                    Flags.StateCamera2 = cam2.InitCamera();
-                    if (Flags.StateCamera2) break;
+                //カメラ2（CMS_V37BK）の初期化
+                Task.Run(() =>
+                {
+                    cam2 = new Camera(State.cam2Prop.CamNumber);
+                    State.SetCam2Prop();
 
-                    Thread.Sleep(500);
-                }
+                    while (true)
+                    {
+                        if (Flags.StopInit周辺機器)
+                        {
+                            break;
+                        }
+
+                        Flags.StateCamera2 = cam2.InitCamera();
+                        if (Flags.StateCamera2) break;
+
+                        Thread.Sleep(500);
+                    }
+                    StopCAMERA2 = true;
+                });
+            }
+            else//完成体試験ではカメラは使用しない
+            {
+                Flags.StateCamera1 = true;
+                Flags.StateCamera2 = true;
+                StopCAMERA1 = true;
                 StopCAMERA2 = true;
-            });
-
+            }
 
             //LTM2882Aの初期化
             bool StopLTM2882 = false;
@@ -841,12 +972,15 @@ namespace 自記温度計Tester
             State.VmTestStatus.IsActiveRing = false;
         }
 
-        public static void Set集乳ボタン()
+        public static bool Set集乳ボタン()
         {
             SetSw1OnByFet(true);
             WaitWithRing(4000);
             SetSw1OnByFet(false);
             WaitWithRing(13000);
+
+            return Target232_BT.SendData("3700ODC,005");//初期化コマンド送信
+
         }
 
         public static void ResetRelay_Multimeter()

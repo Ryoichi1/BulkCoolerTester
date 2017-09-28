@@ -1,21 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 
 namespace 自記温度計Tester
 {
     /// <summary>
     /// Test.xaml の相互作用ロジック
     /// </summary>
-    public partial class Test
+    public partial class UnitTest
     {
         private SolidColorBrush ButtonBrush = new SolidColorBrush();
         private const double ButtonOpacity = 0.3;
 
-        public Test()
+        public UnitTest()
         {
             this.InitializeComponent();
 
@@ -28,8 +30,6 @@ namespace 自記温度計Tester
             Canvas検査データ.DataContext = State.VmTestResults;
             CanvasComm232C.DataContext = State.VmComm;
             CanvasComm485.DataContext = State.VmComm;
-            CanvasImg1.DataContext = General.cam1;
-            CanvasImg2.DataContext = General.cam2;
 
             (FindResource("Blink") as Storyboard).Begin();
 
@@ -37,15 +37,13 @@ namespace 自記温度計Tester
             State.testCommand.RefreshDataContext = (() =>
             {
                 Canvas検査データ.DataContext = State.VmTestResults;
-                canvasLedTest.DataContext = State.VmTestResults;
                 tbTestLog.DataContext = State.VmTestStatus;
 
             });
 
-            ラベル貼り付け.RefreshDataContextFromLabelForm = (() =>
+            銘板ラベル貼り付け.RefreshDataContextFromLabelForm = (() =>
             {
                 Canvas検査データ.DataContext = State.VmTestResults;
-                canvasLedTest.DataContext = State.VmTestResults;
                 tbTestLog.DataContext = State.VmTestStatus;
 
             });
@@ -62,6 +60,15 @@ namespace 自記温度計Tester
             State.VmTestStatus.StartButtonContent = "開始";
 
             State.VmTestStatus.RetryLabelVis = System.Windows.Visibility.Hidden;
+
+            if (State.testMode == TEST_MODE.本機)
+            {
+                State.VmTestStatus.Theme = "Resources/BRTR_ST.png";
+            }
+            else
+            {
+                State.VmTestStatus.Theme = "Resources/BRTR_C.png";
+            }
 
 
         }
@@ -104,7 +111,19 @@ namespace 自記温度計Tester
 
         private void SetUnitTest()
         {
-            var SelectedItem = State.テスト項目Pwa.Where(item => item.Key % 100 == 0);
+            IEnumerable<TestSpecs> SelectedItem;
+            if (State.testMode == TEST_MODE.PWA)
+            {
+                SelectedItem = State.テスト項目Pwa.Where(item => item.Key % 100 == 0);
+            }
+            else if (State.testMode == TEST_MODE.本機)
+            {
+                SelectedItem = State.テスト項目本機.Where(item => item.Key % 100 == 0);
+            }
+            else
+            {
+                SelectedItem = State.テスト項目子機.Where(item => item.Key % 100 == 0);
+            }
             var list = new List<string>();
             foreach (var t in SelectedItem)
             {
@@ -128,11 +147,7 @@ namespace 自記温度計Tester
                 {
                     return;
                 }
-                if (General.CheckPress())
-                {
-                    MessageBox.Show("プレスを閉じてください");
-                    return;
-                }
+
                 Flags.Click確認Button = true;
             }
             else if (State.VmTestStatus.StartButtonContent == Constants.停止)
@@ -145,7 +160,6 @@ namespace 自記温度計Tester
                 Flags.Click確認Button = true;
                 State.VmTestStatus.StartButtonContent = Constants.開始;
             }
-
         }
 
         private void ButtonStart_GotFocus(object sender, RoutedEventArgs e)
@@ -157,5 +171,7 @@ namespace 自記温度計Tester
         {
             ButtonBrush.Opacity = ButtonOpacity;
         }
+
+
     }
 }

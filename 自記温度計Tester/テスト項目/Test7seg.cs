@@ -73,33 +73,33 @@ namespace 自記温度計Tester
 
                     General.cam1.FlagLabeling = true;
 
-                    var tm = new GeneralTimer(15000);
-                    tm.start();
-                    //製品側がコマンドを受け付け可能になるまで待つ
-                    while (true)
-                    {
-                        if (tm.FlagTimeout) return false;
-                        Target232_BT.SendData(Data: Constants.OnLD1a, DoAnalysis: false);
-                        Thread.Sleep(300);
-                        var blobInfo = General.cam1.blobs.Clone();
-                        if (blobInfo.Count == 1)
-                        {
-                            var blob = blobInfo.ToList();
+                    //var tm = new GeneralTimer(15000);
+                    //tm.start();
+                    ////製品側がコマンドを受け付け可能になるまで待つ
+                    //while (true)
+                    //{
+                    //    if (tm.FlagTimeout) return false;
+                    //    Target232_BT.SendData(Data: Constants.OnLD1a, DoAnalysis: false);
+                    //    Thread.Sleep(300);
+                    //    var blobInfo = General.cam1.blobs.Clone();
+                    //    if (blobInfo.Count == 1)
+                    //    {
+                    //        var blob = blobInfo.ToList();
 
-                            int _x = (int)blob[0].Value.Centroid.X;
-                            int _y = (int)blob[0].Value.Centroid.Y;
-                            int _x_Ld1a = Int32.Parse(State.cam1Prop.LD1a.Split('/').ToArray()[0]);
-                            int _y_Ld1a = Int32.Parse(State.cam1Prop.LD1a.Split('/').ToArray()[1]);
+                    //        int _x = (int)blob[0].Value.Centroid.X;
+                    //        int _y = (int)blob[0].Value.Centroid.Y;
+                    //        int _x_Ld1a = Int32.Parse(State.cam1Prop.LD1a.Split('/').ToArray()[0]);
+                    //        int _y_Ld1a = Int32.Parse(State.cam1Prop.LD1a.Split('/').ToArray()[1]);
 
-                            //X座標の確認
-                            if ((_x < _x_Ld1a - 15 || _x > _x_Ld1a + 15)) continue;
-                            //Y座標の確認
-                            if (_y < _y_Ld1a - 15 || (_y > _y_Ld1a + 15)) continue;
+                    //        //X座標の確認
+                    //        if ((_x < _x_Ld1a - 15 || _x > _x_Ld1a + 15)) continue;
+                    //        //Y座標の確認
+                    //        if (_y < _y_Ld1a - 15 || (_y > _y_Ld1a + 15)) continue;
 
-                            tm.stop();
-                            break;
-                        }
-                    }
+                    //        tm.stop();
+                    //        break;
+                    //    }
+                    //}
 
 
                     return allResult = ListLedSpec.All(l =>
@@ -444,6 +444,90 @@ namespace 自記温度計Tester
             }
 
         }
+
+        public static async Task<bool> CheckLumUnit()
+        {
+            Dialog dialog;
+            //電源投入して、RS232C通信をPCモードにしてからメソッドを呼び出すこと
+            bool FlagLedCheck = false;
+
+            try
+            {
+                return await Task<bool>.Run(() =>
+                {
+                    Task.Run(() =>
+                    {
+                        while (true)
+                        {
+                            if (FlagLedCheck) return;
+                            Target232_BT.SendData(Data: Constants.OnLD1a, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD1b, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD1c, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD1d, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD1e, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD1f, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD1g, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD1dp, DoAnalysis: false);
+                            Thread.Sleep(500);
+
+                            Target232_BT.SendData(Data: Constants.OnLD2a, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD2b, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD2c, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD2d, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD2e, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD2f, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD2g, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD2dp, DoAnalysis: false);
+                            Thread.Sleep(500);
+
+                            Target232_BT.SendData(Data: Constants.OnLD3a, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD3b, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD3c, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD3d, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD3e, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD3f, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD3g, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLD3dp, DoAnalysis: false);
+                            Thread.Sleep(500);
+                        }
+                    });
+
+                    State.VmTestStatus.DialogMess = "7セグが順に点灯していますか？";
+                    dialog = new Dialog(); dialog.ShowDialog();
+                    FlagLedCheck = true;
+
+                    return Flags.DialogReturn;
+
+                });
+            }
+            finally
+            {
+
+            }
+
+        }
+
 
 
     }

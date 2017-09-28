@@ -3,32 +3,42 @@ namespace 自記温度計Tester
 {
     public static class Constants
     {
-                //スタートボタンの表示
+        //スタートボタンの表示
         public const string 開始 = "検査開始";
         public const string 停止 = "強制停止";
-        public const string 確認= "確認";
+        public const string 確認 = "確認";
 
         //作業者へのメッセージ
         public const string MessOpecode = "工番を入力してください";
         public const string MessOperator = "作業者名を選択してください";
-        public const string MessSet = "製品をセットして開始ボタンを押して下さい";
+        public const string MessSetPwa = "製品をセットしてレバーを下げてください";
+        public const string MessSetUnit = "製品をセットして開始ボタンを押して下さい";
         public const string MessRemove = "製品を取り外してください";
 
         public const string MessWait = "検査中！　しばらくお待ちください・・・";
         public const string MessCheckConnectMachine = "周辺機器の接続を確認してください！";
 
-        public static readonly string filePath_TestSpec        = @"C:\自記温度計\ConfigData\TestSpec.config";
-        public static readonly string filePath_Configuration   = @"C:\自記温度計\ConfigData\Configuration.config";
+        public static readonly string filePath_TestSpec = @"C:\自記温度計\ConfigData\TestSpec.config";
+        public static readonly string filePath_Configuration = @"C:\自記温度計\ConfigData\Configuration.config";
         public static readonly string filePath_Camera1Property = @"C:\自記温度計\ConfigData\Camera1Property.config";
         public static readonly string filePath_Camera2Property = @"C:\自記温度計\ConfigData\Camera2Property.config";
 
-        public static readonly string RwsPath_Test    = @"C:\自記温度計\FW_WRITE\ForTest\自記温度計書き込み\自記温度計書き込み.rws";
+        public static readonly string RwsPath_Test = @"C:\自記温度計\FW_WRITE\ForTest\自記温度計書き込み\自記温度計書き込み.rws";
         public static readonly string RwsPath_Product = @"C:\自記温度計\FW_WRITE\ForProduct\自記温度計書き込み\自記温度計書き込み.rws";
 
         //検査データフォルダのパス
-        public static readonly string PassDataFolderPath = @"C:\自記温度計\検査データ\合格品データ\";
-        public static readonly string FailDataFolderPath = @"C:\自記温度計\検査データ\不良品データ\";
-        public static readonly string fileName_RetryLog = FailDataFolderPath + "リトライ履歴.txt";
+        public static readonly string PassDataPwaFolderPath = @"C:\自記温度計\検査データ\PWA\合格品データ\";
+        public static readonly string FailDataPwaFolderPath = @"C:\自記温度計\検査データ\PWA\不良品データ\";
+        public static readonly string fileName_RetryLogPwa  = @"C:\自記温度計\検査データ\PWA\不良品データ\" + "リトライ履歴.txt";
+
+        public static readonly string PassData本機FolderPath = @"C:\自記温度計\検査データ\本機\合格品データ\";
+        public static readonly string FailData本機FolderPath = @"C:\自記温度計\検査データ\本機\不良品データ\";
+        public static readonly string fileName_RetryLog本機  = @"C:\自記温度計\検査データ\本機\不良品データ\リトライ履歴.txt";
+
+        public static readonly string PassData子機FolderPath = @"C:\自記温度計\検査データ\子機\合格品データ\";
+        public static readonly string FailData子機FolderPath = @"C:\自記温度計\検査データ\子機\不良品データ\";
+        public static readonly string fileName_RetryLog子機  = @"C:\自記温度計\検査データ\子機\不良品データ\リトライ履歴.txt";
+
 
         //LED、7セグ点灯用コマンド
         public static readonly string AllOn = "3700ODB,8onOOO";//全点灯
@@ -75,7 +85,7 @@ namespace 自記温度計Tester
         public const double OpacityImgMin = 0.3;
 
         //リトライ回数
-        public static readonly int RetryCount = 3;
+        public static readonly int RetryCount = 1;
 
 
 

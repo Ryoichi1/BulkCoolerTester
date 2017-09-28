@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace 自記温度計Tester
 {
@@ -6,7 +7,7 @@ namespace 自記温度計Tester
     //VISA COM x.x Type Libraryの参照追加が必要です
     public class KEYSIGHT34461A : Multimeter
     {
-
+        private enum MODE { DCV, ACV, DCA, RES, FRES, DEF }
         //
         private const string ID_34461A = "Keysight Technologies,34461A";
         private const string VISA_Address = "USB0::0x2A8D::0x1301::MY57201157::0::INSTR";
@@ -14,7 +15,7 @@ namespace 自記温度計Tester
 
         private Ivi.Visa.Interop.ResourceManager RM;  //
         private Ivi.Visa.Interop.FormattedIO488 DMM;
-
+        private MODE State34461a;
 
 
 
@@ -54,6 +55,7 @@ namespace 自記温度計Tester
         {
             RM = new Ivi.Visa.Interop.ResourceManager();
             DMM = new Ivi.Visa.Interop.FormattedIO488();
+            State34461a = MODE.DEF;
         }
 
 
@@ -125,7 +127,12 @@ namespace 自記温度計Tester
         {
             try
             {
-                DMM.WriteString(":MEAS:RES?  AUTO, DEF");
+                if (State34461a != MODE.RES)
+                {
+                    DMM.WriteString(":CONF:RES DEF, DEF");
+                    State34461a = MODE.RES;
+                }
+                DMM.WriteString(":READ?");
                 return (ReadRecieveData() && Double.TryParse(RecieveData, out _ResData));
             }
             finally
@@ -140,7 +147,12 @@ namespace 自記温度計Tester
         {
             try
             {
-                DMM.WriteString(":MEAS:FRES?  AUTO, DEF");
+                if (State34461a != MODE.FRES)
+                {
+                    DMM.WriteString(":CONF:FRES DEF, DEF");
+                    State34461a = MODE.FRES;
+                }
+                DMM.WriteString(":READ?");
                 return (ReadRecieveData() && Double.TryParse(RecieveData, out _ResData));
             }
             finally
@@ -159,13 +171,20 @@ namespace 自記温度計Tester
         {
             try
             {
-                DMM.WriteString("MEAS:VOLT:DC?  AUTO, DEF");
+                if (State34461a != MODE.DCV)
+                {
+                    DMM.WriteString(":CONF:VOLT:DC AUTO, DEF");
+                    State34461a = MODE.DCV;
+                    Thread.Sleep(400);
+                }
+                DMM.WriteString(":READ?");
                 return (ReadRecieveData() && Double.TryParse(RecieveData, out _VoltData));
             }
             finally
             {
                 if (sw) SetLocal();
             }
+
         }
 
         //**************************************************************************
@@ -177,13 +196,20 @@ namespace 自記温度計Tester
         {
             try
             {
-                DMM.WriteString("MEAS:VOLT:AC?  AUTO, DEF");
+                if (State34461a != MODE.ACV)
+                {
+                    DMM.WriteString(":CONF:VOLT:AC AUTO, DEF");
+                    State34461a = MODE.ACV;
+                    Thread.Sleep(400);
+                }
+                DMM.WriteString(":READ?");
                 return (ReadRecieveData() && Double.TryParse(RecieveData, out _VoltData));
             }
             finally
             {
                 SetLocal();
             }
+
         }
 
         //**************************************************************************
@@ -197,6 +223,7 @@ namespace 自記温度計Tester
             try
             {
                 DMM.WriteString(":CONF:CURR:DC");
+                State34461a = MODE.DCA;
                 return true;
             }
             catch
@@ -209,13 +236,20 @@ namespace 自記温度計Tester
         {
             try
             {
-                DMM.WriteString(":MEAS:CURR:DC?");
+                if (State34461a != MODE.DCA)
+                {
+                    DMM.WriteString(":CONF:CURR:DC AUTO, DEF");
+                    State34461a = MODE.DCA;
+                    Thread.Sleep(400);
+                }
+                DMM.WriteString(":READ?");
                 return (ReadRecieveData() && Double.TryParse(RecieveData, out _CurrData));
             }
             finally
             {
-                //SetLocal();
+                SetLocal();
             }
+
         }
 
         //**************************************************************************

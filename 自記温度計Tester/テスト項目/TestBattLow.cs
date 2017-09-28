@@ -143,6 +143,74 @@ namespace 自記温度計Tester
             }
         }
 
+        public static async Task<bool> CheckBattLowUnit()
+        {
+            Dialog dialog;
+
+            double TimeOnToSleep = 0;//TODO: スリープ突入までの時間計測するか？？？？
+
+            Flags.AddDecision = false;
+
+            try
+            {
+                return await Task<bool>.Run(() =>
+                {
+
+                    State.VmTestStatus.TestLog += "\r\n6.00V入力 スリープモード確認";
+                    //CN9に擬似バッテリ（6.00V）を接続
+                    //pmx18の校正
+                    if (!General.CalbPmx18(5.90)) return false;
+                    //この時点でpmx18からは正確に6.00Vが出力されている
+
+                    General.SetRL1(true);
+                    Thread.Sleep(1500);
+                    General.SetAC100(false);//電源基板のSW2はONしたまま、AC100Vだけを切る
+
+
+                    //指定時間待って、スリープモードに入ることを確認する
+                    State.VmTestStatus.DialogMess = "スリープモードに入りましたか？";
+                    dialog = new Dialog(); dialog.ShowDialog();
+
+                    if (!Flags.DialogReturn) return false;
+
+
+                    State.VmTestStatus.TestLog += "\r\n6.25V入力 非スリープモード確認";
+
+                    General.PowSupply(false);
+                    General.pmx18.VolOff();
+                    General.SetRL1(false);
+                    Thread.Sleep(500);
+
+                    General.PowSupply(true);
+                    if (!General.CheckComm()) return false;
+                    Thread.Sleep(1000);
+
+                    //CN9に擬似バッテリ（6.25V）を接続
+                    //pmx18の校正
+                    if (!General.CalbPmx18(6.25)) return false;
+                    //この時点でpmx18からは正確に6.25Vが出力されている
+
+                    General.SetRL1(true);
+                    Thread.Sleep(1000);
+                    General.SetAC100(false);//電源基板のSW2はONしたまま、AC100Vだけを切る
+
+                    //指定時間待って、スリープモードに入らないことを確認する
+                    State.VmTestStatus.DialogMess = "スリープモードに入りませんよね？？";
+                    dialog = new Dialog(); dialog.ShowDialog();
+
+                    return Flags.DialogReturn;
+
+
+                });
+            }
+            finally
+            {
+                General.PowSupply(false);
+                General.pmx18.VolOff();
+                General.SetRL1(false);
+            }
+        }
+
     }
 
 }

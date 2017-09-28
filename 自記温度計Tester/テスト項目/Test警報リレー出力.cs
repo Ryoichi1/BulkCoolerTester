@@ -40,7 +40,18 @@ namespace 自記温度計Tester
                         if (!Target232_BT.SendData(CommandOn)) return false;
 
                         //製品のSW1を長押しする
-                        General.Set集乳ボタン();
+                        if (State.testMode == TEST_MODE.PWA)
+                        {
+                            General.Set集乳ボタン();
+                        }
+                        else
+                        {
+                            Dialog dialog;
+                            State.VmTestStatus.DialogMess = "集乳完了ボタンを長押して、表示が点滅→点灯になるのを確認してください";
+                            dialog = new Dialog(); dialog.ShowDialog();
+                            if (!Flags.DialogReturn) return false;
+                        }
+
 
                         if (!Target232_BT.SendData(CommandInit)) return false;
 
@@ -73,15 +84,19 @@ namespace 自記温度計Tester
                         if (!Target232_BT.SendData(CommandOff)) return false;
 
                         //製品のSW1を長押しする
-                        State.VmTestStatus.IsActiveRing = true;
-                        General.SetSw1OnByFet(true);
-                        Thread.Sleep(4000);
-                        General.SetSw1OnByFet(false);
-                        Thread.Sleep(13000);
-                        State.VmTestStatus.IsActiveRing = false;
+                        if (State.testMode == TEST_MODE.PWA)
+                        {
+                            General.Set集乳ボタン();
+                        }
+                        else
+                        {
+                            Dialog dialog;
+                            State.VmTestStatus.DialogMess = "集乳完了ボタンを長押して、表示が点滅→点灯になるのを確認してください";
+                            dialog = new Dialog(); dialog.ShowDialog();
+                            if (!Flags.DialogReturn) return false;
+                        }
 
                         if (!Target232_BT.SendData(CommandInit)) return false;
-
 
                         tm = new GeneralTimer(10000);
                         tm.start();

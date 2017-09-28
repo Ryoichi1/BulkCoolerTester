@@ -127,26 +127,35 @@ namespace 自記温度計Tester
 
             //ビューモデルの更新
             //期待値の設定
-            if (exp == S1EXP.ALL_OFF)
+            switch (exp)
             {
-                State.VmTestResults.ColS1_1Exp = General.OffBrush;
-                State.VmTestResults.ColS1_2Exp = General.OffBrush;
-                State.VmTestResults.ColS1_3Exp = General.OffBrush;
-                State.VmTestResults.ColS1_4Exp = General.OffBrush;
-            }
-            else if (exp == S1EXP.ALL_ON)
-            {
-                State.VmTestResults.ColS1_1Exp = General.OffBrush;
-                State.VmTestResults.ColS1_2Exp = General.OnBrush;
-                State.VmTestResults.ColS1_3Exp = General.OnBrush;
-                State.VmTestResults.ColS1_4Exp = General.OnBrush;
-            }
-            else
-            {
-                State.VmTestResults.ColS1_1Exp = General.OffBrush;
-                State.VmTestResults.ColS1_2Exp = General.OffBrush;
-                State.VmTestResults.ColS1_3Exp = General.OffBrush;
-                State.VmTestResults.ColS1_4Exp = General.OnBrush;
+                case S1EXP.ALL_OFF:
+                    State.VmTestResults.ColS1_1Exp = General.OffBrush;
+                    State.VmTestResults.ColS1_2Exp = General.OffBrush;
+                    State.VmTestResults.ColS1_3Exp = General.OffBrush;
+                    State.VmTestResults.ColS1_4Exp = General.OffBrush;
+                    break;
+
+                case S1EXP.ALL_ON:
+                    State.VmTestResults.ColS1_1Exp = General.OnBrush;
+                    State.VmTestResults.ColS1_2Exp = General.OnBrush;
+                    State.VmTestResults.ColS1_3Exp = General.OnBrush;
+                    State.VmTestResults.ColS1_4Exp = General.OnBrush;
+                    break;
+
+                case S1EXP.ONLY1_ON:
+                    State.VmTestResults.ColS1_1Exp = General.OnBrush;
+                    State.VmTestResults.ColS1_2Exp = General.OffBrush;
+                    State.VmTestResults.ColS1_3Exp = General.OffBrush;
+                    State.VmTestResults.ColS1_4Exp = General.OffBrush;
+                    break;
+
+                case S1EXP.ONLY4_ON:
+                    State.VmTestResults.ColS1_1Exp = General.OffBrush;
+                    State.VmTestResults.ColS1_2Exp = General.OffBrush;
+                    State.VmTestResults.ColS1_3Exp = General.OffBrush;
+                    State.VmTestResults.ColS1_4Exp = General.OnBrush;
+                    break;
             }
 
             //取り込み値の設定
@@ -249,7 +258,7 @@ namespace 自記温度計Tester
                             //ONチェック
                             if (!SetInputSw14(L.name, true)) return false;
                             Thread.Sleep(600);
-                            if(!Target232_BT.SendData("3700ODB,8of000")) return false;
+                            if (!Target232_BT.SendData("3700ODB,8of000")) return false;
                             if (!SetInputSw14(L.name, false)) return false;
 
                             var onBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
@@ -338,10 +347,96 @@ namespace 自記温度計Tester
 
         }
 
+        public static async Task<bool> CheckSw1_4Unit()
+        {
+            bool result = false;
+            bool resultOff = false;
 
-        private enum S1EXP { ALL_OFF, ALL_ON, ONLY4_ON}
+            try
+            {
+                return await Task<bool>.Run(() =>
+                {
+                    Thread.Sleep(3000);
+                    ResetViewModel();
 
-        public static async Task<bool> CheckS1()
+                    Flags.AddDecision = false;
+                    InitListSw14();//テストスペック毎回初期化
+
+                    return ListSw14Specs.All(L =>
+                    {
+                        try
+                        {
+                            Thread.Sleep(1500);
+                            result = false;
+
+                            //テストログの更新
+                            State.VmTestStatus.TestLog += "\r\n" + L.name.ToString() + " ONチェック";
+
+                            //ONチェック
+                            State.VmTestStatus.Message = L.name.ToString() + "を押してください！！！";
+                            General.PlaySound(General.soundCutin);
+                            var tm = new GeneralTimer(15000);
+                            tm.start();
+                            while (true)
+                            {
+                                if (tm.FlagTimeout) break;
+                                if (!Target232_BT.SendData("3700ODB,8of000")) return false;
+                                var onBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
+                                AnalysisDataSw14(onBuff, L.name, false);
+
+                                result = ListSw14Specs.All(list =>
+                                {
+                                    if (list.name == L.name)
+                                    {
+                                        return list.inPut;
+                                    }
+                                    else
+                                    {
+                                        return !list.inPut;
+                                    }
+                                });
+
+                                if (result) break;
+                            }
+
+                            if (result)
+                            {
+                                //テストログの更新
+                                State.VmTestStatus.TestLog += "---PASS";
+                                return true;
+                            }
+                            else
+                            {
+                                //テストログの更新
+                                State.VmTestStatus.TestLog += "---FAIL";
+                                return false;
+                            }
+                        }
+                        catch
+                        {
+                            return false;
+                        }
+                    });
+
+                });
+            }
+            finally
+            {
+                State.VmTestStatus.TestLog += "\r\n";
+                Thread.Sleep(200);
+                if (!result || !resultOff)
+                {
+                    State.VmTestStatus.Spec = "規格値 : ---";
+                    State.VmTestStatus.MeasValue = "計測値 : ---";
+                }
+            }
+
+        }
+
+
+        private enum S1EXP { ALL_OFF, ALL_ON, ONLY1_ON, ONLY4_ON }
+
+        public static async Task<bool> CheckS1Unit()
         {
             bool resultOn = false;
             bool resultOff = false;
@@ -351,14 +446,7 @@ namespace 自記温度計Tester
             {
                 return await Task<bool>.Run(() =>
                 {
-                    Target232_BT.ChangeMode(Target232_BT.MODE.PC);
-
-                    ResetViewModel();
-
                     Flags.AddDecision = false;
-                    InitListS1();//テストスペック毎回初期化
-
-
 
                     try
                     {
@@ -369,54 +457,28 @@ namespace 自記温度計Tester
                         //テストログの更新
                         State.VmTestStatus.TestLog += "\r\nALL S1 2~4ON";
 
-                        if (!Target232_BT.SendData("3700ODB,8of000")) return false;
-                        var onBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
-                        AnalysisDataS1(onBuff, S1EXP.ALL_ON);
+                        General.PlaySound(General.soundCutin);
+                        State.VmTestStatus.Message = "S1の1~4をONにしてください";
+                        ResetViewModel();
+                        InitListS1();//テストスペック毎回初期化
 
-                        resultOn = ListS1Specs.All(list =>
+                        var tm = new GeneralTimer(15000);
+                        tm.start();
+                        while (true)
                         {
-                            if (list.name == NAME_S1.S1_1)
-                            {
-                                return !list.inPut;
-                            }
-                            else
+                            if (tm.FlagTimeout) break;
+                            if (!Target232_BT.SendData("3700ODB,8of000")) return false;
+                            var onBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
+                            AnalysisDataS1(onBuff, S1EXP.ALL_ON);
+
+                            resultOn = ListS1Specs.All(list =>
                             {
                                 return list.inPut;
-                            }
-                        });
+                            });
 
-                        if (!resultOn)
-                        {
-                            General.PowSupply(false);
-                            General.ResetIo();
-                            General.PlaySound(General.soundAlarm);
-                            State.VmTestStatus.Message = "S1の2~4をONにしてください";
-                            while (General.CheckPress()) ;
-                            while (!General.CheckPress()) ;
-
-                            State.VmTestStatus.Message = Constants.MessWait;
-                            General.PowSupply(true);
-                            if (!General.CheckComm()) return false;
-                            ResetViewModel();
-                            InitListS1();//テストスペック毎回初期化
+                            if (resultOn) break;
+                            Thread.Sleep(500);
                         }
-
-                        if (!Target232_BT.SendData("3700ODB,8of000")) return false;
-                        onBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
-                        AnalysisDataS1(onBuff, S1EXP.ALL_ON);
-
-                        resultOn = ListS1Specs.All(list =>
-                        {
-                            if (list.name == NAME_S1.S1_1)
-                            {
-                                return !list.inPut;
-                            }
-                            else
-                            {
-                                return list.inPut;
-                            }
-                        });
-
 
                         if (resultOn)
                         {
@@ -430,30 +492,30 @@ namespace 自記温度計Tester
                             return false;
                         }
 
+
                         //OFFチェック
                         //テストログの更新
+                        General.PlaySound(General.soundCutin);
+                        State.VmTestStatus.Message = "S1の1~4をOFFにしてください";
                         State.VmTestStatus.TestLog += "\r\nALL OFFチェック";
-                        General.PowSupply(false);
-                        General.ResetIo();
-                        General.PlaySound(General.soundAlarm);
-                        State.VmTestStatus.Message = "S1をすべてOFFにしてください";
-                        while (General.CheckPress()) ;
-                        while (!General.CheckPress()) ;
 
-                        State.VmTestStatus.Message = Constants.MessWait;
-                        General.PowSupply(true);
-                        if (!General.CheckComm()) return false;
-
-                        if (!Target232_BT.SendData("3700ODB,8of000")) return false;
-
-                        var offBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
-
-                        AnalysisDataS1(offBuff, S1EXP.ALL_OFF);
-
-                        resultOff = ListS1Specs.All(list =>
+                        tm.stop();
+                        tm.start(15000);
+                        while (true)
                         {
-                            return !list.inPut;
-                        });
+                            if (tm.FlagTimeout) break;
+                            if (!Target232_BT.SendData("3700ODB,8of000")) return false;
+                            var offBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
+                            AnalysisDataS1(offBuff, S1EXP.ALL_OFF);
+
+                            resultOff = ListS1Specs.All(list =>
+                            {
+                                return !list.inPut;
+                            });
+
+                            if (resultOff) break;
+                            Thread.Sleep(500);
+                        }
 
                         if (resultOff)
                         {
@@ -470,34 +532,57 @@ namespace 自記温度計Tester
                         //出荷設定
                         //テストログの更新
                         State.VmTestStatus.TestLog += "\r\nALL 出荷設定 4番On";
-                        General.PowSupply(false);
-                        General.ResetIo();
-                        General.PlaySound(General.soundAlarm);
-                        State.VmTestStatus.Message = "S1の4番だけをONにしてください";
-                        while (General.CheckPress()) ;
-                        while (!General.CheckPress()) ;
 
-                        State.VmTestStatus.Message = Constants.MessWait;
-                        General.PowSupply(true);
-                        if (!General.CheckComm()) return false;
-
-                        if (!Target232_BT.SendData("3700ODB,8of000")) return false;
-
-                        var OnOnly4Buff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
-
-                        AnalysisDataS1(OnOnly4Buff, S1EXP.ONLY4_ON);
-
-                        resultDefault = ListS1Specs.All(list =>
+                        General.PlaySound(General.soundCutin);
+                        if (State.testMode == TEST_MODE.本機)
                         {
-                            if (list.name == NAME_S1.S1_4)
+                            State.VmTestStatus.Message = "S1の4番だけをONにしてください";
+                        }
+                        else
+                        {
+                            State.VmTestStatus.Message = "S1の1番だけをONにしてください";
+                        }
+
+                        tm.stop();
+                        tm.start(15000);
+                        while (true)
+                        {
+                            if (tm.FlagTimeout) break;
+                            if (!Target232_BT.SendData("3700ODB,8of000")) return false;
+                            var defaultBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
+                            if (State.testMode == TEST_MODE.本機)
                             {
-                                return list.inPut;
+                                AnalysisDataS1(defaultBuff, S1EXP.ONLY4_ON);
+                                resultDefault = ListS1Specs.All(list =>
+                                {
+                                    if (list.name == NAME_S1.S1_4)
+                                    {
+                                        return list.inPut;
+                                    }
+                                    else
+                                    {
+                                        return !list.inPut;
+                                    }
+                                });
                             }
                             else
                             {
-                                return !list.inPut;
+                                AnalysisDataS1(defaultBuff, S1EXP.ONLY1_ON);
+                                resultDefault = ListS1Specs.All(list =>
+                                {
+                                    if (list.name == NAME_S1.S1_1)
+                                    {
+                                        return list.inPut;
+                                    }
+                                    else
+                                    {
+                                        return !list.inPut;
+                                    }
+                                });
                             }
-                        });
+
+                            if (resultDefault) break;
+                        }
 
                         if (resultDefault)
                         {

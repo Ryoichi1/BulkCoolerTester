@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Threading;
 
-namespace 自記温度計Tester
+namespace 自記温度計Tester.PageUnit
 {
     /// <summary>
     /// Interaction logic for BasicPage1.xaml
@@ -109,55 +109,11 @@ namespace 自記温度計Tester
             tbCommand232.Text = "";
 
             buttonPow.Background = ButtonOffBrush;
-            buttonS1.Background = ButtonOffBrush;
-            buttonStamp.Background = ButtonOffBrush;
 
         }
 
 
-        private void buttonStamp_Click(object sender, RoutedEventArgs e)
-        {
-            buttonStamp.Background = ButtonOnBrush;
-            General.StampOn();
-            buttonStamp.Background = ButtonOffBrush;
-        }
 
-
-        private async void buttonS1_Click(object sender, RoutedEventArgs e)
-        {
-            buttonS1.Background = ButtonOnBrush;
-            General.SetSw1(true);
-            await Task.Delay(400);
-            General.SetSw1(false);
-            buttonS1.Background = ButtonOffBrush;
-        }
-
-        private async void buttonS2_Click(object sender, RoutedEventArgs e)
-        {
-            buttonS2.Background = ButtonOnBrush;
-            General.SetSw2(true);
-            await Task.Delay(400);
-            General.SetSw2(false);
-            buttonS2.Background = ButtonOffBrush;
-        }
-
-        private async void buttonS3_Click(object sender, RoutedEventArgs e)
-        {
-            buttonS3.Background = ButtonOnBrush;
-            General.SetSw3(true);
-            await Task.Delay(400);
-            General.SetSw3(false);
-            buttonS3.Background = ButtonOffBrush;
-        }
-
-        private async void buttonS4_Click(object sender, RoutedEventArgs e)
-        {
-            buttonS4.Background = ButtonOnBrush;
-            General.SetSw4(true);
-            await Task.Delay(400);
-            General.SetSw4(false);
-            buttonS4.Background = ButtonOffBrush;
-        }
 
 
         private void rb232AT_Checked(object sender, RoutedEventArgs e)
@@ -415,24 +371,6 @@ namespace 自記温度計Tester
             chTh = CH_TH.TH90;
         }
 
-
-
-        bool FlagLight;
-        private void buttonLight_Click(object sender, RoutedEventArgs e)
-        {
-            if (FlagLight)
-            {
-                General.SetLight(false);
-                buttonLight.Background = ButtonOffBrush;
-            }
-            else
-            {
-                General.SetLight(true);
-                buttonLight.Background = ButtonOnBrush;
-            }
-
-            FlagLight = !FlagLight;
-        }
 
 
 

@@ -93,6 +93,172 @@ namespace 自記温度計Tester
 
 
 
+                /// <summary>
+        /// CN4 3番、6番ピンが未ハンダでもRS485通信ができてしまうため（GNDなので接続されていなくても通信可）、マルチメータで導通チェックを行う
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<bool> CheckCN4_Gnd()
+        {
+            bool result = false;
+            Double measData = 0;
+            double Max = 0;
+
+            try
+            {
+                return await Task<bool>.Run(() =>
+                {
+                    try
+                    {
+                        //電源は必ずOFFして計測する
+                        General.PowSupply(false);
+                        General.ResetIo();
+                        Thread.Sleep(500);
+                        General.ResetRelay_Multimeter();
+                        Thread.Sleep(500);
+
+                        Max = 10;//10Ω
+
+                        General.SetK16(true);
+                        Thread.Sleep(1000);
+
+                        if (!General.multimeter.GetRes()) return false;
+
+                        measData = General.multimeter.ResData;
+
+                        return result = (measData < Max);
+                    }
+                    catch
+                    {
+                        return result = false;
+                    }
+
+                });
+            }
+            finally
+            {
+                //リレーを初期化する処理
+                General.ResetRelay_Multimeter();
+
+                //NGだった場合、エラー詳細情報の規格値を更新する
+                if (!result)
+                {
+                    State.VmTestStatus.Spec = "規格値 : CN4 3番、6番ピン未半田でないこと";
+                    State.VmTestStatus.MeasValue = "計測値 : 未半田DEATH!!!";
+                }
+
+
+            }
+        }
+
+        /// <summary>
+        /// CN4 1番、4番ピンが未ハンダでもRS485通信ができてしまうため（B線とGNDだけでも通信できてしまう）、マルチメータで導通チェックを行う
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<bool> CheckCN4_A()
+        {
+            bool result = false;
+            Double measData = 0;
+            double Max = 0;
+
+            try
+            {
+                return await Task<bool>.Run(() =>
+                {
+                    try
+                    {
+                        //電源は必ずOFFして計測する
+                        General.PowSupply(false);
+                        General.ResetIo();
+                        Thread.Sleep(500);
+                        General.ResetRelay_Multimeter();
+                        Thread.Sleep(500);
+
+                        Max = 10;//10Ω
+
+                        General.SetK11(true);
+                        Thread.Sleep(1000);
+
+                        if (!General.multimeter.GetRes()) return false;
+
+                        measData = General.multimeter.ResData;
+
+                        return result = (Math.Abs(measData) < Max);
+                    }
+                    catch
+                    {
+                        return result = false;
+                    }
+
+                });
+            }
+            finally
+            {
+                //リレーを初期化する処理
+                General.ResetRelay_Multimeter();
+
+                //NGだった場合、エラー詳細情報の規格値を更新する
+                if (!result)
+                {
+                    State.VmTestStatus.Spec = "規格値 : CN4 1番、4番ピン未半田でないこと";
+                    State.VmTestStatus.MeasValue = "計測値 : 未半田DEATH!!!";
+                }
+
+
+            }
+        }
+
+        public static async Task<bool> CheckJP1()
+        {
+            bool result = false;
+            Double measData = 0;
+            double Max = 0;
+
+            try
+            {
+                return await Task<bool>.Run(() =>
+                {
+                    try
+                    {
+                        //電源は必ずOFFして計測する
+                        General.PowSupply(false);
+                        General.ResetIo();
+                        Thread.Sleep(500);
+                        General.ResetRelay_Multimeter();
+                        Thread.Sleep(500);
+
+                        Max = 10;//10Ω
+
+                        General.SetK8(true);
+                        Thread.Sleep(1000);
+
+                        if (!General.multimeter.GetRes()) return false;
+
+                        measData = General.multimeter.ResData;
+
+                        return result = (Math.Abs(measData) < Max);
+                    }
+                    catch
+                    {
+                        return result = false;
+                    }
+
+                });
+            }
+            finally
+            {
+                //リレーを初期化する処理
+                General.ResetRelay_Multimeter();
+
+                //NGだった場合、エラー詳細情報の規格値を更新する
+                if (!result)
+                {
+                    State.VmTestStatus.Spec = "規格値 : JP1 2-3側に短絡ソケット";
+                    State.VmTestStatus.MeasValue = "計測値 : 未挿入DEATH!!!";
+                }
+
+
+            }
+        }
 
 
 

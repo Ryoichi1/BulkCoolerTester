@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 
 namespace 自記温度計Tester
@@ -28,7 +29,7 @@ namespace 自記温度計Tester
                                              //例 ＮＧリトライ時は、General.cam.FlagFrame = trueになっていてNGフレーム表示の無限ループにいる
                     General.cam2.FlagLabeling = true;
 
-                    var tm = new GeneralTimer(5000);
+                    var tm = new GeneralTimer(10000);
                     tm.start();
 
                     while (true)
@@ -131,6 +132,44 @@ namespace 自記温度計Tester
                             return true;
                         }
                     }
+
+                });
+
+            }
+            finally
+            {
+                General.pmx18.VolOff();
+                General.PowSupply(false);
+            }
+        }
+
+
+        public static async Task<bool> Check停電検出Unit()
+        {
+            Dialog dialog;
+
+            try
+            {
+                return await Task<bool>.Run(() =>
+                {
+
+                    //CN9に擬似バッテリ（8V）を接続
+                    General.ResetRelay_Multimeter();
+                    General.pmx18.SetVol(8.0);
+                    General.pmx18.VolOn();
+                    General.SetRL1(true);
+
+                    //強制的に停電検出 時短モードにする
+                    Target232_BT.SendData("3700ODB,5on", DoAnalysis: false);
+                    Thread.Sleep(1000);
+                    General.SetAC100(false);//電源基板のSW2はONしたまま、AC100Vだけを切る
+
+                    //約5秒後に、LED7だけ点滅、その他は消灯に切り替わる
+
+                    State.VmTestStatus.DialogMess = "LEDが点滅しましたか？";
+                    dialog = new Dialog(); dialog.ShowDialog();
+
+                    return Flags.DialogReturn;
 
                 });
 

@@ -434,6 +434,55 @@ namespace 自記温度計Tester
 
         }
 
+        public static async Task<bool> CheckLumUnit()
+        {
+            Dialog dialog;
+
+            //電源投入して、RS232C通信をPCモードにしてからメソッドを呼び出すこと
+            bool FlagLedCheck = false;
+
+            try
+            {
+                return await Task<bool>.Run(() =>
+                {
+                    Task.Run(() =>
+                    {
+                        while (true)
+                        {
+                            if (FlagLedCheck) return;
+                            Target232_BT.SendData(Data: Constants.OnLed1, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLed2, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLed3, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLed4, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLed5, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLed6, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            Target232_BT.SendData(Data: Constants.OnLed7, DoAnalysis: false);
+                            Thread.Sleep(500);
+                            break;
+                        }
+                    });
+
+                    State.VmTestStatus.DialogMess = "LEDが順に点灯していますか？";
+                    dialog = new Dialog(); dialog.ShowDialog();
+                    FlagLedCheck = true;
+
+                    return Flags.DialogReturn;
+                });
+
+            }
+            finally
+            {
+
+            }
+
+        }
+
 
     }
 

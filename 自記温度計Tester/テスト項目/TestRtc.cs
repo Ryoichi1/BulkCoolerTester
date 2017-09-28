@@ -44,7 +44,6 @@ namespace 自記温度計Tester
         {
             try
             {
-                Target232_BT.ChangeMode(Target232_BT.MODE.PC);
                 //＜時計設定のコマンド＞
                 //[STX]3700OWC17/04/01,00:00:00 [ETX]CRLF
 
@@ -154,43 +153,24 @@ namespace 自記温度計Tester
         //そういうことですね、失礼しました
         //コイン電池の電圧チェックはやめます
 
-        //public static async Task SetBattery()
-        //{
-        //    await Task.Run(() =>
-        //    {
-        //        try
-        //        {
-        //            General.PlaySound(General.soundAlarm);
-        //            State.VmTestStatus.Message = "リチウム電池をセットしてください";
-        //            while (General.CheckPress()) ;
-        //            while (!General.CheckPress()) ;
-
-        //        }
-        //        finally
-        //        {
-
-        //        }
-        //    });
-        //}
-
-        //public static async Task<bool> FinalSetRtc()
-        //{
-        //    return await Task<bool>.Run(() =>
-        //    {
-        //        try
-        //        {
-        //            if (!SetTime()) return false;
-        //            General.PowSupply(false);
-        //            Thread.Sleep(5000);
-        //            General.PowSupply(true);
-        //            if (!General.CheckComm()) return false;
-        //            return CheckTime();
-        //        }
-        //        finally
-        //        {
-        //        }
-        //    });
-        //}
+        public static async Task<bool> FinalSetRtc()
+        {
+            return await Task<bool>.Run(() =>
+            {
+                try
+                {
+                    if (!SetTime()) return false;
+                    General.PowSupply(false);
+                    Thread.Sleep(5000);
+                    General.PowSupply(true);
+                    if (!General.CheckComm()) return false;
+                    return CheckTime();
+                }
+                finally
+                {
+                }
+            });
+        }
 
     }
 

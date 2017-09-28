@@ -15,7 +15,8 @@
 
     <Canvas x:Name="MainBack" Background="White" Loaded="MainBack_Loaded">
         <Label Content="{Binding DialogMess}" Height="54" Canvas.Left="10" Canvas.Top="17" Width="576" Foreground="#FFD902FB" FontSize="24"/>
-        <Button x:Name="ButtonEnter" Content="確認" Style="{DynamicResource SquareButtonStyle}" Height="42" Canvas.Top="132" Width="151" FontSize="24" Foreground="#FFF50C8B" BorderBrush="#FFF50C8B" Background="{x:Null}" Canvas.Left="215" FontFamily="Century Gothic" FontWeight="Normal" BorderThickness="1" Click="ButtonEnter_Click" MouseEnter="ButtonEnter_MouseEnter" MouseLeave="ButtonEnter_MouseLeave"/>
+        <Button x:Name="ButtonOk" Content="OK" Controls:ControlsHelper.ContentCharacterCasing="Normal" Style="{DynamicResource SquareButtonStyle}" Height="42" Canvas.Top="135" Width="151" FontSize="24" Foreground="#FFF50C8B" BorderBrush="#FFF50C8B" Background="{x:Null}" Canvas.Left="67" FontFamily="Meiryo UI" FontWeight="Normal" BorderThickness="1" Click="ButtonOk_Click" MouseEnter="ButtonOk_MouseEnter" MouseLeave="ButtonOk_MouseLeave"/>
+        <Button x:Name="ButtonCancel" Content="CANCEL" Controls:ControlsHelper.ContentCharacterCasing="Normal" Style="{DynamicResource SquareButtonStyle}" Height="42" Canvas.Top="135" Width="151" FontSize="24" Foreground="#FFF50C8B" BorderBrush="#FFF50C8B" Background="{x:Null}" Canvas.Left="325" FontFamily="Meiryo UI" FontWeight="Normal" BorderThickness="1" Click="ButtonCancel_Click" MouseEnter="ButtonCancel_MouseEnter" MouseLeave="ButtonCancel_MouseLeave"/>
 
     </Canvas>
 

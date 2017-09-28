@@ -9,6 +9,24 @@ namespace 自記温度計Tester
 {
     public class ViewModelTestStatus : BindableBase
     {
+        private string _Theme;
+        public string Theme
+        {
+            get { return _Theme; }
+            set { SetProperty(ref _Theme, value); }
+        }
+
+
+
+        private string _DialogMess;
+        public string DialogMess
+        {
+
+            get { return _DialogMess; }
+            set { SetProperty(ref _DialogMess, value); }
+
+        }
+
         //スタートボタンのプロパティ/////////////////////////////////////////////////////////////////////////////////////
 
         private bool _StartButtonEnable;
@@ -134,7 +152,7 @@ namespace 自記温度計Tester
             set { SetProperty(ref _ColorDecision, value); }
         }
 
-        
+
         //プログレスリングのEndAngle
         private int _進捗度;
         public int 進捗度
@@ -181,14 +199,21 @@ namespace 自記温度計Tester
             set { SetProperty(ref _TestSettingEnable, value); }
         }
 
-        //FW書き込みパス チェックボックスがチェックされているかどうかの判定
-        private bool? _CheckWriteFw = false;
-        public bool? CheckWriteFw
+        //テストFW書き込みパス チェックボックスがチェックされているかどうかの判定
+        private bool? _CheckWriteTestFwPass = false;
+        public bool? CheckWriteTestFwPass
         {
-            get { return _CheckWriteFw; }
-            set { SetProperty(ref _CheckWriteFw, value); }
+            get { return _CheckWriteTestFwPass; }
+            set { SetProperty(ref _CheckWriteTestFwPass, value); }
         }
 
+        //テストFW書き込み チェックボックスがチェックされているかどうかの判定
+        private bool? _CheckWriteTestFw = false;
+        public bool? CheckWriteTestFw
+        {
+            get { return _CheckWriteTestFw; }
+            set { SetProperty(ref _CheckWriteTestFw, value); }
+        }
 
         //単体試験チェックボックスとコンボボックスの可視切り替え
         //これ重要！！！ 
@@ -196,14 +221,14 @@ namespace 自記温度計Tester
         //畔上以外の作業者を選択時は、EnableUnitTestがhiddenになるため、
         //絶対に一項目試験はできなくなり、通しで試験をするようになる
 
-        private Visibility _EnableUnitTest;
-        public Visibility EnableUnitTest
+        private bool _UnitTestEnable;
+        public bool UnitTestEnable
         {
-            get { return _EnableUnitTest; }
+            get { return _UnitTestEnable; }
 
             set
             {
-                SetProperty(ref _EnableUnitTest, value);
+                SetProperty(ref _UnitTestEnable, value);
             }
         }
 
@@ -262,12 +287,6 @@ namespace 自記温度計Tester
             set { SetProperty(ref _NgCount, value); }
         }
 
-        private string _TotalCount;
-        public string TotalCount
-        {
-            get { return _TotalCount; }
-            set { SetProperty(ref _TotalCount, value); }
-        }
 
         private Brush _ColorEPX64S;
         public Brush ColorEpx64s

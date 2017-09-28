@@ -29,7 +29,21 @@ namespace 自記温度計Tester
                 {
                     if (!Target232_BT.SendData("3700OWP," + menu1)) return false;//メニュー設定
                     Thread.Sleep(300);
-                    General.Set集乳ボタン();
+
+                    //製品のSW1を長押しする
+                    if (State.testMode == TEST_MODE.PWA)
+                    {
+                        General.Set集乳ボタン();
+                    }
+                    else
+                    {
+                        Dialog dialog;
+                        State.VmTestStatus.DialogMess = "集乳完了ボタンを長押して、表示が点滅→点灯になるのを確認してください";
+                        dialog = new Dialog(); dialog.ShowDialog();
+                        if (!Flags.DialogReturn) return false;
+                    }
+
+
                     General.PowSupply(false);
                     General.WaitWithRing(2500);
                     General.PowSupply(true);

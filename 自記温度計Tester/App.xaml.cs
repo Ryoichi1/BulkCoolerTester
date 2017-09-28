@@ -13,6 +13,9 @@ namespace 自記温度計Tester
         public static NavigationService _naviHelp;
         public static NavigationService _naviInfo;
 
+        public static NavigationService _naviUnitTest;
+
+
 
         private System.Threading.Mutex mutex = new System.Threading.Mutex(false, "ApplicationName");
         private void Application_Startup(object sender, StartupEventArgs e)
