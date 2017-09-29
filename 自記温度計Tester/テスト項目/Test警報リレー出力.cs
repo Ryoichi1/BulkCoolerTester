@@ -30,8 +30,6 @@ namespace 自記温度計Tester
                     {
                         Flags.AddDecision = false;
 
-                        Target232_BT.ChangeMode(Target232_BT.MODE.PC);
-
                         State.VmTestStatus.TestLog += "\r\nRY1,RY2 ONチェック";
                         //ビューモデルの更新
                         State.VmTestResults.ColRy1Exp = General.OnBrush;

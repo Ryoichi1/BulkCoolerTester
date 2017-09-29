@@ -350,6 +350,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\X_JAPAN.jpg" />
     <Resource Include="Resources\銘板.png" />
     <Resource Include="Resources\ラベル貼り付け.jpg" />
     <Resource Include="Resources\自記温度計シルク図.jpg" />
@@ -377,8 +378,12 @@
     <Resource Include="Resources\baby3.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\BRTR_C.png" />
-    <Resource Include="Resources\BRTR_ST.png" />
+    <Resource Include="Resources\BRTR_C.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\BRTR_ST.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\Continue.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -392,6 +397,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\MM-100.jpg" />
+    <Resource Include="Resources\Minato.jpg" />
     <Content Include="Resources\Totsugeki.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

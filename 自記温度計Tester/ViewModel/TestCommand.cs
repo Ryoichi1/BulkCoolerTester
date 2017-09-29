@@ -403,8 +403,17 @@ namespace 自記温度計Tester
                     RetryCnt = 0;
                     Flags.Retry = false;
 
-
-                    State.VmTestStatus.進捗度 = (int)(((d.i + 1) / (double)テスト項目最新.Count()) * 100);
+                    await Task.Run(() =>
+                    {
+                        var CurrentProgValue = State.VmTestStatus.進捗度;
+                        var NextProgValue = (int)(((d.i + 1) / (double)テスト項目最新.Count()) * 100);
+                        var 変化量 = NextProgValue - CurrentProgValue;
+                        foreach (var p in Enumerable.Range(1, 変化量))
+                        {
+                            State.VmTestStatus.進捗度 = CurrentProgValue + p;
+                            Thread.Sleep(10);
+                        }
+                    });
                     if (Flags.ClickStopButton) goto FAIL;
                 }
 
@@ -439,7 +448,7 @@ namespace 自記温度計Tester
 
                 FlagTestTime = false;
 
-                State.VmTestStatus.Colorlabel判定 = Brushes.DeepSkyBlue;
+                State.VmTestStatus.Colorlabel判定 = Brushes.AntiqueWhite;
                 State.VmTestStatus.Decision = Flags.MetalMode ? "WIN" : "PASS";
                 State.VmTestStatus.ColorDecision = effect判定表示PASS;
 
@@ -585,7 +594,7 @@ namespace 自記温度計Tester
                 IEnumerable<TestSpecs> 抽出データ;
                 if (State.testMode == TEST_MODE.本機)
                 {
-                   抽出データ = State.テスト項目本機.Where(p => (p.Key / 100) == 上位桁);
+                    抽出データ = State.テスト項目本機.Where(p => (p.Key / 100) == 上位桁);
                 }
                 else
                 {
@@ -783,8 +792,18 @@ namespace 自記温度計Tester
                     RetryCnt = 0;
                     Flags.Retry = false;
 
+                    await Task.Run(() =>
+                    {
+                        var CurrentProgValue = State.VmTestStatus.進捗度;
+                        var NextProgValue = (int)(((d.i + 1) / (double)テスト項目最新.Count()) * 100);
+                        var 変化量 = NextProgValue - CurrentProgValue;
+                        foreach (var p in Enumerable.Range(1, 変化量))
+                        {
+                            State.VmTestStatus.進捗度 = CurrentProgValue + p;
+                            Thread.Sleep(10);
+                        }
+                    });
 
-                    State.VmTestStatus.進捗度 = (int)(((d.i + 1) / (double)テスト項目最新.Count()) * 100);
                     if (Flags.ClickStopButton) goto FAIL;
                 }
 

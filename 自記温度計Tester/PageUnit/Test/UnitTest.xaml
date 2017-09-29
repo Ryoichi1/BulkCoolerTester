@@ -74,7 +74,7 @@
 
 
 
-        <Canvas x:Name="Canvas検査データ" Height="325" Canvas.Left="386" Canvas.Top="349" Width="428" IsEnabled="{Binding StartButtonEnable}">
+        <Canvas x:Name="Canvas検査データ" Height="325" Canvas.Left="386" Canvas.Top="349" Width="551" IsEnabled="{Binding StartButtonEnable}">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="Height"  Value="20"/>
@@ -660,11 +660,12 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
         </Canvas>
-        <Canvas Height="315" Canvas.Left="1040" Canvas.Top="352" Width="293">
+        <Canvas Height="279" Canvas.Left="954" Canvas.Top="388" Width="281">
             <Canvas.Background>
                 <ImageBrush ImageSource="{Binding Theme}" Stretch="Uniform"/>
             </Canvas.Background>
         </Canvas>
+        <TextBlock x:Name="tbTestName" TextWrapping="Wrap" FontSize="20" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="247" RenderTransformOrigin="0.5,0.5" Canvas.Top="347" Canvas.Left="970"/>
 
 
 

@@ -1,4 +1,4 @@
-﻿<Controls:MetroWindow x:Class="自記温度計Tester.Dialog"
+﻿<Controls:MetroWindow x:Name="metroWindow" x:Class="自記温度計Tester.Dialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
@@ -9,7 +9,23 @@
         BorderThickness="2"
         ShowTitleBar="False"
         mc:Ignorable="d"
-        Height="240" Width="600" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Icon="Resources/VisualStudio_32x.png" BorderBrush="#FFEC09F7" >
+        Height="240" Width="600" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Icon="Resources/VisualStudio_32x.png" BorderBrush="#FFEC09F7" Padding="0" Margin="0,0,700,0" WindowTransitionsEnabled="False" >
+    <Controls:MetroWindow.Resources>
+        <Storyboard x:Key="sbDialogShow">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="metroWindow">
+                <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0">
+                    <EasingThicknessKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseOut"/>
+                    </EasingThicknessKeyFrame.EasingFunction>
+                </EasingThicknessKeyFrame>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+    </Controls:MetroWindow.Resources>
+    <Controls:MetroWindow.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource sbDialogShow}"/>
+        </EventTrigger>
+    </Controls:MetroWindow.Triggers>
 
 
 
