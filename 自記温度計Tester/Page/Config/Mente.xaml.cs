@@ -23,7 +23,7 @@ namespace 自記温度計Tester
 
 
             ButtonOnBrush.Color = Colors.DodgerBlue;
-            ButtonOffBrush.Color = Colors.White;
+            ButtonOffBrush.Color = Colors.Transparent;
             ButtonOnBrush.Opacity = ButtonOpacity;
             ButtonOffBrush.Opacity = ButtonOpacity;
 
@@ -107,10 +107,6 @@ namespace 自記温度計Tester
             State.VmComm.Command = "";
 
             tbCommand232.Text = "";
-
-            buttonPow.Background = ButtonOffBrush;
-            buttonS1.Background = ButtonOffBrush;
-            buttonStamp.Background = ButtonOffBrush;
 
         }
 
@@ -240,79 +236,79 @@ namespace 自記温度計Tester
                     {
                         General.multimeter.GetFRes();
                         var buff = General.multimeter.ResData / 1000.0;
-                        const double MaxErr = 0.01; //誤差0.01K(10Ω)以内とする
+                        double MaxErr = State.TestSpec.ResErr / 100.0; //例）誤差0.05%なら 0.05/100 = 0.0005
                         bool reTh = false;
                         switch (chTh)
                         {
                             case CH_TH.TH2:
                                 State.VmTh.ResTh2 = (buff).ToString("F3") + "KΩ";
-                                reTh = (buff >= State.TestSpec.ResTh2 - MaxErr && buff <= State.TestSpec.ResTh2 + MaxErr);
+                                reTh = (buff >= State.TestSpec.ResTh2 * (1 - MaxErr) && buff <= State.TestSpec.ResTh2 * (1 + MaxErr));
                                 State.VmTh.ColResTh2 = reTh ? General.OnBrush : General.NgBrush;
                                 break;
 
                             case CH_TH.TH3:
                                 State.VmTh.ResTh3 = (buff).ToString("F3") + "KΩ";
-                                reTh = (buff >= State.TestSpec.ResTh3 - MaxErr && buff <= State.TestSpec.ResTh3 + MaxErr);
+                                reTh = (buff >= State.TestSpec.ResTh3 * (1 - MaxErr) && buff <= State.TestSpec.ResTh3 * (1 + MaxErr));
                                 State.VmTh.ColResTh3 = reTh ? General.OnBrush : General.NgBrush;
                                 break;
 
                             case CH_TH.TH4:
                                 State.VmTh.ResTh4 = (buff).ToString("F3") + "KΩ";
-                                reTh = (buff >= State.TestSpec.ResTh4 - MaxErr && buff <= State.TestSpec.ResTh4 + MaxErr);
+                                reTh = (buff >= State.TestSpec.ResTh4 * (1 - MaxErr) && buff <= State.TestSpec.ResTh4 * (1 + MaxErr));
                                 State.VmTh.ColResTh4 = reTh ? General.OnBrush : General.NgBrush;
                                 break;
 
                             case CH_TH.TH5:
                                 State.VmTh.ResTh5 = (buff).ToString("F3") + "KΩ";
-                                reTh = (buff >= State.TestSpec.ResTh5 - MaxErr && buff <= State.TestSpec.ResTh5 + MaxErr);
+                                reTh = (buff >= State.TestSpec.ResTh5 * (1 - MaxErr) && buff <= State.TestSpec.ResTh5 * (1 + MaxErr));
                                 State.VmTh.ColResTh5 = reTh ? General.OnBrush : General.NgBrush;
                                 break;
 
                             case CH_TH.TH6:
                                 State.VmTh.ResTh6 = (buff).ToString("F3") + "KΩ";
-                                reTh = (buff >= State.TestSpec.ResTh6 - MaxErr && buff <= State.TestSpec.ResTh6 + MaxErr);
+                                reTh = (buff >= State.TestSpec.ResTh6 * (1 - MaxErr) && buff <= State.TestSpec.ResTh6 * (1 + MaxErr));
                                 State.VmTh.ColResTh6 = reTh ? General.OnBrush : General.NgBrush;
                                 break;
 
                             case CH_TH.TH7:
                                 State.VmTh.ResTh7 = (buff).ToString("F3") + "KΩ";
-                                reTh = (buff >= State.TestSpec.ResTh7 - MaxErr && buff <= State.TestSpec.ResTh7 + MaxErr);
+                                reTh = (buff >= State.TestSpec.ResTh7 * (1 - MaxErr) && buff <= State.TestSpec.ResTh7 * (1 + MaxErr));
                                 State.VmTh.ColResTh7 = reTh ? General.OnBrush : General.NgBrush;
                                 break;
 
                             case CH_TH.TH8:
                                 State.VmTh.ResTh8 = (buff).ToString("F3") + "KΩ";
-                                reTh = (buff >= State.TestSpec.ResTh8 - MaxErr && buff <= State.TestSpec.ResTh8 + MaxErr);
+                                reTh = (buff >= State.TestSpec.ResTh8 * (1 - MaxErr) && buff <= State.TestSpec.ResTh8 * (1 + MaxErr));
                                 State.VmTh.ColResTh8 = reTh ? General.OnBrush : General.NgBrush;
                                 break;
 
                             case CH_TH.TH10:
                                 State.VmTh.ResTh10 = (buff).ToString("F3") + "KΩ";
-                                reTh = (buff >= State.TestSpec.ResTh10 - MaxErr && buff <= State.TestSpec.ResTh10 + MaxErr);
+                                reTh = (buff >= State.TestSpec.ResTh10 * (1 - MaxErr) && buff <= State.TestSpec.ResTh10 * (1 + MaxErr));
                                 State.VmTh.ColResTh10 = reTh ? General.OnBrush : General.NgBrush;
                                 break;
 
                             case CH_TH.TH20:
                                 State.VmTh.ResTh20 = (buff).ToString("F3") + "KΩ";
-                                reTh = (buff >= State.TestSpec.ResTh20 - MaxErr && buff <= State.TestSpec.ResTh20 + MaxErr);
+                                reTh = (buff >= State.TestSpec.ResTh20 * (1 - MaxErr) && buff <= State.TestSpec.ResTh20 * (1 + MaxErr));
                                 State.VmTh.ColResTh20 = reTh ? General.OnBrush : General.NgBrush;
                                 break;
 
                             case CH_TH.TH30:
                                 State.VmTh.ResTh30 = (buff).ToString("F3") + "KΩ";
-                                reTh = (buff >= State.TestSpec.ResTh30 - MaxErr && buff <= State.TestSpec.ResTh30 + MaxErr);
+                                reTh = (buff >= State.TestSpec.ResTh30 * (1 - MaxErr) && buff <= State.TestSpec.ResTh30 * (1 + MaxErr));
                                 State.VmTh.ColResTh30 = reTh ? General.OnBrush : General.NgBrush;
                                 break;
 
                             case CH_TH.TH45:
                                 State.VmTh.ResTh45 = (buff).ToString("F3") + "KΩ";
-                                reTh = (buff >= State.TestSpec.ResTh45 - MaxErr && buff <= State.TestSpec.ResTh45 + MaxErr);
+                                reTh = (buff >= State.TestSpec.ResTh45 * (1 - MaxErr) && buff <= State.TestSpec.ResTh45 * (1 + MaxErr));
                                 State.VmTh.ColResTh45 = reTh ? General.OnBrush : General.NgBrush;
                                 break;
 
                             case CH_TH.TH90:
                                 State.VmTh.ResTh90 = (buff).ToString("F4") + "KΩ";
-                                reTh = (buff >= State.TestSpec.ResTh90 - MaxErr && buff <= State.TestSpec.ResTh90 + MaxErr);
+                                reTh = (buff >= State.TestSpec.ResTh90 * (1 - MaxErr) && buff <= State.TestSpec.ResTh90 * (1 + MaxErr));
                                 State.VmTh.ColResTh90 = reTh ? General.OnBrush : General.NgBrush;
                                 break;
 
@@ -448,18 +444,14 @@ namespace 自記温度計Tester
             General.SetThShort();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private async void button集乳完了_Click(object sender, RoutedEventArgs e)
         {
-            General.multimeter.ClosePort();
-            General.ResetRelay_Multimeter();
-            General.SetK13_14(true);
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            General.SetSw1OnByFet(true);
-            Thread.Sleep(5000);
-            General.SetSw1OnByFet(false);
+            button集乳完了.Background = General.OnBrush;
+            await Task.Run(() =>
+            {
+                General.Set集乳ボタン();
+            });
+            button集乳完了.Background = General.OffBrush;
         }
     }
 }

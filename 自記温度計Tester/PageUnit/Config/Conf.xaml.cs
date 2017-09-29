@@ -13,7 +13,7 @@ namespace 自記温度計Tester.PageUnit
         private NavigationService naviMente;
         private NavigationService naviEdit;
         private NavigationService naviTheme;
-        Uri uriMentePage = new Uri("PageUnit/Config/Mente.xaml", UriKind.Relative);
+        Uri uriMentePage = new Uri("Page/Config/Mente.xaml", UriKind.Relative);
         Uri uriEditPage = new Uri("Page/Config/EditOpeList.xaml", UriKind.Relative);
         Uri uriThemePage = new Uri("Page/Config/Theme.xaml", UriKind.Relative);
 

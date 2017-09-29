@@ -19,7 +19,7 @@
         <Image x:Name="Pic2" Canvas.Left="172" Canvas.Top="36" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic2_PreviewMouseLeftButtonDown">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
-        			UriSource="/Resources/rain.jpg"/>
+        			UriSource="/Resources/MM-100.jpg"/>
             </Image.Source>
         </Image>
         <Image x:Name="Pic3" Canvas.Left="308" Canvas.Top="36" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic3_PreviewMouseLeftButtonDown">

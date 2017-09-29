@@ -36,7 +36,7 @@ namespace 自記温度計Tester
         public double Curr6vMax { get; set; }
         public double Curr6vMin { get; set; }
 
-        //基準抵抗値
+        //サーミスタ入力用 基準抵抗値
         public double ResTh2 { get; set; }
         public double ResTh3 { get; set; }
         public double ResTh4 { get; set; }
@@ -49,6 +49,9 @@ namespace 自記温度計Tester
         public double ResTh30 { get; set; }
         public double ResTh45 { get; set; }
         public double ResTh90 { get; set; }
+
+          //上記抵抗値の誤差(単位は％)
+        public double ResErr { get; set; }
 
         //RTC ホストと製品の時間最大誤差
         public double rtcTimeErr { get; set; }

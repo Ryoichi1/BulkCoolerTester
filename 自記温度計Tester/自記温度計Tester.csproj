@@ -139,9 +139,6 @@
     <Compile Include="PageUnit\Config\Conf.xaml.cs">
       <DependentUpon>Conf.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageUnit\Config\Mente.xaml.cs">
-      <DependentUpon>Mente.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PageUnit\Test\UnitTest.xaml.cs">
       <DependentUpon>UnitTest.xaml</DependentUpon>
     </Compile>
@@ -242,10 +239,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="PageUnit\Config\Conf.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="PageUnit\Config\Mente.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -398,6 +391,7 @@
     <Resource Include="Resources\taki.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\MM-100.jpg" />
     <Content Include="Resources\Totsugeki.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

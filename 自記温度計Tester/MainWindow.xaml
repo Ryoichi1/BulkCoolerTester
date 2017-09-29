@@ -26,37 +26,34 @@
         </Storyboard>
         <Storyboard x:Key="SbPwaEnter">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="labelPwaTest">
-                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFEC69DA"/>
-            </ColorAnimationUsingKeyFrames>
-            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="metroWindow">
-                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFEC69DA"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="#FFF09D25"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="SbPwaLeave">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="labelPwaTest">
-                <EasingColorKeyFrame KeyTime="0" Value="#FFEC69DA"/>
+                <EasingColorKeyFrame KeyTime="0" Value="#FFF09D25"/>
                 <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="sb本機Enter">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="label本機">
-                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFEC69DA"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFF09D25"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="sb本機Leave">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="label本機">
-                <EasingColorKeyFrame KeyTime="0" Value="#FFEC69DA"/>
+                <EasingColorKeyFrame KeyTime="0" Value="#FFF09D25"/>
                 <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="sb子機Enter">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="label子機">
-                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFEC69DA"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFF09D25"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="sb子機Leave">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="label子機">
-                <EasingColorKeyFrame KeyTime="0" Value="#FFEC69DA"/>
+                <EasingColorKeyFrame KeyTime="0" Value="#FFF09D25"/>
                 <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>

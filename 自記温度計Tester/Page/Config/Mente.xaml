@@ -38,7 +38,7 @@
     </Page.Triggers>
 
     <Canvas>
-        <Canvas x:Name="CanvasComm232" Height="272" Canvas.Left="25" Canvas.Top="322" Width="727">
+        <Canvas x:Name="CanvasComm232" Height="272" Canvas.Left="25" Canvas.Top="312" Width="727">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="11"/>
@@ -92,7 +92,7 @@
                     <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
                 </Label.Effect>
             </Label>
-            <Button x:Name="buttonSend232" Content="送信"  Height="29" Canvas.Left="31" Canvas.Top="43" Width="90" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="#FF566B85" Click="buttonSend232_Click"/>
+            <Button x:Name="buttonSend232" Content="送信"  Height="29" Canvas.Left="31" Canvas.Top="43" Width="90" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonSend232_Click"/>
             <TextBox x:Name="tbCommand232" Height="57" Canvas.Left="30" TextWrapping="Wrap" Canvas.Top="77" Width="687" FontSize="18" Background="{x:Null}"/>
             <Canvas Height="70" Canvas.Left="439" Canvas.Top="2" Width="212">
                 <RadioButton x:Name="rb232AT" Content="RS232C AT" Height="25" Canvas.Left="4" Canvas.Top="4" Width="95" Checked="rb232AT_Checked"/>
@@ -101,19 +101,20 @@
             </Canvas>
             <Controls:ProgressRing x:Name="RingComm" Foreground="{DynamicResource AccentColorBrush}" Canvas.Left="46" Canvas.Top="31" Height="58" Width="58" IsActive="{Binding IsActive}" Opacity="0.7"/>
         </Canvas>
-        <Canvas Height="115" Canvas.Left="25" Canvas.Top="25" Width="467">
+        <Canvas Height="115" Canvas.Left="25" Canvas.Top="25" Width="399">
             <Canvas.Background>
                 <SolidColorBrush Color="#FF44BDEC" Opacity="0.2"/>
             </Canvas.Background>
-            <Button x:Name="buttonStamp" Content="合格印"  Height="34" Canvas.Left="135" Canvas.Top="11" Width="90" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="#FF566B85" Click="buttonStamp_Click"/>
-            <Button x:Name="buttonS1" Content="S1押し"  Height="34" Canvas.Left="10" Canvas.Top="61" Width="90" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="#FF566B85" Click="buttonS1_Click"/>
-            <Button x:Name="buttonPow" Content="電源AC100V"  Height="34" Canvas.Left="10" Canvas.Top="11" Width="105" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="buttonPow_Click" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="#FF566B85"/>
-            <Button x:Name="buttonS2" Content="S2押し"  Height="34" Canvas.Left="110" Canvas.Top="61" Width="90" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="#FF566B85" Click="buttonS2_Click"/>
-            <Button x:Name="buttonS3" Content="S3押し"  Height="34" Canvas.Left="210" Canvas.Top="61" Width="90" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="#FF566B85" Click="buttonS3_Click"/>
-            <Button x:Name="buttonS4" Content="S4押し"  Height="34" Canvas.Left="310" Canvas.Top="61" Width="90" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="#FF566B85" Click="buttonS4_Click"/>
-            <Button x:Name="buttonLight" Content="照明"  Height="34" Canvas.Left="235" Canvas.Top="11" Width="90" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="#FF566B85" Click="buttonLight_Click"/>
+            <Button x:Name="buttonStamp" Content="合格印"  Height="34" Canvas.Left="124" Canvas.Top="11" Width="70" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonStamp_Click"/>
+            <Button x:Name="buttonS1" Content="S1押し"  Height="34" Canvas.Left="10" Canvas.Top="61" Width="70" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonS1_Click"/>
+            <Button x:Name="buttonPow" Content="電源AC100V"  Height="34" Canvas.Left="10" Canvas.Top="11" Width="105" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="buttonPow_Click" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}"/>
+            <Button x:Name="buttonS2" Content="S2押し"  Height="34" Canvas.Left="89" Canvas.Top="61" Width="70" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonS2_Click"/>
+            <Button x:Name="buttonS3" Content="S3押し"  Height="34" Canvas.Left="169" Canvas.Top="61" Width="70" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonS3_Click"/>
+            <Button x:Name="buttonS4" Content="S4押し"  Height="34" Canvas.Left="249" Canvas.Top="61" Width="70" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonS4_Click"/>
+            <Button x:Name="buttonLight" Content="照明"  Height="34" Canvas.Left="202" Canvas.Top="11" Width="70" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonLight_Click"/>
+            <Button x:Name="button集乳完了" Content="集乳完了押し"  Height="34" Canvas.Left="281" Canvas.Top="11" Width="108" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="button集乳完了_Click"/>
         </Canvas>
-        <Canvas x:Name="CanvasComm485" Height="150" Canvas.Left="25" Canvas.Top="155" Width="365">
+        <Canvas x:Name="CanvasComm485" Height="150" Canvas.Left="25" Canvas.Top="155" Width="399">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="11"/>
@@ -167,14 +168,14 @@
                     <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
                 </Label.Effect>
             </Label>
-            <Button x:Name="buttonSend485" Content="通信"  Height="29" Canvas.Left="31" Canvas.Top="43" Width="115" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="#FF566B85" Click="buttonSend485_Click"/>
+            <Button x:Name="buttonSend485" Content="通信"  Height="29" Canvas.Left="31" Canvas.Top="43" Width="115" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonSend485_Click"/>
         </Canvas>
-        <Canvas x:Name="canvasTh" Height="274" Canvas.Left="505" Canvas.Top="26" Width="533">
+        <Canvas x:Name="canvasTh" Height="280" Canvas.Left="429" Canvas.Top="25" Width="453">
             <Canvas.Background>
                 <SolidColorBrush Color="#FF44BDEC" Opacity="0.2"/>
             </Canvas.Background>
-            <Button x:Name="buttonMeasTh" Content="計測開始"  Height="34" Canvas.Left="10" Canvas.Top="34" Width="105" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="#FF566B85" Click="buttonMeasTh_Click"/>
-            <TextBlock TextWrapping="Wrap" Text="サーミスタ調整" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="151" RenderTransformOrigin="0.5,0.5" Canvas.Top="4" Canvas.Left="11">
+            <Button x:Name="buttonMeasTh" Content="計測開始"  Height="34" Canvas.Left="10" Canvas.Top="34" Width="105" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonMeasTh_Click"/>
+            <TextBlock TextWrapping="Wrap" Text="サーミスタ調整  ※0.05%以内に調整する" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="349" RenderTransformOrigin="0.5,0.5" Canvas.Top="4" Canvas.Left="11">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -216,8 +217,6 @@
             <RadioButton x:Name="rbShort" Content="SHORT" Height="25" Canvas.Left="350" Canvas.Top="40" Width="68" Checked="rbShort_Checked"/>
             <RadioButton x:Name="rbOpen" Content="OPEN" Height="25" Canvas.Left="231" Canvas.Top="40" Width="68" Checked="rbOpen_Checked"/>
         </Canvas>
-        <Button Content="Button" Height="54" Canvas.Left="826" Canvas.Top="384" Width="101" Click="Button_Click_2"/>
-        <Button Content="Button" Height="58" Canvas.Left="807" Canvas.Top="494" Width="151" Click="Button_Click_3"/>
 
     </Canvas>
 </Page>
