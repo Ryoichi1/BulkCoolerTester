@@ -627,11 +627,19 @@ namespace 自記温度計Tester
                 General.cam1.ImageOpacity = Constants.OpacityImgMin;
                 General.cam2.ImageOpacity = Constants.OpacityImgMin;
             }
-            else
+            else if (State.testMode == TEST_MODE.本機)
             {
                 //ViewModel OK台数、NG台数、Total台数の更新
-                State.VmTestStatus.OkCount = State.Setting.TodayOkCountUnitTest.ToString() + "台";
-                State.VmTestStatus.NgCount = State.Setting.TodayNgCountUnitTest.ToString() + "台";
+                State.VmTestStatus.OkCount = State.Setting.TodayOkCount本機Test.ToString() + "台";
+                State.VmTestStatus.NgCount = State.Setting.TodayNgCount本機Test.ToString() + "台";
+                State.VmTestStatus.Message = Constants.MessSetUnit;
+
+            }
+            else if (State.testMode == TEST_MODE.子機)
+            {
+                //ViewModel OK台数、NG台数、Total台数の更新
+                State.VmTestStatus.OkCount = State.Setting.TodayOkCount子機Test.ToString() + "台";
+                State.VmTestStatus.NgCount = State.Setting.TodayNgCount子機Test.ToString() + "台";
                 State.VmTestStatus.Message = Constants.MessSetUnit;
 
             }

@@ -826,7 +826,14 @@ namespace 自記温度計Tester
                     }
 
                     //当日試験合格数をインクリメント ビューモデルはまだ更新しない
-                    State.Setting.TodayOkCountUnitTest++;
+                    if (State.testMode == TEST_MODE.本機)
+                    {
+                        State.Setting.TodayOkCount本機Test++;
+                    }
+                    else
+                    {
+                        State.Setting.TodayOkCount子機Test++;
+                    }
 
                     Flags.ShowLabelPage = true;
                 }
@@ -872,7 +879,15 @@ namespace 自記温度計Tester
 
 
                 //当日試験不合格数をインクリメント ビューモデルはまだ更新しない
-                State.Setting.TodayNgCountUnitTest++;
+                if (State.testMode == TEST_MODE.本機)
+                {
+                    State.Setting.TodayNgCount本機Test++;
+                }
+                else
+                {
+                    State.Setting.TodayNgCount子機Test++;
+                }
+
                 await Task.Delay(100);
 
                 State.VmTestStatus.Colorlabel判定 = Brushes.AliceBlue;

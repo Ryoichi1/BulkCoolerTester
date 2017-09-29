@@ -202,7 +202,7 @@ namespace 自記温度計Tester
             VmMainWindow.ListOperator = Setting.作業者リスト;
             VmMainWindow.Theme = Setting.PathTheme;
             VmMainWindow.ThemeOpacity = Setting.OpacityTheme;
-            if (State.testMode == TEST_MODE.PWA)
+            if (testMode == TEST_MODE.PWA)
             {
                 if (Setting.日付Pwa != DateTime.Now.ToString("yyyyMMdd"))
                 {
@@ -214,17 +214,29 @@ namespace 自記温度計Tester
                 VmTestStatus.OkCount = Setting.TodayOkCountPwaTest.ToString() + "台";
                 VmTestStatus.NgCount = Setting.TodayNgCountPwaTest.ToString() + "台";
             }
-            else
+            else if(testMode == TEST_MODE.本機)
             {
-                if (Setting.日付Unit != DateTime.Now.ToString("yyyyMMdd"))
+                if (Setting.日付本機 != DateTime.Now.ToString("yyyyMMdd"))
                 {
-                    Setting.日付Unit = DateTime.Now.ToString("yyyyMMdd");
-                    Setting.TodayOkCountUnitTest = 0;
-                    Setting.TodayNgCountUnitTest = 0;
+                    Setting.日付本機 = DateTime.Now.ToString("yyyyMMdd");
+                    Setting.TodayOkCount本機Test = 0;
+                    Setting.TodayNgCount本機Test = 0;
                 }
 
-                VmTestStatus.OkCount = Setting.TodayOkCountUnitTest.ToString() + "台";
-                VmTestStatus.NgCount = Setting.TodayNgCountUnitTest.ToString() + "台";
+                VmTestStatus.OkCount = Setting.TodayOkCount本機Test.ToString() + "台";
+                VmTestStatus.NgCount = Setting.TodayNgCount本機Test.ToString() + "台";
+            }
+            else if(testMode == TEST_MODE.子機)
+            {
+                if (Setting.日付子機 != DateTime.Now.ToString("yyyyMMdd"))
+                {
+                    Setting.日付子機 = DateTime.Now.ToString("yyyyMMdd");
+                    Setting.TodayOkCount子機Test = 0;
+                    Setting.TodayNgCount子機Test = 0;
+                }
+
+                VmTestStatus.OkCount = Setting.TodayOkCount子機Test.ToString() + "台";
+                VmTestStatus.NgCount = Setting.TodayNgCount子機Test.ToString() + "台";
             }
 
             //TestSpecファイルのロード
