@@ -153,12 +153,11 @@ namespace 自記温度計Tester
 
             try
             {
-                return await Task<bool>.Run(() =>
+                State.VmTestStatus.TestLog += "\r\n6.00V入力 スリープモード確認";
+                //CN9に擬似バッテリ（6.00V）を接続
+                //pmx18の校正
+                var result1 = await Task.Run(() =>
                 {
-
-                    State.VmTestStatus.TestLog += "\r\n6.00V入力 スリープモード確認";
-                    //CN9に擬似バッテリ（6.00V）を接続
-                    //pmx18の校正
                     if (!General.CalbPmx18(5.90)) return false;
                     //この時点でpmx18からは正確に6.00Vが出力されている
 
@@ -166,16 +165,22 @@ namespace 自記温度計Tester
                     Thread.Sleep(1500);
                     General.SetAC100(false);//電源基板のSW2はONしたまま、AC100Vだけを切る
 
+                    Thread.Sleep(15000);
+                    return true;
+                });
+                if (!result1) return false;
 
-                    //指定時間待って、スリープモードに入ることを確認する
-                    State.VmTestStatus.DialogMess = "スリープモードに入りましたか？";
-                    dialog = new Dialog(); dialog.ShowDialog();
+                //指定時間待って、スリープモードに入ることを確認する
+                State.VmTestStatus.DialogMess = "スリープモードに入りましたか？";
+                dialog = new Dialog(); dialog.ShowDialog();
 
-                    if (!Flags.DialogReturn) return false;
+                if (!Flags.DialogReturn) return false;
 
 
-                    State.VmTestStatus.TestLog += "\r\n6.25V入力 非スリープモード確認";
+                State.VmTestStatus.TestLog += "\r\n6.25V入力 非スリープモード確認";
 
+                var result2 = await Task<bool>.Run(() =>
+                {
                     General.PowSupply(false);
                     General.pmx18.VolOff();
                     General.SetRL1(false);
@@ -193,15 +198,19 @@ namespace 自記温度計Tester
                     General.SetRL1(true);
                     Thread.Sleep(1000);
                     General.SetAC100(false);//電源基板のSW2はONしたまま、AC100Vだけを切る
-
+                    Thread.Sleep(15000);
+                    return true;
                     //指定時間待って、スリープモードに入らないことを確認する
-                    State.VmTestStatus.DialogMess = "スリープモードに入りませんよね？？";
-                    dialog = new Dialog(); dialog.ShowDialog();
-
-                    return Flags.DialogReturn;
-
 
                 });
+                if (!result2) return false;
+
+                State.VmTestStatus.DialogMess = "スリープモードに入りませんよね？？";
+                dialog = new Dialog(); dialog.ShowDialog();
+
+                return Flags.DialogReturn;
+
+
             }
             finally
             {

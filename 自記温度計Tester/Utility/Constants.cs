@@ -82,7 +82,7 @@ namespace 自記温度計Tester
 
         //Imageの透明度
         public const double OpacityMin = 0.1;
-        public const double OpacityImgMin = 0.3;
+        public const double OpacityImgMin = 0.0;
 
         //リトライ回数
         public static readonly int RetryCount = 1;

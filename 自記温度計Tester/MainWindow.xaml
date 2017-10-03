@@ -57,6 +57,17 @@
                 <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="sbPrintEnter">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="labelPrint">
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFF09D25"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="sbPrintLeave">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="labelPrint">
+                <EasingColorKeyFrame KeyTime="0" Value="#FFF09D25"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
     </Controls:MetroWindow.Resources>
     <Controls:MetroWindow.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
@@ -66,6 +77,8 @@
             <BeginStoryboard x:Name="sb本機Leave_BeginStoryboard" Storyboard="{StaticResource sb本機Leave}"/>
             <BeginStoryboard x:Name="sb子機Enter_BeginStoryboard" Storyboard="{StaticResource sb子機Enter}"/>
             <BeginStoryboard x:Name="sb子機Leave_BeginStoryboard" Storyboard="{StaticResource sb子機Leave}"/>
+            <BeginStoryboard x:Name="sbPrintEnter_BeginStoryboard" Storyboard="{StaticResource sbPrintEnter}"/>
+            <BeginStoryboard x:Name="sbPrintLeave_BeginStoryboard" Storyboard="{StaticResource sbPrintLeave}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="labelPwaTest">
             <BeginStoryboard x:Name="SbPwaEnter_BeginStoryboard" Storyboard="{StaticResource SbPwaLeave}"/>
@@ -85,6 +98,12 @@
         <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="label子機">
             <BeginStoryboard x:Name="sb子機Leave_BeginStoryboard1" Storyboard="{StaticResource sb子機Leave}"/>
         </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="labelPrint">
+            <BeginStoryboard x:Name="sbPrintEnter_BeginStoryboard1" Storyboard="{StaticResource sbPrintEnter}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="labelPrint">
+            <BeginStoryboard x:Name="sbPrintLeave_BeginStoryboard1" Storyboard="{StaticResource sbPrintLeave}"/>
+        </EventTrigger>
     </Controls:MetroWindow.Triggers>
     <Canvas x:Name="MainBack">
         <Canvas.Background>
@@ -99,10 +118,11 @@
         </Canvas.Background>
 
         <Label Content="自記温度計テスター" Height="71" Canvas.Left="4" Width="408.5" Foreground="#FFF7F7F7" FontSize="48" Padding="0" FontFamily="Meiryo UI" Background="{x:Null}" Canvas.Top="4.5"/>
-        <Label x:Name="labelPwaTest" Content="単体テスト" Height="66" Canvas.Left="31" Canvas.Top="155" Width="176.5" Foreground="#FFF7F7F7" FontSize="36" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="labelPwaTest_MouseLeftButtonDown" Cursor="Hand"/>
-        <Label x:Name="label本機" Content="本機(BRTR-ST)テスト" Height="66" Canvas.Left="31" Canvas.Top="251" Width="355" Foreground="#FFF7F7F7" FontSize="36" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label本機_MouseLeftButtonDown" Cursor="Hand"/>
-        <Label x:Name="label子機" Content="子機(BRTR-C)テスト" Height="66" Canvas.Left="31" Canvas.Top="345" Width="329.5" Foreground="#FFF7F7F7" FontSize="36" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label子機_MouseLeftButtonDown" Cursor="Hand"/>
+        <Label x:Name="labelPwaTest" Content="単体テスト" Height="55" Canvas.Left="31" Canvas.Top="119" Width="177" Foreground="#FFF7F7F7" FontSize="36" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="labelPwaTest_MouseLeftButtonDown" Cursor="Hand"/>
+        <Label x:Name="label本機" Content="本機(BRTRA-ST)テスト" Height="55" Canvas.Left="31" Canvas.Top="191" Width="405" Foreground="#FFF7F7F7" FontSize="36" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label本機_MouseLeftButtonDown" Cursor="Hand"/>
+        <Label x:Name="label子機" Content="子機(BRTRA-C)テスト" Height="55" Canvas.Left="31" Canvas.Top="267" Width="381" Foreground="#FFF7F7F7" FontSize="36" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label子機_MouseLeftButtonDown" Cursor="Hand"/>
         <Image x:Name="image" Height="414" Canvas.Left="436" Canvas.Top="62" Width="355" Source="Resources/BRTR_ST.png"/>
+        <Label x:Name="labelPrint" Content="成績書印刷" Height="55" Canvas.Left="31" Canvas.Top="342" Width="381" Foreground="#FFF7F7F7" FontSize="36" Padding="0" FontFamily="Meiryo UI" Cursor="Hand" MouseLeftButtonDown="labelPrint_MouseLeftButtonDown"/>
 
 
     </Canvas>

@@ -140,7 +140,8 @@ namespace 自記温度計Tester
             new TestSpecs(1100, "製品FW書き込み", false),
 
             new TestSpecs(1200, "コイン電池セット", false),//本機のみ
-            new TestSpecs(1201, "RTCチェック", true),//本機のみ
+            new TestSpecs(1201, "コイン電池電圧チェック", false),//本機のみ
+            new TestSpecs(1202, "RTCチェック", true),//本機のみ
 
             new TestSpecs(1300, "出荷設定", true),//本機のみ
 
@@ -182,7 +183,8 @@ namespace 自記温度計Tester
             new TestSpecs(1100, "製品FW書き込み", false),
 
             //new TestSpecs(1200, "コイン電池セット", false),//本機のみ
-            //new TestSpecs(1201, "RTCチェック", true),//本機のみ
+            //new TestSpecs(1201, "コイン電池電圧チェック", false),//本機のみ
+            //new TestSpecs(1202, "RTCチェック", true),//本機のみ
 
             //new TestSpecs(1300, "出荷設定", true),//本機のみ
 

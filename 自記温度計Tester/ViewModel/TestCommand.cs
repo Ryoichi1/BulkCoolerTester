@@ -411,7 +411,10 @@ namespace 自記温度計Tester
                         foreach (var p in Enumerable.Range(1, 変化量))
                         {
                             State.VmTestStatus.進捗度 = CurrentProgValue + p;
-                            Thread.Sleep(10);
+                            if (State.VmTestStatus.CheckUnitTest == false)
+                            {
+                                Thread.Sleep(10);
+                            }
                         }
                     });
                     if (Flags.ClickStopButton) goto FAIL;
@@ -685,40 +688,35 @@ namespace 自記温度計Tester
 
 
                         case 500://停電検出チェック
-                            if (State.testMode == TEST_MODE.子機) break;
                             if (await Test停電検出.Check停電検出Unit()) break;
                             goto case 5000;
 
                         case 600://バッテリLowチェック
-                            if (State.testMode == TEST_MODE.子機) break;
                             if (await TestBattLow.CheckBattLowUnit()) break;
                             goto case 5000;
 
                         case 700://CN9On出力電圧チェック
-                            if (State.testMode == TEST_MODE.子機) break;
                             if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9On)) break;
                             goto case 5000;
 
                         case 701://CN9Off出力電圧チェック
-                            if (State.testMode == TEST_MODE.子機) break;
                             if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9Off)) break;
                             goto case 5000;
 
                         case 800://警報リレーチェック
-                            if (State.testMode == TEST_MODE.子機) break;
                             if (await Test警報リレー出力.CheckRelay()) break;
                             goto case 5000;
 
                         case 900://LEDチェック
-                            if (await TestLed.CheckLumUnit()) break;
+                            if (TestLed.CheckLumUnit()) break;
                             goto case 5000;
 
                         case 901:
-                            if (await Test7Seg.CheckLumUnit()) break;
+                            if (Test7Seg.CheckLumUnit()) break;
                             goto case 5000;
 
                         case 1000://タクトスイッチ確認
-                            if (await スイッチチェック.CheckSw1_4()) break;
+                            if (await スイッチチェック.CheckSw1_4Unit()) break;
                             goto case 5000;
 
                         case 1001://DIPスイッチ確認
@@ -730,31 +728,30 @@ namespace 自記温度計Tester
                             goto case 5000;
 
                         case 1200://コイン電池セット
-                            if (State.testMode == TEST_MODE.子機) break;
                             State.VmTestStatus.DialogMess = "コイン電池をセットしてください";
                             dialog = new Dialog(); dialog.ShowDialog();
                             if (Flags.DialogReturn) break;
                             goto case 5000; ;
 
-                        case 1201://RTCチェック
-                            if (State.testMode == TEST_MODE.子機) break;
+                        case 1201://コイン電池電圧チェック
+                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.BT1)) break;
+                            goto case 5000;
+
+                        case 1202://RTCチェック
                             if (await TestRtc.FinalSetRtc()) break;
                             goto case 5000;
 
                         case 1300://EEPROMチェック
-                            if (State.testMode == TEST_MODE.子機) break;
                             if (await TestEEPROM.CheckEEPROM()) break;
                             goto case 5000;
 
                         case 1400:
-                            if (State.testMode == TEST_MODE.子機) break;
                             State.VmTestStatus.DialogMess = "CN9に予備バッテリー接続してください";
                             dialog = new Dialog(); dialog.ShowDialog();
                             if (Flags.DialogReturn) break;
                             goto case 5000;
 
                         case 1401://電源基板SW2チェック
-                            if (State.testMode == TEST_MODE.子機) break;
                             State.VmTestStatus.DialogMess = "電源基板のSW2をOFFして、－－－ 表示になることを確認してください";
                             dialog = new Dialog(); dialog.ShowDialog();
                             if (Flags.DialogReturn) break;
@@ -770,6 +767,8 @@ namespace 自記温度計Tester
                             General.PowSupply(false);
                             General.ResetIo();
                             State.VmTestStatus.IsActiveRing = false;//リング表示してる可能性があるので念のため消す処理
+
+                            if (Flags.ClickStopButton) goto FAIL;
 
                             if (RetryCnt++ != Constants.RetryCount)
                             {
@@ -800,7 +799,10 @@ namespace 自記温度計Tester
                         foreach (var p in Enumerable.Range(1, 変化量))
                         {
                             State.VmTestStatus.進捗度 = CurrentProgValue + p;
-                            Thread.Sleep(10);
+                            if (State.VmTestStatus.CheckUnitTest == false)
+                            {
+                                Thread.Sleep(10);
+                            }
                         }
                     });
 

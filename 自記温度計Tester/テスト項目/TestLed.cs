@@ -434,7 +434,7 @@ namespace 自記温度計Tester
 
         }
 
-        public static async Task<bool> CheckLumUnit()
+        public static bool CheckLumUnit()
         {
             Dialog dialog;
 
@@ -443,37 +443,40 @@ namespace 自記温度計Tester
 
             try
             {
-                return await Task<bool>.Run(() =>
+                //最初にLED1が点灯していることを確認する
+                Target232_BT.SendData(Data: Constants.OnLed1, DoAnalysis: false);
+                State.VmTestStatus.DialogMess = "LED1が点灯していますか？";
+                dialog = new Dialog(); dialog.ShowDialog();
+
+                if(!Flags.DialogReturn) return false;
+
+                Task.Run(() =>
                 {
-                    Task.Run(() =>
+                    while (true)
                     {
-                        while (true)
-                        {
-                            if (FlagLedCheck) return;
-                            Target232_BT.SendData(Data: Constants.OnLed1, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLed2, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLed3, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLed4, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLed5, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLed6, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLed7, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            break;
-                        }
-                    });
-
-                    State.VmTestStatus.DialogMess = "LEDが順に点灯していますか？";
-                    dialog = new Dialog(); dialog.ShowDialog();
-                    FlagLedCheck = true;
-
-                    return Flags.DialogReturn;
+                        if (FlagLedCheck) return;
+                        Target232_BT.SendData(Data: Constants.OnLed1, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLed2, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLed3, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLed4, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLed5, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLed6, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLed7, DoAnalysis: false);
+                        Thread.Sleep(500);
+                    }
                 });
+
+                State.VmTestStatus.DialogMess = "LEDが順に点灯していますか？";
+                dialog = new Dialog(); dialog.ShowDialog();
+                FlagLedCheck = true;
+
+                return Flags.DialogReturn;
 
             }
             finally

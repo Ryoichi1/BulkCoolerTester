@@ -417,7 +417,7 @@ namespace 自記温度計Tester
 
         }
 
-        public static async Task<bool> CheckLumUnit()
+        public static bool CheckLumUnit()
         {
             Dialog dialog;
             //電源投入して、RS232C通信をPCモードにしてからメソッドを呼び出すこと
@@ -425,73 +425,75 @@ namespace 自記温度計Tester
 
             try
             {
-                return await Task<bool>.Run(() =>
+                Target232_BT.SendData(Data: Constants.OnLD1a, DoAnalysis: false);
+                State.VmTestStatus.DialogMess = "7セグのLD1a点灯していますか？";
+                dialog = new Dialog(); dialog.ShowDialog();
+                if(!Flags.DialogReturn) return false;
+
+                Task.Run(() =>
                 {
-                    Task.Run(() =>
+                    while (true)
                     {
-                        while (true)
-                        {
-                            if (FlagLedCheck) return;
-                            Target232_BT.SendData(Data: Constants.OnLD1a, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD1b, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD1c, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD1d, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD1e, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD1f, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD1g, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD1dp, DoAnalysis: false);
-                            Thread.Sleep(500);
+                        if (FlagLedCheck) return;
+                        Target232_BT.SendData(Data: Constants.OnLD1a, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD1b, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD1c, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD1d, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD1e, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD1f, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD1g, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD1dp, DoAnalysis: false);
+                        Thread.Sleep(500);
 
-                            Target232_BT.SendData(Data: Constants.OnLD2a, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD2b, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD2c, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD2d, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD2e, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD2f, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD2g, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD2dp, DoAnalysis: false);
-                            Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD2a, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD2b, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD2c, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD2d, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD2e, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD2f, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD2g, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD2dp, DoAnalysis: false);
+                        Thread.Sleep(500);
 
-                            Target232_BT.SendData(Data: Constants.OnLD3a, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD3b, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD3c, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD3d, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD3e, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD3f, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD3g, DoAnalysis: false);
-                            Thread.Sleep(500);
-                            Target232_BT.SendData(Data: Constants.OnLD3dp, DoAnalysis: false);
-                            Thread.Sleep(500);
-                        }
-                    });
-
-                    State.VmTestStatus.DialogMess = "7セグが順に点灯していますか？";
-                    dialog = new Dialog(); dialog.ShowDialog();
-                    FlagLedCheck = true;
-
-                    return Flags.DialogReturn;
-
+                        Target232_BT.SendData(Data: Constants.OnLD3a, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD3b, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD3c, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD3d, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD3e, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD3f, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD3g, DoAnalysis: false);
+                        Thread.Sleep(500);
+                        Target232_BT.SendData(Data: Constants.OnLD3dp, DoAnalysis: false);
+                        Thread.Sleep(500);
+                    }
                 });
+
+                State.VmTestStatus.DialogMess = "7セグが順に点灯していますか？";
+                dialog = new Dialog(); dialog.ShowDialog();
+                FlagLedCheck = true;
+
+                return Flags.DialogReturn;
+
             }
             finally
             {

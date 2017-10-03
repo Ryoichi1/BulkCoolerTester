@@ -67,5 +67,10 @@ namespace 自記温度計Tester
 
 
         }
+
+        private void labelPrint_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

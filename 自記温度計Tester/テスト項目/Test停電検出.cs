@@ -150,7 +150,7 @@ namespace 自記温度計Tester
 
             try
             {
-                return await Task<bool>.Run(() =>
+                await Task.Run(() =>
                 {
 
                     //CN9に擬似バッテリ（8V）を接続
@@ -163,15 +163,14 @@ namespace 自記温度計Tester
                     Target232_BT.SendData("3700ODB,5on", DoAnalysis: false);
                     Thread.Sleep(1000);
                     General.SetAC100(false);//電源基板のSW2はONしたまま、AC100Vだけを切る
-
+                    Thread.Sleep(5000);
                     //約5秒後に、LED7だけ点滅、その他は消灯に切り替わる
 
-                    State.VmTestStatus.DialogMess = "LEDが点滅しましたか？";
-                    dialog = new Dialog(); dialog.ShowDialog();
-
-                    return Flags.DialogReturn;
-
                 });
+                State.VmTestStatus.DialogMess = "LED7が点滅しましたか？";
+                dialog = new Dialog(); dialog.ShowDialog();
+
+                return Flags.DialogReturn;
 
             }
             finally

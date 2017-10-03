@@ -379,7 +379,7 @@ namespace 自記温度計Tester
                             tm.start();
                             while (true)
                             {
-                                if (tm.FlagTimeout) break;
+                                if (tm.FlagTimeout || Flags.ClickStopButton) break;
                                 if (!Target232_BT.SendData("3700ODB,8of000")) return false;
                                 var onBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
                                 AnalysisDataSw14(onBuff, L.name, false);
@@ -397,6 +397,7 @@ namespace 自記温度計Tester
                                 });
 
                                 if (result) break;
+                                Thread.Sleep(50);
                             }
 
                             if (result)
@@ -466,7 +467,7 @@ namespace 自記温度計Tester
                         tm.start();
                         while (true)
                         {
-                            if (tm.FlagTimeout) break;
+                            if (tm.FlagTimeout || Flags.ClickStopButton) break;
                             if (!Target232_BT.SendData("3700ODB,8of000")) return false;
                             var onBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
                             AnalysisDataS1(onBuff, S1EXP.ALL_ON);

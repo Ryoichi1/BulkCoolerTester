@@ -960,7 +960,7 @@ namespace 自記温度計Tester
         public static bool CheckComm()
         {
             Target232_BT.ChangeMode(Target232_BT.MODE.PC);
-            var tm = new GeneralTimer(12000);
+            var tm = new GeneralTimer(15000);
             tm.start();
             while (true)
             {

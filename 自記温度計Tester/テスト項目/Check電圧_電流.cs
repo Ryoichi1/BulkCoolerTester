@@ -62,6 +62,7 @@ namespace 自記温度計Tester
                                 SpecMax = State.TestSpec.VolBt1Max;
                                 SpecMin = State.TestSpec.VolBt1Min;
                                 General.SetK1(true);//
+                                General.SetK6(true);//
                                 break;
                         }
 
