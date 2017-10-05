@@ -25,11 +25,11 @@ namespace 自記温度計Tester
         private NavigationService naviMente;
         private NavigationService naviCamera1;
         private NavigationService naviCamera2;
-        Uri uriEditPage = new Uri("Page/Config/EditOpeList.xaml", UriKind.Relative);
-        Uri uriThemePage = new Uri("Page/Config/Theme.xaml", UriKind.Relative);
-        Uri uriMentePage = new Uri("Page/Config/Mente.xaml", UriKind.Relative);
-        Uri uriCamera1Page = new Uri("Page/Config/Camera1Conf.xaml", UriKind.Relative);
-        Uri uriCamera2Page = new Uri("Page/Config/Camera2Conf.xaml", UriKind.Relative);
+        Uri uriEditPage = new Uri("PagePwa/Config/EditOpeList.xaml", UriKind.Relative);
+        Uri uriThemePage = new Uri("PagePwa/Config/Theme.xaml", UriKind.Relative);
+        Uri uriMentePage = new Uri("PagePwa/Config/Mente.xaml", UriKind.Relative);
+        Uri uriCamera1Page = new Uri("PagePwa/Config/Camera1Conf.xaml", UriKind.Relative);
+        Uri uriCamera2Page = new Uri("PagePwa/Config/Camera2Conf.xaml", UriKind.Relative);
 
         public Conf()
         {

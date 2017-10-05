@@ -538,6 +538,8 @@ namespace 自記温度計Tester
                 State.VmComm.ColorLabelPC = General.OffBrush;
                 State.VmComm.ColorLabelAT = General.OffBrush;
                 State.VmComm.ColorLabelBT = General.OffBrush;
+
+                Test通信.Rs485 = false;
             }
 
         }

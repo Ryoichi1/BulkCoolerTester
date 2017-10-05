@@ -72,5 +72,11 @@ namespace 自記温度計Tester
         {
 
         }
+
+        private void metroWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //システム時計の設定
+            SystemTime.SetSystemTime();
+        }
     }
 }

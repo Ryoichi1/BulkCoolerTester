@@ -9,7 +9,7 @@
         BorderThickness="1"
         ShowTitleBar="False"
         mc:Ignorable="d"
-        Height="496" Width="798.5" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Icon="Resources/VisualStudio_32x.png" HorizontalAlignment="Left" VerticalAlignment="Top" WindowTransitionsEnabled="False" >
+        Height="496" Width="798.5" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Icon="Resources/VisualStudio_32x.png" HorizontalAlignment="Left" VerticalAlignment="Top" WindowTransitionsEnabled="False" Loaded="metroWindow_Loaded" >
     <Controls:MetroWindow.Resources>
         <Storyboard x:Key="sbMainWinShow">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(Brush.Opacity)" Storyboard.TargetName="metroWindow">

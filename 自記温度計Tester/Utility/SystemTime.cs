@@ -43,6 +43,11 @@ namespace 自記温度計Tester
                 sdat[0] = 0xB;
                 objSck.Send(sdat, sdat.GetLength(0), "time.windows.com", 123);//米国にあるNTPサーバ
 
+                //NTPサーバとは、NTP(Network Time Protocol)で現在時刻のデータを配信しているサーバ。 
+                //一種の時報にあたる情報を配信しているサーバで、
+                //パソコンなどからNTPクライアントでアクセスするとそのコンピュータの内蔵時計を正しい現在時刻に調整することができる
+
+
                 // NTPサーバから日時データ受信
                 Byte[] rdat = objSck.Receive(ref ipAny);
 

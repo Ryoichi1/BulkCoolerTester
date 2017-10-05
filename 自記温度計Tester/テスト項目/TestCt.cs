@@ -33,7 +33,7 @@ namespace 自記温度計Tester
             }
         }
 
-        private static bool AnalysisData(NAME Name, bool ExpAllOff = false)
+        private static bool AnalysisDataByLed(NAME Name, bool ExpAllOff = false)
         {
             var x_Led1 = Int32.Parse(State.cam2Prop.LED1.Split('/').ToArray()[0]);
             var y_Led1 = Int32.Parse(State.cam2Prop.LED1.Split('/').ToArray()[1]);
@@ -113,6 +113,79 @@ namespace 自記温度計Tester
             return true;
         }
 
+        private static bool AnalysisDataByRs232(NAME Name, bool ExpAllOff = false)
+        {
+            if (!Target232_BT.SendData("3700ODB,8of000")) return false;
+            char CtState = Target232_BT.RecieveData.Reverse().ToArray()[0];//3700O00,of,xx,xxx,xxx,xxxxS  SがCTセンサの状態 1：P 2：C 4：A  全部ONなら7
+
+            switch (CtState)
+            {
+                case '0':
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_P).inPut = false;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_C).inPut = false;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_A).inPut = false;
+                    break;
+                case '1':
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_P).inPut = true;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_C).inPut = false;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_A).inPut = false;
+                    break;
+                case '2':
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_P).inPut = false;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_C).inPut = true;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_A).inPut = false;
+                    break;
+                case '3':
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_P).inPut = true;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_C).inPut = true;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_A).inPut = false;
+                    break;
+                case '4':
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_P).inPut = false;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_C).inPut = false;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_A).inPut = true;
+                    break;
+                case '5':
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_P).inPut = true;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_C).inPut = false;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_A).inPut = true;
+                    break;
+                case '6':
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_P).inPut = false;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_C).inPut = true;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_A).inPut = true;
+                    break;
+                case '7':
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_P).inPut = true;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_C).inPut = true;
+                    ListSpecs.FirstOrDefault(L => L.name == NAME.CT_A).inPut = true;
+                    break;
+            }
+
+
+            //ビューモデルの更新
+            if (ExpAllOff)
+            {
+                State.VmTestResults.ColCtPExp = Brushes.Transparent;
+                State.VmTestResults.ColCtCExp = Brushes.Transparent;
+                State.VmTestResults.ColCtAExp = Brushes.Transparent;
+            }
+            else
+            {
+                State.VmTestResults.ColCtPExp = Name == NAME.CT_P ? Brushes.DodgerBlue : Brushes.Transparent;
+                State.VmTestResults.ColCtCExp = Name == NAME.CT_C ? Brushes.DodgerBlue : Brushes.Transparent;
+                State.VmTestResults.ColCtAExp = Name == NAME.CT_A ? Brushes.DodgerBlue : Brushes.Transparent;
+            }
+
+
+            State.VmTestResults.ColCtPOut = ListSpecs.FirstOrDefault(L => L.name == NAME.CT_P).inPut? Brushes.DodgerBlue : Brushes.Transparent;
+            State.VmTestResults.ColCtCOut = ListSpecs.FirstOrDefault(L => L.name == NAME.CT_C).inPut? Brushes.DodgerBlue : Brushes.Transparent;
+            State.VmTestResults.ColCtAOut = ListSpecs.FirstOrDefault(L => L.name == NAME.CT_A).inPut? Brushes.DodgerBlue : Brushes.Transparent;
+
+            return true;
+        }
+
+
         private static void ResetViewModel()
         {
             State.VmTestResults.ColCtPExp = Brushes.Transparent;
@@ -182,7 +255,7 @@ namespace 自記温度計Tester
                         //ONチェック
                         if (!SetInput(L.name, true)) return false;
                         Thread.Sleep(1000);
-                        AnalysisData(L.name);
+                        AnalysisDataByLed(L.name);
 
                         resultOn = ListSpecs.All(list =>
                         {
@@ -212,7 +285,7 @@ namespace 自記温度計Tester
                         State.VmTestStatus.TestLog += "\r\n" + L.name.ToString() + " OFFチェック";
                         if (!SetInput(L.name, false)) return false;
                         Thread.Sleep(1000);
-                        AnalysisData(L.name, true);
+                        AnalysisDataByLed(L.name, true);
 
                         resultOff = ListSpecs.All(list =>
                         {
@@ -239,6 +312,109 @@ namespace 自記温度計Tester
             finally
             {
                 General.cam2.FlagLabeling = false;
+                State.VmTestStatus.TestLog += "\r\n";
+
+                Thread.Sleep(200);
+                //入力初期化
+                SetInput(NAME.CT_P, false);
+                SetInput(NAME.CT_C, false);
+                SetInput(NAME.CT_A, false);
+
+                if (!resultOn || !resultOff)
+                {
+                    State.VmTestStatus.Spec = "規格値 : ---";
+                    State.VmTestStatus.MeasValue = "計測値 : ---";
+                }
+            }
+
+        }
+
+        public static async Task<bool> CheckInputUnit()
+        {
+            bool resultOn = false;
+            bool resultOff = false;
+
+            try
+            {
+                return await Task<bool>.Run(() =>
+                {
+                    ResetViewModel();
+
+                    Flags.AddDecision = false;
+                    InitList();//テストスペック毎回初期化
+
+                    //入力初期化
+                    SetInput(NAME.CT_P, false);
+                    SetInput(NAME.CT_C, false);
+                    SetInput(NAME.CT_A, false);
+
+                    return ListSpecs.All(L =>
+                    {
+                        resultOn = false;
+                        resultOff = false;
+
+                        //テストログの更新
+                        State.VmTestStatus.TestLog += "\r\n" + L.name.ToString() + " ONチェック";
+
+                        //ONチェック
+                        if (!SetInput(L.name, true)) return false;
+                        Thread.Sleep(3000);
+                        AnalysisDataByRs232(L.name);
+
+                        resultOn = ListSpecs.All(list =>
+                        {
+                            if (list.name == L.name)
+                            {
+                                return list.inPut;
+                            }
+                            else
+                            {
+                                return !list.inPut;
+                            }
+                        });
+
+                        if (resultOn)
+                        {
+                            //テストログの更新
+                            State.VmTestStatus.TestLog += "---PASS";
+                        }
+                        else
+                        {
+                            //テストログの更新
+                            State.VmTestStatus.TestLog += "---FAIL";
+                            return false;
+                        }
+
+                        //OFFチェック
+                        State.VmTestStatus.TestLog += "\r\n" + L.name.ToString() + " OFFチェック";
+                        if (!SetInput(L.name, false)) return false;
+                        Thread.Sleep(3000);
+                        AnalysisDataByRs232(L.name, true);
+
+                        resultOff = ListSpecs.All(list =>
+                        {
+                            return !list.inPut;
+                        });
+
+                        if (resultOff)
+                        {
+                            //テストログの更新
+                            State.VmTestStatus.TestLog += "---PASS";
+                            return true;
+                        }
+                        else
+                        {
+                            //テストログの更新
+                            State.VmTestStatus.TestLog += "---FAIL";
+                            return false;
+                        }
+
+                    });
+
+                });
+            }
+            finally
+            {
                 State.VmTestStatus.TestLog += "\r\n";
 
                 Thread.Sleep(200);

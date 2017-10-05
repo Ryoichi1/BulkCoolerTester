@@ -179,6 +179,70 @@ namespace 自記温度計Tester
         }
 
 
+        public static bool Rs485;
+        public static bool FlagInterrupt;
+        public static string InterruptCommand;
+        public static void Rs485Task2()
+        {
+            const string 接続確認 = "92020193";
+            const string re接続確認 = "290501OK0**";
+            const string 初期化 = "9202089A";
+            const string re初期化 = "290208**";
+            const string 温度補正値 = "920502-0226";
+            const string re温度補正値 = "290202**";
+            const string 積算乳温 = "92020300095";
+            const string re積算乳温 = "2911032520110OK**";
+            const string 積算ランプ = "920205197";
+            const string re積算ランプ = "290205**";
+
+            Rs485 = true;
+            FlagInterrupt = false;
+            InterruptCommand = "";
+            Task.Run(() =>
+            {
+                while (Rs485)
+                {
+                    if (FlagInterrupt)
+                    {
+                        TargetRs485.SendData(InterruptCommand);
+                        FlagInterrupt = false;
+                    }
+                    else
+                    {
+                        switch (TargetRs485.RecieveData)
+                        {
+                            case 接続確認:
+                                TargetRs485.SendData(re接続確認);
+                                break;
+
+                            case 初期化:
+                                TargetRs485.SendData(re初期化);
+                                break;
+
+                            case 温度補正値:
+                                TargetRs485.SendData(re温度補正値);
+                                break;
+
+                            case 積算乳温:
+                                TargetRs485.SendData(re積算乳温);
+                                break;
+
+                            case 積算ランプ:
+                                TargetRs485.SendData(re積算ランプ);
+                                break;
+
+                            default:
+                                break;
+
+                        }
+                    }
+                    TargetRs485.ReadRecieveData();
+                    Thread.Sleep(200);
+                }
+
+            });
+        }
+
     }
 
 }

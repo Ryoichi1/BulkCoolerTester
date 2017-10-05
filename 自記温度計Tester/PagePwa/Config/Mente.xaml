@@ -55,8 +55,16 @@
             <Canvas.Background>
                 <SolidColorBrush Color="#FF44BDEC" Opacity="0.2"/>
             </Canvas.Background>
-            <Label Content="{Binding RS232C_TX}" Height="55" Canvas.Left="30" Canvas.Top="139" Width="687" BorderBrush="White" BorderThickness="1" FontSize="14" Padding="5,0,0,0"/>
-            <Label Content="{Binding RS232C_RX}" Height="57" Canvas.Left="30" Canvas.Top="205" Width="687" BorderBrush="White" BorderThickness="1" FontSize="14" Padding="5,0,0,0"/>
+            <TextBlock Text="{Binding RS232C_TX}" Height="55" Canvas.Left="30" Canvas.Top="142" Width="687" FontSize="14" Padding="5,0,0,0" TextWrapping="Wrap" Foreground="White">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="#FF08A2F9" Opacity="0.2"/>
+                </TextBlock.Background>
+            </TextBlock>
+            <TextBlock Text="{Binding RS232C_RX}" Height="57" Canvas.Left="30" Canvas.Top="205" Width="687" FontSize="14" Padding="5,0,0,0" TextWrapping="Wrap" Foreground="White">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="#FF08A2F9" Opacity="0.2"/>
+                </TextBlock.Background>
+            </TextBlock>
             <TextBlock x:Name="textBlock2_Copy" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="155" Canvas.Left="8">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
@@ -93,7 +101,7 @@
                 </Label.Effect>
             </Label>
             <Button x:Name="buttonSend232" Content="送信"  Height="29" Canvas.Left="31" Canvas.Top="43" Width="90" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonSend232_Click"/>
-            <TextBox x:Name="tbCommand232" Height="57" Canvas.Left="30" TextWrapping="Wrap" Canvas.Top="77" Width="687" FontSize="18" Background="{x:Null}"/>
+            <TextBox x:Name="tbCommand232" Height="50" Canvas.Left="30" TextWrapping="Wrap" Canvas.Top="77" Width="687" FontSize="18" BorderBrush="White" Background="{x:Null}"/>
             <Canvas Height="70" Canvas.Left="439" Canvas.Top="2" Width="212">
                 <RadioButton x:Name="rb232AT" Content="RS232C AT" Height="25" Canvas.Left="4" Canvas.Top="4" Width="95" Checked="rb232AT_Checked"/>
                 <RadioButton x:Name="rb232PC" Content="RS232C PC" Height="25" Canvas.Left="104" Canvas.Top="4" Width="95" Checked="rb232PC_Checked"/>
@@ -101,7 +109,7 @@
             </Canvas>
             <Controls:ProgressRing x:Name="RingComm" Foreground="{DynamicResource AccentColorBrush}" Canvas.Left="46" Canvas.Top="31" Height="58" Width="58" IsActive="{Binding IsActive}" Opacity="0.7"/>
         </Canvas>
-        <Canvas Height="115" Canvas.Left="25" Canvas.Top="25" Width="399">
+        <Canvas Height="115" Canvas.Left="11" Canvas.Top="13" Width="468">
             <Canvas.Background>
                 <SolidColorBrush Color="#FF44BDEC" Opacity="0.2"/>
             </Canvas.Background>
@@ -114,7 +122,7 @@
             <Button x:Name="buttonLight" Content="照明"  Height="34" Canvas.Left="202" Canvas.Top="11" Width="70" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonLight_Click"/>
             <Button x:Name="button集乳完了" Content="集乳完了押し"  Height="34" Canvas.Left="281" Canvas.Top="11" Width="108" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="button集乳完了_Click"/>
         </Canvas>
-        <Canvas x:Name="CanvasComm485" Height="150" Canvas.Left="25" Canvas.Top="155" Width="399">
+        <Canvas x:Name="CanvasComm485" Height="150" Canvas.Left="10" Canvas.Top="139" Width="469">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="11"/>
@@ -131,8 +139,16 @@
             <Canvas.Background>
                 <SolidColorBrush Color="#FF44BDEC" Opacity="0.2"/>
             </Canvas.Background>
-            <Label Content="{Binding RS485_TX}" Height="26" Canvas.Left="30" Canvas.Top="84" Width="283" BorderBrush="White" BorderThickness="1" FontSize="14" Padding="5,0,0,0"/>
-            <Label Content="{Binding RS485_RX}" Height="26" Canvas.Left="30" Canvas.Top="114" Width="283" BorderBrush="White" BorderThickness="1" FontSize="14" Padding="5,0,0,0"/>
+            <TextBlock Text="{Binding RS485_TX}" Height="26" Canvas.Left="30" Canvas.Top="84" Width="414" FontSize="14" Padding="5,0,0,0">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="#FF08A2F9" Opacity="0.2"/>
+                </TextBlock.Background>
+            </TextBlock>
+            <TextBlock Text="{Binding RS485_RX}" Height="26" Canvas.Left="30" Canvas.Top="117" Width="414" FontSize="14" Padding="5,0,0,0">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="#FF08A2F9" Opacity="0.2"/>
+                </TextBlock.Background>
+            </TextBlock>
             <TextBlock x:Name="textBlock2_Copy3" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="86" Canvas.Left="8">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
@@ -143,7 +159,7 @@
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <TextBlock x:Name="textBlock2_Copy4" TextWrapping="Wrap" Text="Rx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="22" RenderTransformOrigin="0.5,0.5" Canvas.Top="117" Canvas.Left="7">
+            <TextBlock x:Name="textBlock2_Copy4" TextWrapping="Wrap" Text="Rx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="22" RenderTransformOrigin="0.5,0.5" Canvas.Top="120" Canvas.Left="7">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -168,9 +184,11 @@
                     <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
                 </Label.Effect>
             </Label>
-            <Button x:Name="buttonSend485" Content="通信"  Height="29" Canvas.Left="31" Canvas.Top="43" Width="115" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonSend485_Click"/>
+            <Button x:Name="buttonSend485" Content="通信"  Height="29" Canvas.Left="31" Canvas.Top="43" Width="92" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonSend485_Click"/>
+            <Button x:Name="button485Init" Content="初期化"  Height="29" Canvas.Left="351" Canvas.Top="43" Width="93" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="button485Init_Click"/>
+            <TextBox x:Name="tbCommand485" Height="29" Canvas.Left="132" TextWrapping="Wrap" Canvas.Top="43" Width="182" FontSize="18" BorderBrush="White" Background="{x:Null}"/>
         </Canvas>
-        <Canvas x:Name="canvasTh" Height="280" Canvas.Left="429" Canvas.Top="25" Width="453">
+        <Canvas x:Name="canvasTh" Height="264" Canvas.Left="484" Canvas.Top="13" Width="453">
             <Canvas.Background>
                 <SolidColorBrush Color="#FF44BDEC" Opacity="0.2"/>
             </Canvas.Background>

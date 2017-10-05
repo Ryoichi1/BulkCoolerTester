@@ -21,7 +21,7 @@ namespace 自記温度計Tester
 
         Uri uriTestPage = new Uri("PageUnit/Test/UnitTest.xaml", UriKind.Relative);
         Uri uriConfPage = new Uri("PageUnit/Config/Conf.xaml", UriKind.Relative);
-        Uri uriHelpPage = new Uri("Page/Help/Help.xaml", UriKind.Relative);
+        Uri uriHelpPage = new Uri("PagePwa/Help/Help.xaml", UriKind.Relative);
 
         public UnitTestWindow()
         {

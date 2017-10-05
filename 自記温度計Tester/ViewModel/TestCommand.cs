@@ -360,7 +360,7 @@ namespace 自記温度計Tester
                             goto case 5000;
 
                         case 1300://EEPROMチェック
-                            if (await TestEEPROM.CheckEEPROM()) break;
+                            if (await TestEEPROM.CheckParameter()) break;
                             goto case 5000;
 
                         case 1400://RTCチェック
@@ -679,7 +679,7 @@ namespace 自記温度計Tester
                             goto case 5000;
 
                         case 300://カレントセンサ確認
-                            if (await TestCt.CheckInput()) break;
+                            if (await TestCt.CheckInputUnit()) break;
                             goto case 5000;
 
                         case 400://サーミスタチェック
@@ -723,35 +723,39 @@ namespace 自記温度計Tester
                             if (await スイッチチェック.CheckS1Unit()) break;
                             goto case 5000;
 
-                        case 1100://製品プログラム書き込み
-                            if (await 書き込み.WriteFw(書き込み.WriteMode.PRODUCT)) break;
-                            goto case 5000;
-
-                        case 1200://コイン電池セット
-                            State.VmTestStatus.DialogMess = "コイン電池をセットしてください";
-                            dialog = new Dialog(); dialog.ShowDialog();
-                            if (Flags.DialogReturn) break;
-                            goto case 5000; ;
-
-                        case 1201://コイン電池電圧チェック
-                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.BT1)) break;
-                            goto case 5000;
-
-                        case 1202://RTCチェック
-                            if (await TestRtc.FinalSetRtc()) break;
-                            goto case 5000;
-
-                        case 1300://EEPROMチェック
-                            if (await TestEEPROM.CheckEEPROM()) break;
-                            goto case 5000;
-
-                        case 1400:
+                        case 1100:
                             State.VmTestStatus.DialogMess = "CN9に予備バッテリー接続してください";
                             dialog = new Dialog(); dialog.ShowDialog();
                             if (Flags.DialogReturn) break;
                             goto case 5000;
 
-                        case 1401://電源基板SW2チェック
+                        case 1200://製品プログラム書き込み
+                            if (await 書き込み.WriteFw(書き込み.WriteMode.PRODUCT)) break;
+                            goto case 5000;
+
+                        case 1300://EEPROMチェック
+                            if (await TestEEPROM.CheckParameter()) break;
+                            goto case 5000;
+
+                        case 1400://コイン電池セット
+                            State.VmTestStatus.DialogMess = "コイン電池をセットしてください";
+                            dialog = new Dialog(); dialog.ShowDialog();
+                            if (Flags.DialogReturn) break;
+                            goto case 5000; ;
+
+                        case 1401://コイン電池電圧チェック
+                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.BT1)) break;
+                            goto case 5000;
+
+                        case 1402://RTCチェック
+                            if (await TestRtc.FinalSetRtc()) break;
+                            goto case 5000;
+
+                        case 1500://RTCチェック
+                            if (await TestEEPROM.InitRom()) break;
+                            goto case 5000;
+
+                        case 1600://電源基板SW2チェック
                             State.VmTestStatus.DialogMess = "電源基板のSW2をOFFして、－－－ 表示になることを確認してください";
                             dialog = new Dialog(); dialog.ShowDialog();
                             if (Flags.DialogReturn) break;

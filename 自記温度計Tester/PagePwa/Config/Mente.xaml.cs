@@ -30,6 +30,8 @@ namespace 自記温度計Tester
             RingComm.IsActive = false;
             ResetThViewModel();
 
+            tbCommand232.Text = "";
+            tbCommand485.Text = "";
         }
 
         private void ResetThViewModel()
@@ -193,21 +195,22 @@ namespace 自記温度計Tester
             Target232_BT.SendData(tbCommand232.Text);
         }
 
-        private void buttonSend485_Click(object sender, RoutedEventArgs e)
+        private async void buttonSend485_Click(object sender, RoutedEventArgs e)
         {
-            //if (!Flags.StateCOM1PD) return;
+            if (!Flags.StateCOM1PD) return;
+            buttonSend485.Background = ButtonOnBrush;
+            TargetRs485.SendData(tbCommand485.Text);
+            TargetRs485.ReadRecieveData();
+            await Task.Delay(200);
+            buttonSend485.Background = Brushes.Transparent;
 
-            //if (Flags.Rs485Task)
-            //{
-            //    buttonSend485.Background = Brushes.Transparent;
-            //    Flags.Rs485Task = false;
-            //}
-            //else
-            //{
-            //    buttonSend485.Background = ButtonOnBrush;
-            //    Flags.Rs485Task = true;
-            //    //TargetRs485.Rs485Task();
-            //}
+            //if (!Test通信.Rs485) return;
+
+            //buttonSend485.Background = ButtonOnBrush;
+            //Test通信.InterruptCommand = tbCommand485.Text;
+            //Test通信.FlagInterrupt = true;
+            //await Task.Delay(200);
+            //buttonSend485.Background = Brushes.Transparent;
         }
 
 
@@ -452,6 +455,11 @@ namespace 自記温度計Tester
                 General.Set集乳ボタン();
             });
             button集乳完了.Background = General.OffBrush;
+        }
+
+        private void button485Init_Click(object sender, RoutedEventArgs e)
+        {
+            Test通信.Rs485Task2();
         }
     }
 }

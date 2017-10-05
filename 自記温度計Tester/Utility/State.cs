@@ -101,7 +101,7 @@ namespace 自記温度計Tester
 
             new TestSpecs(1200, "警報リレー出力チェック", true),
 
-            new TestSpecs(1300, "EEPROMチェック", true),
+            new TestSpecs(1300, "パラメータチェック", true),
 
             new TestSpecs(1400, "RTCチェック", true),
 
@@ -137,59 +137,25 @@ namespace 自記温度計Tester
             new TestSpecs(1000, "SW1-SW4チェック", true),
             new TestSpecs(1001, "S1チェック", true),
 
-            new TestSpecs(1100, "製品FW書き込み", false),
+            new TestSpecs(1100, "CN9 バッテリ接続作業", false),//本機のみ
 
-            new TestSpecs(1200, "コイン電池セット", false),//本機のみ
-            new TestSpecs(1201, "コイン電池電圧チェック", false),//本機のみ
-            new TestSpecs(1202, "RTCチェック", true),//本機のみ
+            new TestSpecs(1200, "製品FW書き込み", false),
 
-            new TestSpecs(1300, "出荷設定", true),//本機のみ
+            new TestSpecs(1300, "パラメータチェック", true),//本機のみ
 
-            new TestSpecs(1400, "CN9 バッテリ接続作業", false),//本機のみ
-            new TestSpecs(1401, "電源基板SW2チェック", true),//本機のみ
+            new TestSpecs(1400, "コイン電池セット", false),//本機のみ
+            new TestSpecs(1401, "コイン電池電圧チェック", false),//本機のみ
+            new TestSpecs(1402, "RTCチェック", true),//本機のみ
+
+            new TestSpecs(1500, "FROM初期化", true),//本機のみ
+
+            new TestSpecs(1600, "電源基板SW2チェック", true),//本機のみ
 
         };
 
         public static List<TestSpecs> テスト項目子機 = new List<TestSpecs>()
         {
 
-            new TestSpecs(100, "検査ソフト書き込み", false),
-
-            new TestSpecs(200, "Bluetooth通信確認", true),
-            new TestSpecs(201, "AT通信確認", true),
-            new TestSpecs(202, "RS485通信確認1", true),
-            new TestSpecs(203, "RS485通信確認2", true),
-
-
-            new TestSpecs(300, "カレントセンサチェック", true),
-
-            new TestSpecs(400, "サーミスタチェック", true),
-
-            //new TestSpecs(500, "停電検出チェック", true),//本機のみ
-
-            //new TestSpecs(600, "バッテリLowチェック", true),//本機のみ
-
-            //new TestSpecs(700, "CN9On出力電圧チェック", true),//本機のみ
-            //new TestSpecs(701, "CN9Off出力電圧チェック", true),//本機のみ
-
-            //new TestSpecs(800, "警報リレー出力チェック", true),//本機のみ
-
-            new TestSpecs(900, "粒LED点灯チェック", true),
-            new TestSpecs(901, "7セグ 点灯チェック", true),
-
-            new TestSpecs(1000, "SW1-SW4チェック", true),
-            new TestSpecs(1001, "S1チェック", true),
-
-            new TestSpecs(1100, "製品FW書き込み", false),
-
-            //new TestSpecs(1200, "コイン電池セット", false),//本機のみ
-            //new TestSpecs(1201, "コイン電池電圧チェック", false),//本機のみ
-            //new TestSpecs(1202, "RTCチェック", true),//本機のみ
-
-            //new TestSpecs(1300, "出荷設定", true),//本機のみ
-
-            //new TestSpecs(1400, "CN9 バッテリ接続作業", false),//本機のみ
-            //new TestSpecs(1401, "電源基板SW2チェック", true),//本機のみ
 
         };
 
@@ -216,7 +182,7 @@ namespace 自記温度計Tester
                 VmTestStatus.OkCount = Setting.TodayOkCountPwaTest.ToString() + "台";
                 VmTestStatus.NgCount = Setting.TodayNgCountPwaTest.ToString() + "台";
             }
-            else if(testMode == TEST_MODE.本機)
+            else if (testMode == TEST_MODE.本機)
             {
                 if (Setting.日付本機 != DateTime.Now.ToString("yyyyMMdd"))
                 {
@@ -228,7 +194,7 @@ namespace 自記温度計Tester
                 VmTestStatus.OkCount = Setting.TodayOkCount本機Test.ToString() + "台";
                 VmTestStatus.NgCount = Setting.TodayNgCount本機Test.ToString() + "台";
             }
-            else if(testMode == TEST_MODE.子機)
+            else if (testMode == TEST_MODE.子機)
             {
                 if (Setting.日付子機 != DateTime.Now.ToString("yyyyMMdd"))
                 {

@@ -21,9 +21,9 @@ namespace 自記温度計Tester
         DispatcherTimer timerStartCamera2;
 
 
-        Uri uriTestPage = new Uri("Page/Test/Test.xaml", UriKind.Relative);
-        Uri uriConfPage = new Uri("Page/Config/Conf.xaml", UriKind.Relative);
-        Uri uriHelpPage = new Uri("Page/Help/Help.xaml", UriKind.Relative);
+        Uri uriTestPage = new Uri("PagePwa/Test/Test.xaml", UriKind.Relative);
+        Uri uriConfPage = new Uri("PagePwa/Config/Conf.xaml", UriKind.Relative);
+        Uri uriHelpPage = new Uri("PagePwa/Help/Help.xaml", UriKind.Relative);
 
         public PwaTestWindow()
         {
@@ -106,9 +106,7 @@ namespace 自記温度計Tester
 
             General.Init周辺機器();//非同期処理です
 
-            //システム時計の設定 ネットに接続されていた場合のみ設定する 
-            //ネットに接続されていないとアプリの立ち上げが遅くなるのでコメントアウトする
-            //SystemTime.SetSystemTime();
+
 
             InitMainForm();//メインフォーム初期
 

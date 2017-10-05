@@ -145,20 +145,23 @@
     <Compile Include="PageUnit\Test\銘板ラベル貼り付け.xaml.cs">
       <DependentUpon>銘板ラベル貼り付け.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\Config\Camera2Conf.xaml.cs">
+    <Compile Include="PagePwa\Config\Camera2Conf.xaml.cs">
       <DependentUpon>Camera2Conf.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\Config\Camera1Conf.xaml.cs">
+    <Compile Include="PagePwa\Config\Camera1Conf.xaml.cs">
       <DependentUpon>Camera1Conf.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\ErrInfo\ErrInfoコネクタチェック.xaml.cs">
+    <Compile Include="PagePwa\ErrInfo\ErrInfoコネクタチェック.xaml.cs">
       <DependentUpon>ErrInfoコネクタチェック.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\Test\ラベル貼り付け.xaml.cs">
+    <Compile Include="PagePwa\Test\ラベル貼り付け.xaml.cs">
       <DependentUpon>ラベル貼り付け.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PagePrint\Print.xaml.cs">
+      <DependentUpon>Print.xaml</DependentUpon>
     </Compile>
     <Compile Include="UnitTestWindow.xaml.cs">
       <DependentUpon>UnitTestWindow.xaml</DependentUpon>
@@ -192,28 +195,28 @@
     <Compile Include="テスト項目\書き込み.cs" />
     <Compile Include="検査規格\Cam2Property.cs" />
     <Compile Include="検査規格\Cam1Property.cs" />
-    <Compile Include="Page\Config\Conf.xaml.cs">
+    <Compile Include="PagePwa\Config\Conf.xaml.cs">
       <DependentUpon>Conf.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\Config\EditOpeList.xaml.cs">
+    <Compile Include="PagePwa\Config\EditOpeList.xaml.cs">
       <DependentUpon>EditOpeList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\Config\Mente.xaml.cs">
+    <Compile Include="PagePwa\Config\Mente.xaml.cs">
       <DependentUpon>Mente.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\Config\Theme.xaml.cs">
+    <Compile Include="PagePwa\Config\Theme.xaml.cs">
       <DependentUpon>Theme.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\Help\Help.xaml.cs">
+    <Compile Include="PagePwa\Help\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\Help\Manual.xaml.cs">
+    <Compile Include="PagePwa\Help\Manual.xaml.cs">
       <DependentUpon>Manual.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\Help\VerInfo.xaml.cs">
+    <Compile Include="PagePwa\Help\VerInfo.xaml.cs">
       <DependentUpon>VerInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\Test\Test.xaml.cs">
+    <Compile Include="PagePwa\Test\Test.xaml.cs">
       <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utility\FindSerialPort.cs" />
@@ -250,6 +253,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="PagePrint\Print.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UnitTestWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -270,51 +277,51 @@
       <DependentUpon>PwaTestWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Page\Config\Camera2Conf.xaml">
+    <Page Include="PagePwa\Config\Camera2Conf.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Page\Config\Conf.xaml">
+    <Page Include="PagePwa\Config\Conf.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Page\Config\EditOpeList.xaml">
+    <Page Include="PagePwa\Config\EditOpeList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Page\Config\Camera1Conf.xaml">
+    <Page Include="PagePwa\Config\Camera1Conf.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Page\Config\Mente.xaml">
+    <Page Include="PagePwa\Config\Mente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Page\Config\Theme.xaml">
+    <Page Include="PagePwa\Config\Theme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Page\ErrInfo\ErrInfoコネクタチェック.xaml">
+    <Page Include="PagePwa\ErrInfo\ErrInfoコネクタチェック.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Page\Help\Help.xaml">
+    <Page Include="PagePwa\Help\Help.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Page\Help\Manual.xaml">
+    <Page Include="PagePwa\Help\Manual.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Page\Help\VerInfo.xaml">
+    <Page Include="PagePwa\Help\VerInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Page\Test\ラベル貼り付け.xaml">
+    <Page Include="PagePwa\Test\ラベル貼り付け.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Page\Test\Test.xaml">
+    <Page Include="PagePwa\Test\Test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

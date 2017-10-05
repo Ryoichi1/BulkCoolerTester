@@ -22,8 +22,8 @@ namespace 自記温度計Tester
     {
         private NavigationService naviVerInfo;
         private NavigationService naviManual;
-        Uri uriVerInfoPage = new Uri("Page/Help/VerInfo.xaml", UriKind.Relative);
-        Uri uriManualPage = new Uri("Page/Help/Manual.xaml", UriKind.Relative);
+        Uri uriVerInfoPage = new Uri("PagePwa/Help/VerInfo.xaml", UriKind.Relative);
+        Uri uriManualPage = new Uri("PagePwa/Help/Manual.xaml", UriKind.Relative);
 
         public Help()
         {
