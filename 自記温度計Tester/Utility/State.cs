@@ -92,6 +92,8 @@ namespace 自記温度計Tester
 
             new TestSpecs(800, "サーミスタ調整 5℃", false),
             new TestSpecs(801, "サーミスタチェック", true),
+            new TestSpecs(802, "サーミスタ開放チェック", false),
+            new TestSpecs(803, "サーミスタ短絡チェック", false),
 
             new TestSpecs(900, "電源基板SW2チェック", true),
 
@@ -121,6 +123,8 @@ namespace 自記温度計Tester
             new TestSpecs(300, "カレントセンサチェック", true),
 
             new TestSpecs(400, "サーミスタチェック", true),
+            new TestSpecs(401, "サーミスタ開放チェック", true),
+            new TestSpecs(402, "サーミスタ短絡チェック", true),
 
             new TestSpecs(500, "停電検出チェック", true),//本機のみ
 

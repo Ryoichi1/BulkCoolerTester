@@ -343,6 +343,14 @@ namespace 自記温度計Tester
                             if (await TestTH.CheckTh()) break;
                             goto case 5000;
 
+                        case 802://サーミスタチェック 開放
+                            if (await TestTH.CheckOpenShort(TestTH.MODE_OPEN_SHORT.OPEN)) break;
+                            goto case 5000;
+
+                        case 803://サーミスタチェック 短絡
+                            if (await TestTH.CheckOpenShort(TestTH.MODE_OPEN_SHORT.SHORT)) break;
+                            goto case 5000;
+
                         case 900://電源基板SW2チェック
                             if (await TestPowSw2.CheckSw2()) break;
                             goto case 5000;
@@ -686,6 +694,13 @@ namespace 自記温度計Tester
                             if (await TestTH.CheckTh()) break;
                             goto case 5000;
 
+                        case 401://サーミスタチェック 開放
+                            if (await TestTH.CheckOpenShort(TestTH.MODE_OPEN_SHORT.OPEN)) break;
+                            goto case 5000;
+
+                        case 402://サーミスタチェック 短絡
+                            if (await TestTH.CheckOpenShort(TestTH.MODE_OPEN_SHORT.SHORT)) break;
+                            goto case 5000;
 
                         case 500://停電検出チェック
                             if (await Test停電検出.Check停電検出Unit()) break;

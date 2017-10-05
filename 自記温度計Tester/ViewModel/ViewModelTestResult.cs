@@ -360,6 +360,12 @@ namespace 自記温度計Tester
         private string _Th90;
         public string Th90 { get { return _Th90; } set { SetProperty(ref _Th90, value); } }
 
+        private string _ThShort;
+        public string ThShort { get { return _ThShort; } set { SetProperty(ref _ThShort, value); } }
+
+        private string _ThOpen;
+        public string ThOpen { get { return _ThOpen; } set { SetProperty(ref _ThOpen, value); } }
+
         private Brush _ColTh2;
         public Brush ColTh2 { get { return _ColTh2; } set { SetProperty(ref _ColTh2, value); } }
 
@@ -395,6 +401,12 @@ namespace 自記温度計Tester
 
         private Brush _ColTh90;
         public Brush ColTh90 { get { return _ColTh90; } set { SetProperty(ref _ColTh90, value); } }
+
+        private Brush _ColThShort;
+        public Brush ColThShort { get { return _ColThShort; } set { SetProperty(ref _ColThShort, value); } }
+
+        private Brush _ColThOpen;
+        public Brush ColThOpen { get { return _ColThOpen; } set { SetProperty(ref _ColThOpen, value); } }
 
 
 

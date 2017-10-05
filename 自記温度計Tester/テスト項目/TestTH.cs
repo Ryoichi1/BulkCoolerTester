@@ -432,6 +432,78 @@ namespace 自記温度計Tester
             }
         }
 
+        public enum MODE_OPEN_SHORT { OPEN, SHORT }
+        public static async Task<bool> CheckOpenShort(MODE_OPEN_SHORT mode)
+        {
+            bool result = false;
+            double temp = 0;
+            double stdTemp = 0;
+            string Spec = "";
+
+            try
+            {
+                return await Task<bool>.Run(() =>
+                {
+                    try
+                    {
+                        if (mode == MODE_OPEN_SHORT.OPEN)
+                        {
+                            General.SetThOpen();
+                            stdTemp = -9.9;
+                            Spec = "-9.9℃";
+                        }
+                        else
+                        {
+                            General.SetThShort();
+                            stdTemp = 99.9;
+                            Spec = "99.9℃";
+                        }
+                        Thread.Sleep(200);
+
+                        General.PowSupply(true);
+                        if (!General.CheckComm()) return false;
+
+                        Thread.Sleep(2000);
+
+                        if (!Target232_BT.SendData("3700ODB,8of000")) return false;
+                        var tempBuff = Target232_BT.RecieveData.Substring(14, 3);//3700O00,of,>7,032,021,0100 この場合 032が温度（小数点を省いているので3.2℃）
+                        temp = Double.Parse(tempBuff) / 10.0;
+                        var tempString = temp.ToString("F1") + "℃";
+                        result = (temp == stdTemp);
+
+                        if (mode == MODE_OPEN_SHORT.OPEN)
+                        {
+                            State.VmTestResults.ThOpen = tempString;
+                            if (!result) State.VmTestResults.ColThOpen = General.NgBrush;
+                        }
+                        else
+                        {
+                            State.VmTestResults.ThShort = tempString;
+                            if (!result) State.VmTestResults.ColThShort = General.NgBrush;
+                        }
+
+                        return result;
+
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                });
+
+            }
+            finally
+            {
+                General.PowSupply(false);
+                General.SetThOpen();
+                if (!result)
+                {
+                    State.VmTestStatus.Spec = "規格値 : " + Spec + "℃";
+                    State.VmTestStatus.MeasValue = "計測値 : " + temp.ToString("F1") + "℃";
+                }
+            }
+        }
+
     }
 
 }
