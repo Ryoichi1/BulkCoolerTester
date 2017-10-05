@@ -10,6 +10,8 @@ namespace 自記温度計Tester
 
         public static async Task<bool> WriteFw(WriteMode mode)
         {
+            bool result = false;
+            string 抽出したsum = "";
             try
             {
                 string RfpPath = "";
@@ -35,12 +37,15 @@ namespace 自記温度計Tester
                 Target232_BT.ChangeMode(Target232_BT.MODE.WRITE);
                 await Task.Delay(500);
 
-                return await FlashProgrammer.WriteFirmware(RfpPath, Sum, calcSum);
+                var re = await FlashProgrammer.WriteFirmware(RfpPath, Sum, calcSum);
+                result = re.Item1;
+                抽出したsum = re.Item2;
 
+                return result;
             }
             catch
             {
-                return false;
+                return result = false;
             }
             finally
             {
@@ -52,6 +57,12 @@ namespace 自記温度計Tester
                 Target232_BT.InitPort232();
                 Target232_BT.ChangeMode(Target232_BT.MODE.PC);
                 await Task.Delay(500);
+
+                if (!result)
+                {
+                    State.VmTestStatus.Spec = "規格値 : チェックサム 0x" + State.TestSpec.FwSum;
+                    State.VmTestStatus.MeasValue = "計測値 : チェックサム 0x" + 抽出したsum;
+                }
             }
 
 

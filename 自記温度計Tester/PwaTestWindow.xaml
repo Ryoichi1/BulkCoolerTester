@@ -27,20 +27,20 @@
 
         <TabControl x:Name="TabMenu" Height="715" Canvas.Left="12" Width="1340" FontSize="16" 
                     Canvas.Top="5" FlowDirection="RightToLeft" SelectionChanged="TabMenu_SelectionChanged" SelectedIndex="{Binding TabIndex}">
-            <TabItem x:Name="TabTest" Header="単体テスト" Margin="1025,12,-1059,-12" Width="114" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Controls:ControlsHelper.HeaderFontSize="20"  IsEnabled="{Binding EnableOtherButton}">
+            <TabItem x:Name="TabTest" Header="単体テスト" Margin="989,14,-989,-14" Width="114" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Controls:ControlsHelper.HeaderFontSize="20"  IsEnabled="{Binding EnableOtherButton}">
 
                 <Canvas Margin="-10,0,-8,40">
                     <Frame x:Name="FrameTest" />
                 </Canvas>
 
             </TabItem>
-            <TabItem x:Name="TabConf" Header="設定" Margin="849,11,-848,-11" Controls:ControlsHelper.HeaderFontSize="20" IsEnabled="{Binding EnableOtherButton}" Foreground="White">
+            <TabItem x:Name="TabConf" Header="設定" Margin="813,13,-812,-13" Controls:ControlsHelper.HeaderFontSize="20" IsEnabled="{Binding EnableOtherButton}" Foreground="White">
                 <Frame x:Name="FrameConf" />
             </TabItem>
-            <TabItem x:Name="TabHelp" Header="ヘルプ" Margin="706,9,-710,-10" Controls:ControlsHelper.HeaderFontSize="20" IsEnabled="{Binding EnableOtherButton}">
+            <TabItem x:Name="TabHelp" Header="ヘルプ" Margin="670,11,-674,-12" Controls:ControlsHelper.HeaderFontSize="20" IsEnabled="{Binding EnableOtherButton}">
                 <Frame x:Name="FrameHelp" />
             </TabItem>
-            <TabItem x:Name="TabInfo" Header="Info" Margin="569,7,-572,-8" Controls:ControlsHelper.HeaderFontSize="22" IsEnabled="{Binding EnableOtherButton}">
+            <TabItem x:Name="TabInfo" Header="Info" Margin="525,7,-528,-8" Controls:ControlsHelper.HeaderFontSize="22" IsEnabled="{Binding EnableOtherButton}">
                 <Frame x:Name="FrameInfo" />
             </TabItem>
 

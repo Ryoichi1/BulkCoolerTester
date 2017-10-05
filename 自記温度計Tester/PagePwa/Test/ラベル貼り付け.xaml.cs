@@ -47,6 +47,8 @@ namespace 自記温度計Tester
 
         private void buttonReturn_Click(object sender, RoutedEventArgs e)
         {
+            General.StopSound();
+
             //テーマ透過度を元に戻す
             State.VmMainWindow.ThemeOpacity = State.CurrentThemeOpacity;
 
@@ -65,6 +67,7 @@ namespace 自記温度計Tester
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             SetLabel();
+            General.PlaySoundLoop(General.soundSerialLabel);
         }
 
         private void buttonReturn_GotFocus(object sender, RoutedEventArgs e)

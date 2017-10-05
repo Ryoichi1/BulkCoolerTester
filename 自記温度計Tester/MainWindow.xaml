@@ -16,8 +16,8 @@
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="metroWindow">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0.05"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.03"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="1">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <PowerEase EasingMode="EaseIn"/>
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -109,20 +109,20 @@
         <Canvas.Background>
             <RadialGradientBrush GradientOrigin="0.5,0.5" RadiusX="0.7" RadiusY="0.7" Center="0.5,0.5">
                 <GradientStop Color="#FFB5E4FF"/>
-                <GradientStop Color="#FF004A87" Offset="0.848"/>
+                <GradientStop Color="#FF004A87" Offset="0.898"/>
                 <GradientStop Color="#FF5290BD"/>
-                <GradientStop Color="#FF427FB2"/>
-                <GradientStop Color="#FF004A87" Offset="1"/>
-                <GradientStop Color="#FF1071B4" Offset="0.595"/>
+                <GradientStop Color="#FF427FB2" Offset="0.254"/>
+                <GradientStop Color="#FF1E67A2" Offset="0.686"/>
+                <GradientStop Color="#FF1071B4" Offset="0.519"/>
             </RadialGradientBrush>
         </Canvas.Background>
 
-        <Label Content="自記温度計テスター" Height="71" Canvas.Left="4" Width="408.5" Foreground="#FFF7F7F7" FontSize="48" Padding="0" FontFamily="Meiryo UI" Background="{x:Null}" Canvas.Top="4.5"/>
-        <Label x:Name="labelPwaTest" Content="単体テスト" Height="55" Canvas.Left="31" Canvas.Top="119" Width="177" Foreground="#FFF7F7F7" FontSize="36" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="labelPwaTest_MouseLeftButtonDown" Cursor="Hand"/>
-        <Label x:Name="label本機" Content="本機(BRTRA-ST)テスト" Height="55" Canvas.Left="31" Canvas.Top="191" Width="405" Foreground="#FFF7F7F7" FontSize="36" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label本機_MouseLeftButtonDown" Cursor="Hand"/>
-        <Label x:Name="label子機" Content="子機(BRTRA-C)テスト" Height="55" Canvas.Left="31" Canvas.Top="267" Width="381" Foreground="#FFF7F7F7" FontSize="36" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label子機_MouseLeftButtonDown" Cursor="Hand"/>
+        <Label Content="自記温度計テスター" Height="71" Canvas.Left="8" Width="408" Foreground="#FFF7F7F7" FontSize="48" Padding="0" FontFamily="Segoe UI Light" Background="{x:Null}" Canvas.Top="10"/>
+        <Label x:Name="labelPwaTest" Content="単体テスト" Height="55" Canvas.Left="19" Canvas.Top="157" Width="177" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="labelPwaTest_MouseLeftButtonDown" Cursor="Hand"/>
+        <Label x:Name="label本機" Content="本機(BRTRA-ST)テスト" Height="55" Canvas.Left="19" Canvas.Top="229" Width="405" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label本機_MouseLeftButtonDown" Cursor="Hand"/>
+        <Label x:Name="label子機" Content="子機(BRTRA-C)テスト" Height="55" Canvas.Left="19" Canvas.Top="305" Width="381" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label子機_MouseLeftButtonDown" Cursor="Hand"/>
         <Image x:Name="image" Height="414" Canvas.Left="436" Canvas.Top="62" Width="355" Source="Resources/BRTR_ST.png"/>
-        <Label x:Name="labelPrint" Content="成績書印刷" Height="55" Canvas.Left="31" Canvas.Top="342" Width="381" Foreground="#FFF7F7F7" FontSize="36" Padding="0" FontFamily="Meiryo UI" Cursor="Hand" MouseLeftButtonDown="labelPrint_MouseLeftButtonDown"/>
+        <Label x:Name="labelPrint" Content="成績書印刷" Height="55" Canvas.Left="19" Canvas.Top="380" Width="381" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" Cursor="Hand" MouseLeftButtonDown="labelPrint_MouseLeftButtonDown"/>
 
 
     </Canvas>

@@ -13,30 +13,30 @@
         <Image x:Name="Pic1" Canvas.Left="31" Canvas.Top="36" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic1_PreviewMouseLeftButtonDown">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
-				 UriSource="/Resources/Minato.jpg"/>
+				 UriSource="/Resources/Bridge.jpg"/>
             </Image.Source>
         </Image>
-        <Image x:Name="Pic2" Canvas.Left="172" Canvas.Top="36" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic2_PreviewMouseLeftButtonDown">
+        <Image x:Name="Pic2" Canvas.Left="172" Canvas.Top="36" Width="136" Cursor="Hand" PreviewMouseLeftButtonDown="Pic2_PreviewMouseLeftButtonDown" Height="83">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
         			UriSource="/Resources/MM-100.jpg"/>
             </Image.Source>
         </Image>
-        <Image x:Name="Pic3" Canvas.Left="308" Canvas.Top="36" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic3_PreviewMouseLeftButtonDown">
+        <Image x:Name="Pic3" Canvas.Left="320" Canvas.Top="39" Width="129" Cursor="Hand" PreviewMouseLeftButtonDown="Pic3_PreviewMouseLeftButtonDown" Height="77">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
-        			UriSource="/Resources/baby1.jpg"/>
+        			UriSource="/Resources/taki.jpg"/>
             </Image.Source>
         </Image>
 
-        <Slider x:Name="SliderOpacity" Height="17" Canvas.Left="31" Canvas.Top="177" Width="201" Background="#FF35383A" Maximum="1" SmallChange="0.01" TickFrequency="0.1" TickPlacement="Both" Value="{Binding ThemeOpacity, Mode=OneWayToSource}" Style="{DynamicResource FlatSlider}" BorderBrush="#FF0BCCF7" ValueChanged="SliderOpacity_ValueChanged"/>
-        <Image x:Name="Pic4" Canvas.Left="449" Canvas.Top="36" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic4_PreviewMouseLeftButtonDown">
+        <Slider x:Name="SliderOpacity" Height="17" Canvas.Left="31" Canvas.Top="190" Width="201" Background="#FF35383A" Maximum="1" SmallChange="0.01" TickFrequency="0.1" TickPlacement="Both" Value="{Binding ThemeOpacity, Mode=OneWayToSource}" Style="{DynamicResource FlatSlider}" BorderBrush="#FF0BCCF7" ValueChanged="SliderOpacity_ValueChanged"/>
+        <Image x:Name="Pic4" Canvas.Left="449" Canvas.Top="44" Width="133" Cursor="Hand" PreviewMouseLeftButtonDown="Pic4_PreviewMouseLeftButtonDown" Height="75">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
         			UriSource="/Resources/baby6.jpg"/>
             </Image.Source>
         </Image>
-        <Image x:Name="Pic5" Canvas.Left="599" Canvas.Top="36" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic5_PreviewMouseLeftButtonDown">
+        <Image x:Name="Pic5" Canvas.Left="587" Canvas.Top="40" Width="118" Cursor="Hand" PreviewMouseLeftButtonDown="Pic5_PreviewMouseLeftButtonDown" Height="80">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
                     UriSource="/Resources/baby5.jpg"/>
@@ -45,24 +45,23 @@
         <Image x:Name="Pic6" Canvas.Left="742" Canvas.Top="34" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic6_PreviewMouseLeftButtonDown">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
-        			UriSource="/Resources/X_JAPAN.jpg"/>
+        			UriSource="/Resources/baby2.jpg"/>
             </Image.Source>
         </Image>
         <Image x:Name="Pic7" Canvas.Left="886" Canvas.Top="34" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic7_PreviewMouseLeftButtonDown">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
-        			UriSource="/Resources/taki.jpg"/>
+        			UriSource="/Resources/baby1.jpg"/>
             </Image.Source>
         </Image>
-        <Canvas Height="159" Canvas.Left="23" Canvas.Top="236" Width="365">
+        <Canvas Height="80" Canvas.Left="23" Canvas.Top="252" Width="246">
             <Canvas.Background>
-                <SolidColorBrush Color="#FF08A7F1" Opacity="0.1"/>
+                <SolidColorBrush Color="#FF08A7F1" Opacity="0.2"/>
             </Canvas.Background>
             <Controls:ToggleSwitch x:Name="toggleSw" Canvas.Left="10" Canvas.Top="40" Height="38" Width="97" FontFamily="Meiryo UI" Foreground="White" ThumbIndicatorDisabledBrush="#FF1758C9" OffSwitchBrush="#FFD3DBE2" ThumbIndicatorBrush="#FF35A9D4" OnSwitchBrush="#CC0A99FD" FlowDirection="RightToLeft" Checked="toggleSw_Checked" Unchecked="toggleSw_Unchecked" />
-            <RadioButton x:Name="rb1" Content="LOVE BIG" Height="40" Canvas.Left="10" Canvas.Top="114" Width="192" FontSize="16" FontFamily="Meiryo UI" Checked="rb1_Checked"/>
-            <RadioButton x:Name="rb2" Content="FALCON BIG" Height="40" Canvas.Left="10" Canvas.Top="78" Width="192" FontSize="16" FontFamily="Meiryo UI" Checked="rb2_Checked"/>
-            <TextBlock Height="34" Canvas.Left="5" TextWrapping="Wrap" Text="メタルモード設定" Canvas.Top="6" Width="157" Foreground="White" FontSize="18"/>
+            <TextBlock Height="34" Canvas.Left="5" TextWrapping="Wrap" Text="メタルモード切り替え" Canvas.Top="6" Width="201" Foreground="White" FontSize="18"/>
         </Canvas>
+        <TextBlock Height="29" Canvas.Left="31" TextWrapping="Wrap" Text="背景透明度" Canvas.Top="159" Width="137" Foreground="White" FontSize="18"/>
 
 
 

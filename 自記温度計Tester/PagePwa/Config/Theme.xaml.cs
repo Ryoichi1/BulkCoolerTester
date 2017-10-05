@@ -31,15 +31,6 @@ namespace 自記温度計Tester
             this.DataContext = State.VmMainWindow;
             SliderOpacity.Value = State.Setting.OpacityTheme;
 
-            if (Flags.LoveBig)
-            {
-                rb1.IsChecked = true;
-            }
-            else
-            {
-                rb2.IsChecked = true;
-            }
-
             toggleSw.IsChecked = Flags.MetalModeSw;
 
         }
@@ -47,7 +38,7 @@ namespace 自記温度計Tester
         private void Pic1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            State.VmMainWindow.Theme = "Resources/Minato.jpg";
+            State.VmMainWindow.Theme = "Resources/Bridge.jpg";
             General.Show();
         }
 
@@ -61,7 +52,7 @@ namespace 自記温度計Tester
         private void Pic3_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            State.VmMainWindow.Theme = "Resources/baby1.jpg";
+            State.VmMainWindow.Theme = "Resources/taki.jpg";
             General.Show();
         }
 
@@ -80,13 +71,13 @@ namespace 自記温度計Tester
 
         private void Pic6_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            State.VmMainWindow.Theme = "Resources/X_JAPAN.jpg";
+            State.VmMainWindow.Theme = "Resources/baby2.jpg";
             General.Show();
         }
 
         private void Pic7_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            State.VmMainWindow.Theme = "Resources/taki.jpg";
+            State.VmMainWindow.Theme = "Resources/baby1.jpg";
             General.Show();
         }
 
@@ -95,15 +86,6 @@ namespace 自記温度計Tester
             State.Setting.OpacityTheme = State.VmMainWindow.ThemeOpacity;
         }
 
-        private void rb1_Checked(object sender, RoutedEventArgs e)
-        {
-            Flags.LoveBig = true;
-        }
-
-        private void rb2_Checked(object sender, RoutedEventArgs e)
-        {
-            Flags.LoveBig = false;
-        }
 
         private void toggleSw_Checked(object sender, RoutedEventArgs e)
         {

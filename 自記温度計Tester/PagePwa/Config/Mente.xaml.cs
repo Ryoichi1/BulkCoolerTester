@@ -435,17 +435,7 @@ namespace 自記温度計Tester
 
 
 
-        private void rbOpen_Checked(object sender, RoutedEventArgs e)
-        {
-            chTh = CH_TH.SHORT;
-            General.SetThOpen();
-        }
-
-        private void rbShort_Checked(object sender, RoutedEventArgs e)
-        {
-            chTh = CH_TH.OPEN;
-            General.SetThShort();
-        }
+      
 
         private async void button集乳完了_Click(object sender, RoutedEventArgs e)
         {

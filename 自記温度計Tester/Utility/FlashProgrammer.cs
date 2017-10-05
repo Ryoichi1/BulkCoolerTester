@@ -79,7 +79,7 @@ namespace 自記温度計Tester
 
 
         //ファームウェアの書き込み
-        public static async Task<bool> WriteFirmware(string RwsFilePath, string Sum, bool CalcSum = false)
+        public static async Task<Tuple<bool, string>> WriteFirmware(string RwsFilePath, string Sum, bool CalcSum = false)
         {
             出力パネル表示データ = "";//出力パネルのデータをクリア
 
@@ -99,7 +99,7 @@ namespace 自記温度計Tester
                 while (MainHnd == IntPtr.Zero)
                 {
                     Application.DoEvents();
-                    if (FlagTm == false) return false;
+                    if (FlagTm == false) return Tuple.Create(false, "");
                     MainHnd = FindWindow(null, "Renesas Flash Programmer (Supported Version)");
                 }
                 SetForegroundWindow(MainHnd); Thread.Sleep(1000); //FDTを最前面に表示してアクティブにする（センドキー送るため）
@@ -112,7 +112,7 @@ namespace 自記温度計Tester
                     SubHnd = FindWindowEx(MainHnd, SubHnd, "WindowsForms10.RichEdit20W.app.0.141b42a_r14_ad1", "");
                 }
 
-                if (SubHnd == IntPtr.Zero) return false;
+                if (SubHnd == IntPtr.Zero) return Tuple.Create(false, "");
 
                 Thread.Sleep(200);
                 SendKeys.SendWait("{ENTER}");
@@ -125,23 +125,26 @@ namespace 自記温度計Tester
                     sb.Clear();
                     SendMessage(SubHnd, WM_GETTEXT, MaxSize - 1, sb);
                     出力パネル表示データ = sb.ToString();
-                    if (出力パネル表示データ.IndexOf("エラー") >= 0) return false;
+                    if (出力パネル表示データ.IndexOf("エラー") >= 0) return Tuple.Create(false, "");
                     if (出力パネル表示データ.Contains("Autoprocedure(E.P) PASS") && 出力パネル表示データ.Contains("書き込みツールから切断")) break;
                 }
 
                 if (CalcSum)
                 {
-                    return (出力パネル表示データ.Contains("flash: 0x" + Sum)); //SumはCode Flashの値とする
+                    var index = 出力パネル表示データ.IndexOf("flash: 0x");
+                    var 抽出したsum = 出力パネル表示データ.Substring(index + 9, 4);
+
+                    return Tuple.Create(抽出したsum == Sum, 抽出したsum); //SumはCode Flashの値とする
                 }
                 else
                 {
-                    return true;
+                    return Tuple.Create(true, "");
                 }
 
             }
             catch
             {
-                return false;
+                return Tuple.Create(false, "");
             }
             finally
             {

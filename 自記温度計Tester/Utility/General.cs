@@ -151,17 +151,9 @@ namespace 自記温度計Tester
             //メタルモードイネーブルチェック追加
             if (!Flags.MetalModeSw) return;
 
-
-            if (Flags.LoveBig)
-            {
-                PlaySoundLoop(soundBgm1);
-            }
-            else
-            {
-                PlaySound2(soundTotsugeki);
-                Thread.Sleep(400);
-                PlaySoundLoop(soundBgm2);
-            }
+            PlaySound2(soundTotsugeki);
+            Thread.Sleep(400);
+            PlaySoundLoop(soundBgm2);
 
         }
 

@@ -20,7 +20,6 @@ namespace 自記温度計Tester
 
         public static bool MetalModeSw { get; set; }
         public static bool MetalMode { get; set; }
-        public static bool LoveBig { get; set; }
         public static bool BgmOn { get; set; }
 
         public static bool ClickStopButton { get; set; }

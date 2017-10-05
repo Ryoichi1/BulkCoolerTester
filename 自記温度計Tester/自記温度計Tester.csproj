@@ -391,6 +391,7 @@
     <Resource Include="Resources\BRTR_ST.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Bridge.jpg" />
     <Content Include="Resources\Continue.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

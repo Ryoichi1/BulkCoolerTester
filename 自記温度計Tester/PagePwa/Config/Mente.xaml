@@ -57,12 +57,12 @@
             </Canvas.Background>
             <TextBlock Text="{Binding RS232C_TX}" Height="55" Canvas.Left="30" Canvas.Top="142" Width="687" FontSize="14" Padding="5,0,0,0" TextWrapping="Wrap" Foreground="White">
                 <TextBlock.Background>
-                    <SolidColorBrush Color="#FF08A2F9" Opacity="0.2"/>
+                    <SolidColorBrush Color="#FF08A2F9" Opacity="0.3"/>
                 </TextBlock.Background>
             </TextBlock>
             <TextBlock Text="{Binding RS232C_RX}" Height="57" Canvas.Left="30" Canvas.Top="205" Width="687" FontSize="14" Padding="5,0,0,0" TextWrapping="Wrap" Foreground="White">
                 <TextBlock.Background>
-                    <SolidColorBrush Color="#FF08A2F9" Opacity="0.2"/>
+                    <SolidColorBrush Color="#FF08A2F9" Opacity="0.3"/>
                 </TextBlock.Background>
             </TextBlock>
             <TextBlock x:Name="textBlock2_Copy" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="155" Canvas.Left="8">
@@ -141,12 +141,12 @@
             </Canvas.Background>
             <TextBlock Text="{Binding RS485_TX}" Height="26" Canvas.Left="30" Canvas.Top="84" Width="414" FontSize="14" Padding="5,0,0,0">
                 <TextBlock.Background>
-                    <SolidColorBrush Color="#FF08A2F9" Opacity="0.2"/>
+                    <SolidColorBrush Color="#FF08A2F9" Opacity="0.3"/>
                 </TextBlock.Background>
             </TextBlock>
             <TextBlock Text="{Binding RS485_RX}" Height="26" Canvas.Left="30" Canvas.Top="117" Width="414" FontSize="14" Padding="5,0,0,0">
                 <TextBlock.Background>
-                    <SolidColorBrush Color="#FF08A2F9" Opacity="0.2"/>
+                    <SolidColorBrush Color="#FF08A2F9" Opacity="0.3"/>
                 </TextBlock.Background>
             </TextBlock>
             <TextBlock x:Name="textBlock2_Copy3" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="86" Canvas.Left="8">
@@ -232,8 +232,6 @@
             <Label Content="{Binding ResTh30}" Background="{Binding ColResTh30}" Height="26" Canvas.Left="341" Canvas.Top="168" Width="92" BorderBrush="White" BorderThickness="1" Padding="0"/>
             <Label Content="{Binding ResTh45}" Background="{Binding ColResTh45}" Height="26" Canvas.Left="341" Canvas.Top="198" Width="92" BorderBrush="White" BorderThickness="1" Padding="0"/>
             <Label Content="{Binding ResTh90}" Background="{Binding ColResTh90}" Height="26" Canvas.Left="341" Canvas.Top="228" Width="92" BorderBrush="White" BorderThickness="1" Padding="0"/>
-            <RadioButton x:Name="rbShort" Content="SHORT" Height="25" Canvas.Left="350" Canvas.Top="40" Width="68" Checked="rbShort_Checked"/>
-            <RadioButton x:Name="rbOpen" Content="OPEN" Height="25" Canvas.Left="231" Canvas.Top="40" Width="68" Checked="rbOpen_Checked"/>
         </Canvas>
 
     </Canvas>
