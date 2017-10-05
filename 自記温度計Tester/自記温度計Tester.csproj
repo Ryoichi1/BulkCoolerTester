@@ -376,6 +376,7 @@
     <Content Include="Resources\Alarm.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\baby7.jpg" />
     <Content Include="Resources\Battery.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

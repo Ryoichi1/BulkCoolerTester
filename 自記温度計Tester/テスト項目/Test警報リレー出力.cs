@@ -27,8 +27,8 @@ namespace 自記温度計Tester
                     Flags.AddDecision = false;
 
                     State.VmTestStatus.TestLog += "\r\nRY1,RY2 ONチェック";
-                        //ビューモデルの更新
-                        State.VmTestResults.ColRy1Exp = General.OnBrush;
+                    //ビューモデルの更新
+                    State.VmTestResults.ColRy1Exp = General.OnBrush;
                     State.VmTestResults.ColRy2Exp = General.OnBrush;
 
                     return Target232_BT.SendData(CommandOn);
@@ -39,7 +39,10 @@ namespace 自記温度計Tester
                 //製品のSW1を長押しする
                 if (State.testMode == TEST_MODE.PWA)
                 {
-                    General.Set集乳ボタン();
+                    await Task.Run(() =>
+                    {
+                        General.Set集乳ボタン();
+                    });
                 }
                 else
                 {
@@ -72,8 +75,8 @@ namespace 自記温度計Tester
 
                     State.VmTestStatus.TestLog += "---PASS";
                     State.VmTestStatus.TestLog += "\r\nRY1,RY2 OFFチェック";
-                        //ビューモデルの更新
-                        State.VmTestResults.ColRy1Exp = General.OffBrush;
+                    //ビューモデルの更新
+                    State.VmTestResults.ColRy1Exp = General.OffBrush;
                     State.VmTestResults.ColRy2Exp = General.OffBrush;
 
                     return Target232_BT.SendData(CommandOff);
@@ -84,7 +87,10 @@ namespace 自記温度計Tester
                 //製品のSW1を長押しする
                 if (State.testMode == TEST_MODE.PWA)
                 {
-                    General.Set集乳ボタン();
+                    await Task.Run(() =>
+                    {
+                        General.Set集乳ボタン();
+                    });
                 }
                 else
                 {

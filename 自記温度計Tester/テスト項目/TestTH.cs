@@ -333,7 +333,7 @@ namespace 自記温度計Tester
                             var tempBuff = Target232_BT.RecieveData.Substring(14, 3);//3700O00,of,>7,032,021,0100 この場合 032が温度（小数点を省いているので3.2℃）
                             temp = Double.Parse(tempBuff) / 10.0;
                             var tempString = temp.ToString("F1") + "℃";
-                            var result = (temp > stdTemp - err && temp < stdTemp + err);
+                            var result = (temp >= stdTemp - err && temp <= stdTemp + err);
                             switch (L.name)
                             {
                                 case NAME._2:

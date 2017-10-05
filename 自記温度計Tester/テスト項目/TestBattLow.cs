@@ -145,6 +145,7 @@ namespace 自記温度計Tester
 
         public static async Task<bool> CheckBattLowUnit()
         {
+            bool result = false;
             Dialog dialog;
 
             double TimeOnToSleep = 0;//TODO: スリープ突入までの時間計測するか？？？？
@@ -176,6 +177,7 @@ namespace 自記温度計Tester
 
                 if (!Flags.DialogReturn) return false;
 
+                State.VmTestStatus.TestLog += "---PASS";
 
                 State.VmTestStatus.TestLog += "\r\n6.25V入力 非スリープモード確認";
 
@@ -208,8 +210,15 @@ namespace 自記温度計Tester
                 State.VmTestStatus.DialogMess = "スリープモードに入りませんよね？？";
                 dialog = new Dialog(); dialog.ShowDialog();
 
-                return Flags.DialogReturn;
-
+                if (Flags.DialogReturn)
+                {
+                    State.VmTestStatus.TestLog += "---PASS";
+                    return result = true;
+                }
+                else
+                {
+                    return false;
+                }
 
             }
             finally
@@ -217,6 +226,10 @@ namespace 自記温度計Tester
                 General.PowSupply(false);
                 General.pmx18.VolOff();
                 General.SetRL1(false);
+                if (!result)
+                {
+                    State.VmTestStatus.TestLog += "---FAIL\r\n";
+                }
             }
         }
 

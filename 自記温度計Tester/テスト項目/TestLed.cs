@@ -457,16 +457,22 @@ namespace 自記温度計Tester
                         if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed1, DoAnalysis: false);
                         Thread.Sleep(500);
+                        if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed2, DoAnalysis: false);
                         Thread.Sleep(500);
+                        if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed3, DoAnalysis: false);
                         Thread.Sleep(500);
+                        if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed4, DoAnalysis: false);
                         Thread.Sleep(500);
+                        if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed5, DoAnalysis: false);
                         Thread.Sleep(500);
+                        if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed6, DoAnalysis: false);
                         Thread.Sleep(500);
+                        if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed7, DoAnalysis: false);
                         Thread.Sleep(500);
                     }
@@ -475,6 +481,8 @@ namespace 自記温度計Tester
                 State.VmTestStatus.DialogMess = "LEDが順に点灯していますか？";
                 dialog = new Dialog(); dialog.ShowDialog();
                 FlagLedCheck = true;
+
+                Thread.Sleep(500);
 
                 return Flags.DialogReturn;
 

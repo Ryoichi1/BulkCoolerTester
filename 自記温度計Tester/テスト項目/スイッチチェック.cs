@@ -423,6 +423,7 @@ namespace 自記温度計Tester
             }
             finally
             {
+                State.VmTestStatus.Message = Constants.MessWait;
                 State.VmTestStatus.TestLog += "\r\n";
                 Thread.Sleep(200);
                 if (!result || !resultOff)

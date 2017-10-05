@@ -46,7 +46,7 @@ namespace 自記温度計Tester
                 else
                 {
                     Dialog dialog;
-                    State.VmTestStatus.DialogMess = "集乳完了ボタンを長押して、表示が点滅→点灯になるのを確認してください";
+                    State.VmTestStatus.DialogMess = "集乳完了ボタンを長押して、\r\n表示が点滅→点灯になるのを確認してください";
                     dialog = new Dialog(); dialog.ShowDialog();
                     if (!Flags.DialogReturn) return false;
                 }
@@ -95,7 +95,7 @@ namespace 自記温度計Tester
                    if (!Target232_BT.SendData(queryMenu子機)) return false;//メニュー読み出し
                    var re子Data = Target232_BT.RecieveData;
                    if (!re子Data.Contains("2," + param)) return false;
-                   State.VmTestStatus.TestLog += "---PASS";//テストログの更新
+                   State.VmTestStatus.TestLog += "---PASS\r\n";//テストログの更新
 
                    return result = true;
                });
@@ -237,7 +237,7 @@ namespace 自記温度計Tester
                         Thread.Sleep(400);
                     }
 
-                    State.VmTestStatus.TestLog += "---PASS";//テストログの更新
+                    State.VmTestStatus.TestLog += "---PASS\r\n";//テストログの更新
                     return result = true;
                 });
             }

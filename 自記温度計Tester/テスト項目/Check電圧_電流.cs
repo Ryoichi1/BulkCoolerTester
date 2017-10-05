@@ -291,11 +291,11 @@ namespace 自記温度計Tester
 
                         //電源投入
                         General.PowSupply(true);
-                        Thread.Sleep(2000);
 
+                        Thread.Sleep(500);
 
                         if (!General.multimeter.GetDcCurrent()) return false;
-                        Thread.Sleep(1000);
+                        Thread.Sleep(1500);
                         if (!General.multimeter.GetDcCurrent()) return false;
 
                         measData = General.multimeter.CurrData;

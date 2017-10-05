@@ -558,7 +558,7 @@ namespace 自記温度計Tester
 
                 if (Flags.ShowLabelPage)
                 {
-                    State.uriOtherInfoPage = new Uri("Page/Test/ラベル貼り付け.xaml", UriKind.Relative);
+                    State.uriOtherInfoPage = new Uri("PagePwa/Test/ラベル貼り付け.xaml", UriKind.Relative);
                     State.VmMainWindow.TabIndex = 3;
                 }
                 else
@@ -710,11 +710,17 @@ namespace 自記温度計Tester
                             if (await TestBattLow.CheckBattLowUnit()) break;
                             goto case 5000;
 
-                        case 700://CN9On出力電圧チェック
+                        case 700://CN3出力電圧チェック
+                            General.PowSupply(true);
+                            await Task.Delay(400);
+                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN3)) break;
+                            goto case 5000;
+
+                        case 701://CN9On出力電圧チェック
                             if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9On)) break;
                             goto case 5000;
 
-                        case 701://CN9Off出力電圧チェック
+                        case 702://CN9Off出力電圧チェック
                             if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9Off)) break;
                             goto case 5000;
 

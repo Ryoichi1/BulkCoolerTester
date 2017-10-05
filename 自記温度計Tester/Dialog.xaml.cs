@@ -22,10 +22,12 @@ namespace 自記温度計Tester
         private void MainBack_Loaded(object sender, RoutedEventArgs e)
         {
             ButtonOk.Focus();
+            General.PlaySound(General.soundNotice);
         }
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
+            General.StopSound();
             Flags.DialogReturn = true;
             this.Close();
         }
@@ -55,6 +57,7 @@ namespace 自記温度計Tester
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
+            General.StopSound();
             Flags.DialogReturn = false;
             this.Close();
         }

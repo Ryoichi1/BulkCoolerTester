@@ -30,6 +30,7 @@ namespace 自記温度計Tester
         public static SoundPlayer soundBgm2 = null;
         public static SoundPlayer soundSerialLabel = null;
         public static SoundPlayer soundTotsugeki = null;
+        public static SoundPlayer soundNotice = null;
 
 
         public static SolidColorBrush OnBrush = new SolidColorBrush();
@@ -59,6 +60,7 @@ namespace 自記温度計Tester
             General.soundBattery = new SoundPlayer(@"Resources\battery.wav");
             General.soundTotsugeki = new SoundPlayer(@"Resources\Totsugeki.wav");
             General.soundSerialLabel = new SoundPlayer(@"Resources\BGM_Label.wav");
+            General.soundNotice = new SoundPlayer(@"Resources\Notice.wav");
 
             OffBrush.Color = Colors.Transparent;
 
@@ -315,14 +317,17 @@ namespace 自記温度計Tester
         {
             var ListData = new List<string>
             {
-                State.VmMainWindow.SerialNumber,
+                State.SerialProduct,
+                State.SerialPwa,
                 "AssemblyVer " + State.AssemblyInfo,
                 "TestSpecVer " + State.TestSpec.TestSpecVer,
                 System.DateTime.Now.ToString("yyyy年MM月dd日(ddd) HH:mm:ss"),
                 State.VmMainWindow.Operator,
 
-                State.VmTestResults.VolCn9On,
-                State.VmTestResults.VolCn9Off,
+                State.VmTestStatus.FwVer,
+                State.VmTestStatus.FwSum,
+
+                State.VmTestResults.VolCn3,
 
                 State.VmTestResults.Th2,
                 State.VmTestResults.Th3,
@@ -353,9 +358,11 @@ namespace 自記温度計Tester
                 System.DateTime.Now.ToString("yyyy年MM月dd日(ddd) HH:mm:ss"),
                 State.VmMainWindow.Operator,
 
+                State.VmTestStatus.FwVer,
+                State.VmTestStatus.FwSum,
+
                 State.VmTestResults.VolCn3,
                 State.VmTestResults.VolCn9On,
-                State.VmTestResults.VolCn9Off,
                 State.VmTestResults.VolBt1,
 
                 State.VmTestResults.Th2,
@@ -958,7 +965,7 @@ namespace 自記温度計Tester
         public static bool CheckComm()
         {
             Target232_BT.ChangeMode(Target232_BT.MODE.PC);
-            var tm = new GeneralTimer(15000);
+            var tm = new GeneralTimer(20000);
             tm.start();
             while (true)
             {
@@ -967,7 +974,7 @@ namespace 自記温度計Tester
                 {
                     return true;
                 }
-                Thread.Sleep(300);
+                Thread.Sleep(400);
             }
         }
 

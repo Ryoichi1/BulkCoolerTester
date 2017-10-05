@@ -42,13 +42,13 @@
                     UriSource="/Resources/baby5.jpg"/>
             </Image.Source>
         </Image>
-        <Image x:Name="Pic6" Canvas.Left="742" Canvas.Top="34" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic6_PreviewMouseLeftButtonDown">
+        <Image x:Name="Pic6" Canvas.Left="728" Canvas.Top="44" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic6_PreviewMouseLeftButtonDown">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
-        			UriSource="/Resources/baby2.jpg"/>
+        			UriSource="/Resources/baby7.jpg"/>
             </Image.Source>
         </Image>
-        <Image x:Name="Pic7" Canvas.Left="886" Canvas.Top="34" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic7_PreviewMouseLeftButtonDown">
+        <Image x:Name="Pic7" Canvas.Left="870" Canvas.Top="44" Width="114" Cursor="Hand" PreviewMouseLeftButtonDown="Pic7_PreviewMouseLeftButtonDown" Height="75">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
         			UriSource="/Resources/baby1.jpg"/>

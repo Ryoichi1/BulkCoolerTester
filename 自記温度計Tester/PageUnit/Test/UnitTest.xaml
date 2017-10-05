@@ -149,14 +149,14 @@
                         <DropShadowEffect Color="#FF00F3FF" BlurRadius="50" Direction="0" ShadowDepth="0"/>
                     </Border.Effect>
                 </Border>
-                <TextBlock Text="CN3" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="18" Canvas.Left="2" Canvas.Top="25" Width="28"/>
-                <Label BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Background="{Binding ColVolCn3}"  Canvas.Left="30" Canvas.Top="24" Width="58" Content="{Binding VolCn3}" />
-                <TextBlock Text="CN9On" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="18" Canvas.Top="75" Width="43" Canvas.Left="2"/>
-                <Label x:Name="labelVcc_Copy3" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Background="{Binding ColVolCn9On}"  Canvas.Left="48" Canvas.Top="74" Width="58" Content="{Binding VolCn9On}" />
-                <TextBlock Text="CN9Off" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="18" Canvas.Top="99" Width="43" Canvas.Left="3"/>
-                <Label x:Name="labelVcc_Copy1" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Background="{Binding ColVolCn9Off}"  Canvas.Left="48" Canvas.Top="98" Width="58" Content="{Binding VolCn9Off}" />
-                <TextBlock Text="BT1" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="18" Canvas.Left="2" Canvas.Top="50" Width="28"/>
-                <Label BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Background="{Binding ColVolBt1}"  Canvas.Left="30" Canvas.Top="49" Width="58" Content="{Binding VolBt1}" />
+                <TextBlock Text="CN3" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="18" Canvas.Left="17" Canvas.Top="25" Width="28"/>
+                <Label BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Background="{Binding ColVolCn3}"  Canvas.Left="48" Canvas.Top="24" Width="58" Content="{Binding VolCn3}" />
+                <TextBlock Text="CN9On" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="18" Canvas.Top="51" Width="43" Canvas.Left="2"/>
+                <Label x:Name="labelVcc_Copy3" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Background="{Binding ColVolCn9On}"  Canvas.Left="48" Canvas.Top="50" Width="58" Content="{Binding VolCn9On}" />
+                <TextBlock Text="CN9Off" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="18" Canvas.Top="76" Width="43" Canvas.Left="3"/>
+                <Label x:Name="labelVcc_Copy1" BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Background="{Binding ColVolCn9Off}"  Canvas.Left="48" Canvas.Top="75" Width="58" Content="{Binding VolCn9Off}" />
+                <TextBlock Text="BT1" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="18" Canvas.Left="18" Canvas.Top="101" Width="28"/>
+                <Label BorderBrush="White" BorderThickness="1" VerticalContentAlignment="Center" Background="{Binding ColVolBt1}"  Canvas.Left="48" Canvas.Top="100" Width="58" Content="{Binding VolBt1}" />
             </Canvas>
             <Canvas Height="81" Canvas.Left="4" Width="110" Canvas.Top="205">
                 <Canvas.Resources>
@@ -670,7 +670,7 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
         </Canvas>
-        <Canvas Height="279" Canvas.Left="954" Canvas.Top="388" Width="281">
+        <Canvas Height="279" Canvas.Left="957" Canvas.Top="389" Width="281">
             <Canvas.Background>
                 <ImageBrush ImageSource="{Binding Theme}" Stretch="Uniform"/>
             </Canvas.Background>
