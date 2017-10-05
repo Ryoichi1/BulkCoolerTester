@@ -42,7 +42,7 @@
         </Canvas.Resources>
         <Button x:Name="buttonReturn" Content="確認" Height="63" Canvas.Left="13" Canvas.Top="18" Width="179" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" FontSize="24" Click="buttonReturn_Click" Cursor="Hand"  />
         <Image Height="392" Canvas.Left="32" Canvas.Top="198" Width="680" Source="/自記温度計Tester;component/Resources/銘板.png" IsEnabled="False" Opacity="0.4"/>
-        <Label Height="117" Canvas.Left="482" Canvas.Top="433" Width="92" Background="#FF09F2FD" Foreground="#FF060606" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" Content="{Binding DcLabel}" FontSize="16" RenderTransformOrigin="0.571,0.5">
+        <Label Height="115" Canvas.Left="482" Canvas.Top="433" Width="80" Background="#FF09F2FD" Foreground="#FF060606" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" Content="{Binding DcLabel}" FontSize="16" RenderTransformOrigin="0.571,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -55,7 +55,7 @@
         <Label x:Name="labelMessage" Content="ケース側面にシリアルラベルを貼り付けてください&#10;基板のシリアル番号と製品に貼り付けるシリアル番号を&#10;入力してから確認をおしてください" Height="172" Canvas.Left="218" Canvas.Top="21" Width="956" FontSize="36"/>
         <Label x:Name="labelMessage_Copy" Content="PWA" Height="60" Canvas.Left="774" Canvas.Top="304" Width="80" FontSize="36"/>
         <Label x:Name="labelMessage_Copy1" Content="製品" Height="60" Canvas.Left="780" Canvas.Top="445" Width="77" FontSize="36"/>
-        <TextBox x:Name="tbPwaSerial" TextWrapping="Wrap" FontSize="16" Background="White" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="75" Width="340" Foreground="#FFC1C1C1" CaretBrush="White" CharacterCasing="Upper" InputMethod.IsInputMethodEnabled="False" InputMethod.PreferredImeState="Off" Canvas.Left="866" Canvas.Top="289" SelectionBrush="{x:Null}"  VerticalContentAlignment="Center" FontFamily="Meiryo UI"/>
-        <TextBox x:Name="tbProductSerial" TextWrapping="Wrap" FontSize="16" Background="White" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="75" Width="340" Foreground="#FFC1C1C1" CaretBrush="White" CharacterCasing="Upper" InputMethod.IsInputMethodEnabled="False" InputMethod.PreferredImeState="Off" Canvas.Left="866" Canvas.Top="430" SelectionBrush="{x:Null}"  VerticalContentAlignment="Center" FontFamily="Meiryo UI"/>
+        <TextBox x:Name="tbPwaSerial" TextWrapping="Wrap" FontSize="60" Background="White" BorderBrush="White" Height="80" Width="370" Foreground="#FF080808" CaretBrush="Black" InputMethod.IsInputMethodEnabled="False" InputMethod.PreferredImeState="Off" Canvas.Left="866" Canvas.Top="284" SelectionBrush="{x:Null}" FontFamily="Meiryo UI" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbProductSerial" TextWrapping="Wrap" FontSize="60" Background="White" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="80" Width="370" Foreground="Black" CaretBrush="Black" CharacterCasing="Upper" InputMethod.IsInputMethodEnabled="False" InputMethod.PreferredImeState="Off" Canvas.Left="866" Canvas.Top="416" SelectionBrush="{x:Null}"  VerticalContentAlignment="Center" FontFamily="Meiryo UI"/>
     </Canvas>
 </Page>

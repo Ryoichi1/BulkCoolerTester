@@ -392,6 +392,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Bridge.jpg" />
+    <Content Include="Resources\BGM_Label.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Continue.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

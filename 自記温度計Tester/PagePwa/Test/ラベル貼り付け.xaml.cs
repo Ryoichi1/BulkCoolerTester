@@ -59,6 +59,8 @@ namespace 自記温度計Tester
             General.ResetViewModel();
             RefreshDataContextFromLabelForm();
 
+            General.PlaySound(General.soundBattery);
+
         }
 
 

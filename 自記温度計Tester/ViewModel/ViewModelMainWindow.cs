@@ -69,12 +69,17 @@ namespace 自記温度計Tester
             set { SetProperty(ref _Operator, value); }
         }
 
+        //PWA試験時のみ使用
         private string _SerialNumber;
         public string SerialNumber
         {
             get { return _SerialNumber; }
             set { SetProperty(ref _SerialNumber, value); }
         }
+
+
+
+
 
         private string _Opecode;
         public string Opecode

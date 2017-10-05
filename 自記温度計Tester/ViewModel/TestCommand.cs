@@ -766,17 +766,9 @@ namespace 自記温度計Tester
                             if (await TestRtc.FinalSetRtc()) break;
                             goto case 5000;
 
-                        case 1500://RTCチェック
+                        case 1500://FROM初期化 + 電源基板SW2(OFF)設定
                             if (await TestEEPROM.InitRom()) break;
                             goto case 5000;
-
-                        case 1600://電源基板SW2チェック
-                            State.VmTestStatus.DialogMess = "電源基板のSW2をOFFして、－－－ 表示になることを確認してください";
-                            dialog = new Dialog(); dialog.ShowDialog();
-                            if (Flags.DialogReturn) break;
-                            goto case 5000;
-
-
 
                         case 5000://NGだっときの処理
                             if (Flags.AddDecision) SetTestLog("---- FAIL\r\n");
@@ -839,12 +831,12 @@ namespace 自記温度計Tester
                 //通しで試験が合格したときの処理です(検査データを保存して、シリアルナンバーをインクリメントする)
                 if (State.VmTestStatus.CheckUnitTest != true) //null or False アプリ立ち上げ時はnullになっている！
                 {
-                    if (!General.SaveTestData())
-                    {
-                        FailStepNo = 5000;
-                        FailTitle = "検査データ保存";
-                        goto FAIL_DATA_SAVE;
-                    }
+                    //if (!General.SaveTestData())
+                    //{
+                    //    FailStepNo = 5000;
+                    //    FailTitle = "検査データ保存";
+                    //    goto FAIL_DATA_SAVE;
+                    //}
 
                     //当日試験合格数をインクリメント ビューモデルはまだ更新しない
                     if (State.testMode == TEST_MODE.本機)
@@ -890,7 +882,6 @@ namespace 自記温度計Tester
                 FAIL:
                 General.ResetIo();
                 await Task.Delay(500);
-                FAIL_DATA_SAVE:
 
 
                 FlagTestTime = false;

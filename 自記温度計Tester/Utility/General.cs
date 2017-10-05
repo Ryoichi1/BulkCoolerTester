@@ -58,6 +58,7 @@ namespace 自記温度計Tester
             General.soundBgm2 = new SoundPlayer(@"Resources\bgm02.wav");
             General.soundBattery = new SoundPlayer(@"Resources\battery.wav");
             General.soundTotsugeki = new SoundPlayer(@"Resources\Totsugeki.wav");
+            General.soundSerialLabel = new SoundPlayer(@"Resources\BGM_Label.wav");
 
             OffBrush.Color = Colors.Transparent;
 
@@ -345,14 +346,17 @@ namespace 自記温度計Tester
         {
             var ListData = new List<string>
             {
-                State.VmMainWindow.SerialNumber,
+                State.SerialProduct,
+                State.SerialPwa,
                 "AssemblyVer " + State.AssemblyInfo,
                 "TestSpecVer " + State.TestSpec.TestSpecVer,
                 System.DateTime.Now.ToString("yyyy年MM月dd日(ddd) HH:mm:ss"),
                 State.VmMainWindow.Operator,
 
+                State.VmTestResults.VolCn3,
                 State.VmTestResults.VolCn9On,
                 State.VmTestResults.VolCn9Off,
+                State.VmTestResults.VolBt1,
 
                 State.VmTestResults.Th2,
                 State.VmTestResults.Th3,

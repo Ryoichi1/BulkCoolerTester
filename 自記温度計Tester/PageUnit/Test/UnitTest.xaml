@@ -443,7 +443,7 @@
             </Canvas>
         </Canvas>
 
-        <Canvas x:Name="canvasTestSetting" Height="91" Canvas.Left="958" Canvas.Top="157" Width="290" IsEnabled="{Binding TestSettingEnable}">
+        <Canvas x:Name="canvasTestSetting" Height="91" Canvas.Left="1046" Canvas.Top="157" Width="290" IsEnabled="{Binding TestSettingEnable}">
             <Canvas.Background>
                 <SolidColorBrush Color="#FF635E5E" Opacity="0.3"/>
             </Canvas.Background>
@@ -485,7 +485,7 @@
                 <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
             </Label.Effect>
         </Label>
-        <Canvas x:Name="CanvasComm232C" Height="85" Canvas.Left="386" Canvas.Top="149" Width="551">
+        <Canvas x:Name="CanvasComm232C" Height="85" Canvas.Left="386" Canvas.Top="149" Width="646">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="11"/>
@@ -502,8 +502,8 @@
             <Canvas.Background>
                 <SolidColorBrush Color="White" Opacity="0.07"/>
             </Canvas.Background>
-            <Label Height="22" Canvas.Left="30" Canvas.Top="31" Width="511" BorderBrush="White" BorderThickness="1" FontSize="13" Padding="5,0,0,0" Content="{Binding RS232C_TX}"/>
-            <Label Content="{Binding RS232C_RX}" Height="22" Canvas.Left="30" Canvas.Top="56" Width="511" BorderBrush="White" BorderThickness="1" FontSize="12" Padding="5,0,0,0"/>
+            <Label Height="22" Canvas.Left="30" Canvas.Top="31" Width="606" BorderBrush="White" BorderThickness="1" FontSize="13" Padding="5,0,0,0" Content="{Binding RS232C_TX}"/>
+            <Label Content="{Binding RS232C_RX}" Height="22" Canvas.Left="30" Canvas.Top="56" Width="606" BorderBrush="White" BorderThickness="1" FontSize="12" Padding="5,0,0,0"/>
             <TextBlock x:Name="textBlock2_Copy" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="32" Canvas.Left="8">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
@@ -527,7 +527,7 @@
             <TextBlock x:Name="textBlock2_Copy2" TextWrapping="Wrap" Text="RS232C/BlueTooth通信" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="184" RenderTransformOrigin="0.5,0.5" Canvas.Top="5" Canvas.Left="8">
 
             </TextBlock>
-            <Label Content="" Height="1" Canvas.Left="8" Canvas.Top="26" Width="533" Background="#FF0388F7">
+            <Label Content="" Height="1" Canvas.Left="8" Canvas.Top="26" Width="628" Background="#FF0388F7">
                 <Label.Effect>
                     <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
                 </Label.Effect>
@@ -544,7 +544,7 @@
                 <SolidColorBrush Color="#CC1BC1FF" Opacity="0.3"/>
             </Controls:ProgressRing.Foreground>
         </Controls:ProgressRing>
-        <Canvas x:Name="CanvasComm485" Height="85" Canvas.Left="386" Canvas.Top="241" Width="551">
+        <Canvas x:Name="CanvasComm485" Height="85" Canvas.Left="386" Canvas.Top="241" Width="646">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="11"/>
@@ -599,7 +599,7 @@
                 </Label.Effect>
             </Label>
         </Canvas>
-        <Button x:Name="ButtonStart" Content="{Binding StartButtonContent}" Controls:ControlsHelper.ContentCharacterCasing="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="57" Width="189" BorderBrush="#FFABD6EA" FontSize="22" Canvas.Left="958" Style="{DynamicResource AccentedSquareButtonStyle}" BorderThickness="1" ClipToBounds="True" Canvas.Top="264" RenderTransformOrigin="11.977,3.9" FontFamily="Segoe UI Light" IsEnabled="{Binding StartButtonEnable}" Click="ButtonStart_Click" GotFocus="ButtonStart_GotFocus" LostFocus="ButtonStart_LostFocus" >
+        <Button x:Name="ButtonStart" Content="{Binding StartButtonContent}" Controls:ControlsHelper.ContentCharacterCasing="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="57" Width="189" BorderBrush="#FFABD6EA" FontSize="22" Canvas.Left="1049" Style="{DynamicResource AccentedSquareButtonStyle}" BorderThickness="1" ClipToBounds="True" Canvas.Top="264" RenderTransformOrigin="11.977,3.9" FontFamily="Segoe UI Light" IsEnabled="{Binding StartButtonEnable}" Click="ButtonStart_Click" GotFocus="ButtonStart_GotFocus" LostFocus="ButtonStart_LostFocus" >
             <Button.Background>
                 <SolidColorBrush Color="#FF125191" Opacity="0.6"/>
             </Button.Background>

@@ -138,54 +138,108 @@ namespace 自記温度計Tester
             Flags.AddDecision = false;
             try
             {
-                var tmTotal = new GeneralTimer(40000);
+                //現在時刻を読み出し、秒が00～05になるまで待つ（毎分59秒の時点でEEPROMにデータを保存してしまうため、00秒なったらFROMの初期化を開始して、余裕持って40秒以内に電源をOFFする）
+                var tm = new GeneralTimer(70000);
+                tm.start();
+                result = false;
+                await Task.Run(() =>
+                {
+                    while (true)
+                    {
+                        if (tm.FlagTimeout || Flags.ClickStopButton) return;
+                        if (!Target232_BT.SendData("3700ORI,I,SR000000,00"))
+                        {
+                            Thread.Sleep(500);
+                            continue;
+                        };
 
+                        //C#、VB.NETのString.Substringメソッドで、後ろから文字列を切り出すには、
+                        //部分文字列の開始位置に「文字列の長さ－部分文字列の長さ」を設定します。
+                        //"yy/MM/dd,HH:mm:ss" 17文字を抽出する
+                        var TargetTime = Target232_BT.RecieveData.Substring(Target232_BT.RecieveData.Length - 17);
+                        int targetS = Int32.Parse(TargetTime.Substring(15, 2));
+                        if (targetS >= 0 && targetS <= 5)
+                        {
+                            result = true;
+                            return;
+                        }
+                        Thread.Sleep(250);
+                    }
+                });
+                if (!result) return false;
+
+                tm.stop();
+                tm.start(40000);
+                result = false;
                 return await Task<bool>.Run(() =>
-               {
-                   //測定、集約データ 初期化//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                   State.VmTestStatus.TestLog += "\r\n測定、集約データ 初期化";//テストログの更新
-                   if (!Target232_BT.SendData("3700ODC,000") || !Target232_BT.RecieveData.Contains("3700O00,dC")) return false;//初期化コマンド送信・応答
-                   Thread.Sleep(400);
-                   if (!Target232_BT.SendData("0100ORI,C,SR0,0001,00") || !Target232_BT.RecieveData.Contains("0100O00,rc,0,00000000,0001")) return false;//通信開始要求送信・応答
-                   Thread.Sleep(400);
-                   if (!Target232_BT.SendData("0100ORI,2,SR000000,00") || !Target232_BT.RecieveData.Contains("0100O00,r2,000")) return false;//データ要求・応答
-                   Thread.Sleep(400);
-                   if (!Target232_BT.SendData("3701ORI,T,SR000001,00") || !Target232_BT.RecieveData.Contains("3701O02,rt,0000,001")) return false;//測定データ要求・応答(2が来ることを確認。データが有る場合は0になります)
-                   Thread.Sleep(400);
-                   if (!Target232_BT.SendData("3701ORI,S,SR000001,00") || !Target232_BT.RecieveData.Contains("3701O02,rs,0")) return false;//集約データ要求・応答(2が来ることを確認。データが有る場合は0になります)
-                   State.VmTestStatus.TestLog += "---PASS";//テストログの更新
-                   Thread.Sleep(400);
+                {
+                    //測定、集約データ 初期化//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    State.VmTestStatus.TestLog += "\r\n測定、集約データ 初期化";//テストログの更新
+                    if (!Target232_BT.SendData("3700ODC,000") || !Target232_BT.RecieveData.Contains("3700O00,dC")) return false;//初期化コマンド送信・応答
+                    Thread.Sleep(400);
+                    if (!Target232_BT.SendData("0100ORI,C,SR0,0001,00") || !Target232_BT.RecieveData.Contains("0100O00,rc,0,00000000,0001")) return false;//通信開始要求送信・応答
+                    Thread.Sleep(400);
+                    if (!Target232_BT.SendData("0100ORI,2,SR000000,00") || !Target232_BT.RecieveData.Contains("0100O00,r2,000")) return false;//データ要求・応答
+                    Thread.Sleep(400);
+                    if (!Target232_BT.SendData("3701ORI,T,SR000001,00") || !Target232_BT.RecieveData.Contains("3701O02,rt,0000,001")) return false;//測定データ要求・応答(2が来ることを確認。データが有る場合は0になります)
+                    Thread.Sleep(400);
+                    if (!Target232_BT.SendData("3701ORI,S,SR000001,00") || !Target232_BT.RecieveData.Contains("3701O02,rs,0")) return false;//集約データ要求・応答(2が来ることを確認。データが有る場合は0になります)
+                    State.VmTestStatus.TestLog += "---PASS";//テストログの更新
+                    Thread.Sleep(400);
 
-                   //ATデータ 初期化//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                   State.VmTestStatus.TestLog += "\r\nATデータ 初期化";//テストログの更新
-                   if (!Target232_BT.SendData("3700ODC,009") || !Target232_BT.RecieveData.Contains("3700O00,dC")) return false;//ATデータ初期化・応答
-                   Thread.Sleep(400);
+                    //ATデータ 初期化//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    State.VmTestStatus.TestLog += "\r\nATデータ 初期化";//テストログの更新
+                    if (!Target232_BT.SendData("3700ODC,009") || !Target232_BT.RecieveData.Contains("3700O00,dC")) return false;//ATデータ初期化・応答
+                    Thread.Sleep(400);
 
-                   if (!Target232_BT.ChangeMode(Target232_BT.MODE.AT)) return false;
-                   Thread.Sleep(400);
+                    if (!Target232_BT.ChangeMode(Target232_BT.MODE.AT)) return false;
+                    Thread.Sleep(400);
 
-                   var tm = new GeneralTimer(15000);
-                   tm.start();
-                   while (true)
-                   {
-                       if (tm.FlagTimeout || Flags.ClickStopButton) return false;
-                       if (Target232_BT.SendData("%01#WCSR0040127") && Target232_BT.RecieveData.Contains("%01$WC14")) break;//通信開始要求・応答
-                   }
+                    while (true)
+                    {
+                        if (tm.FlagTimeout || Flags.ClickStopButton) return false;
+                        if (Target232_BT.SendData("%01#WCSR0040127") && Target232_BT.RecieveData.Contains("%01$WC14")) break;//通信開始要求・応答
+                    }
 
-                   Thread.Sleep(400);
-                   tm.stop();
-                   tm.start();
-                   while (true)
-                   {
-                       if (tm.FlagTimeout || Flags.ClickStopButton) return false;
-                       if (Target232_BT.SendData("%01#RDD000000719953") && Target232_BT.RecieveData.Contains("%01$RD16")) break;//ATデータ要求・応答(16はチェックサム値です)
-                   }
+                    Thread.Sleep(400);
+                    while (true)
+                    {
+                        if (tm.FlagTimeout || Flags.ClickStopButton) return false;
+                        if (Target232_BT.SendData("%01#RDD000000719953") && Target232_BT.RecieveData.Contains("%01$RD16")) break;//ATデータ要求・応答(16はチェックサム値です)
+                    }
+                    State.VmTestStatus.TestLog += "---PASS";//テストログの更新
 
-                   State.VmTestStatus.TestLog += "---PASS";//テストログの更新
 
-                   return result = true;
-               });
 
+                    if (!Target232_BT.ChangeMode(Target232_BT.MODE.PC)) return false;
+                    //PCモードでの通信が確立するまで待つ
+                    while (true)
+                    {
+                        if (tm.FlagTimeout || Flags.ClickStopButton) return false;
+                        if (Target232_BT.SendData("3700ORI,I,SR000000,00")) break;
+                        Thread.Sleep(250);
+                    }
+
+                    General.PlaySound(General.soundCutin);
+
+                    State.VmTestStatus.TestLog += "\r\n電源基板SW2 出荷設定（OFF）";//テストログの更新
+                    State.VmTestStatus.Message = " 電源基板のSW2をOFFしてください";
+
+                    //PCモードでの通信がNGになるまで待つ（作業者が電源基板のSW2をOFFすることでCPUがスリープモードになり通信しなくなる）
+                    while (true)
+                    {
+                        if (tm.FlagTimeout || Flags.ClickStopButton) return false;
+                        if (!Target232_BT.SendData("3700ORI,I,SR000000,00"))
+                        {
+                            General.PowSupply(false);
+                            break;
+                        }
+                        Thread.Sleep(400);
+                    }
+
+                    State.VmTestStatus.TestLog += "---PASS";//テストログの更新
+                    return result = true;
+                });
             }
             finally
             {
