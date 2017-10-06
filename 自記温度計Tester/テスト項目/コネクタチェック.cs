@@ -84,7 +84,7 @@ namespace 自記温度計Tester
             {
                 if (!result)
                 {
-                    State.uriOtherInfoPage = new Uri("Page/ErrInfo/ErrInfoコネクタチェック.xaml", UriKind.Relative);
+                    State.uriOtherInfoPage = new Uri("PagePwa/ErrInfo/ErrInfoコネクタチェック.xaml", UriKind.Relative);
                     State.VmTestStatus.EnableButtonErrInfo = System.Windows.Visibility.Visible;
                 }
             }

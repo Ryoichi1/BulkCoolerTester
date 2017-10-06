@@ -80,10 +80,11 @@ namespace 自記温度計Tester
             new TestSpecs(305, "CN9On出力電圧チェック", true),
             new TestSpecs(306, "CN9Off出力電圧チェック", true),
 
-            new TestSpecs(400, "Bluetooth通信確認", true),
-            new TestSpecs(401, "AT通信確認", true),
-            new TestSpecs(402, "RS485通信確認1", true),
-            new TestSpecs(403, "RS485通信確認2", true),
+            new TestSpecs(400, "試験用パラメータ設定", true),
+            new TestSpecs(401, "Bluetooth通信確認", true),
+            new TestSpecs(402, "AT通信確認", true),
+            new TestSpecs(403, "RS485通信確認1", true),
+            new TestSpecs(404, "RS485通信確認2", true),
 
             new TestSpecs(500, "粒LEDカラーチェック", false),
             new TestSpecs(501, "粒LED輝度チェック", true),

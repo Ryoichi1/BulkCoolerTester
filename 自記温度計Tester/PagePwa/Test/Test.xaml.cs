@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -76,7 +77,6 @@ namespace 自記温度計Tester
             }
             else
             {
-
                 //フォームの初期化
                 SetUnitTest();
                 State.VmTestStatus.DecisionVisibility = System.Windows.Visibility.Hidden;
@@ -85,6 +85,10 @@ namespace 自記温度計Tester
                 State.VmTestStatus.StartButtonEnable = true;
                 State.VmTestStatus.TestTime = "00:00";
                 State.VmTestStatus.IsActiveRing = false;
+
+                //強制停止ボタンの設定
+                State.VmTestStatus.StopButtonEnable = false;
+                State.VmTestStatus.StopButtonVis = 0.0;
 
                 await State.testCommand.StartCheck();
             }
@@ -156,6 +160,12 @@ namespace 自記温度計Tester
         private void ButtonStart_LostFocus(object sender, RoutedEventArgs e)
         {
             ButtonBrush.Opacity = ButtonOpacity;
+        }
+
+        private void ButtonStop_Click(object sender, RoutedEventArgs e)
+        {
+            Flags.ClickStopButton = true;
+            State.VmTestStatus.StopButtonEnable = false;
         }
     }
 }

@@ -32,6 +32,8 @@ namespace 自記温度計Tester
 
             tbCommand232.Text = "";
             tbCommand485.Text = "";
+
+            buttonPort232OpenClose.Content = "232Cポート閉じる";
         }
 
         private void ResetThViewModel()
@@ -73,6 +75,8 @@ namespace 自記温度計Tester
             //以下は時間がかかる処理のため、非同期にしないと別ページに遷移した時に若干フリーズする
             Task.Run(() =>
             {
+                if (!FlagPort232cState) Target232_BT.InitPort232();
+
                 General.PowSupply(false);
                 General.SetThOpen();
             });
@@ -435,7 +439,7 @@ namespace 自記温度計Tester
 
 
 
-      
+
 
         private async void button集乳完了_Click(object sender, RoutedEventArgs e)
         {
@@ -450,6 +454,23 @@ namespace 自記温度計Tester
         private void button485Init_Click(object sender, RoutedEventArgs e)
         {
             Test通信.Rs485Task2();
+        }
+
+
+        bool FlagPort232cState = true;//デフォルトは232Cポート開いている
+        private void buttonPort232OpenClose_Click(object sender, RoutedEventArgs e)
+        {
+            FlagPort232cState = !FlagPort232cState;
+            if (FlagPort232cState)
+            {
+                buttonPort232OpenClose.Content = "232Cポート閉じる";
+                Target232_BT.InitPort232();
+            }
+            else
+            {
+                buttonPort232OpenClose.Content = "232Cポート開く";
+                Target232_BT.Close232();
+            }
         }
     }
 }

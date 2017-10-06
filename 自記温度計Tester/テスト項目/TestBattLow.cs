@@ -114,8 +114,11 @@ namespace 自記温度計Tester
                     //（前段でスリープに突入した時間 + ５秒）待って、スリープモードに入らないことの確認
                     tm.stop();
                     tm.start((int)(TimeOnToSleep * 1000) + 5000);
-                    while (!tm.FlagTimeout) ;
-
+                    while (true)
+                    {
+                        if (Flags.ClickStopButton) return false;
+                        if (tm.FlagTimeout) break;
+                    }
 
                     blob1Info = General.cam1.blobs.Clone();
                     blob2Info = General.cam2.blobs.Clone();

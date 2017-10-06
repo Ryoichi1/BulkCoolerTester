@@ -9,6 +9,18 @@ namespace 自記温度計Tester
 {
     public class GeneralTimer
     {
+        //.Net FrameWork 4.5　にて下記プログラム作成しました。
+        //Taskで実行するとtimerはtimer_Tickにたどり着かず、
+        //そのまま呼び出すとtimer_Tickに行きます。
+        //両者の違いは何故発生するのでしょうか？
+        //よろしくお願いします。
+
+        ///System.Windows.Forms.Timerを使用していたことが原因でした。
+        //System.Timers.Timerを使用することでTaskて使用してもTick (Elapsed)することがわかりました。
+
+
+
+
         public bool FlagTimeout { get; private set; }
         public int Time { get; set; }
 

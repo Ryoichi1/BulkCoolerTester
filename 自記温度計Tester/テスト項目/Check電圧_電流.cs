@@ -216,7 +216,7 @@ namespace 自記温度計Tester
                         tm.start();
                         while (true)
                         {
-                            if (tm.FlagTimeout) return false;
+                            if (tm.FlagTimeout || Flags.ClickStopButton) return false;
                             if (!General.multimeter.GetDcCurrent()) return false;
                             measData = General.multimeter.CurrData;
                             State.VmTestResults.Curr3v = (measData * 1.0E+6).ToString("F2") + "uA";

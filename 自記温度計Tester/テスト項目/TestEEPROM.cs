@@ -18,8 +18,6 @@ namespace 自記温度計Tester
 
         //読出し
         //3700O00,rP,1,20,-.2,01,000,0,1,40,8.0,3.0,32.2,10.0,4.4,060,060,7.0,2.0,3.0,10.0,1.0,6.0,40,050,080,04.0,1000,01500,0,0
-
-
         public static async Task<bool> CheckParameter()
         {
             const string param = "20,-0.2,01,000,0,1,40,8.0,3.0,32.2,10.0,4.4,060,060,7.0,2.0,3.0,10.0,1.0,6.0,40,050,080,04.0,1000,01500,0,0";
@@ -107,6 +105,36 @@ namespace 自記温度計Tester
                 {
                     State.VmTestStatus.TestLog += "---FAIL\r\n";//テストログの更新
                 }
+            }
+        }
+
+
+        public static async Task<bool> SetTestParam()//RS485通信ができるように設定する
+        {
+            try
+            {
+                return await Task<bool>.Run(() =>
+                {
+                    //親機パラメータ設定
+                    if (!Target232_BT.SendData("3700ORI,I,SR000000,00")) return false;//メニュー設定
+                    var dataArray = Target232_BT.RecieveData.Split(',');//"3700O00,rI,6.23,06060001,0,3,1,1,1,0,0,000000000000,1,0,060,000,17/03/20,18:52:57"
+                    if (dataArray[6] == "2") return true;//2は増設子機有り設定
+
+                    dataArray[6] = "2";//増設子機有りに設定する
+
+                    //dataArrayの添字[3]～[15]までを抽出して、再度カンマ区切りのフォーマットにする
+                    var newDataArray = dataArray.Skip(3).Take(13).ToArray();
+                    var buff = string.Join(",", newDataArray);
+                    var finalCommand = "3700OWI," + buff;
+                    if (!Target232_BT.SendData(finalCommand)) return false;
+
+                    //製品のSW1を長押し
+                    return General.Set集乳ボタン();
+                });
+            }
+            finally
+            {
+                General.PowSupply(false); //設定後は一度電源を落とす
             }
         }
 

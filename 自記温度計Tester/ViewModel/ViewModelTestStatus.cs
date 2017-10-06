@@ -27,7 +27,26 @@ namespace 自記温度計Tester
 
         }
 
-        //スタートボタンのプロパティ/////////////////////////////////////////////////////////////////////////////////////
+        //強制停止ボタンのプロパティ（PWA試験時に使用）////////////////////////////////////////////////////////////////////////////////////////
+        private bool _StopButtonEnable;
+        public bool StopButtonEnable
+        {
+
+            get { return _StopButtonEnable; }
+            set { SetProperty(ref _StopButtonEnable, value); }
+
+        }
+
+        private double _StopButtonVis;
+        public double StopButtonVis
+        {
+            get { return _StopButtonVis; }
+            set { SetProperty(ref _StopButtonVis, value); }
+        }
+
+
+
+        //スタートボタンのプロパティ(完成体検査時に使用)/////////////////////////////////////////////////////////////////////////////////////
 
         private bool _StartButtonEnable;
         public bool StartButtonEnable

@@ -747,12 +747,12 @@ namespace 自記温度計Tester
                     {
                         break;
                     }
-                    else//34461Aで初期化できない場合は、34401Aで初期化できるかトライする
-                    {
-                        multimeter = new Agilent34401A();
-                        Flags.State34461A = multimeter.Init();
-                        if (Flags.State34461A) break;
-                    }
+                    //else//34461Aで初期化できない場合は、34401Aで初期化できるかトライする
+                    //{
+                    //    multimeter = new Agilent34401A();
+                    //    Flags.State34461A = multimeter.Init();
+                    //    if (Flags.State34461A) break;
+                    //}
                     Thread.Sleep(400);
                 }
 

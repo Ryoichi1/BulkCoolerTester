@@ -102,12 +102,13 @@
             </Label>
             <Button x:Name="buttonSend232" Content="送信"  Height="29" Canvas.Left="31" Canvas.Top="43" Width="90" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonSend232_Click"/>
             <TextBox x:Name="tbCommand232" Height="50" Canvas.Left="30" TextWrapping="Wrap" Canvas.Top="77" Width="687" FontSize="18" BorderBrush="White" Background="{x:Null}"/>
-            <Canvas Height="70" Canvas.Left="439" Canvas.Top="2" Width="212">
-                <RadioButton x:Name="rb232AT" Content="RS232C AT" Height="25" Canvas.Left="4" Canvas.Top="4" Width="95" Checked="rb232AT_Checked"/>
-                <RadioButton x:Name="rb232PC" Content="RS232C PC" Height="25" Canvas.Left="104" Canvas.Top="4" Width="95" Checked="rb232PC_Checked"/>
-                <RadioButton x:Name="rbBluetooth" Content="Bluetooth" Height="25" Canvas.Left="4" Canvas.Top="34" Width="95" Checked="rbBluetooth_Checked"/>
+            <Canvas Height="32" Canvas.Left="319" Canvas.Top="2" Width="362">
+                <RadioButton x:Name="rb232AT" Content="RS232C AT" Height="25" Canvas.Left="105" Canvas.Top="4" Width="88" Checked="rb232AT_Checked"/>
+                <RadioButton x:Name="rb232PC" Content="RS232C PC" Height="25" Canvas.Left="10" Canvas.Top="4" Width="88" Checked="rb232PC_Checked"/>
+                <RadioButton x:Name="rbBluetooth" Content="Bluetooth" Height="25" Canvas.Left="200" Canvas.Top="4" Width="95" Checked="rbBluetooth_Checked"/>
             </Canvas>
             <Controls:ProgressRing x:Name="RingComm" Foreground="{DynamicResource AccentColorBrush}" Canvas.Left="46" Canvas.Top="31" Height="58" Width="58" IsActive="{Binding IsActive}" Opacity="0.7"/>
+            <Button x:Name="buttonPort232OpenClose" Content="232Cポート閉じる"  Height="29" Canvas.Left="169" Canvas.Top="42" Width="129" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="buttonPort232OpenClose_Click"/>
         </Canvas>
         <Canvas Height="115" Canvas.Left="11" Canvas.Top="13" Width="468">
             <Canvas.Background>
@@ -188,7 +189,7 @@
             <Button x:Name="button485Init" Content="初期化"  Height="29" Canvas.Left="351" Canvas.Top="43" Width="93" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="0" ScrollViewer.CanContentScroll="True" BorderThickness="1" Background="{x:Null}" Click="button485Init_Click"/>
             <TextBox x:Name="tbCommand485" Height="29" Canvas.Left="132" TextWrapping="Wrap" Canvas.Top="43" Width="182" FontSize="18" BorderBrush="White" Background="{x:Null}"/>
         </Canvas>
-        <Canvas x:Name="canvasTh" Height="264" Canvas.Left="484" Canvas.Top="13" Width="453">
+        <Canvas x:Name="canvasTh" Height="276" Canvas.Left="484" Canvas.Top="13" Width="453">
             <Canvas.Background>
                 <SolidColorBrush Color="#FF44BDEC" Opacity="0.2"/>
             </Canvas.Background>

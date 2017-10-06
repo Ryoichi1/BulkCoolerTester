@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 
@@ -51,7 +52,7 @@ namespace 自記温度計Tester
                     while (true)
                     {
                         if (Flags.OtherPage) break;
-                        Thread.Sleep(200);
+                        //Thread.Sleep(200);
 
                         //作業者名、工番が正しく入力されているかの判定
                         if (!Flags.SetOperator)
@@ -179,6 +180,18 @@ namespace 自記温度計Tester
             General.cam1.ImageOpacity = 1.0;
             General.cam2.ImageOpacity = 1.0;
 
+            //強制停止ボタンの設定
+            State.VmTestStatus.StopButtonEnable = true;
+            await Task.Run(() =>
+            {
+                foreach (var i in Enumerable.Range(1, 100))
+                {
+                    State.VmTestStatus.StopButtonVis = i / 100.0;
+                    Thread.Sleep(10);
+                }
+            });
+            State.VmTestStatus.StopButtonEnable = true;
+
             await Task.Delay(500);
 
             FlagTestTime = true;
@@ -300,17 +313,20 @@ namespace 自記温度計Tester
                         //通信チェック
                         //////////////////////////////////////////////////////
                         case 400://Bluetooth通信確認
+                            if (await TestEEPROM.SetTestParam()) break;
+                            goto case 5000;
+                        case 401://Bluetooth通信確認
                             if (await Test通信.CheckBluetooth()) break;
                             goto case 5000;
-                        case 401://AT通信確認
+                        case 402://AT通信確認
                             if (await Test通信.CheckAtMode()) break;
                             goto case 5000;
 
-                        case 402://RS485通信確認1
+                        case 403://RS485通信確認1
                             if (await Test通信.CheckRs485(Test通信.経路.経路1)) break;
                             goto case 5000;
 
-                        case 403://RS485通信確認2
+                        case 404://RS485通信確認2
                             if (await Test通信.CheckRs485(Test通信.経路.経路2)) break;
                             goto case 5000;
 
@@ -388,6 +404,8 @@ namespace 自記温度計Tester
                             General.ResetIo();
                             State.VmTestStatus.IsActiveRing = false;//リング表示してる可能性があるので念のため消す処理
 
+                            if (Flags.ClickStopButton) goto FAIL;
+
                             if (RetryCnt++ != Constants.RetryCount)
                             {
                                 //リトライ履歴リスト更新
@@ -398,6 +416,19 @@ namespace 自記温度計Tester
                                 goto Retry;
 
                             }
+
+                            General.PlaySoundLoop(General.soundAlarm);
+                            var YesNoResult = MessageBox.Show("この項目はＮＧですがリトライしますか？", "", MessageBoxButtons.YesNo);
+                            General.StopSound();
+
+                            //何が選択されたか調べる
+                            if (YesNoResult == DialogResult.Yes)
+                            {
+                                RetryCnt = 0;
+                                await Task.Delay(1000);
+                                goto Retry;
+                            }
+
                             goto FAIL;//自動リトライ後の作業者への確認はしない
 
 
@@ -486,6 +517,17 @@ namespace 自記温度計Tester
 
                 //不合格時の処理
                 FAIL:
+
+                await Task.Run(() =>
+                {
+                    foreach (var i in Enumerable.Range(1, 100))
+                    {
+                        State.VmTestStatus.StopButtonVis = (1 - (i / 100.0));
+                        Thread.Sleep(10);
+                    }
+                });
+
+
                 General.ResetIo();
                 await Task.Delay(500);
                 FAIL_DATA_SAVE:

@@ -694,6 +694,11 @@
 
             <!-- ImageのWidthとHeightを個別に設定しないとUniformToFillが無効になります！！！ -->
         </Canvas>
+        <Button x:Name="ButtonStop" Content="強制停止" Controls:ControlsHelper.ContentCharacterCasing="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="57" Width="210" BorderBrush="#FFABD6EA" FontSize="22" Canvas.Left="949" Style="{DynamicResource AccentedSquareButtonStyle}" BorderThickness="1" ClipToBounds="True" Canvas.Top="140" RenderTransformOrigin="11.977,3.9" FontFamily="Segoe UI Light" Click="ButtonStop_Click" Opacity="{Binding StopButtonVis}" IsEnabled="{Binding StopButtonEnable}" >
+            <Button.Background>
+                <SolidColorBrush Color="#FF125191" Opacity="0.6"/>
+            </Button.Background>
+        </Button>
 
 
 
