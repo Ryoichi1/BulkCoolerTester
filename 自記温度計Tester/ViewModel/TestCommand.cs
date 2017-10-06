@@ -190,7 +190,6 @@ namespace 自記温度計Tester
                     Thread.Sleep(10);
                 }
             });
-            State.VmTestStatus.StopButtonEnable = true;
 
             await Task.Delay(500);
 

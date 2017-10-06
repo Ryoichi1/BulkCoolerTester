@@ -51,7 +51,8 @@ namespace 自記温度計Tester
             int side = 6;
             int X = 0;
             int Y = 0;
-            int refHue = 0;
+            int refHueMax = 0;
+            int refHueMin = 0;
             double errHue = 20;
             var ListH = new List<int>();
 
@@ -92,43 +93,50 @@ namespace 自記温度計Tester
                                     case NAME.LED1:
                                         X = Int32.Parse(State.cam2Prop.LED1.Split('/').ToArray()[0]);
                                         Y = Int32.Parse(State.cam2Prop.LED1.Split('/').ToArray()[1]);
-                                        refHue = Int32.Parse(State.cam2Prop.HueLED1);
+                                        refHueMax = State.TestSpec.GreenHueMax;
+                                        refHueMin = State.TestSpec.GreenHueMin;
                                         break;
 
                                     case NAME.LED2:
                                         X = Int32.Parse(State.cam2Prop.LED2.Split('/').ToArray()[0]);
                                         Y = Int32.Parse(State.cam2Prop.LED2.Split('/').ToArray()[1]);
-                                        refHue = Int32.Parse(State.cam2Prop.HueLED2);
+                                        refHueMax = State.TestSpec.GreenHueMax;
+                                        refHueMin = State.TestSpec.GreenHueMin;
                                         break;
 
                                     case NAME.LED3:
                                         X = Int32.Parse(State.cam2Prop.LED3.Split('/').ToArray()[0]);
                                         Y = Int32.Parse(State.cam2Prop.LED3.Split('/').ToArray()[1]);
-                                        refHue = Int32.Parse(State.cam2Prop.HueLED3);
+                                        refHueMax = State.TestSpec.GreenHueMax;
+                                        refHueMin = State.TestSpec.GreenHueMin;
                                         break;
 
                                     case NAME.LED4:
                                         X = Int32.Parse(State.cam2Prop.LED4.Split('/').ToArray()[0]);
                                         Y = Int32.Parse(State.cam2Prop.LED4.Split('/').ToArray()[1]);
-                                        refHue = Int32.Parse(State.cam2Prop.HueLED4);
+                                        refHueMax = State.TestSpec.GreenHueMax;
+                                        refHueMin = State.TestSpec.GreenHueMin;
                                         break;
 
                                     case NAME.LED5:
                                         X = Int32.Parse(State.cam2Prop.LED5.Split('/').ToArray()[0]);
                                         Y = Int32.Parse(State.cam2Prop.LED5.Split('/').ToArray()[1]);
-                                        refHue = Int32.Parse(State.cam2Prop.HueLED5);
+                                        refHueMax = State.TestSpec.YellowHueMax;
+                                        refHueMin = State.TestSpec.YellowHueMin;
                                         break;
 
                                     case NAME.LED6:
                                         X = Int32.Parse(State.cam2Prop.LED6.Split('/').ToArray()[0]);
                                         Y = Int32.Parse(State.cam2Prop.LED6.Split('/').ToArray()[1]);
-                                        refHue = Int32.Parse(State.cam2Prop.HueLED6);
+                                        refHueMax = State.TestSpec.RedHueMax;
+                                        refHueMin = State.TestSpec.RedHueMin;
                                         break;
 
                                     case NAME.LED7:
                                         X = Int32.Parse(State.cam2Prop.LED7.Split('/').ToArray()[0]);
                                         Y = Int32.Parse(State.cam2Prop.LED7.Split('/').ToArray()[1]);
-                                        refHue = Int32.Parse(State.cam2Prop.HueLED7);
+                                        refHueMax = State.TestSpec.RedHueMax;
+                                        refHueMin = State.TestSpec.RedHueMin;
                                         break;
                                 }
 
@@ -148,7 +156,7 @@ namespace 自記温度計Tester
 
                                 l.Hue = ListH.Average();
 
-                                l.resultHue = l.Hue >= refHue * (1 - (errHue / 100.0)) && l.Hue <= refHue * (1 + (refHue / 100.0));
+                                l.resultHue = (l.Hue >= refHueMin) && (l.Hue <= refHueMax);
 
                             });
                         }
@@ -265,7 +273,10 @@ namespace 自記温度計Tester
                         });
                     };
                     General.cam2.FlagNgFrame = true;
-                    State.VmTestStatus.Spec = "規格値 : 基準色相±20％";
+                    State.VmTestStatus.Spec = "規格値 : 赤 " + State.TestSpec.RedHueMin.ToString() + "-" + State.TestSpec.RedHueMax.ToString() + 
+                                                    ",  緑 " + State.TestSpec.GreenHueMin.ToString() + "-" + State.TestSpec.GreenHueMax.ToString() + 
+                                                     ", 黄 " + State.TestSpec.YellowHueMin.ToString() + "-" + State.TestSpec.YellowHueMax.ToString();
+
                     State.VmTestStatus.MeasValue = "計測値 : ---";
                 }
 
