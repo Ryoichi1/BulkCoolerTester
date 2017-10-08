@@ -74,7 +74,7 @@
 
 
 
-        <Canvas x:Name="Canvas検査データ" Height="364" Canvas.Left="386" Canvas.Top="307" Width="551" IsEnabled="{Binding StartButtonEnable}">
+        <Canvas x:Name="Canvas検査データ" Height="354" Canvas.Left="386" Canvas.Top="321" Width="551" IsEnabled="{Binding StartButtonEnable}">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="Height"  Value="20"/>
@@ -89,8 +89,8 @@
 
 
 
-            <TextBlock TextWrapping="Wrap" Text="検査データ" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="27" Canvas.Left="4" Width="95" Canvas.Top="3" FontSize="18"/>
-            <Label Content="" Height="1" Canvas.Left="4" Canvas.Top="26" Width="537" Background="#FF0388F7">
+            <TextBlock TextWrapping="Wrap" Text="検査データ" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="21" Canvas.Left="4" Width="95" Canvas.Top="3" FontSize="16"/>
+            <Label Content="" Height="1" Canvas.Left="4" Canvas.Top="25" Width="537" Background="#FF0388F7">
                 <Label.Effect>
                     <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
                 </Label.Effect>
@@ -392,7 +392,7 @@
 
 
 
-        <Canvas x:Name="CanvasStatus" Height="59" Canvas.Left="386" Canvas.Top="69" Width="487">
+        <Canvas x:Name="CanvasStatus" Height="59" Canvas.Left="386" Canvas.Top="65" Width="487">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="11"/>
@@ -464,7 +464,7 @@
                 <DropShadowEffect Color="#FF00FFF3" BlurRadius="20" Direction="0" ShadowDepth="0"/>
             </Label.Effect>
         </Label>
-        <Canvas Height="263" Canvas.Top="69" Width="373" Canvas.Left="8">
+        <Canvas Height="263" Canvas.Top="65" Width="373" Canvas.Left="8">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="11"/>
@@ -521,7 +521,7 @@
             </Canvas>
         </Canvas>
 
-        <Canvas x:Name="canvasTestSetting" Height="58" Canvas.Left="878" Canvas.Top="70" Width="454" IsEnabled="{Binding TestSettingEnable}">
+        <Canvas x:Name="canvasTestSetting" Height="58" Canvas.Left="878" Canvas.Top="63" Width="454" IsEnabled="{Binding TestSettingEnable}">
             <Canvas.Background>
                 <SolidColorBrush Color="#FF635E5E" Opacity="0.3"/>
             </Canvas.Background>
@@ -563,7 +563,7 @@
                 <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
             </Label.Effect>
         </Label>
-        <Canvas x:Name="CanvasComm232C" Height="85" Canvas.Left="386" Canvas.Top="131" Width="551">
+        <Canvas x:Name="CanvasComm232C" Height="106" Canvas.Left="386" Canvas.Top="129" Width="551">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="11"/>
@@ -576,13 +576,22 @@
                         </Setter.Value>
                     </Setter>
                 </Style>
+                
             </Canvas.Resources>
             <Canvas.Background>
                 <SolidColorBrush Color="White" Opacity="0.07"/>
             </Canvas.Background>
-            <Label Height="22" Canvas.Left="30" Canvas.Top="31" Width="511" BorderBrush="White" BorderThickness="1" FontSize="13" Padding="5,0,0,0" Content="{Binding RS232C_TX}"/>
-            <Label Content="{Binding RS232C_RX}" Height="22" Canvas.Left="30" Canvas.Top="56" Width="511" BorderBrush="White" BorderThickness="1" FontSize="12" Padding="5,0,0,0"/>
-            <TextBlock x:Name="textBlock2_Copy" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="32" Canvas.Left="8">
+            <TextBlock Height="34" Canvas.Left="30" Canvas.Top="31" Width="511" Padding="5,0,0,0" TextWrapping="Wrap" Text="{Binding RS232C_TX}" Foreground="White">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="#FF00A2FF" Opacity="0.2"/>
+                </TextBlock.Background>
+            </TextBlock>
+            <TextBlock Text="{Binding RS232C_RX}" Height="34" Canvas.Left="30" Canvas.Top="68" Width="511" FontSize="12" Padding="5,0,0,0" TextWrapping="Wrap" Foreground="White">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="#FF00A2FF" Opacity="0.2"/>
+                </TextBlock.Background>
+            </TextBlock>
+            <TextBlock x:Name="textBlock2_Copy" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="36" Canvas.Left="8">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -592,7 +601,7 @@
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <TextBlock x:Name="textBlock2_Copy1" TextWrapping="Wrap" Text="Rx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="22" RenderTransformOrigin="0.5,0.5" Canvas.Top="57" Canvas.Left="7">
+            <TextBlock x:Name="textBlock2_Copy1" TextWrapping="Wrap" Text="Rx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="22" RenderTransformOrigin="0.5,0.5" Canvas.Top="72" Canvas.Left="7">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -622,7 +631,7 @@
                 <SolidColorBrush Color="#CC1BC1FF" Opacity="0.3"/>
             </Controls:ProgressRing.Foreground>
         </Controls:ProgressRing>
-        <Canvas x:Name="CanvasComm485" Height="85" Canvas.Left="386" Canvas.Top="219" Width="551">
+        <Canvas x:Name="CanvasComm485" Height="76" Canvas.Left="386" Canvas.Top="240" Width="551">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="11"/>
@@ -639,8 +648,16 @@
             <Canvas.Background>
                 <SolidColorBrush Color="White" Opacity="0.07"/>
             </Canvas.Background>
-            <Label Height="22" Canvas.Left="30" Canvas.Top="31" Width="511" BorderBrush="White" BorderThickness="1" FontSize="13" Padding="5,0,0,0" Content="{Binding RS485_TX}"/>
-            <Label Content="{Binding RS485_RX}" Height="22" Canvas.Left="30" Canvas.Top="56" Width="511" BorderBrush="White" BorderThickness="1" FontSize="12" Padding="5,0,0,0"/>
+            <TextBlock Height="19" Canvas.Left="30" Canvas.Top="31" Width="511" FontSize="12" Padding="5,0,0,0" Text="{Binding RS485_TX}" Foreground="White">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="#FF00A2FF" Opacity="0.2"/>
+                </TextBlock.Background>
+            </TextBlock>
+            <TextBlock Text="{Binding RS485_RX}" Height="19" Canvas.Left="30" Canvas.Top="53" Width="511" FontSize="12" Padding="5,0,0,0" Foreground="White">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="#FF00A2FF" Opacity="0.2"/>
+                </TextBlock.Background>
+            </TextBlock>
             <TextBlock x:Name="textBlock2_Copy3" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="32" Canvas.Left="8">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
@@ -651,7 +668,7 @@
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <TextBlock x:Name="textBlock2_Copy13" TextWrapping="Wrap" Text="Rx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="22" RenderTransformOrigin="0.5,0.5" Canvas.Top="57" Canvas.Left="7">
+            <TextBlock x:Name="textBlock2_Copy13" TextWrapping="Wrap" Text="Rx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="22" RenderTransformOrigin="0.5,0.5" Canvas.Top="51" Canvas.Left="7">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

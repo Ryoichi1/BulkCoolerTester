@@ -189,7 +189,7 @@ namespace 自記温度計Tester
                                 {
                                     Target232_BT.SendData("TH_HARD-1");
                                 }
-                                if (temp == dstTemp)
+                                else if(temp == dstTemp)
                                 {
                                     Thread.Sleep(1000);
                                     //温度データ取り込み
