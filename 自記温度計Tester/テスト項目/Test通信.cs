@@ -49,7 +49,7 @@ namespace 自記温度計Tester
                 {
                     Target232_BT.CloseBT();
                     Thread.Sleep(1000);
-                    General.PowSupply(false);
+                    //General.PowSupply(false);
 
 
                 }
@@ -81,7 +81,7 @@ namespace 自記温度計Tester
                 }
                 finally
                 {
-                    General.PowSupply(false);
+                    //General.PowSupply(false);
                 }
             });
         }
@@ -89,7 +89,7 @@ namespace 自記温度計Tester
 
 
         public enum 経路 { 経路1, 経路2 }//RS485 CN4は２連になっているので、経路1（1,2,3番ピン）と経路2（4,5,6番ピン）の両方チェックする
-        public static async Task<bool> CheckRs485(経路 route)
+        public static async Task<bool> CheckRs485(経路 route, bool powOffSw = false)
         {
             return await Task<bool>.Run(() =>
             {
@@ -110,8 +110,8 @@ namespace 自記温度計Tester
                 finally
                 {
                     General.SetK15(false);
-                    Thread.Sleep(1000);
-                    General.PowSupply(false);
+                    Thread.Sleep(500);
+                    if(powOffSw) General.PowSupply(false);
                 }
             });
         }

@@ -134,7 +134,6 @@ namespace 自記温度計Tester
             }
             finally
             {
-                General.PowSupply(false); //設定後は一度電源を落とす
             }
         }
 

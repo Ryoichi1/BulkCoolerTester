@@ -309,36 +309,36 @@ namespace 自記温度計Tester
                             if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9Off)) break;
                             goto case 5000;
 
-                        //通信チェック
-                        //////////////////////////////////////////////////////
-                        case 400://Bluetooth通信確認
-                            if (await TestEEPROM.SetTestParam()) break;
-                            goto case 5000;
-                        case 401://Bluetooth通信確認
-                            if (await Test通信.CheckBluetooth()) break;
-                            goto case 5000;
-                        case 402://AT通信確認
-                            if (await Test通信.CheckAtMode()) break;
-                            goto case 5000;
-
-                        case 403://RS485通信確認1
-                            if (await Test通信.CheckRs485(Test通信.経路.経路1)) break;
-                            goto case 5000;
-
-                        case 404://RS485通信確認2
-                            if (await Test通信.CheckRs485(Test通信.経路.経路2)) break;
-                            goto case 5000;
-
-                        case 500://LEDチェック
-                            await Task.Delay(1000);
+                        case 400://LEDチェック
                             if (await TestLed.CheckColor()) break;
                             goto case 5000;
-                        case 501:
+                        case 401:
                             if (await TestLed.CheckLum()) break;
                             goto case 5000;
 
-                        case 502:
+                        case 402:
                             if (await Test7Seg.CheckLum()) break;
+                            goto case 5000;
+
+                        //通信チェック
+                        //////////////////////////////////////////////////////
+                        case 500://Bluetooth通信確認
+                            if (await Test通信.CheckBluetooth()) break;
+                            goto case 5000;
+                        case 501://AT通信確認
+                            if (await Test通信.CheckAtMode()) break;
+                            goto case 5000;
+
+                        case 502://RS485通信確認1
+                            if (await TestEEPROM.SetTestParam()) break;
+                            goto case 5000;
+
+                        case 503://RS485通信確認1
+                            if (await Test通信.CheckRs485(Test通信.経路.経路1, true)) break;
+                            goto case 5000;
+
+                        case 504://RS485通信確認2
+                            if (await Test通信.CheckRs485(Test通信.経路.経路2)) break;
                             goto case 5000;
 
                         case 600://タクトスイッチ確認
