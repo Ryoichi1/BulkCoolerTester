@@ -972,6 +972,7 @@ namespace 自記温度計Tester
                 if (tm.FlagTimeout) return false;
                 if (Target232_BT.SendData("3700ODB,6of"))
                 {
+                    Thread.Sleep(400);//
                     return true;
                 }
                 Thread.Sleep(400);

@@ -94,7 +94,7 @@ namespace 自記温度計Tester
 
             new TestSpecs(700, "カレントセンサチェック", true),
 
-            new TestSpecs(800, "サーミスタ調整 5℃", false),
+            new TestSpecs(800, "サーミスタ調整 5℃", true),
             new TestSpecs(801, "サーミスタチェック", true),
             new TestSpecs(802, "サーミスタ開放チェック", false),
             new TestSpecs(803, "サーミスタ短絡チェック", false),

@@ -139,10 +139,6 @@ namespace 自記温度計Tester
                 {
                     try
                     {
-                        Thread.Sleep(1000);
-                        General.PowSupply(true);
-                        if (!General.CheckComm()) return false;
-
                         //メニューをリードする
                         if (!Target232_BT.SendData("3700ORI,P,SR000001,00")) return false;
                         var dataArray = Target232_BT.RecieveData.Split(',');//"3700O00,rP,1,01,-0.2,01,000,0,1,40,8..........."
@@ -156,7 +152,7 @@ namespace 自記温度計Tester
 
                         //基準抵抗（5℃の抵抗）を接続する
                         General.SetTh5();
-                        Thread.Sleep(5000);
+                        Thread.Sleep(2000);
 
                         //指定時間内に調整できなかったらあきらめる
                         var tm = new GeneralTimer(60000);
@@ -171,7 +167,7 @@ namespace 自記温度計Tester
                             if (!Target232_BT.SendData("3700ODB,8of000")) return 999;
                             var tempString = Target232_BT.RecieveData.Substring(14, 3);//3700O00,of,>7,032,021,0100 この場合 032が温度（小数点を省いているので3.2℃）
                             var tempDouble = Double.Parse(tempString) / 10.0;
-                            State.VmTestResults.ThAdj = tempDouble.ToString("F1") + "℃";
+                            //State.VmTestResults.ThAdj = tempDouble.ToString("F1") + "℃";
                             return tempDouble;
                         }
 
@@ -179,10 +175,11 @@ namespace 自記温度計Tester
                         {
                             while (true)
                             {
-                                if (tm.FlagTimeout) return false;
+                                if (tm.FlagTimeout || Flags.ClickStopButton) return false;
 
                                 //温度データ取り込み
                                 temp = ReadTempData();
+                                Thread.Sleep(200);
 
                                 if (temp > dstTemp)
                                 {
@@ -194,12 +191,12 @@ namespace 自記温度計Tester
                                 }
                                 if (temp == dstTemp)
                                 {
-                                    Thread.Sleep(1500);
+                                    Thread.Sleep(1000);
                                     //温度データ取り込み
                                     temp = ReadTempData();
                                     if (temp == dstTemp) return true;
                                 }
-                                Thread.Sleep(800);
+                                Thread.Sleep(1000);
                             }
                         };
 
@@ -227,7 +224,7 @@ namespace 自記温度計Tester
             }
             finally
             {
-                General.PowSupply(false);
+                General.PowSupply(false);//調整値がEEPROMに保存されているか確認するため、一度電源をOFFする
                 await Task.Delay(500);
                 if (!result)
                 {
