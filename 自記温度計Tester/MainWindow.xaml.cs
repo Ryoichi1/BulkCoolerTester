@@ -70,7 +70,9 @@ namespace 自記温度計Tester
 
         private void labelPrint_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            var printWin = new PrintWindow();
+            printWin.Show();
+            this.Close();
         }
 
         private void metroWindow_Loaded(object sender, RoutedEventArgs e)

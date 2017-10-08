@@ -63,6 +63,12 @@ namespace 自記温度計Tester
         //リトライ履歴保存用リスト
         public static List<string> RetryLogList = new List<string>();
 
+        //検査成績書関連
+        public static List<string> testData完成体 = new List<string>();
+        public static List<string> testDataPWA = new List<string>();
+
+
+
         public static List<TestSpecs> テスト項目Pwa = new List<TestSpecs>()
         {
             new TestSpecs(100, "コネクタ実装チェック", false),

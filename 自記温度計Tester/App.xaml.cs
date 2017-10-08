@@ -14,6 +14,7 @@ namespace 自記温度計Tester
         public static NavigationService _naviInfo;
 
         public static NavigationService _naviUnitTest;
+        public static NavigationService _naviPrint;
 
 
 
