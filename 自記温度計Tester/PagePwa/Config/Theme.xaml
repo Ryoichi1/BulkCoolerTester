@@ -13,7 +13,7 @@
         <Image x:Name="Pic1" Canvas.Left="31" Canvas.Top="36" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic1_PreviewMouseLeftButtonDown">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
-				 UriSource="/Resources/Bridge.jpg"/>
+				 UriSource="/Resources/blue.jpg"/>
             </Image.Source>
         </Image>
         <Image x:Name="Pic2" Canvas.Left="172" Canvas.Top="36" Width="136" Cursor="Hand" PreviewMouseLeftButtonDown="Pic2_PreviewMouseLeftButtonDown" Height="83">

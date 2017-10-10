@@ -106,19 +106,6 @@ namespace 自記温度計Tester
 
         private async Task<bool> CheckSerial()
         {
-            //基板シリアルのチェック
-            if (!System.Text.RegularExpressions.Regex.IsMatch(
-                tbPwaSerial.Text, @"^\d\d\d\dNe\d\d\d$",
-                System.Text.RegularExpressions.RegexOptions.ECMAScript))
-            {
-                General.PlaySound(General.soundFail);
-                tbPwaSerial.Background = Brushes.OrangeRed;
-                await Task.Delay(1000);
-                tbPwaSerial.Background = Brushes.White;
-                tbPwaSerial.Text = "";
-                tbPwaSerial.Focus();
-                return false;
-            }
 
             //製品シリアルのチェック
             if (!System.Text.RegularExpressions.Regex.IsMatch(
@@ -128,14 +115,60 @@ namespace 自記温度計Tester
                 General.PlaySound(General.soundFail);
                 tbProductSerial.Background = Brushes.OrangeRed;
                 await Task.Delay(1000);
-                tbProductSerial.Background = Brushes.White;
+                tbProductSerial.Background = Brushes.Transparent;
                 tbProductSerial.Text = "";
                 tbProductSerial.Focus();
                 return false;
             }
 
-            State.SerialPwa = tbPwaSerial.Text;
+
+            //基板シリアルのチェック
+            if (!System.Text.RegularExpressions.Regex.IsMatch(
+                tbPwaSerial.Text, @"^\d\d\d\dNe\d\d\d$",
+                System.Text.RegularExpressions.RegexOptions.ECMAScript))
+            {
+                General.PlaySound(General.soundFail);
+                tbPwaSerial.Background = Brushes.OrangeRed;
+                await Task.Delay(1000);
+                tbPwaSerial.Background = Brushes.Transparent;
+                tbPwaSerial.Text = "";
+                tbPwaSerial.Focus();
+                return false;
+            }
+
+            //電源基板シリアルのチェック
+            if (!System.Text.RegularExpressions.Regex.IsMatch(
+                tbPowSerial.Text, @"^\d\d\d\d\d\d\d\d$",
+                System.Text.RegularExpressions.RegexOptions.ECMAScript))
+            {
+                General.PlaySound(General.soundFail);
+                tbPowSerial.Background = Brushes.OrangeRed;
+                await Task.Delay(1000);
+                tbPowSerial.Background = Brushes.Transparent;
+                tbPowSerial.Text = "";
+                tbPowSerial.Focus();
+                return false;
+            }
+
+            //Bluetooth基板シリアルのチェック
+            if (tbBtSerial.Text.Length != 6 ||
+            !System.Text.RegularExpressions.Regex.IsMatch(
+                tbBtSerial.Text, @"[ABCDEF0-9]+$",
+                System.Text.RegularExpressions.RegexOptions.ECMAScript))
+            {
+                General.PlaySound(General.soundFail);
+                tbBtSerial.Background = Brushes.OrangeRed;
+                await Task.Delay(1000);
+                tbBtSerial.Background = Brushes.Transparent;
+                tbBtSerial.Text = "";
+                tbBtSerial.Focus();
+                return false;
+            }
+
             State.SerialProduct = tbProductSerial.Text;
+            State.SerialPwa = tbPwaSerial.Text;
+            State.SerialPow = tbPowSerial.Text;
+            State.SerialBt = tbBtSerial.Text;
             return true;
         }
 
@@ -183,7 +216,13 @@ namespace 自記温度計Tester
                    var SeriPwa = l.Split(',')[1];
                    bool flagSeriPwa = SeriPwa == tbPwaSerial.Text;
 
-                   return flagSeriProduct || flagSeriPwa;
+                   var SeriPow = l.Split(',')[2];
+                   bool flagSeriPow = SeriPow == tbPowSerial.Text;
+
+                   var SeriBt = l.Split(',')[3];
+                   bool flagSeriBt = SeriBt == tbBtSerial.Text;
+
+                   return flagSeriProduct || flagSeriPwa || flagSeriPow || flagSeriBt;
                });
 
             }

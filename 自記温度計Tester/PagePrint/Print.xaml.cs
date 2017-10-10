@@ -101,6 +101,7 @@ namespace 自記温度計Tester
             canvasComboBox.Visibility = Visibility.Hidden;
             canvasPic.Opacity = 0;
             tbModel.Text = "";
+            State.VmTestStatus.Message = Constants.MessOpecode;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -259,70 +260,83 @@ namespace 自記温度計Tester
         }
 
 
+        bool IsPrinting = false;
         private async void ButtonPrint_Click(object sender, RoutedEventArgs e)
         {
-            State.VmTestStatus.進捗度 = 0;
-
-            if (!FlagOpecode) return;
-            if (!(rbPrintAll.IsChecked == true || rbPrintSelect.IsChecked == true)) return;
-            if (!(rb_G1.IsChecked == true || rb_G2.IsChecked == true)) return;
-
-            if (rbPrintSelect.IsChecked == true)
+            try
             {
-                if (cbStart.SelectedIndex == -1 || cbEnd.SelectedIndex == -1) return;
-                start = Int32.Parse(cbStart.SelectedItem.ToString().Substring(2));
-                end = Int32.Parse(cbEnd.SelectedItem.ToString().Substring(2));
-                if (start > end) return;
+                if (IsPrinting) return;
+
+                State.VmTestStatus.進捗度 = 0;
+
+                if (!FlagOpecode) return;
+                if (!(rbPrintAll.IsChecked == true || rbPrintSelect.IsChecked == true)) return;
+                if (!(rb_G1.IsChecked == true || rb_G2.IsChecked == true)) return;
+
+                if (rbPrintSelect.IsChecked == true)
+                {
+                    if (cbStart.SelectedIndex == -1 || cbEnd.SelectedIndex == -1) return;
+                    start = Int32.Parse(cbStart.SelectedItem.ToString().Substring(2));
+                    end = Int32.Parse(cbEnd.SelectedItem.ToString().Substring(2));
+                    if (start > end) return;
+                }
+
+                IsPrinting = true;
+
+                State.VmTestStatus.Message = "印刷中です。 しばらくお待ち下さい！！！";
+                string excelName = @"C:\自記温度計\検査データ\検査成績書.xlsx";
+
+                oXls = new Excel.Application();
+                oXls.Visible = false; // 確認のためExcelのウィンドウを表示する
+
+                // Excelファイルをオープンする
+                oWBook = (Excel.Workbook)(oXls.Workbooks.Open(
+                  excelName,  // オープンするExcelファイル名
+                  Type.Missing, // （省略可能）UpdateLinks (0 / 1 / 2 / 3)
+                  Type.Missing, // （省略可能）ReadOnly (True / False )
+                  Type.Missing, // （省略可能）Format
+                                // 1:タブ / 2:カンマ (,) / 3:スペース / 4:セミコロン (;)
+                                // 5:なし / 6:引数 Delimiterで指定された文字
+                  Type.Missing, // （省略可能）Password
+                  Type.Missing, // （省略可能）WriteResPassword
+                  Type.Missing, // （省略可能）IgnoreReadOnlyRecommended
+                  Type.Missing, // （省略可能）Origin
+                  Type.Missing, // （省略可能）Delimiter
+                  Type.Missing, // （省略可能）Editable
+                  Type.Missing, // （省略可能）Notify
+                  Type.Missing, // （省略可能）Converter
+                  Type.Missing, // （省略可能）AddToMru
+                  Type.Missing, // （省略可能）Local
+                  Type.Missing  // （省略可能）CorruptLoad
+                ));
+
+                // 与えられたワークシート名から、ワークシートオブジェクトを得る
+                string sheetName = model == MODEL.本機 ? "BRTRA-ST" : "BRTRA-C";
+
+                oSheet = (Excel.Worksheet)oWBook.Sheets[getSheetIndex(sheetName, oWBook.Sheets)];
+                setup = oSheet.PageSetup;
+
+                if (model == MODEL.本機)
+                {
+                    await print本機();//このawaitを入れないと、印刷が１枚しかできなくなる！！！
+                }
+                else
+                {
+                    await print子機();//このawaitを入れないと、印刷が１枚しかできない！！！
+                }
+
+                oWBook.Close(false, Type.Missing, Type.Missing);
+                oXls.Quit();
+                await Task.Delay(2000);
+                State.VmTestStatus.進捗度 = 0;
+
+                State.VmTestStatus.Message = "印刷オプションを選択して、印刷ボタンを押してください！";
+                IsPrinting = false;
             }
-
-            State.VmTestStatus.Message = "印刷中です。 しばらくお待ち下さい！！！";
-            string excelName = @"C:\自記温度計\検査データ\検査成績書.xlsx";
-
-            oXls = new Excel.Application();
-            oXls.Visible = false; // 確認のためExcelのウィンドウを表示する
-
-            // Excelファイルをオープンする
-            oWBook = (Excel.Workbook)(oXls.Workbooks.Open(
-              excelName,  // オープンするExcelファイル名
-              Type.Missing, // （省略可能）UpdateLinks (0 / 1 / 2 / 3)
-              Type.Missing, // （省略可能）ReadOnly (True / False )
-              Type.Missing, // （省略可能）Format
-                            // 1:タブ / 2:カンマ (,) / 3:スペース / 4:セミコロン (;)
-                            // 5:なし / 6:引数 Delimiterで指定された文字
-              Type.Missing, // （省略可能）Password
-              Type.Missing, // （省略可能）WriteResPassword
-              Type.Missing, // （省略可能）IgnoreReadOnlyRecommended
-              Type.Missing, // （省略可能）Origin
-              Type.Missing, // （省略可能）Delimiter
-              Type.Missing, // （省略可能）Editable
-              Type.Missing, // （省略可能）Notify
-              Type.Missing, // （省略可能）Converter
-              Type.Missing, // （省略可能）AddToMru
-              Type.Missing, // （省略可能）Local
-              Type.Missing  // （省略可能）CorruptLoad
-            ));
-
-            // 与えられたワークシート名から、ワークシートオブジェクトを得る
-            string sheetName = model == MODEL.本機 ? "BRTRA-ST" : "BRTRA-C";
-
-            oSheet = (Excel.Worksheet)oWBook.Sheets[getSheetIndex(sheetName, oWBook.Sheets)];
-            setup = oSheet.PageSetup;
-
-            if (model == MODEL.本機)
+            catch
             {
-                await print本機();//このawaitを入れないと、印刷が１枚しかできなくなる！！！
+                IsPrinting = false;
             }
-            else
-            {
-                await print子機();//このawaitを入れないと、印刷が１枚しかできない！！！
-            }
-
-            oWBook.Close(false, Type.Missing, Type.Missing);
-            oXls.Quit();
-            await Task.Delay(1000);
-            State.VmTestStatus.進捗度 = 0;
-
-            State.VmTestStatus.Message = "印刷オプションを選択して、印刷ボタンを押してください！";
         }
 
         private async Task print本機()
@@ -592,6 +606,8 @@ namespace 自記温度計Tester
 
                 FlagOpecode = false;
                 tbOpecode.IsReadOnly = false;
+                tbOpecode.Text = "";
+                State.VmTestStatus.Message = Constants.MessOpecode;
                 return;
 
                 PASS:
@@ -696,7 +712,7 @@ namespace 自記温度計Tester
                 foreach (System.Diagnostics.Process p in ps)
                 {
                     //プロセスの中に"soffice.bin"があれば強制的にプロセスを終了する
-                    if (p.ProcessName.Contains("excel.exe")) p.Kill();
+                    if (p.ProcessName.Contains("excel.exe") || p.ProcessName.Contains("EXCEL.EXE")) p.Kill();
                 }
             }
             catch

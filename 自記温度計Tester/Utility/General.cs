@@ -353,6 +353,8 @@ namespace 自記温度計Tester
             {
                 State.SerialProduct,
                 State.SerialPwa,
+                State.SerialPow,
+                State.SerialBt,
                 "AssemblyVer " + State.AssemblyInfo,
                 "TestSpecVer " + State.TestSpec.TestSpecVer,
                 System.DateTime.Now.ToString("yyyy年MM月dd日(ddd) HH:mm:ss"),

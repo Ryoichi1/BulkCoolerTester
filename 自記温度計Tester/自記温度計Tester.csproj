@@ -364,6 +364,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\本機ラベル.png" />
+    <Resource Include="Resources\名称未設定.png" />
     <Resource Include="Resources\X_JAPAN.jpg" />
     <Resource Include="Resources\銘板.png" />
     <Resource Include="Resources\ラベル貼り付け.jpg" />
@@ -384,6 +386,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\baby7.jpg" />
+    <Resource Include="Resources\Almora.jpg" />
     <Content Include="Resources\Battery.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -403,6 +406,7 @@
     <Content Include="Resources\BGM_Label.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\blue.jpg" />
     <Content Include="Resources\Continue.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -462,7 +466,7 @@
     <COMReference Include="Microsoft.Office.Interop.Excel">
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>1</VersionMajor>
-      <VersionMinor>8</VersionMinor>
+      <VersionMinor>9</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

@@ -56,8 +56,10 @@ namespace 自記温度計Tester
         public static int NewSerial { get; set; }
 
         //完成体試験時に使用（作業者が入力する情報）
-        public static string SerialPwa { get; set; }
         public static string SerialProduct { get; set; }
+        public static string SerialPwa { get; set; }
+        public static string SerialPow { get; set; }
+        public static string SerialBt { get; set; }
 
 
         //リトライ履歴保存用リスト

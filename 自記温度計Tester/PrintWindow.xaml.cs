@@ -34,7 +34,6 @@ namespace 自記温度計Tester
             //試験用パラメータのロード
             State.LoadConfigData();
 
-            InitMainForm();//メインフォーム初期
 
             //this.WindowState = WindowState.Maximized;
         }
@@ -55,11 +54,6 @@ namespace 自記温度計Tester
 
         }
 
-        //フォームのイニシャライズ
-        private void InitMainForm()
-        {
-            State.VmTestStatus.Message = Constants.MessOpecode;
-        }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
