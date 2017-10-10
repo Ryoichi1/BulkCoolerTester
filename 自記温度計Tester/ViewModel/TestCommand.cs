@@ -785,35 +785,36 @@ namespace 自記温度計Tester
                             if (await スイッチチェック.CheckS1Unit()) break;
                             goto case 5000;
 
-                        case 1100:
-                            State.VmTestStatus.DialogMess = "CN9に予備バッテリー接続してください";
-                            dialog = new Dialog(); dialog.ShowDialog();
-                            if (Flags.DialogReturn) break;
-                            goto case 5000;
 
-                        case 1200://製品プログラム書き込み
+                        case 1100://製品プログラム書き込み
                             if (await 書き込み.WriteFw(書き込み.WriteMode.PRODUCT)) break;
                             goto case 5000;
 
-                        case 1300://EEPROMチェック
+                        case 1200://EEPROMチェック
                             if (await TestEEPROM.CheckParameter()) break;
                             goto case 5000;
 
-                        case 1400://コイン電池セット
+                        case 1300://コイン電池セット
                             State.VmTestStatus.DialogMess = "コイン電池をセットしてください";
                             dialog = new Dialog(); dialog.ShowDialog();
                             if (Flags.DialogReturn) break;
                             goto case 5000; ;
 
-                        case 1401://コイン電池電圧チェック
+                        case 1301://コイン電池電圧チェック
                             if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.BT1)) break;
                             goto case 5000;
 
-                        case 1402://RTCチェック
+                        case 1400:
+                            State.VmTestStatus.DialogMess = "CN9に予備バッテリー接続してください";
+                            dialog = new Dialog(); dialog.ShowDialog();
+                            if (Flags.DialogReturn) break;
+                            goto case 5000;
+
+                        case 1500://RTCチェック
                             if (await TestRtc.FinalSetRtc()) break;
                             goto case 5000;
 
-                        case 1500://FROM初期化 + 電源基板SW2(OFF)設定
+                        case 1600://FROM初期化 + 電源基板SW2(OFF)設定
                             if (await TestEEPROM.InitRom()) break;
                             goto case 5000;
 
@@ -836,6 +837,20 @@ namespace 自記温度計Tester
                                 goto Retry;
 
                             }
+
+                            General.PlaySoundLoop(General.soundAlarm);
+                            var YesNoResult = MessageBox.Show("この項目はＮＧですがリトライしますか？", "", MessageBoxButtons.YesNo);
+                            General.StopSound();
+
+                            //何が選択されたか調べる
+                            if (YesNoResult == DialogResult.Yes)
+                            {
+                                RetryCnt = 0;
+                                await Task.Delay(1000);
+                                goto Retry;
+                            }
+
+
                             goto FAIL;//自動リトライ後の作業者への確認はしない
 
 

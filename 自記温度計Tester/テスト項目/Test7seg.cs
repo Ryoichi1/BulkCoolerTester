@@ -488,7 +488,7 @@ namespace 自記温度計Tester
                     }
                 });
 
-                State.VmTestStatus.DialogMess = "7セグが順に点灯していますか？";
+                State.VmTestStatus.DialogMess = "7セグが順に点灯していますか？\r\nLD1 → LD2 → LD3";
                 dialog = new Dialog(); dialog.ShowDialog();
                 FlagLedCheck = true;
 

@@ -489,7 +489,7 @@ namespace 自記温度計Tester
                     }
                 });
 
-                State.VmTestStatus.DialogMess = "LEDが順に点灯していますか？";
+                State.VmTestStatus.DialogMess = "LEDが順に点灯していますか？\r\nLED1→2→3→4→5→6→7";
                 dialog = new Dialog(); dialog.ShowDialog();
                 FlagLedCheck = true;
 

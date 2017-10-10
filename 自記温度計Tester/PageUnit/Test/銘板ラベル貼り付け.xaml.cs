@@ -190,7 +190,7 @@ namespace 自記温度計Tester
                 }
 
                 var filePath = path + State.VmMainWindow.Opecode + ".csv";
-                if (!System.IO.File.Exists(filePath)) return true;
+                if (!System.IO.File.Exists(filePath)) return result = true;
 
                 await Task.Run(() =>
                 {

@@ -374,7 +374,8 @@ namespace 自記温度計Tester
 
                             //ONチェック
                             State.VmTestStatus.Message = L.name.ToString() + "を押してください！！！";
-                            General.PlaySound(General.soundCutin);
+                            General.PlaySound(General.soundNotice);
+                            //General.PlaySound(General.soundCutin);
                             var tm = new GeneralTimer(15000);
                             tm.start();
                             while (true)
@@ -459,7 +460,8 @@ namespace 自記温度計Tester
                         //テストログの更新
                         State.VmTestStatus.TestLog += "\r\nALL S1 2~4ON";
 
-                        General.PlaySound(General.soundCutin);
+                        General.PlaySound(General.soundNotice);
+                        //General.PlaySound(General.soundCutin);
                         State.VmTestStatus.Message = "S1の1~4をONにしてください";
                         ResetViewModel();
                         InitListS1();//テストスペック毎回初期化
@@ -497,7 +499,8 @@ namespace 自記温度計Tester
 
                         //OFFチェック
                         //テストログの更新
-                        General.PlaySound(General.soundCutin);
+                        General.PlaySound(General.soundNotice);
+                        //General.PlaySound(General.soundCutin);
                         State.VmTestStatus.Message = "S1の1~4をOFFにしてください";
                         State.VmTestStatus.TestLog += "\r\nALL OFFチェック";
 
@@ -535,7 +538,8 @@ namespace 自記温度計Tester
                         //テストログの更新
                         State.VmTestStatus.TestLog += "\r\nALL 出荷設定 4番On";
 
-                        General.PlaySound(General.soundCutin);
+                        General.PlaySound(General.soundNotice);
+                        //General.PlaySound(General.soundCutin);
                         if (State.testMode == TEST_MODE.本機)
                         {
                             State.VmTestStatus.Message = "S1の4番だけをONにしてください";
@@ -611,6 +615,7 @@ namespace 自記温度計Tester
                 //入力初期化
                 State.VmTestStatus.TestLog += "\r\n";
 
+                State.VmTestStatus.Message = Constants.MessWait;
                 Thread.Sleep(200);
 
 
