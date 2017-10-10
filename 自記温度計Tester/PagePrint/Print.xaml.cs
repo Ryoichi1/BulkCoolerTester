@@ -361,11 +361,11 @@ namespace 自記温度計Tester
                 SetValue本機(d.s.serialUnit);
                 if (rb_G1.IsChecked == true)
                 {
-                    setup.PrintArea = "A1:F66";
+                    setup.PrintArea = "A1:F69";
                 }
                 else
                 {
-                    setup.PrintArea = "A1:F61";
+                    setup.PrintArea = "A1:F63";
                 }
 
                 oSheet.PrintOutEx();
@@ -411,11 +411,11 @@ namespace 自記温度計Tester
                 SetValue子機(d.s.serialUnit);
                 if (rb_G1.IsChecked == true)
                 {
-                    setup.PrintArea = "A1:F54";
+                    setup.PrintArea = "A1:F53";
                 }
                 else
                 {
-                    setup.PrintArea = "A1:F49";
+                    setup.PrintArea = "A1:F47";
                 }
 
                 oSheet.PrintOutEx();
@@ -475,7 +475,7 @@ namespace 自記温度計Tester
             rng = (Excel.Range)oSheet.Cells[32, 4]; rng.Value = UnitData.th30;//Th30℃
             rng = (Excel.Range)oSheet.Cells[33, 4]; rng.Value = UnitData.th45;//Th45℃
             rng = (Excel.Range)oSheet.Cells[34, 4]; rng.Value = UnitData.th90;//Th90℃
-            rng = (Excel.Range)oSheet.Cells[46, 4]; rng.Value = UnitData.FwSum;//製品ソフトチェックサム
+            rng = (Excel.Range)oSheet.Cells[48, 4]; rng.Value = UnitData.FwSum;//製品ソフトチェックサム
 
         }
 
