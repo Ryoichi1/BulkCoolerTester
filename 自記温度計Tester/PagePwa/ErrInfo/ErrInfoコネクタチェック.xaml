@@ -11,7 +11,7 @@
         <Button x:Name="buttonReturn" Content="テスト画面に戻る" Height="57" Canvas.Left="10" Canvas.Top="10" Width="174" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" FontSize="18" Click="buttonReturn_Click"  />
         <TextBlock Height="30" Canvas.Left="23" TextWrapping="Wrap" Text="NGリスト" Canvas.Top="98" Width="119" Foreground="White" FontSize="20"/>
         <TextBox Height="190" Canvas.Left="23" TextWrapping="Wrap" Text="{Binding NgList}" Canvas.Top="133" Width="141" FontSize="18" Background="{x:Null}" BorderBrush="#FF08BCFF"/>
-        <Image Height="558" Canvas.Left="220" Canvas.Top="19" Width="828" Source="/自記温度計Tester;component/Resources/自記温度計シルク図.jpg" IsEnabled="False"/>
+        <Image Height="558" Canvas.Left="220" Canvas.Top="19" Width="828" Source="/自記温度計Tester;component/Resources/Pic/自記温度計シルク図.jpg" IsEnabled="False"/>
         <Rectangle x:Name="RecCN1" Height="41" Canvas.Left="606" Canvas.Top="528" Width="149" Visibility="{Binding VisCN1}">
             <Rectangle.Fill>
                 <SolidColorBrush Color="#FFF03CBF" Opacity="0.5"/>

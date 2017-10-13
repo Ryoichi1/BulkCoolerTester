@@ -203,16 +203,13 @@ namespace 自記温度計Tester
                         General.PowSupply(true);
                         if (!General.CheckComm()) return false;
 
-                        //1回コマンド送って、データの送受信をしてから100VをOFFすると
-                        //3V系の消費電流が10μくらいになる → 荒井さんから指示
-                        //温度データ取り込み
-                        if (!Target232_BT.SendData("3700ODB,8of000")) return false;
-                        Thread.Sleep(500);
+                        Thread.Sleep(3000);
                         General.PowSupply(false);
 
                         if (!General.multimeter.GetDcCurrent()) return false;
                         if (!General.multimeter.GetDcCurrent()) return false;
-                        var tm = new GeneralTimer(30000);
+
+                        var tm = new GeneralTimer(15000);
                         tm.start();
                         while (true)
                         {

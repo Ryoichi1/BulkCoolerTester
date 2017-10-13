@@ -41,6 +41,14 @@ namespace 自記温度計Tester
 
             RetryCount = 0;
 
+
+            tbProductSerial.Text = "7X";
+            tbPwaSerial.Text = "1740Ne";
+            tbPowSerial.Text = "171000";
+
+            tbBtSerial.Text = Target232_BT.BtID;
+            tbBtSerial.IsReadOnly = true;
+
         }
 
         private void SetLabel()

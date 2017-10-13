@@ -175,8 +175,7 @@ namespace 自記温度計Tester
                 if (!result1) return false;
 
                 //指定時間待って、スリープモードに入ることを確認する
-                State.VmTestStatus.DialogMess = "スリープモードに入りましたか？\r\n※表示が全消灯";
-                dialog = new Dialog(); dialog.ShowDialog();
+                dialog = new Dialog("スリープモードに入りましたか？\r\n※表示が全消灯", Dialog.TEST_NAME.スリープ); dialog.ShowDialog();
 
                 if (!Flags.DialogReturn) return false;
 
@@ -210,8 +209,7 @@ namespace 自記温度計Tester
                 });
                 if (!result2) return false;
 
-                State.VmTestStatus.DialogMess = "スリープモードに入らず、通常動作していますか？";
-                dialog = new Dialog(); dialog.ShowDialog();
+                dialog = new Dialog("スリープモードに入らず、通常動作していますか？", Dialog.TEST_NAME.非スリープ); dialog.ShowDialog();
 
                 if (Flags.DialogReturn)
                 {

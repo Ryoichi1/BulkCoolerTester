@@ -364,91 +364,88 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\本機ラベル.png" />
-    <Resource Include="Resources\名称未設定.png" />
-    <Resource Include="Resources\X_JAPAN.jpg" />
-    <Resource Include="Resources\銘板.png" />
-    <Resource Include="Resources\ラベル貼り付け.jpg" />
-    <Resource Include="Resources\自記温度計シルク図.jpg" />
-    <Resource Include="Resources\baby5.jpg">
+    <Resource Include="Resources\Pic\本機ラベル.png" />
+    <Resource Include="Resources\Pic\ラベル貼り付け.jpg" />
+    <Resource Include="Resources\Pic\自記温度計シルク図.jpg" />
+    <Resource Include="Resources\Pic\baby5.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\baby6.jpg">
+    <Resource Include="Resources\Pic\baby6.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\MS_1.jpg">
+    <Resource Include="Resources\Pic\MS_1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\baby1.jpg">
+    <Resource Include="Resources\Pic\baby1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Content Include="Resources\Alarm.wav">
+    <Content Include="Resources\Mp4\IMG_5192.MP4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\baby7.jpg" />
-    <Resource Include="Resources\Almora.jpg" />
-    <Content Include="Resources\Battery.wav">
+    <Content Include="Resources\Mp4\停電.MP4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\bgm01.wav">
+    <Content Include="Resources\Wav\Alarm.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\baby3.jpg">
+    <Resource Include="Resources\Pic\baby7.jpg" />
+    <Content Include="Resources\Wav\Battery.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Wav\bgm01.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Pic\baby3.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\BRTR_C.png">
+    <Resource Include="Resources\Pic\BRTR_C.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\BRTR_ST.png">
+    <Resource Include="Resources\Pic\BRTR_ST.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Bridge.jpg" />
-    <Content Include="Resources\BGM_Label.wav">
+    <Resource Include="Resources\Pic\Bridge.jpg" />
+    <Content Include="Resources\Wav\BGM_Label.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\blue.jpg" />
-    <Content Include="Resources\Continue.wav">
+    <Content Include="Resources\Wav\Continue.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\bgm02.wav">
+    <Content Include="Resources\Wav\bgm02.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\CutIn.wav">
+    <Content Include="Resources\Wav\CutIn.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\taki.jpg">
+    <Resource Include="Resources\Pic\taki.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\MM-100.jpg" />
-    <Resource Include="Resources\Minato.jpg" />
-    <Content Include="Resources\Totsugeki.wav">
+    <Resource Include="Resources\Pic\MM-100.jpg" />
+    <Content Include="Resources\Wav\Totsugeki.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\PassLong.wav">
+    <Content Include="Resources\Wav\PassLong.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\VisualStudio_32x.png">
+    <Resource Include="Resources\Pic\VisualStudio_32x.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\rain.jpg">
+    <Resource Include="Resources\Pic\baby2.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\baby2.jpg">
+    <Resource Include="Resources\Pic\Azbil_logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Azbil_logo.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Content Include="Resources\Fail.wav">
+    <Content Include="Resources\Wav\Fail.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Kuru.wav">
+    <Content Include="Resources\Wav\Kuru.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Notice.wav">
+    <Content Include="Resources\Wav\Notice.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Pass.wav">
+    <Content Include="Resources\Wav\Pass.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -237,10 +237,13 @@ namespace 自記温度計Tester
 
         public static async Task<bool> CheckTh()
         {
+            const double errForTh2_45 = 0.4;
+            const double errForTh90 = 0.5;
+
             bool allResult = false;
             double temp = 0;
             double stdTemp = 0;
-            double err = 0.5;
+            double err = 0;
             string Spec = "";
 
             try
@@ -251,8 +254,9 @@ namespace 自記温度計Tester
                     {
                         Flags.AddDecision = false;
                         InitList();//テストスペック毎回初期化
+                        ResetViewModel();
 
-                        Target232_BT.ChangeMode(Target232_BT.MODE.PC);
+                        //Target232_BT.ChangeMode(Target232_BT.MODE.PC);
                         //基準抵抗（5℃の抵抗）を接続する
 
                         State.VmTestStatus.TestLog += "\r\n";
@@ -322,6 +326,24 @@ namespace 自記温度計Tester
                                     Spec = "90.0℃";
                                     break;
                             }
+
+                            //完成体検査の場合、デフォルトパラメータが書き込まれているため-0.2℃のバイアスがかかる
+                            if (State.testMode != TEST_MODE.PWA)
+                            {
+                                stdTemp -= 0.2;
+                            }
+
+                            //90℃は規格範囲を少し広げる ※5.0℃をきっちり合わせると、90℃は上限ギリギリになるため
+                            if (L.name == NAME._90)
+                            {
+                                err = errForTh90;
+                            }
+                            else
+                            {
+                                err = errForTh2_45;
+                            }
+
+
                             SetTh(L.name);
                             Thread.Sleep(3000);
 
@@ -423,7 +445,7 @@ namespace 自記温度計Tester
                 await Task.Delay(500);
                 if (!allResult)
                 {
-                    State.VmTestStatus.Spec = "規格値 : " + Spec + "±" + err.ToString("F1") + "℃";
+                    State.VmTestStatus.Spec = "規格値 : " + stdTemp.ToString("F1") + "℃ ± " + err.ToString("F1") + "℃";
                     State.VmTestStatus.MeasValue = "計測値 : " + temp.ToString("F1") + "℃";
                 }
             }

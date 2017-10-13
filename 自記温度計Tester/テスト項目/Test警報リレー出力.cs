@@ -47,8 +47,7 @@ namespace 自記温度計Tester
                 else
                 {
                     Dialog dialog;
-                    State.VmTestStatus.DialogMess = "集乳完了ボタンを長押して\r\n表示が点滅→点灯になるのを確認してください";
-                    dialog = new Dialog(); dialog.ShowDialog();
+                    dialog = new Dialog("集乳完了ボタンを長押して\r\n表示が点滅→点灯になるのを確認してください", Dialog.TEST_NAME.集乳完了); dialog.ShowDialog();
                     if (!Flags.DialogReturn) return false;
                 }
 
@@ -95,8 +94,7 @@ namespace 自記温度計Tester
                 else
                 {
                     Dialog dialog;
-                    State.VmTestStatus.DialogMess = "集乳完了ボタンを長押して\r\n表示が点滅→点灯になるのを確認してください";
-                    dialog = new Dialog(); dialog.ShowDialog();
+                    dialog = new Dialog("集乳完了ボタンを長押して\r\n表示が点滅→点灯になるのを確認してください", Dialog.TEST_NAME.集乳完了); dialog.ShowDialog();
                     if (!Flags.DialogReturn) return false;
                 }
 

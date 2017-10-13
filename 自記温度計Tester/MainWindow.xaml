@@ -9,7 +9,7 @@
         BorderThickness="1"
         ShowTitleBar="False"
         mc:Ignorable="d"
-        Height="496" Width="798.5" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Icon="Resources/VisualStudio_32x.png" HorizontalAlignment="Left" VerticalAlignment="Top" WindowTransitionsEnabled="False" Loaded="metroWindow_Loaded" >
+        Height="496" Width="798.5" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Icon="Resources/Pic/VisualStudio_32x.png" HorizontalAlignment="Left" VerticalAlignment="Top" WindowTransitionsEnabled="False" Loaded="metroWindow_Loaded" >
     <Controls:MetroWindow.Resources>
         <Storyboard x:Key="sbMainWinShow">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(Brush.Opacity)" Storyboard.TargetName="metroWindow">
@@ -121,7 +121,7 @@
         <Label x:Name="labelPwaTest" Content="単体テスト" Height="55" Canvas.Left="19" Canvas.Top="157" Width="177" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="labelPwaTest_MouseLeftButtonDown" Cursor="Hand"/>
         <Label x:Name="label本機" Content="本機(BRTRA-ST)テスト" Height="55" Canvas.Left="19" Canvas.Top="229" Width="405" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label本機_MouseLeftButtonDown" Cursor="Hand"/>
         <Label x:Name="label子機" Content="子機(BRTRA-C)テスト" Height="55" Canvas.Left="19" Canvas.Top="305" Width="381" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label子機_MouseLeftButtonDown" Cursor="Hand"/>
-        <Image x:Name="image" Height="414" Canvas.Left="436" Canvas.Top="62" Width="355" Source="Resources/BRTR_ST.png"/>
+        <Image x:Name="image" Height="414" Canvas.Left="436" Canvas.Top="62" Width="355" Source="Resources/Pic/BRTR_ST.png"/>
         <Label x:Name="labelPrint" Content="成績書印刷" Height="55" Canvas.Left="19" Canvas.Top="380" Width="381" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" Cursor="Hand" MouseLeftButtonDown="labelPrint_MouseLeftButtonDown"/>
 
 

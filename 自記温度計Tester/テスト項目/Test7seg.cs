@@ -426,71 +426,99 @@ namespace 自記温度計Tester
             try
             {
                 Target232_BT.SendData(Data: Constants.OnLD1a, DoAnalysis: false);
-                State.VmTestStatus.DialogMess = "7セグのLD1a点灯していますか？";
-                dialog = new Dialog(); dialog.ShowDialog();
+                dialog = new Dialog("7セグのLD1a点灯していますか？", Dialog.TEST_NAME.LD1a点灯); dialog.ShowDialog();
                 if(!Flags.DialogReturn) return false;
 
+                bool IsTesting = true;
                 Task.Run(() =>
                 {
+                    int wait = 300;
                     while (true)
                     {
-                        if (FlagLedCheck) return;
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD1a, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD1b, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD1c, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD1d, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD1e, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD1f, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD1g, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD1dp, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
 
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD2a, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD2b, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD2c, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD2d, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD2e, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD2f, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD2g, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD2dp, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
 
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD3a, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD3b, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD3c, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD3d, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD3e, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD3f, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD3g, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
+                        if (FlagLedCheck) break;
                         Target232_BT.SendData(Data: Constants.OnLD3dp, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
                     }
+                    IsTesting = false;
                 });
 
-                State.VmTestStatus.DialogMess = "7セグが順に点灯していますか？\r\nLD1 → LD2 → LD3";
-                dialog = new Dialog(); dialog.ShowDialog();
+                dialog = new Dialog("7セグが順に点灯していますか？\r\nLD1 → LD2 → LD3", Dialog.TEST_NAME.LD1_3点灯); dialog.ShowDialog();
                 FlagLedCheck = true;
+                while (IsTesting)
+                {
+                    Thread.Sleep(100);
+                }
 
                 return Flags.DialogReturn;
 

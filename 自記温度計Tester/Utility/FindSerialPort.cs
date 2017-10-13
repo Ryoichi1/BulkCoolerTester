@@ -4,11 +4,19 @@ using System.Management;
 
 namespace 自記温度計Tester
 {
+    public class PortInfo
+    {
+        public string Name;
+        public string ClassGuid;
+        public string DeviceId;
+    }
+
+
     public static class FindSerialPort
     {
-        public static List<string> GetDeviceNames()
+        public static List<PortInfo> GetDeviceNames()
         {
-            var deviceNameList = new List<string>();
+            var deviceNameList = new List<PortInfo>();
             var check = new System.Text.RegularExpressions.Regex("(COM[1-9][0-9]?[0-9]?)");
 
 
@@ -29,40 +37,40 @@ namespace 自記温度計Tester
                 string name = namePropertyValue.ToString();
                 if (check.IsMatch(name))
                 {
-                    deviceNameList.Add(name);
+                    deviceNameList.Add(new PortInfo { Name = name, ClassGuid = manageObj.GetPropertyValue("ClassGuid").ToString(), DeviceId = manageObj.GetPropertyValue("DeviceID").ToString()});
                 }
             }
 
 
-            return new List<string>(deviceNameList.ToList<string>());
+            return deviceNameList;
         }
 
         public static string GetComNo(string ID_NAME)
         {
             //Comポートの取得
             var ComPortList = GetDeviceNames();
-            var buff = ComPortList.FirstOrDefault(a => a.Contains(ID_NAME));//一致する要素がない場合はnullを返す
+            var buff = ComPortList.FirstOrDefault(a => a.Name.Contains(ID_NAME));//一致する要素がない場合はnullを返す
             if (buff == null) return null;
 
-            int i = buff.LastIndexOf("(");
-            int j = buff.LastIndexOf(")");
-            return buff.Substring(i + 1, j - i - 1);
+            int i = buff.Name.LastIndexOf("(");
+            int j = buff.Name.LastIndexOf(")");
+            return buff.Name.Substring(i + 1, j - i - 1);
         }
 
         public static List<string> GetComNoList(string ID_NAME)
         {
             //Comポートの取得
             var ComPortList = GetDeviceNames();
-            var buff = ComPortList.Where(a => a.Contains(ID_NAME));//一致する要素がない場合はnullを返す
+            var buff = ComPortList.Where(a => a.Name.Contains(ID_NAME));//一致する要素がない場合はnullを返す
             if (buff == null) return null;
 
             var list = new List<string>();
 
             foreach (var b in buff)
             {
-                int i = b.LastIndexOf("(");
-                int j = b.LastIndexOf(")");
-                list.Add(b.Substring(i + 1, j - i - 1));
+                int i = b.Name.LastIndexOf("(");
+                int j = b.Name.LastIndexOf(")");
+                list.Add(b.Name.Substring(i + 1, j - i - 1));
             }
 
             return list;

@@ -9,7 +9,7 @@
         BorderThickness="1"
         ShowTitleBar="False"
         mc:Ignorable="d"
-        Height="726" Width="1364" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Closed="MetroWindow_Closed" Closing="MetroWindow_Closing" Icon="Resources/VisualStudio_32x.png" Loaded="MetroWindow_Loaded" >
+        Height="726" Width="1364" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Closed="MetroWindow_Closed" Closing="MetroWindow_Closing" Icon="Resources/Pic/VisualStudio_32x.png" Loaded="MetroWindow_Loaded" >
 
 
 

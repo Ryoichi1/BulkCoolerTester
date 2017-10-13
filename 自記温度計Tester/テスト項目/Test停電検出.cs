@@ -167,8 +167,7 @@ namespace 自記温度計Tester
                     //約5秒後に、LED7だけ点滅、その他は消灯に切り替わる
 
                 });
-                State.VmTestStatus.DialogMess = "LED7が点滅しましたか？";
-                dialog = new Dialog(); dialog.ShowDialog();
+                dialog = new Dialog("停電ランプ（赤）が点滅しましたか？", Dialog.TEST_NAME.停電検出); dialog.ShowDialog();
 
                 return Flags.DialogReturn;
 

@@ -110,8 +110,9 @@ namespace 自記温度計Tester
                 finally
                 {
                     General.SetK15(false);
-                    Thread.Sleep(500);
+                    Thread.Sleep(200);
                     if(powOffSw) General.PowSupply(false);
+                    Thread.Sleep(1000);
                 }
             });
         }

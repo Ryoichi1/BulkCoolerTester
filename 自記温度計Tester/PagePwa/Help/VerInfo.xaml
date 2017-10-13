@@ -21,7 +21,7 @@
         <TextBlock TextWrapping="Wrap" Text="自記温度計 検査システム" FontSize="36" Foreground="White"/>
         <TextBlock Grid.Row="2" TextWrapping="Wrap" 
 		Text="警告:この製品は、著作権に関する法律により保護されています。&#10; この製品の全部または一部を無断で複製したり、無断で複製物を頒布すると、&#10;著作権の侵害になりますのでご注意ください。" Foreground="White" FontSize="14"/>
-        <Image Grid.Row="3" Source="/自記温度計Tester;component/Resources/Azbil_logo.png" HorizontalAlignment="Left" Margin="0,0,0,29" Width="622"/>
+        <Image Grid.Row="3" Source="/自記温度計Tester;component/Resources/Pic/Azbil_logo.png" HorizontalAlignment="Left" Margin="0,0,0,29" Width="622"/>
         <StackPanel Grid.Row="1" Orientation="Vertical">
             <TextBlock x:Name="tbAssemblyVer" TextWrapping="Wrap" Text="アセンブリVer 1.50" FontSize="20" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <TextBlock x:Name="tbParameterVer" TextWrapping="Wrap" Text="パラメータファイルVer 3.0" FontSize="20" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0"/>

@@ -38,46 +38,46 @@ namespace 自記温度計Tester
         private void Pic1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            State.VmMainWindow.Theme = "Resources/blue.jpg";
+            State.VmMainWindow.Theme = "Resources/Pic/MS_1.jpg";
             General.Show();
         }
 
         private void Pic2_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            State.VmMainWindow.Theme = "Resources/MM-100.jpg";
+            State.VmMainWindow.Theme = "Resources/Pic/MM-100.jpg";
             General.Show();
         }
 
         private void Pic3_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            State.VmMainWindow.Theme = "Resources/taki.jpg";
+            State.VmMainWindow.Theme = "Resources/Pic/taki.jpg";
             General.Show();
         }
 
         private void Pic4_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            State.VmMainWindow.Theme = "Resources/baby6.jpg";
+            State.VmMainWindow.Theme = "Resources/Pic/baby6.jpg";
             General.Show();
         }
 
         private void Pic5_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            State.VmMainWindow.Theme = "Resources/baby5.jpg";
+            State.VmMainWindow.Theme = "Resources/Pic/baby5.jpg";
             General.Show();
         }
 
         private void Pic6_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            State.VmMainWindow.Theme = "Resources/baby7.jpg";
+            State.VmMainWindow.Theme = "Resources/Pic/baby7.jpg";
             General.Show();
         }
 
         private void Pic7_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            State.VmMainWindow.Theme = "Resources/baby1.jpg";
+            State.VmMainWindow.Theme = "Resources/Pic/baby1.jpg";
             General.Show();
         }
 

@@ -456,41 +456,40 @@ namespace 自記温度計Tester
             {
                 //最初にLED1が点灯していることを確認する
                 Target232_BT.SendData(Data: Constants.OnLed1, DoAnalysis: false);
-                State.VmTestStatus.DialogMess = "LED1が点灯していますか？";
-                dialog = new Dialog(); dialog.ShowDialog();
+                dialog = new Dialog("真空ポンプ P（緑）が点灯していますか？", Dialog.TEST_NAME.LED1点灯); dialog.ShowDialog();
 
                 if(!Flags.DialogReturn) return false;
 
                 Task.Run(() =>
                 {
+                    int wait = 300;
                     while (true)
                     {
                         if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed1, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
                         if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed2, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
                         if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed3, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
                         if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed4, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
                         if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed5, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
                         if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed6, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
                         if (FlagLedCheck) return;
                         Target232_BT.SendData(Data: Constants.OnLed7, DoAnalysis: false);
-                        Thread.Sleep(500);
+                        Thread.Sleep(wait);
                     }
                 });
 
-                State.VmTestStatus.DialogMess = "LEDが順に点灯していますか？\r\nLED1→2→3→4→5→6→7";
-                dialog = new Dialog(); dialog.ShowDialog();
+                dialog = new Dialog( "LEDが上→下へ順に点灯していますか？", Dialog.TEST_NAME.LED点灯); dialog.ShowDialog();
                 FlagLedCheck = true;
 
                 Thread.Sleep(500);

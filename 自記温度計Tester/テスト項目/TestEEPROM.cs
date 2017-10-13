@@ -44,8 +44,7 @@ namespace 自記温度計Tester
                 else
                 {
                     Dialog dialog;
-                    State.VmTestStatus.DialogMess = "集乳完了ボタンを長押して、\r\n表示が点滅→点灯になるのを確認してください";
-                    dialog = new Dialog(); dialog.ShowDialog();
+                    dialog = new Dialog("集乳完了ボタンを長押して、\r\n表示が点滅→点灯になるのを確認してください", Dialog.TEST_NAME.集乳完了); dialog.ShowDialog();
                     if (!Flags.DialogReturn) return false;
                 }
 
@@ -165,10 +164,11 @@ namespace 自記温度計Tester
             Flags.AddDecision = false;
             try
             {
-                //現在時刻を読み出し、秒が00～05になるまで待つ（毎分59秒の時点でEEPROMにデータを保存してしまうため、00秒なったらFROMの初期化を開始して、余裕持って40秒以内に電源をOFFする）
-                var tm = new GeneralTimer(70000);
+                //現在時刻を読み出し、秒が00～30であれば次のステップに進む（毎分59秒の時点でEEPROMにデータを保存してしまうため、00～30秒の間でFROMの初期化を開始して、余裕持って20秒以内に電源をOFFする）
+                var tm = new GeneralTimer(40000);
                 tm.start();
                 result = false;
+                int targetS = 0;
                 await Task.Run(() =>
                 {
                     while (true)
@@ -184,8 +184,8 @@ namespace 自記温度計Tester
                         //部分文字列の開始位置に「文字列の長さ－部分文字列の長さ」を設定します。
                         //"yy/MM/dd,HH:mm:ss" 17文字を抽出する
                         var TargetTime = Target232_BT.RecieveData.Substring(Target232_BT.RecieveData.Length - 17);
-                        int targetS = Int32.Parse(TargetTime.Substring(15, 2));
-                        if (targetS >= 0 && targetS <= 5)
+                        targetS = Int32.Parse(TargetTime.Substring(15, 2));
+                        if (targetS >= 0 && targetS <= 30)
                         {
                             result = true;
                             return;
@@ -196,7 +196,8 @@ namespace 自記温度計Tester
                 if (!result) return false;
 
                 tm.stop();
-                tm.start(40000);
+                int limitTime = (59 - targetS - 5) * 1000; 
+                tm.start(limitTime);//余裕もって5秒前に初期化作業を終えるようにする
                 result = false;
                 return await Task<bool>.Run(() =>
                 {
@@ -270,6 +271,7 @@ namespace 自記温度計Tester
             }
             finally
             {
+                State.VmTestStatus.Message = Constants.MessWait;
                 if (!result)
                 {
                     State.VmTestStatus.TestLog += "---FAIL\r\n";//テストログの更新

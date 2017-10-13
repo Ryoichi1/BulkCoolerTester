@@ -40,7 +40,7 @@ namespace 自記温度計Tester
         }
 
 
-        private static bool SetTime()
+        public static bool SetTime()
         {
             try
             {

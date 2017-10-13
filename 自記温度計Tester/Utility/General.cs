@@ -48,19 +48,19 @@ namespace 自記温度計Tester
         static General()
         {
             //オーディオリソースを取り出す
-            General.soundPass = new SoundPlayer(@"Resources\Pass.wav");
-            General.soundPassLong = new SoundPlayer(@"Resources\PassLong.wav");
-            General.soundFail = new SoundPlayer(@"Resources\Fail.wav");
-            General.soundAlarm = new SoundPlayer(@"Resources\Alarm.wav");
-            General.soundKuru = new SoundPlayer(@"Resources\Kuru.wav");
-            General.soundCutin = new SoundPlayer(@"Resources\CutIn.wav");
-            General.soundContinue = new SoundPlayer(@"Resources\Continue.wav");
-            General.soundBgm1 = new SoundPlayer(@"Resources\bgm01.wav");
-            General.soundBgm2 = new SoundPlayer(@"Resources\bgm02.wav");
-            General.soundBattery = new SoundPlayer(@"Resources\battery.wav");
-            General.soundTotsugeki = new SoundPlayer(@"Resources\Totsugeki.wav");
-            General.soundSerialLabel = new SoundPlayer(@"Resources\BGM_Label.wav");
-            General.soundNotice = new SoundPlayer(@"Resources\Notice.wav");
+            General.soundPass = new SoundPlayer(@"Resources\Wav\Pass.wav");
+            General.soundPassLong = new SoundPlayer(@"Resources\Wav\PassLong.wav");
+            General.soundFail = new SoundPlayer(@"Resources\Wav\Fail.wav");
+            General.soundAlarm = new SoundPlayer(@"Resources\Wav\Alarm.wav");
+            General.soundKuru = new SoundPlayer(@"Resources\Wav\Kuru.wav");
+            General.soundCutin = new SoundPlayer(@"Resources\Wav\CutIn.wav");
+            General.soundContinue = new SoundPlayer(@"Resources\Wav\Continue.wav");
+            General.soundBgm1 = new SoundPlayer(@"Resources\Wav\bgm01.wav");
+            General.soundBgm2 = new SoundPlayer(@"Resources\Wav\bgm02.wav");
+            General.soundBattery = new SoundPlayer(@"Resources\Wav\battery.wav");
+            General.soundTotsugeki = new SoundPlayer(@"Resources\Wav\Totsugeki.wav");
+            General.soundSerialLabel = new SoundPlayer(@"Resources\Wav\BGM_Label.wav");
+            General.soundNotice = new SoundPlayer(@"Resources\Wav\Notice.wav");
 
             OffBrush.Color = Colors.Transparent;
 

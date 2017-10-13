@@ -41,15 +41,15 @@ namespace 自記温度計Tester
             };
         }
 
-        public void start(int NewTime = 0)
+        public void start(int NewTime_msec = 0)
         {
-            if (NewTime == 0)
+            if (NewTime_msec == 0)
             {
                 TmTimeOut.Interval = Time;
             }
             else
             {
-                TmTimeOut.Interval = NewTime;
+                TmTimeOut.Interval = NewTime_msec;
             }
 
             TmTimeOut.Stop();

@@ -361,11 +361,11 @@ namespace 自記温度計Tester
                 SetValue本機(d.s.serialUnit);
                 if (rb_G1.IsChecked == true)
                 {
-                    setup.PrintArea = "A1:F69";
+                    setup.PrintArea = "A1:F70";
                 }
                 else
                 {
-                    setup.PrintArea = "A1:F63";
+                    setup.PrintArea = "A1:F64";
                 }
 
                 oSheet.PrintOutEx();
@@ -411,11 +411,11 @@ namespace 自記温度計Tester
                 SetValue子機(d.s.serialUnit);
                 if (rb_G1.IsChecked == true)
                 {
-                    setup.PrintArea = "A1:F53";
+                    setup.PrintArea = "A1:F54";
                 }
                 else
                 {
-                    setup.PrintArea = "A1:F47";
+                    setup.PrintArea = "A1:F48";
                 }
 
                 oSheet.PrintOutEx();
@@ -586,7 +586,7 @@ namespace 自記温度計Tester
                 if (System.IO.File.Exists(dataFilePath仮1))
                 {
                     model = MODEL.本機;
-                    State.VmTestStatus.Theme = "Resources/BRTR_ST.png";
+                    State.VmTestStatus.Theme = "Resources/Pic/BRTR_ST.png";
                     tbModel.Text = "BRTR_ST(本機)";
                     Showpic(true);
                     dataFilePath完成体 = dataFilePath仮1;
@@ -596,7 +596,7 @@ namespace 自記温度計Tester
                 if (System.IO.File.Exists(dataFilePath仮2))
                 {
                     model = MODEL.子機;
-                    State.VmTestStatus.Theme = "Resources/BRTR_C.png";
+                    State.VmTestStatus.Theme = "Resources/Pic/BRTR_C.png";
                     tbModel.Text = "BRTR_C(子機) 最終検査";
                     Showpic(true);
                     dataFilePath完成体 = dataFilePath仮2;
@@ -726,5 +726,6 @@ namespace 自記温度計Tester
         {
             KillExcel();
         }
+
     }
 }

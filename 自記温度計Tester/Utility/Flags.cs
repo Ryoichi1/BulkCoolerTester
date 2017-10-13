@@ -169,7 +169,7 @@ namespace 自記温度計Tester
                 _SetOperator = value;
                 if (value)
                 {
-                    if (State.VmMainWindow.Operator == "畔上")
+                    if (State.VmMainWindow.Operator == "畔上" || State.VmMainWindow.Operator == "畔上2")
                     {
                         State.VmTestStatus.UnitTestEnable = true;
                     }

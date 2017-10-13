@@ -351,6 +351,11 @@ namespace 自記温度計Tester
                             goto case 5000;
 
                         case 800://サーミスタ調整 5℃
+                            if (State.VmMainWindow.Operator == "畔上2")
+                            {
+                                General.PlaySound(General.soundCutin);
+                                break;
+                            }
                             if (await TestTH.AdjTh5()) break;
                             goto case 5000;
 
@@ -732,6 +737,7 @@ namespace 自記温度計Tester
                             goto case 5000;
 
                         case 400://サーミスタチェック
+                            await Task.Delay(1000);
                             if (await TestTH.CheckTh()) break;
                             goto case 5000;
 
@@ -785,29 +791,21 @@ namespace 自記温度計Tester
                             if (await スイッチチェック.CheckS1Unit()) break;
                             goto case 5000;
 
-
-                        case 1100://製品プログラム書き込み
-                            if (await 書き込み.WriteFw(書き込み.WriteMode.PRODUCT)) break;
-                            goto case 5000;
-
-                        case 1200://EEPROMチェック
-                            if (await TestEEPROM.CheckParameter()) break;
-                            goto case 5000;
-
-                        case 1300://コイン電池セット
-                            State.VmTestStatus.DialogMess = "コイン電池をセットしてください";
-                            dialog = new Dialog(); dialog.ShowDialog();
-                            if (Flags.DialogReturn) break;
-                            goto case 5000; ;
-
-                        case 1301://コイン電池電圧チェック
+                        case 1100://コイン電池電圧チェック
                             if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.BT1)) break;
                             goto case 5000;
 
-                        case 1400:
-                            State.VmTestStatus.DialogMess = "CN9に予備バッテリー接続してください";
-                            dialog = new Dialog(); dialog.ShowDialog();
+                        case 1200:
+                            dialog = new Dialog("CN9に予備バッテリー接続してください", Dialog.TEST_NAME.予備バッテリー); dialog.ShowDialog();
                             if (Flags.DialogReturn) break;
+                            goto case 5000;
+
+                        case 1300://製品プログラム書き込み
+                            if (await 書き込み.WriteFw(書き込み.WriteMode.PRODUCT)) break;
+                            goto case 5000;
+
+                        case 1400://EEPROMチェック
+                            if (await TestEEPROM.CheckParameter()) break;
                             goto case 5000;
 
                         case 1500://RTCチェック

@@ -61,32 +61,59 @@ namespace 自記温度計Tester
             }
         }
 
+
+        public static string BtComNo = "";
+        public static string BtID { get; set; }
+
+
         public static bool InitPortBt()
         {
+            BtID = "";
             try
             {
                 //Comポートの取得
-                var comNoList = FindSerialPort.GetComNoList(ComNameBt);
+                var comNoList = FindSerialPort.GetDeviceNames();
                 if (comNoList == null) return false;
 
-                var numList = comNoList.Select(c => Int32.Parse(c.Replace("COM", "")));//リストの中身は"COMXX,COMXX"なので、数値のリストに変換する
-                var minNum = numList.Min();//デバイスマネージャで確認するとBluetoothデバイスが２つ存在するが、若いCom番号の方が通信できるポートになります
+                var BluetoothList = comNoList.Where(c => c.Name.Contains("Bluetooth"));//リストの中身は"COMXX,COMXX"なので、数値のリストに変換する
+                var BtPort = BluetoothList.Where(b => b.DeviceId.Split('&')[4].Split('_')[0].Substring(6) != "000000");
 
-
-                if (!portBt.IsOpen)
+                var BtList = BtPort.Select(b =>
                 {
-                    //シリアルポート設定
-                    portBt.PortName = "COM" + minNum.ToString();
-                    portBt.BaudRate = 115200;
-                    portBt.DataBits = 8;
-                    portBt.Parity = System.IO.Ports.Parity.None;
-                    portBt.StopBits = System.IO.Ports.StopBits.One;
-                    portBt.NewLine = (char)0x03 + "\r\n";//コマンドの例 [STX]TH_HARD+1[ETX][CR][LF]
-                    portBt.ReadTimeout = 3000;
-                    //ポートオープン
-                    portBt.Open();
+                    int i = b.Name.LastIndexOf("(");
+                    int j = b.Name.LastIndexOf(")");
+                    var comNo = b.Name.Substring(i + 1, j - i - 1);
+                    var ID = b.DeviceId.Split('&')[4].Split('_')[0].Substring(6);
+                    return new { comNo, ID };
+                });
+
+                
+                foreach (var p in BtList)
+                {
+                    if (portBt.IsOpen) portBt.Close();
+                    try
+                    {
+                        //シリアルポート設定
+                        portBt.PortName = p.comNo;
+                        portBt.BaudRate = 115200;
+                        portBt.DataBits = 8;
+                        portBt.Parity = System.IO.Ports.Parity.None;
+                        portBt.StopBits = System.IO.Ports.StopBits.One;
+                        portBt.NewLine = (char)0x03 + "\r\n";//コマンドの例 [STX]TH_HARD+1[ETX][CR][LF]
+                        portBt.ReadTimeout = 1000;
+                        //ポートオープン
+                        portBt.Open();
+                        BtComNo = p.comNo;
+                        BtID = p.ID;
+                        return true;
+                    }
+                    catch
+                    {
+
+                    }
                 }
-                return true;
+
+                return false;
 
             }
             catch
