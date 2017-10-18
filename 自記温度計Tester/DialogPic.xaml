@@ -1,0 +1,40 @@
+﻿<Controls:MetroWindow x:Name="metroWindow" x:Class="自記温度計Tester.DialogPic"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:自記温度計Tester"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="2"
+        ShowTitleBar="False"
+        mc:Ignorable="d"
+        Height="532.5" Width="703.167" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Icon="Resources/Pic/VisualStudio_32x.png" BorderBrush="#FF0A89F1" Padding="0" Margin="0,0,700,0" WindowTransitionsEnabled="False" Loaded="metroWindow_Loaded" ShowCloseButton="False" ShowMinButton="False" ShowMaxRestoreButton="False" >
+    <Controls:MetroWindow.Resources>
+        <Storyboard x:Key="sbDialogShow">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="metroWindow">
+                <EasingThicknessKeyFrame KeyTime="0:0:0.3" Value="0">
+                    <EasingThicknessKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseOut"/>
+                    </EasingThicknessKeyFrame.EasingFunction>
+                </EasingThicknessKeyFrame>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+    </Controls:MetroWindow.Resources>
+    <Controls:MetroWindow.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource sbDialogShow}"/>
+        </EventTrigger>
+    </Controls:MetroWindow.Triggers>
+
+
+
+    <Canvas x:Name="MainBack" Background="#FFE2E1C7">
+        <Label x:Name="labelMessage"  Height="76" Canvas.Left="22" Canvas.Top="390" Width="653" Foreground="#FF0A89F1" FontSize="24"/>
+        <Button x:Name="ButtonOk" Content="OK" Controls:ControlsHelper.ContentCharacterCasing="Normal" Style="{DynamicResource SquareButtonStyle}" Height="42" Canvas.Top="475" Width="140" FontSize="24" Foreground="#FF0A89F1" BorderBrush="#FF0A89F1" Background="{x:Null}" Canvas.Left="23" FontFamily="Meiryo UI" FontWeight="Normal" BorderThickness="1" Click="ButtonOk_Click" GotFocus="ButtonOk_GotFocus" TabIndex="1" LostFocus="ButtonOk_LostFocus" MouseEnter="ButtonOk_MouseEnter" MouseLeave="ButtonOk_MouseLeave"/>
+        <Button x:Name="ButtonCancel" Content="CANCEL" Controls:ControlsHelper.ContentCharacterCasing="Normal" Style="{DynamicResource SquareButtonStyle}" Height="42" Canvas.Top="475" Width="138" FontSize="24" Foreground="#FF0A89F1" BorderBrush="#FF0A89F1" Background="{x:Null}" Canvas.Left="190" FontFamily="Meiryo UI" FontWeight="Normal" BorderThickness="1" Click="ButtonCancel_Click" GotFocus="ButtonCancel_GotFocus" TabIndex="2" LostFocus="ButtonCancel_LostFocus" MouseEnter="ButtonCancel_MouseEnter" MouseLeave="ButtonCancel_MouseLeave"/>
+        <Image x:Name="imagePic" Height="360" Canvas.Left="22" Canvas.Top="24" Width="640"/>
+
+    </Canvas>
+
+</Controls:MetroWindow>

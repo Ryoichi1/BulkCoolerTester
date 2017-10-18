@@ -149,7 +149,7 @@ namespace 自記温度計Tester
         public static async Task<bool> CheckBattLowUnit()
         {
             bool result = false;
-            Dialog dialog;
+            DialogMp4 dialog;
 
             double TimeOnToSleep = 0;//TODO: スリープ突入までの時間計測するか？？？？
 
@@ -175,7 +175,7 @@ namespace 自記温度計Tester
                 if (!result1) return false;
 
                 //指定時間待って、スリープモードに入ることを確認する
-                dialog = new Dialog("スリープモードに入りましたか？\r\n※表示が全消灯", Dialog.TEST_NAME.スリープ); dialog.ShowDialog();
+                dialog = new DialogMp4("スリープモードに入りましたか？\r\n※表示が全消灯", DialogMp4.TEST_NAME.スリープ); dialog.ShowDialog();
 
                 if (!Flags.DialogReturn) return false;
 
@@ -209,7 +209,7 @@ namespace 自記温度計Tester
                 });
                 if (!result2) return false;
 
-                dialog = new Dialog("スリープモードに入らず、通常動作していますか？", Dialog.TEST_NAME.非スリープ); dialog.ShowDialog();
+                dialog = new DialogMp4("スリープモードに入らず、通常動作していますか？", DialogMp4.TEST_NAME.非スリープ); dialog.ShowDialog();
 
                 if (Flags.DialogReturn)
                 {

@@ -447,7 +447,8 @@ namespace 自記温度計Tester
 
         public static bool CheckLumUnit()
         {
-            Dialog dialog;
+            DialogPic dialogPic;
+            DialogMp4 dialogMp4;
 
             //電源投入して、RS232C通信をPCモードにしてからメソッドを呼び出すこと
             bool FlagLedCheck = false;
@@ -456,7 +457,7 @@ namespace 自記温度計Tester
             {
                 //最初にLED1が点灯していることを確認する
                 Target232_BT.SendData(Data: Constants.OnLed1, DoAnalysis: false);
-                dialog = new Dialog("真空ポンプ P（緑）が点灯していますか？", Dialog.TEST_NAME.LED1点灯); dialog.ShowDialog();
+                dialogPic = new DialogPic("真空ポンプ P（緑）が点灯していますか？", DialogPic.TEST_NAME.LED1点灯); dialogPic.ShowDialog();
 
                 if(!Flags.DialogReturn) return false;
 
@@ -489,7 +490,7 @@ namespace 自記温度計Tester
                     }
                 });
 
-                dialog = new Dialog( "LEDが上→下へ順に点灯していますか？", Dialog.TEST_NAME.LED点灯); dialog.ShowDialog();
+                dialogMp4 = new DialogMp4( "LEDが上→下へ順に点灯していますか？", DialogMp4.TEST_NAME.LED点灯); dialogMp4.ShowDialog();
                 FlagLedCheck = true;
 
                 Thread.Sleep(500);

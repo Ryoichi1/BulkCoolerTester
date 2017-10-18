@@ -619,7 +619,7 @@ namespace 自記温度計Tester
         public async Task TestUnit()
         {
 
-            Dialog dialog;
+            DialogPic dialogPic;
             Flags.Testing = true;
 
             General.SetMetalMode();
@@ -796,7 +796,7 @@ namespace 自記温度計Tester
                             goto case 5000;
 
                         case 1200:
-                            dialog = new Dialog("CN9に予備バッテリー接続してください", Dialog.TEST_NAME.予備バッテリー); dialog.ShowDialog();
+                            dialogPic = new DialogPic("CN9に予備バッテリー接続してください", DialogPic.TEST_NAME.予備バッテリー); dialogPic.ShowDialog();
                             if (Flags.DialogReturn) break;
                             goto case 5000;
 
@@ -888,16 +888,9 @@ namespace 自記温度計Tester
                 State.VmTestStatus.StartButtonEnable = true;
                 State.VmTestStatus.Message = Constants.MessRemove;
 
-                //通しで試験が合格したときの処理です(検査データを保存して、シリアルナンバーをインクリメントする)
+                //通しで試験が合格したときの処理です(シリアルナンバーをインクリメントする) 検査データの保存は、銘板ラベル貼り付けフォームにて行う
                 if (State.VmTestStatus.CheckUnitTest != true) //null or False アプリ立ち上げ時はnullになっている！
                 {
-                    //if (!General.SaveTestData())
-                    //{
-                    //    FailStepNo = 5000;
-                    //    FailTitle = "検査データ保存";
-                    //    goto FAIL_DATA_SAVE;
-                    //}
-
                     //当日試験合格数をインクリメント ビューモデルはまだ更新しない
                     if (State.testMode == TEST_MODE.本機)
                     {

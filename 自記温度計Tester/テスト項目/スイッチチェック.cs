@@ -372,9 +372,33 @@ namespace 自記温度計Tester
                             //テストログの更新
                             State.VmTestStatus.TestLog += "\r\n" + L.name.ToString() + " ONチェック";
 
+                            var swName = "";
                             //ONチェック
-                            State.VmTestStatus.Message = L.name.ToString() + "を押してください！！！";
-                            General.PlaySound(General.soundNotice);
+                            switch (L.name)
+                            {
+                                case NAME_SW14.SW1:
+                                    swName = "集乳完了スイッチ";
+                                    break;
+
+                                case NAME_SW14.SW2:
+                                    swName = "積算乳温スイッチ";
+                                    break;
+
+                                case NAME_SW14.SW3:
+                                    swName = "⇩スイッチ";
+                                    break;
+
+                                case NAME_SW14.SW4:
+                                    swName = "CPU基板のSW4";
+                                    break;
+
+                            }
+
+
+
+
+                            State.VmTestStatus.Message = swName + "を連打しろ！！！";
+                            General.PlaySound(General.soundCutin);
                             //General.PlaySound(General.soundCutin);
                             var tm = new GeneralTimer(15000);
                             tm.start();

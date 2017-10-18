@@ -43,8 +43,8 @@ namespace 自記温度計Tester
                 }
                 else
                 {
-                    Dialog dialog;
-                    dialog = new Dialog("集乳完了ボタンを長押して、\r\n表示が点滅→点灯になるのを確認してください", Dialog.TEST_NAME.集乳完了); dialog.ShowDialog();
+                    DialogMp4 dialog;
+                    dialog = new DialogMp4("集乳完了ボタンを長押して、\r\n表示が点滅→点灯になるのを確認してください", DialogMp4.TEST_NAME.集乳完了); dialog.ShowDialog();
                     if (!Flags.DialogReturn) return false;
                 }
 

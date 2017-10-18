@@ -133,8 +133,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Dialog.xaml.cs">
-      <DependentUpon>Dialog.xaml</DependentUpon>
+    <Compile Include="DialogPic.xaml.cs">
+      <DependentUpon>DialogPic.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageUnit\Config\Conf.xaml.cs">
       <DependentUpon>Conf.xaml</DependentUpon>
@@ -235,8 +235,11 @@
     <Compile Include="ViewModel\ViewModelTestStatus.cs" />
     <Compile Include="テスト項目\コネクタチェック.cs" />
     <Compile Include="検査規格\Configuration.cs" />
+    <Compile Include="DialogMp4.xaml.cs">
+      <DependentUpon>DialogMp4.xaml</DependentUpon>
+    </Compile>
     <Compile Include="検査規格\TestSpec.cs" />
-    <Page Include="Dialog.xaml">
+    <Page Include="DialogPic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -332,6 +335,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DialogMp4.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -379,12 +386,33 @@
     <Resource Include="Resources\Pic\baby1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Content Include="Resources\Mp4\IMG_5192.MP4">
+    <Content Include="Resources\Mp4\LD1_3点灯.MP4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mp4\LED点灯.MP4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mp4\スリープ.MP4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Mp4\停電.MP4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Mp4\集乳.MP4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mp4\非スリープ.MP4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Pic\LD1a点灯.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Pic\LED1点灯.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Pic\予備バッテリー.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\Wav\Alarm.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -33,6 +33,7 @@ namespace 自記温度計Tester
         public static SoundPlayer soundNotice = null;
 
 
+        public static SolidColorBrush DialogOnBrush = new SolidColorBrush();
         public static SolidColorBrush OnBrush = new SolidColorBrush();
         public static SolidColorBrush OffBrush = new SolidColorBrush();
         public static SolidColorBrush NgBrush = new SolidColorBrush();
@@ -63,6 +64,9 @@ namespace 自記温度計Tester
             General.soundNotice = new SoundPlayer(@"Resources\Wav\Notice.wav");
 
             OffBrush.Color = Colors.Transparent;
+
+            DialogOnBrush.Color = Colors.DodgerBlue;
+            DialogOnBrush.Opacity = 0.6;
 
             OnBrush.Color = Colors.DodgerBlue;
             OnBrush.Opacity = 0.4;

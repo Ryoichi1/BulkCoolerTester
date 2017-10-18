@@ -419,14 +419,15 @@ namespace 自記温度計Tester
 
         public static bool CheckLumUnit()
         {
-            Dialog dialog;
+            DialogPic dialogPic;
+            DialogMp4 dialogMp4;
             //電源投入して、RS232C通信をPCモードにしてからメソッドを呼び出すこと
             bool FlagLedCheck = false;
 
             try
             {
                 Target232_BT.SendData(Data: Constants.OnLD1a, DoAnalysis: false);
-                dialog = new Dialog("7セグのLD1a点灯していますか？", Dialog.TEST_NAME.LD1a点灯); dialog.ShowDialog();
+                dialogPic = new DialogPic("7セグのLD1a点灯していますか？", DialogPic.TEST_NAME.LD1a点灯); dialogPic.ShowDialog();
                 if(!Flags.DialogReturn) return false;
 
                 bool IsTesting = true;
@@ -513,7 +514,7 @@ namespace 自記温度計Tester
                     IsTesting = false;
                 });
 
-                dialog = new Dialog("7セグが順に点灯していますか？\r\nLD1 → LD2 → LD3", Dialog.TEST_NAME.LD1_3点灯); dialog.ShowDialog();
+                dialogMp4 = new DialogMp4("7セグが順に点灯していますか？\r\nLD1 → LD2 → LD3", DialogMp4.TEST_NAME.LD1_3点灯); dialogMp4.ShowDialog();
                 FlagLedCheck = true;
                 while (IsTesting)
                 {

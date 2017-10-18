@@ -146,7 +146,7 @@ namespace 自記温度計Tester
 
         public static async Task<bool> Check停電検出Unit()
         {
-            Dialog dialog;
+            DialogMp4 dialog;
 
             try
             {
@@ -167,7 +167,7 @@ namespace 自記温度計Tester
                     //約5秒後に、LED7だけ点滅、その他は消灯に切り替わる
 
                 });
-                dialog = new Dialog("停電ランプ（赤）が点滅しましたか？", Dialog.TEST_NAME.停電検出); dialog.ShowDialog();
+                dialog = new DialogMp4("停電ランプ（赤）が点滅しましたか？", DialogMp4.TEST_NAME.停電検出); dialog.ShowDialog();
 
                 return Flags.DialogReturn;
 
