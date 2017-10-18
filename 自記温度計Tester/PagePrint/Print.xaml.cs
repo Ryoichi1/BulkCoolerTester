@@ -455,27 +455,27 @@ namespace 自記温度計Tester
             rng = (Excel.Range)oSheet.Cells[8, 2]; rng.Value = UnitData.SerialBt;//Btシリアル
             rng = (Excel.Range)oSheet.Cells[9, 2]; rng.Value = UnitData.PassedTime;//試験合格時刻
 
-            rng = (Excel.Range)oSheet.Cells[13, 4]; rng.Value = PwaData.curr3v;//消費電流3V系
-            rng = (Excel.Range)oSheet.Cells[14, 4]; rng.Value = PwaData.curr6v;//消費電流6V系
-            rng = (Excel.Range)oSheet.Cells[15, 4]; rng.Value = PwaData.vol5v;//電源電圧5V
-            rng = (Excel.Range)oSheet.Cells[16, 4]; rng.Value = PwaData.vol33v;//電源電圧3.3V
-            rng = (Excel.Range)oSheet.Cells[17, 4]; rng.Value = UnitData.volCn3;//CN3
-            rng = (Excel.Range)oSheet.Cells[18, 4]; rng.Value = UnitData.volCn9;//CN9
-            rng = (Excel.Range)oSheet.Cells[19, 4]; rng.Value = UnitData.volBt;//コイン電池電圧
+            rng = (Excel.Range)oSheet.Cells[14, 4]; rng.Value = PwaData.curr3v;//消費電流3V系
+            rng = (Excel.Range)oSheet.Cells[15, 4]; rng.Value = PwaData.curr6v;//消費電流6V系
+            rng = (Excel.Range)oSheet.Cells[16, 4]; rng.Value = PwaData.vol5v;//電源電圧5V
+            rng = (Excel.Range)oSheet.Cells[17, 4]; rng.Value = PwaData.vol33v;//電源電圧3.3V
+            rng = (Excel.Range)oSheet.Cells[18, 4]; rng.Value = UnitData.volCn3;//CN3
+            rng = (Excel.Range)oSheet.Cells[19, 4]; rng.Value = UnitData.volCn9;//CN9
+            rng = (Excel.Range)oSheet.Cells[20, 4]; rng.Value = UnitData.volBt;//コイン電池電圧
 
-            rng = (Excel.Range)oSheet.Cells[23, 4]; rng.Value = UnitData.th2;//Th2℃
-            rng = (Excel.Range)oSheet.Cells[24, 4]; rng.Value = UnitData.th3;//Th3℃
-            rng = (Excel.Range)oSheet.Cells[25, 4]; rng.Value = UnitData.th4;//Th4℃
-            rng = (Excel.Range)oSheet.Cells[26, 4]; rng.Value = UnitData.th5;//Th5℃
-            rng = (Excel.Range)oSheet.Cells[27, 4]; rng.Value = UnitData.th6;//Th6℃
-            rng = (Excel.Range)oSheet.Cells[28, 4]; rng.Value = UnitData.th7;//Th7℃
-            rng = (Excel.Range)oSheet.Cells[29, 4]; rng.Value = UnitData.th8;//Th8℃
-            rng = (Excel.Range)oSheet.Cells[30, 4]; rng.Value = UnitData.th10;//Th10℃
-            rng = (Excel.Range)oSheet.Cells[31, 4]; rng.Value = UnitData.th20;//Th20℃
-            rng = (Excel.Range)oSheet.Cells[32, 4]; rng.Value = UnitData.th30;//Th30℃
-            rng = (Excel.Range)oSheet.Cells[33, 4]; rng.Value = UnitData.th45;//Th45℃
-            rng = (Excel.Range)oSheet.Cells[34, 4]; rng.Value = UnitData.th90;//Th90℃
-            rng = (Excel.Range)oSheet.Cells[48, 4]; rng.Value = UnitData.FwSum;//製品ソフトチェックサム
+            rng = (Excel.Range)oSheet.Cells[25, 4]; rng.Value = UnitData.th2;//Th2℃
+            rng = (Excel.Range)oSheet.Cells[26, 4]; rng.Value = UnitData.th3;//Th3℃
+            rng = (Excel.Range)oSheet.Cells[27, 4]; rng.Value = UnitData.th4;//Th4℃
+            rng = (Excel.Range)oSheet.Cells[28, 4]; rng.Value = UnitData.th5;//Th5℃
+            rng = (Excel.Range)oSheet.Cells[29, 4]; rng.Value = UnitData.th6;//Th6℃
+            rng = (Excel.Range)oSheet.Cells[30, 4]; rng.Value = UnitData.th7;//Th7℃
+            rng = (Excel.Range)oSheet.Cells[31, 4]; rng.Value = UnitData.th8;//Th8℃
+            rng = (Excel.Range)oSheet.Cells[32, 4]; rng.Value = UnitData.th10;//Th10℃
+            rng = (Excel.Range)oSheet.Cells[33, 4]; rng.Value = UnitData.th20;//Th20℃
+            rng = (Excel.Range)oSheet.Cells[34, 4]; rng.Value = UnitData.th30;//Th30℃
+            rng = (Excel.Range)oSheet.Cells[35, 4]; rng.Value = UnitData.th45;//Th45℃
+            rng = (Excel.Range)oSheet.Cells[36, 4]; rng.Value = UnitData.th90;//Th90℃
+            rng = (Excel.Range)oSheet.Cells[50, 4]; rng.Value = UnitData.FwSum;//製品ソフトチェックサム
 
         }
 
@@ -492,24 +492,24 @@ namespace 自記温度計Tester
             rng = (Excel.Range)oSheet.Cells[6, 2]; rng.Value = UnitData.serialPwa;//PWAシリアル
             rng = (Excel.Range)oSheet.Cells[7, 2]; rng.Value = UnitData.PassedTime;//試験合格時刻
 
-            rng = (Excel.Range)oSheet.Cells[13, 4]; rng.Value = PwaData.curr6v;//消費電流6V系
-            rng = (Excel.Range)oSheet.Cells[14, 4]; rng.Value = PwaData.vol5v;//電源電圧5V
-            rng = (Excel.Range)oSheet.Cells[15, 4]; rng.Value = PwaData.vol33v;//電源電圧3.3V
-            rng = (Excel.Range)oSheet.Cells[16, 4]; rng.Value = UnitData.volCn3;//CN3
+            rng = (Excel.Range)oSheet.Cells[14, 4]; rng.Value = PwaData.curr6v;//消費電流6V系
+            rng = (Excel.Range)oSheet.Cells[15, 4]; rng.Value = PwaData.vol5v;//電源電圧5V
+            rng = (Excel.Range)oSheet.Cells[16, 4]; rng.Value = PwaData.vol33v;//電源電圧3.3V
+            rng = (Excel.Range)oSheet.Cells[17, 4]; rng.Value = UnitData.volCn3;//CN3
 
-            rng = (Excel.Range)oSheet.Cells[20, 4]; rng.Value = UnitData.th2;//Th2℃
-            rng = (Excel.Range)oSheet.Cells[21, 4]; rng.Value = UnitData.th3;//Th3℃
-            rng = (Excel.Range)oSheet.Cells[22, 4]; rng.Value = UnitData.th4;//Th4℃
-            rng = (Excel.Range)oSheet.Cells[23, 4]; rng.Value = UnitData.th5;//Th5℃
-            rng = (Excel.Range)oSheet.Cells[24, 4]; rng.Value = UnitData.th6;//Th6℃
-            rng = (Excel.Range)oSheet.Cells[25, 4]; rng.Value = UnitData.th7;//Th7℃
-            rng = (Excel.Range)oSheet.Cells[26, 4]; rng.Value = UnitData.th8;//Th8℃
-            rng = (Excel.Range)oSheet.Cells[27, 4]; rng.Value = UnitData.th10;//Th10℃
-            rng = (Excel.Range)oSheet.Cells[28, 4]; rng.Value = UnitData.th20;//Th20℃
-            rng = (Excel.Range)oSheet.Cells[29, 4]; rng.Value = UnitData.th30;//Th30℃
-            rng = (Excel.Range)oSheet.Cells[30, 4]; rng.Value = UnitData.th45;//Th45℃
-            rng = (Excel.Range)oSheet.Cells[31, 4]; rng.Value = UnitData.th90;//Th90℃
-            rng = (Excel.Range)oSheet.Cells[39, 4]; rng.Value = UnitData.FwSum;//製品ソフトチェックサム
+            rng = (Excel.Range)oSheet.Cells[22, 4]; rng.Value = UnitData.th2;//Th2℃
+            rng = (Excel.Range)oSheet.Cells[23, 4]; rng.Value = UnitData.th3;//Th3℃
+            rng = (Excel.Range)oSheet.Cells[24, 4]; rng.Value = UnitData.th4;//Th4℃
+            rng = (Excel.Range)oSheet.Cells[25, 4]; rng.Value = UnitData.th5;//Th5℃
+            rng = (Excel.Range)oSheet.Cells[26, 4]; rng.Value = UnitData.th6;//Th6℃
+            rng = (Excel.Range)oSheet.Cells[27, 4]; rng.Value = UnitData.th7;//Th7℃
+            rng = (Excel.Range)oSheet.Cells[28, 4]; rng.Value = UnitData.th8;//Th8℃
+            rng = (Excel.Range)oSheet.Cells[29, 4]; rng.Value = UnitData.th10;//Th10℃
+            rng = (Excel.Range)oSheet.Cells[30, 4]; rng.Value = UnitData.th20;//Th20℃
+            rng = (Excel.Range)oSheet.Cells[31, 4]; rng.Value = UnitData.th30;//Th30℃
+            rng = (Excel.Range)oSheet.Cells[32, 4]; rng.Value = UnitData.th45;//Th45℃
+            rng = (Excel.Range)oSheet.Cells[33, 4]; rng.Value = UnitData.th90;//Th90℃
+            rng = (Excel.Range)oSheet.Cells[41, 4]; rng.Value = UnitData.FwSum;//製品ソフトチェックサム
 
         }
 
