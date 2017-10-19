@@ -71,7 +71,7 @@ namespace 自記温度計Tester
 
         private void Pic6_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            State.VmMainWindow.Theme = "Resources/Pic/baby7.jpg";
+            State.VmMainWindow.Theme = "Resources/Pic/baby2.jpg";
             General.Show();
         }
 

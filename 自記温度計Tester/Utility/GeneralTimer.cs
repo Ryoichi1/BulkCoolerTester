@@ -29,10 +29,10 @@ namespace 自記温度計Tester
 
         private System.Timers.Timer TmTimeOut;
 
-        public GeneralTimer(int time)
+        public GeneralTimer(int time_msec)
         {
             TmTimeOut = new System.Timers.Timer();
-            this.Time = time;
+            this.Time = time_msec;
             TmTimeOut.Elapsed += (sender, e) =>
             {
                 TmTimeOut.Stop();

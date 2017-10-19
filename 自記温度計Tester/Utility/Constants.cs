@@ -26,6 +26,9 @@ namespace 自記温度計Tester
         public static readonly string RwsPath_Test = @"C:\自記温度計\FW_WRITE\ForTest\自記温度計書き込み\自記温度計書き込み.rws";
         public static readonly string RwsPath_Product = @"C:\自記温度計\FW_WRITE\ForProduct\自記温度計書き込み\自記温度計書き込み.rws";
 
+        public static readonly string Path_ManualPwaTest = @"C:\自記温度計\Manual_PWA_FT.pdf";
+        public static readonly string Path_ManualUnitTest = @"C:\自記温度計\Manual_UNIT_FT.pdf";
+
         //検査データフォルダのパス
         public static readonly string PassDataPwaFolderPath = @"C:\自記温度計\検査データ\PWA\合格品データ\";
         public static readonly string FailDataPwaFolderPath = @"C:\自記温度計\検査データ\PWA\不良品データ\";

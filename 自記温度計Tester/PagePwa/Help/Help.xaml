@@ -49,7 +49,7 @@
                 <Frame x:Name="FrameVerInfo" FlowDirection="LeftToRight" Margin="322,-24,159,367"/>
             </TabItem>
             <TabItem x:Name="TabManual" Header="取扱説明書" Margin="999,64,-999,-64" Width="108" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Loaded="TabManual_Loaded" Controls:ControlsHelper.HeaderFontSize="18">
-                <Frame x:Name="FrameManual" FlowDirection="LeftToRight" Margin="322,-25,159,285"/>
+                <Frame x:Name="FrameManual" FlowDirection="LeftToRight" Margin="49,-25,159,164"/>
             </TabItem>
         </TabControl>
         <Border VerticalAlignment="Stretch" Height="432" BorderBrush="White" BorderThickness="1" HorizontalAlignment="Right" Canvas.Left="154" Canvas.Top="10"/>

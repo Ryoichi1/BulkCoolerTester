@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -20,14 +21,40 @@ namespace 自記温度計Tester
     /// </summary>
     public partial class Manual
     {
+        private Timer TmTimeOut;
+        string manualPath = "";
+
         public Manual()
         {
             InitializeComponent();
+
+            manualPath = (State.testMode == TEST_MODE.PWA) ? Constants.Path_ManualPwaTest : Constants.Path_ManualUnitTest;
+
+
+            wb.Visibility = Visibility.Hidden;
+            TmTimeOut = new Timer();
+            TmTimeOut.Tick += async (sender, e) =>
+            {
+                TmTimeOut.Stop();
+                wb.Navigate(new Uri(manualPath + "#toolbar=0&navpanes=0&view=FitH&scrollbar=1&page=1"));
+                await Task.Delay(200);
+                wb.Visibility = Visibility.Visible;
+                Ring.IsActive = false;
+            };
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            State.VmMainWindow.TabIndex = 0;
+            TmTimeOut.Interval = 500;
+            TmTimeOut.Start();
+            Ring.IsActive = true;
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            wb.Visibility = Visibility.Hidden;
+
         }
     }
 }
