@@ -17,6 +17,10 @@ namespace 自記温度計Tester
         public int TodayOkCount子機Test { get; set; }
         public int TodayNgCount子機Test { get; set; }
 
+        public string HeaderSerialUnit { get; set; }
+        public string HeaderSerialPwa { get; set; }
+        public string HeaderSerialPow { get; set; }
+
         public string PathTheme { get; set; }
         public double OpacityTheme { get; set; }
         public List<string> 作業者リスト { get; set; }

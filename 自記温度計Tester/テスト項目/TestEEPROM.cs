@@ -195,9 +195,23 @@ namespace 自記温度計Tester
                 });
                 if (!result) return false;
 
-                tm.stop();
-                int limitTime = (59 - targetS - 5) * 1000; 
-                tm.start(limitTime);//余裕もって5秒前に初期化作業を終えるようにする
+                ///////////////
+                bool FlagTimeOver = false;
+                int countDown = 59 - targetS - 5; //余裕もって5秒前に初期化作業を終えるようにする
+                var tm2 = new System.Timers.Timer();
+                tm2.Elapsed += (object sender, System.Timers.ElapsedEventArgs e) =>
+                {
+                    countDown = countDown - 1;
+                    if (countDown == 0)
+                    {
+                        tm2.Stop();
+                        FlagTimeOver = true;
+                    }
+                };
+                tm2.Interval = 1000;
+                tm2.Start();
+                ////////////
+
                 result = false;
                 return await Task<bool>.Run(() =>
                 {
@@ -225,14 +239,14 @@ namespace 自記温度計Tester
 
                     while (true)
                     {
-                        if (tm.FlagTimeout || Flags.ClickStopButton) return false;
+                        if (FlagTimeOver || Flags.ClickStopButton) return false;
                         if (Target232_BT.SendData("%01#WCSR0040127") && Target232_BT.RecieveData.Contains("%01$WC14")) break;//通信開始要求・応答
                     }
 
                     Thread.Sleep(400);
                     while (true)
                     {
-                        if (tm.FlagTimeout || Flags.ClickStopButton) return false;
+                        if (FlagTimeOver || Flags.ClickStopButton) return false;
                         if (Target232_BT.SendData("%01#RDD000000719953") && Target232_BT.RecieveData.Contains("%01$RD16")) break;//ATデータ要求・応答(16はチェックサム値です)
                     }
                     State.VmTestStatus.TestLog += "---PASS";//テストログの更新
@@ -243,7 +257,7 @@ namespace 自記温度計Tester
                     //PCモードでの通信が確立するまで待つ
                     while (true)
                     {
-                        if (tm.FlagTimeout || Flags.ClickStopButton) return false;
+                        if (FlagTimeOver || Flags.ClickStopButton) return false;
                         if (Target232_BT.SendData("3700ORI,I,SR000000,00")) break;
                         Thread.Sleep(250);
                     }
@@ -251,14 +265,28 @@ namespace 自記温度計Tester
                     General.PlaySound(General.soundCutin);
 
                     State.VmTestStatus.TestLog += "\r\n電源基板SW2 出荷設定（OFF）";//テストログの更新
-                    State.VmTestStatus.Message = " 電源基板のSW2をOFFしてください";
+
+                    bool IsCounting = true;
+                    Task.Run(() =>
+                    {
+                        while (IsCounting)
+                        {
+                            State.VmTestStatus.Message = " 電源基板のSW2をOFFしてください  残り" + countDown.ToString() + "秒";
+                            Thread.Sleep(250);
+                        }
+                    });
 
                     //PCモードでの通信がNGになるまで待つ（作業者が電源基板のSW2をOFFすることでCPUがスリープモードになり通信しなくなる）
                     while (true)
                     {
-                        if (tm.FlagTimeout || Flags.ClickStopButton) return false;
-                        if (!Target232_BT.SendData("3700ORI,I,SR000000,00"))
+                        if (FlagTimeOver || Flags.ClickStopButton)
                         {
+                            IsCounting = false;
+                            return false;
+                        }
+                        if (!Target232_BT.SendData(Data:"3700ORI,I,SR000000,00", Wait:700))
+                        {
+                            IsCounting = false;
                             General.PowSupply(false);
                             break;
                         }

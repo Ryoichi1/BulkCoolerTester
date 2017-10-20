@@ -175,6 +175,7 @@ namespace 自記温度計Tester
                 {
                     General.SetRL2(false);
                     General.SetRL3(false);
+                    Thread.Sleep(1000);
 
                     CurrentMode = MODE.BT;
                     State.VmComm.ColorLabelPC = General.OffBrush;

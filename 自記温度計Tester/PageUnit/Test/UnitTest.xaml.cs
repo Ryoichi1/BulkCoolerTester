@@ -63,12 +63,12 @@ namespace 自記温度計Tester
 
             if (State.testMode == TEST_MODE.本機)
             {
-                State.VmTestStatus.Theme = "Resources/BRTR_ST.png";
+                State.VmTestStatus.Theme = "Resources/Pic/BRTR_ST.png";
                 tbTestName.Text = "BRTR_ST(本機) 最終検査";
             }
             else
             {
-                State.VmTestStatus.Theme = "Resources/BRTR_C.png";
+                State.VmTestStatus.Theme = "Resources/Pic/BRTR_C.png";
                 tbTestName.Text = "BRTR_C(子機) 最終検査";
             }
 

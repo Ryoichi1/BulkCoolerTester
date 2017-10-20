@@ -18,6 +18,7 @@ namespace 自記温度計Tester
         public static bool ShowErrInfo { get; set; }
         public static bool AddDecision { get; set; }
 
+
         public static bool MetalModeSw { get; set; }
         public static bool MetalMode { get; set; }
         public static bool BgmOn { get; set; }

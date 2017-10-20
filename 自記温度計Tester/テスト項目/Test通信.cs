@@ -103,7 +103,7 @@ namespace 自記温度計Tester
                     {
                         General.SetK15(true);
                     }
-
+                    Thread.Sleep(1000);
                     return Rs485Task();
 
                 }
@@ -112,7 +112,7 @@ namespace 自記温度計Tester
                     General.SetK15(false);
                     Thread.Sleep(200);
                     if(powOffSw) General.PowSupply(false);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(2000);
                 }
             });
         }

@@ -9,13 +9,29 @@
 	Width="1050.1" Height="561.8">
 
     <Canvas x:Name="LayoutRoot">
-        <ListBox x:Name="ListBoxOperators" Height="203" Canvas.Left="4" Canvas.Top="29" Width="196" BorderBrush="White" BorderThickness="1" ItemsSource="{Binding ListOperator, Mode=TwoWay, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Foreground="White" SelectedIndex="{Binding SelectIndex, Mode=TwoWay, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Background="{x:Null}"/>
+        <ListBox x:Name="ListBoxOperators" Height="181" Canvas.Left="4" Canvas.Top="39" Width="196" BorderBrush="White" BorderThickness="1" ItemsSource="{Binding ListOperator, Mode=TwoWay, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Foreground="White" SelectedIndex="{Binding SelectIndex, Mode=TwoWay, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Background="{x:Null}"/>
         <Button x:Name="buttonAdd" Content="追加"  Height="33" Canvas.Left="214" Canvas.Top="38" Width="90" FontSize="16" Click="buttonAdd_Click" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" Padding="0" BorderThickness="1"/>
         <Button x:Name="buttonDelete" Content="削除"   Height="34" Canvas.Left="214" Canvas.Top="110" Width="90" FontSize="16" Click="buttonDelete_Click" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontWeight="Normal" Background="{x:Null}" Padding="0" BorderThickness="1"/>
         <TextBox x:Name="textBoxName" Height="36" Canvas.Left="321" TextWrapping="Wrap"  Canvas.Top="35" Width="146" Background="{x:Null}" BorderBrush="White" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CaretBrush="White" VerticalContentAlignment="Center" FontSize="20"/>
         <TextBlock Height="38" Canvas.Left="321" TextWrapping="Wrap" Canvas.Top="106" Width="213" Foreground="White" FontSize="14"><Run Text="一覧から削除する名前を選択して&#xA;削除ボタンを押"/><Run Text="してください"/></TextBlock>
-        <TextBlock Height="25" Canvas.Left="4" TextWrapping="Wrap" Text="現在の作業者一覧" Canvas.Top="4" Width="150" Foreground="White" FontSize="14"/>
+        <TextBlock Height="30" Canvas.Left="4" TextWrapping="Wrap" Text="現在の作業者一覧" Canvas.Top="8" Width="167" Foreground="White" FontSize="18"/>
         <Button x:Name="buttonSave" Content="保存"  Height="33" Canvas.Left="214" Canvas.Top="177" Width="90" FontSize="16" Click="buttonSave_Click" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontWeight="Normal" Background="{x:Null}" Padding="0" BorderThickness="1"/>
+        <Label x:Name="labelMessage_Copy" Content="CPU" Height="33" Canvas.Left="36" Canvas.Top="352" Width="53" FontSize="20"/>
+        <Label x:Name="labelMessage_Copy1" Content="製品" Height="34" Canvas.Left="36" Canvas.Top="289" Width="51" FontSize="20"/>
+        <TextBox x:Name="tbPwaSerial" TextWrapping="Wrap" FontSize="36" Background="{x:Null}" BorderBrush="White" Height="52" Width="112" Foreground="White" CaretBrush="White" InputMethod.IsInputMethodEnabled="False" InputMethod.PreferredImeState="Off" Canvas.Left="88" Canvas.Top="343" SelectionBrush="{x:Null}" FontFamily="Meiryo UI" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Top" TabIndex="2"/>
+        <TextBox x:Name="tbProductSerial" TextWrapping="Wrap" FontSize="36" Background="{x:Null}" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="52" Width="84" Foreground="White" CaretBrush="White" CharacterCasing="Upper" InputMethod.IsInputMethodEnabled="False" InputMethod.PreferredImeState="Off" Canvas.Left="87" Canvas.Top="280" SelectionBrush="{x:Null}" FontFamily="Meiryo UI" VerticalContentAlignment="Center" Padding="0" TabIndex="1"/>
+        <Label Content="電源" Height="37" Canvas.Left="36" Canvas.Top="412" Width="54" FontSize="20"/>
+        <TextBox x:Name="tbPowSerial" TextWrapping="Wrap" FontSize="36" Background="{x:Null}" BorderBrush="White" Height="52" Width="114" Foreground="White" CaretBrush="White" InputMethod.IsInputMethodEnabled="False" InputMethod.PreferredImeState="Off" Canvas.Left="88" Canvas.Top="405" SelectionBrush="{x:Null}" FontFamily="Meiryo UI" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Top" TabIndex="3"/>
+        <TextBlock Height="28" Canvas.Left="6" TextWrapping="Wrap" Text="シリアルのヘッダ設定" Canvas.Top="249" Width="196" Foreground="White" FontSize="18"/>
+        <Label x:Name="labelMessage_Copy2" Content="例）7X、7Y、7Z、81、・・・・" Height="34" Canvas.Left="176" Canvas.Top="296" Width="317" FontSize="20"/>
+        <Label x:Name="labelMessage_Copy3" Content="例）1740、1744、1748、・・・・" Height="34" Canvas.Left="208" Canvas.Top="359" Width="344" FontSize="20"/>
+        <Label x:Name="labelMessage_Copy4" Content="例）710、711、712、801・・・・" Height="34" Canvas.Left="208" Canvas.Top="421" Width="344" FontSize="20"/>
+        <Button x:Name="buttonSaveSerialHeader" Content="保存"  Height="33" Canvas.Left="36" Canvas.Top="483" Width="90" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontWeight="Normal" Background="{x:Null}" Padding="0" BorderThickness="1" Click="buttonSaveSerialHeader_Click"/>
+        <Border Width="878" Height="1" BorderThickness="2" BorderBrush="White" Canvas.Top="236" Canvas.Left="6">
+            <Border.Effect>
+                <DropShadowEffect Color="#FF09BCFF" Direction="0" ShadowDepth="0" BlurRadius="30"/>
+            </Border.Effect>
+        </Border>
 
 
 

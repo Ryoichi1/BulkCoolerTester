@@ -16,46 +16,31 @@ namespace 自記温度計Tester
     {
         public static Action RefreshDataContextFromLabelForm;//Test.Xaml内でテスト結果をクリアするために使用すする
 
-        public class vm : BindableBase
-        {
-            private string _DcLabel;
-            public string DcLabel { get { return _DcLabel; } internal set { SetProperty(ref _DcLabel, value); } }
-
-        }
-
-        private vm viewmodel;
-
+        private const int MaxRetryCount = 5;
         private int RetryCount;
 
         public 銘板ラベル貼り付け()
         {
             this.InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            General.PlaySoundLoop(General.soundSerialLabel);
 
             State.VmMainWindow.ThemeOpacity = 0.0;
 
             (FindResource("Blink1") as Storyboard).Begin();
 
-
-            viewmodel = new vm();
-            this.DataContext = viewmodel;
-
             RetryCount = 0;
 
-
-            tbProductSerial.Text = "7X";
-            tbPwaSerial.Text = "1740Ne";
-            tbPowSerial.Text = "171000";
+            //下記はLoadedイベントでないと機能しないので注意！！！ コンストラクタでは最初の１回しか実行されない
+            tbProductSerial.Text = State.Setting.HeaderSerialUnit;
+            tbPwaSerial.Text = State.Setting.HeaderSerialPwa + "Ne";
+            tbPowSerial.Text = State.Setting.HeaderSerialPow + "000";
 
             tbBtSerial.Text = Target232_BT.BtID;
             tbBtSerial.IsReadOnly = true;
-
-        }
-
-        private void SetLabel()
-        {
-            //デートコード表記の設定
-
-            viewmodel.DcLabel = State.VmMainWindow.SerialNumber;
         }
 
 
@@ -63,7 +48,7 @@ namespace 自記温度計Tester
         {
             if (!await CheckSerial())
             {
-                if (++RetryCount == 10)
+                if (++RetryCount == MaxRetryCount)
                 {
                     MessageBox.Show("強制終了します\r\nもう一度試験をしてください");
                     goto FAIL;
@@ -76,7 +61,7 @@ namespace 自記温度計Tester
 
             if (!await CheckOverlapSerial())
             {
-                if (++RetryCount == 10)
+                if (++RetryCount == MaxRetryCount)
                 {
                     MessageBox.Show("強制終了します\r\nもう一度試験をしてください");
                     goto FAIL;
@@ -89,7 +74,7 @@ namespace 自記温度計Tester
 
             if (!General.SaveTestData())
             {
-                if (++RetryCount == 10)
+                if (++RetryCount == MaxRetryCount)
                 {
                     MessageBox.Show("強制終了します\r\nもう一度試験をしてください");
                     goto FAIL;
@@ -117,14 +102,14 @@ namespace 自記温度計Tester
 
             //製品シリアルのチェック
             if (!System.Text.RegularExpressions.Regex.IsMatch(
-                tbProductSerial.Text, @"^\dX\d\d\d$",
+                tbProductSerial.Text, @"^\d[XYZ1-9]\d\d\d$",
                 System.Text.RegularExpressions.RegexOptions.ECMAScript))
             {
                 General.PlaySound(General.soundFail);
-                tbProductSerial.Background = Brushes.OrangeRed;
+                tbProductSerial.Background = General.NgBrush;
                 await Task.Delay(1000);
                 tbProductSerial.Background = Brushes.Transparent;
-                tbProductSerial.Text = "";
+                tbProductSerial.Text = State.Setting.HeaderSerialUnit;
                 tbProductSerial.Focus();
                 return false;
             }
@@ -136,10 +121,10 @@ namespace 自記温度計Tester
                 System.Text.RegularExpressions.RegexOptions.ECMAScript))
             {
                 General.PlaySound(General.soundFail);
-                tbPwaSerial.Background = Brushes.OrangeRed;
+                tbPwaSerial.Background = General.NgBrush;
                 await Task.Delay(1000);
                 tbPwaSerial.Background = Brushes.Transparent;
-                tbPwaSerial.Text = "";
+                tbPwaSerial.Text = State.Setting.HeaderSerialPwa + "Ne";
                 tbPwaSerial.Focus();
                 return false;
             }
@@ -150,28 +135,28 @@ namespace 自記温度計Tester
                 System.Text.RegularExpressions.RegexOptions.ECMAScript))
             {
                 General.PlaySound(General.soundFail);
-                tbPowSerial.Background = Brushes.OrangeRed;
+                tbPowSerial.Background = General.NgBrush;
                 await Task.Delay(1000);
                 tbPowSerial.Background = Brushes.Transparent;
-                tbPowSerial.Text = "";
+                tbPowSerial.Text = State.Setting.HeaderSerialPow + "000";
                 tbPowSerial.Focus();
                 return false;
             }
 
-            //Bluetooth基板シリアルのチェック
-            if (tbBtSerial.Text.Length != 6 ||
-            !System.Text.RegularExpressions.Regex.IsMatch(
-                tbBtSerial.Text, @"[ABCDEF0-9]+$",
-                System.Text.RegularExpressions.RegexOptions.ECMAScript))
-            {
-                General.PlaySound(General.soundFail);
-                tbBtSerial.Background = Brushes.OrangeRed;
-                await Task.Delay(1000);
-                tbBtSerial.Background = Brushes.Transparent;
-                tbBtSerial.Text = "";
-                tbBtSerial.Focus();
-                return false;
-            }
+            ////Bluetooth基板シリアルのチェック
+            //if (tbBtSerial.Text.Length != 6 ||
+            //!System.Text.RegularExpressions.Regex.IsMatch(
+            //    tbBtSerial.Text, @"[ABCDEF0-9]+$",
+            //    System.Text.RegularExpressions.RegexOptions.ECMAScript))
+            //{
+            //    General.PlaySound(General.soundFail);
+            //    tbBtSerial.Background = General.NgBrush;
+            //    await Task.Delay(1000);
+            //    tbBtSerial.Background = Brushes.Transparent;
+            //    tbBtSerial.Text = "";
+            //    tbBtSerial.Focus();
+            //    return false;
+            //}
 
             State.SerialProduct = tbProductSerial.Text;
             State.SerialPwa = tbPwaSerial.Text;
@@ -230,6 +215,11 @@ namespace 自記温度計Tester
                    var SeriBt = l.Split(',')[3];
                    bool flagSeriBt = SeriBt == tbBtSerial.Text;
 
+                   if (flagSeriProduct) tbProductSerial.Background = General.NgBrush; 
+                   if (flagSeriPwa)     tbPwaSerial.Background = General.NgBrush; 
+                   if (flagSeriPow)     tbPowSerial.Background = General.NgBrush; 
+                   if (flagSeriBt)      tbBtSerial.Background = General.NgBrush; 
+
                    return flagSeriProduct || flagSeriPwa || flagSeriPow || flagSeriBt;
                });
 
@@ -245,17 +235,16 @@ namespace 自記温度計Tester
                 {
                     General.PlaySound(General.soundFail);
                     MessageBox.Show("このシリアルは既に使われています");
+                    tbProductSerial.Background = Brushes.Transparent;
+                    tbPwaSerial.Background =  Brushes.Transparent; 
+                    tbPowSerial.Background =  Brushes.Transparent;  
+                    tbBtSerial.Background =  Brushes.Transparent; 
                 }
 
             }
         }
 
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            SetLabel();
-            General.PlaySoundLoop(General.soundSerialLabel);
-        }
 
         private void buttonReturn_GotFocus(object sender, RoutedEventArgs e)
         {

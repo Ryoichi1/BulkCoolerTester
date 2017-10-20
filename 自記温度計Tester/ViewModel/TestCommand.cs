@@ -690,6 +690,7 @@ namespace 自記温度計Tester
                     {
                         if (!Flags.PowOn)
                         {
+                            RETRY_CHECK_COMM:
                             var flagComm = false;
                             Thread.Sleep(1000);
                             General.PowSupply(true);
@@ -697,7 +698,33 @@ namespace 自記温度計Tester
                             {
                                 flagComm = General.CheckComm();
                             });
-                            if (!flagComm) goto FAIL;
+                            if (!flagComm)
+                            {
+                                General.PowSupply(false);
+                                General.PlaySoundLoop(General.soundAlarm);
+
+                                var YesNoResult = MessageBox.Show("通信接続に失敗しました。リトライしますか？", "", MessageBoxButtons.YesNo);
+                                General.StopSound();
+
+                                //何が選択されたか調べる
+                                if (YesNoResult == DialogResult.Yes)
+                                {
+                                    if (d.s.Value.Contains("SW1-SW4") || d.s.Value.Contains("S1")  )
+                                    {
+                                        MessageBox.Show("CPU基板のS1を4番だけONにしてください");
+                                    }
+                                    else if (d.s.Value.Contains("FROM初期化"))
+                                    {
+                                        MessageBox.Show("電源基板のSW2をONにしてください");
+                                    }
+
+                                    goto RETRY_CHECK_COMM;
+                                }
+                                else
+                                {
+                                    goto FAIL;
+                                }
+                            }
                         }
                     }
                     else
@@ -737,7 +764,7 @@ namespace 自記温度計Tester
                             goto case 5000;
 
                         case 400://サーミスタチェック
-                            await Task.Delay(1000);
+                            await Task.Delay(2000);
                             if (await TestTH.CheckTh()) break;
                             goto case 5000;
 
@@ -832,6 +859,7 @@ namespace 自記温度計Tester
                                 //リトライ履歴リスト更新
                                 State.RetryLogList.Add(FailStepNo.ToString() + "," + FailTitle + "," + System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
                                 Flags.Retry = true;
+
                                 goto Retry;
 
                             }
