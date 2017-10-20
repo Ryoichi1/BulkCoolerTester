@@ -361,11 +361,11 @@ namespace 自記温度計Tester
                 SetValue本機(d.s.serialUnit);
                 if (rb_G1.IsChecked == true)
                 {
-                    setup.PrintArea = "A1:F74";
+                    setup.PrintArea = "A1:F75";
                 }
                 else
                 {
-                    setup.PrintArea = "A1:F72";
+                    setup.PrintArea = "A1:F73";
                 }
 
                 oSheet.PrintOutEx();
