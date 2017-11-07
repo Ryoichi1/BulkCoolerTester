@@ -56,7 +56,6 @@ namespace 自記温度計Tester
             Flags.ShowLabelPage = false;
             State.VmMainWindow.TabIndex = 0;
 
-            General.ResetViewModel();
             RefreshDataContextFromLabelForm();
 
             General.PlaySound(General.soundBattery);

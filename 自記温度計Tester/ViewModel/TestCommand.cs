@@ -174,8 +174,9 @@ namespace 自記温度計Tester
 
             //現在のテーマ透過度の保存
             State.CurrentThemeOpacity = State.VmMainWindow.ThemeOpacity;
-            //テーマ透過度を最小にする
-            General.Show2(false);
+            General.SetRadius(true);
+
+            State.VmMainWindow.ThemeBlurEffectRadius = 25;
 
             General.cam1.ImageOpacity = 1.0;
             General.cam2.ImageOpacity = 1.0;
@@ -422,6 +423,7 @@ namespace 自記温度計Tester
                             }
 
                             General.PlaySoundLoop(General.soundAlarm);
+                            General._server.SendMessToClient("リトライ確認 " + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
                             var YesNoResult = MessageBox.Show("この項目はＮＧですがリトライしますか？", "", MessageBoxButtons.YesNo);
                             General.StopSound();
 
@@ -504,6 +506,8 @@ namespace 自記温度計Tester
 
                 General.PlaySound(General.soundPassLong);
 
+                General._server.SendMessToClient("試験合格 " + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
+
                 await Task.Run(() =>
                 {
                     while (true)
@@ -571,6 +575,7 @@ namespace 自記温度計Tester
 
                 General.PlaySound(General.soundFail);
 
+                General._server.SendMessToClient("試験NG " + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
                 await Task.Run(() =>
                 {
                     while (true)
@@ -629,7 +634,7 @@ namespace 自記温度計Tester
             //現在のテーマ透過度の保存
             State.CurrentThemeOpacity = State.VmMainWindow.ThemeOpacity;
             //テーマ透過度を最小にする
-            General.Show2(false);
+            General.SetRadius(true);
 
             await Task.Delay(500);
 
@@ -709,7 +714,7 @@ namespace 自記温度計Tester
                                 //何が選択されたか調べる
                                 if (YesNoResult == DialogResult.Yes)
                                 {
-                                    if (d.s.Value.Contains("SW1-SW4") || d.s.Value.Contains("S1")  )
+                                    if (d.s.Value.Contains("SW1-SW4") || d.s.Value.Contains("S1"))
                                     {
                                         MessageBox.Show("CPU基板のS1を4番だけONにしてください");
                                     }

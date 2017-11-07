@@ -251,14 +251,10 @@ namespace 自記温度計Tester
                 // 入力した工番の検査データが存在しているかどうか確認する
                 if (!System.IO.File.Exists(dataFilePath))
                 {
-                    //システム時計から、デートコードを生成する
-                    DateTime dt = DateTime.Now;
-                    string DcYear = dt.ToString("yy");
-                    string DcMonth = (Int32.Parse(dt.ToString("MM")) * 4).ToString("D2");
-
                     //データファイルが存在しなければ、必然的にシリアルナンバーは001です
+                    //西暦・月の部分は、Cinfigurationで設定した値を読み込む（生産ロットが切り替わる度に作業者が設定を行う必要がある）
                     State.NewSerial = 1;
-                    State.VmMainWindow.SerialNumber = DcYear + DcMonth + "Ne" + State.NewSerial.ToString("D3");
+                    State.VmMainWindow.SerialNumber = State.Setting.HeaderSerialPwa + "Ne" + State.NewSerial.ToString("D3");
                     return;
                 }
 

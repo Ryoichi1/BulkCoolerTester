@@ -45,6 +45,13 @@ namespace 自記温度計Tester
             set { SetProperty(ref _Theme, value); }
         }
 
+        private double _ThemeBlurEffectRadius;
+        public double ThemeBlurEffectRadius
+        {
+            get { return _ThemeBlurEffectRadius; }
+            set { SetProperty(ref _ThemeBlurEffectRadius, value); }
+        }
+
 
         private double _ThemeOpacity;
         public double ThemeOpacity

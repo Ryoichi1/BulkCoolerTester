@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace 自記温度計Tester
 {
@@ -20,12 +9,14 @@ namespace 自記温度計Tester
     /// </summary>
     public partial class Conf
     {
-        private NavigationService naviEdit;
+        private NavigationService naviSerialHeader;
+        private NavigationService naviOperator;
         private NavigationService naviTheme;
         private NavigationService naviMente;
         private NavigationService naviCamera1;
         private NavigationService naviCamera2;
-        Uri uriEditPage = new Uri("PagePwa/Config/EditOpeList.xaml", UriKind.Relative);
+        Uri uriSerialHeaderPage = new Uri("PagePwa/Config/SerialHeader.xaml", UriKind.Relative);
+        Uri uriOperatorPage = new Uri("PagePwa/Config/EditOpeList.xaml", UriKind.Relative);
         Uri uriThemePage = new Uri("PagePwa/Config/Theme.xaml", UriKind.Relative);
         Uri uriMentePage = new Uri("PagePwa/Config/Mente.xaml", UriKind.Relative);
         Uri uriCamera1Page = new Uri("PagePwa/Config/Camera1Conf.xaml", UriKind.Relative);
@@ -34,14 +25,16 @@ namespace 自記温度計Tester
         public Conf()
         {
             InitializeComponent();
-            naviEdit = FrameEdit.NavigationService;
+            naviSerialHeader = FrameSerialHeader.NavigationService;
+            naviOperator = FrameOperator.NavigationService;
             naviTheme = FrameTheme.NavigationService;
             naviMente = FrameMente.NavigationService;
 
             naviCamera1 = FrameCamera1.NavigationService;
             naviCamera2 = FrameCamera2.NavigationService;
 
-            FrameEdit.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            FrameSerialHeader.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            FrameOperator.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             FrameTheme.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             FrameMente.NavigationUIVisibility = NavigationUIVisibility.Hidden;
 
@@ -59,7 +52,7 @@ namespace 自記温度計Tester
 
         private void TabOperator_Loaded(object sender, RoutedEventArgs e)
         {
-            naviEdit.Navigate(uriEditPage);
+            naviOperator.Navigate(uriOperatorPage);
         }
 
         private void TabTheme_Loaded(object sender, RoutedEventArgs e)
@@ -75,6 +68,11 @@ namespace 自記温度計Tester
         private void TabCamera2_Loaded(object sender, RoutedEventArgs e)
         {
             naviCamera2.Navigate(uriCamera2Page);
+        }
+
+        private void TabSerialHeader_Loaded(object sender, RoutedEventArgs e)
+        {
+            naviSerialHeader.Navigate(uriSerialHeaderPage);
         }
     }
 }

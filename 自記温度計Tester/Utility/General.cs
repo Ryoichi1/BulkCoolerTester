@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Media;
 using System.Windows.Media;
 using System;
+using System.Windows.Media.Animation;
+using System.Windows;
 
 namespace 自記温度計Tester
 {
@@ -45,6 +47,7 @@ namespace 自記温度計Tester
         public static Multimeter multimeter;
         public static PMX18 pmx18;
 
+        public static Server _server;
 
         static General()
         {
@@ -98,14 +101,12 @@ namespace 自記温度計Tester
             });
         }
 
-        public static void Show2(bool sw)
+        public static void SetRadius(bool sw)
         {
+            var T = 0.45;//アニメーションが完了するまでの時間（秒）
+            var t = 0.005;//（秒）
 
-            var T = 0.3;
-            var t = 0.005;
-
-            var 差 = State.CurrentThemeOpacity - Constants.OpacityMin;
-            //10msec刻みでT秒で元のOpacityに戻す
+            //5msec刻みでT秒で元のOpacityに戻す
             int times = (int)(T / t);
 
 
@@ -115,20 +116,28 @@ namespace 自記温度計Tester
                 {
                     while (true)
                     {
-                        State.VmMainWindow.ThemeOpacity += 差 / (double)times;
+                        State.VmMainWindow.ThemeBlurEffectRadius += 25 / (double)times;
                         Thread.Sleep((int)(t * 1000));
-                        if (State.VmMainWindow.ThemeOpacity >= State.CurrentThemeOpacity) return;
+                        if (State.VmMainWindow.ThemeBlurEffectRadius >= 25) return;
 
                     }
                 }
                 else
                 {
+                    var CurrentRadius = State.VmMainWindow.ThemeBlurEffectRadius;
                     while (true)
                     {
-                        State.VmMainWindow.ThemeOpacity -= 差 / (double)times;
+                        CurrentRadius -= 25 / (double)times;
+                        if (CurrentRadius > 0)
+                        {
+                            State.VmMainWindow.ThemeBlurEffectRadius = CurrentRadius;
+                        }
+                        else
+                        {
+                            State.VmMainWindow.ThemeBlurEffectRadius = 0;
+                            return;
+                        }
                         Thread.Sleep((int)(t * 1000));
-                        if (State.VmMainWindow.ThemeOpacity <= Constants.OpacityMin) return;
-
                     }
                 }
 
@@ -688,11 +697,14 @@ namespace 自記温度計Tester
 
 
             //テーマ透過度を元に戻す
-            General.Show2(true);
+            General.SetRadius(false);
 
             State.VmTestStatus.RetryLabelVis = System.Windows.Visibility.Hidden;
             State.VmTestStatus.TestSettingEnable = true;
             State.VmMainWindow.OperatorEnable = true;
+
+            //コネクタチェックでエラーになると表示されたままになるので隠す（誤動作防止！！！）
+            State.VmTestStatus.EnableButtonErrInfo = System.Windows.Visibility.Hidden;
 
         }
 

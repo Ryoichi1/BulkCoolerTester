@@ -45,23 +45,26 @@
 
 
         <TabControl x:Name="TabMenu" Height="652" Width="1284" Canvas.Left="6" FlowDirection="RightToLeft" Canvas.Top="2" >
-            <TabItem x:Name="TabMente" Header="メンテナンス" Margin="1120,28,-1120,-27" Width="127" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Loaded="TabMente_Loaded" Controls:ControlsHelper.HeaderFontSize="18" >
-                <Frame x:Name="FrameMente" FlowDirection="LeftToRight" Margin="16,-16,177,-25" />
+            <TabItem x:Name="TabMente" Header="メンテナンス" Margin="1106,28,-1106,-27" Width="127" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Loaded="TabMente_Loaded" Controls:ControlsHelper.HeaderFontSize="18" >
+                <Frame x:Name="FrameMente" FlowDirection="LeftToRight" Margin="2,-22,191,-19" />
             </TabItem>
-            <TabItem x:Name="TabCamera1" Header="カメラ1設定" Margin="994,62,-994,-61" Width="127" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Controls:ControlsHelper.HeaderFontSize="18" Loaded="TabCamera1_Loaded" >
-                <Frame x:Name="FrameCamera1" FlowDirection="LeftToRight" Margin="-1,-22,172,-20" />
+            <TabItem x:Name="TabCamera1" Header="カメラ1設定" Margin="978,62,-978,-61" Width="127" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Controls:ControlsHelper.HeaderFontSize="18" Loaded="TabCamera1_Loaded" >
+                <Frame x:Name="FrameCamera1" FlowDirection="LeftToRight" Margin="-4,-22,192,-20" />
             </TabItem>
-            <TabItem x:Name="TabCamera2" Header="カメラ2設定" Margin="868,96,-868,-95" Width="127" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Controls:ControlsHelper.HeaderFontSize="18" Loaded="TabCamera2_Loaded" >
-                <Frame x:Name="FrameCamera2" FlowDirection="LeftToRight" Margin="-1,-16,172,1" />
+            <TabItem x:Name="TabCamera2" Header="カメラ2設定" Margin="850,96,-850,-95" Width="127" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Controls:ControlsHelper.HeaderFontSize="18" Loaded="TabCamera2_Loaded" >
+                <Frame x:Name="FrameCamera2" FlowDirection="LeftToRight" Margin="-8,-16,190,1" />
             </TabItem>
-            <TabItem x:Name="TabOperator" Header="作業者リスト" Margin="741,130,-741,-131" Width="130" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Loaded="TabOperator_Loaded" Controls:ControlsHelper.HeaderFontSize="18">
-                <Frame x:Name="FrameEdit" FlowDirection="LeftToRight" Margin="4,-13,175,1"/>
+            <TabItem x:Name="TabOperator" Header="作業者リスト編集" Margin="721,130,-721,-131" Width="158" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Loaded="TabOperator_Loaded" Controls:ControlsHelper.HeaderFontSize="18">
+                <Frame x:Name="FrameOperator" FlowDirection="LeftToRight" Margin="4,-13,196,1"/>
             </TabItem>
-            <TabItem x:Name="TabTheme" Header="テーマ" Margin="615,165,-647,-165" Loaded="TabTheme_Loaded" Controls:ControlsHelper.HeaderFontSize="18">
-                <Frame x:Name="FrameTheme" FlowDirection="LeftToRight" Margin="24,-28,160,10" Width="1043" />
+            <TabItem x:Name="TabSerialHeader" Header="シリアルヘッダ設定" Margin="562,164,-562,-165" Width="175" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Controls:ControlsHelper.HeaderFontSize="18" Loaded="TabSerialHeader_Loaded">
+                <Frame x:Name="FrameSerialHeader" FlowDirection="LeftToRight" Margin="-11,-25,192,13"/>
+            </TabItem>
+            <TabItem x:Name="TabTheme" Header="テーマ" Margin="394,198,-426,-198" Loaded="TabTheme_Loaded" Controls:ControlsHelper.HeaderFontSize="18">
+                <Frame x:Name="FrameTheme" FlowDirection="LeftToRight" Margin="38,-28,193,10" Width="1043" />
             </TabItem>
         </TabControl>
-        <Border VerticalAlignment="Stretch" Height="580" BorderBrush="White" BorderThickness="1" HorizontalAlignment="Right" Canvas.Left="178" Canvas.Top="10"/>
+        <Border VerticalAlignment="Stretch" Height="580" BorderBrush="White" BorderThickness="1" HorizontalAlignment="Right" Canvas.Left="196" Canvas.Top="10"/>
     </Canvas>
 
 </Page>

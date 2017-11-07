@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.Prism.Mvvm;
+﻿using AForge.Video.DirectShow;
+using Microsoft.Practices.Prism.Mvvm;
 using OpenCvSharp;
 using OpenCvSharp.Blob;
 using OpenCvSharp.Extensions;
@@ -18,7 +19,7 @@ namespace 自記温度計Tester
         static readonly int WIDTH = 640;
         static readonly int HEIGHT = 360;
 
-        public CvBlobs blobs; 
+        public CvBlobs blobs;
         public IplImage imageForLabeling;
         public IplImage imageForHsv;
         public IplImage imageForTest;
@@ -26,6 +27,13 @@ namespace 自記温度計Tester
         public Action<IplImage> MakeNgFrame;
         private bool FlagPropChange;
         private int CameraNumber;
+
+        //カメラプロパティ画面表示に使用
+        //使用するビデオデバイス
+        public VideoCaptureDevice videoDevice;
+        //接続されている全てのビデオデバイス情報を格納する変数
+        public FilterInfoCollection videoDeviceCollection;
+
 
         public bool FlagLabeling { get; set; }
         public bool FlagCross { get; set; }
@@ -307,7 +315,7 @@ namespace 自記温度計Tester
                                 }));
 
                                 while (FlagNgFrame) ;
-                                
+
                                 continue;
                             }
 
@@ -484,6 +492,17 @@ namespace 自記温度計Tester
             Vdata = re[2];
 
         }
+
+        public void ShowPropertyPage()
+        {
+            //ビデオ入力デバイスのみ取得
+            videoDeviceCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+
+            //最初に見つかったビデオデバイスを使用する場合、以下のようにIndex = 0とすればよい
+            videoDevice = new VideoCaptureDevice(videoDeviceCollection[CameraNumber].MonikerString);
+            videoDevice.DisplayPropertyPage(IntPtr.Zero);
+        }
+
 
     }
 }

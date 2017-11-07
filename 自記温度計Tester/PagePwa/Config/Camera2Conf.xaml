@@ -29,8 +29,8 @@
 
     </Page.Resources>
     <Canvas>
-        <Canvas Height="333" Width="361" Canvas.Left="671" Canvas.Top="7">
-            <Border BorderBrush="#FF00DCFF" BorderThickness="1" Height="323" Width="356">
+        <Canvas Height="355" Width="361" Canvas.Left="671" Canvas.Top="7">
+            <Border BorderBrush="#FF00DCFF" BorderThickness="1" Height="346" Width="356">
                 <Controls:ToggleSwitch x:Name="toggleSw" FontFamily="Meiryo UI" Foreground="White" ThumbIndicatorDisabledBrush="#FF1758C9" OffSwitchBrush="#FFD3DBE2" ThumbIndicatorBrush="#FF35A9D4" OnSwitchBrush="#CC0A99FD" FlowDirection="RightToLeft" Margin="147,0,0,283" OffLabel="Closing" OnLabel="Opening" Checked="toggleSw_Checked" Unchecked="toggleSw_Unchecked" HorizontalAlignment="Left" Width="152" HorizontalContentAlignment="Right" />
             </Border>
             <Label Content="カメラプロパティ" Height="30" Canvas.Left="6" Canvas.Top="6" Width="147" Foreground="#FF0EC2D4" BorderBrush="{x:Null}"/>
@@ -68,6 +68,7 @@
             <TextBlock x:Name="tbSmoothParm1_Copy5" Height="21" Canvas.Left="11" TextWrapping="Wrap" Canvas.Top="280" Width="60" Foreground="White" FontSize="14" Text="収縮回数"/>
             <Slider x:Name="sliderCloseCnt" Height="8" Canvas.Left="77" Canvas.Top="284" Width="199" Value="{Binding closeCnt}" TickFrequency="0.05" IsSnapToTickEnabled="True" SmallChange="1" Maximum="5" Style="{DynamicResource FlatSlider}"/>
             <TextBlock x:Name="tbCamPropCloseCnt" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCloseCnt}" Canvas.Top="280" Width="60" Foreground="White" FontSize="14"/>
+            <Button x:Name="buttonShowPropPage" Content="カメラプロパティ表示"  Height="30" Canvas.Left="10" Canvas.Top="307" Width="144" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Background="{x:Null}" BorderThickness="1" Padding="0" Click="buttonShowPropPage_Click"/>
         </Canvas>
         <Border BorderBrush="#FF00DCFF" BorderThickness="1" Height="370" Width="650" Canvas.Left="11" Canvas.Top="9"/>
         <Canvas x:Name="CanvasImg" Canvas.Left="16" Canvas.Top="14" Width="640" Height="360">

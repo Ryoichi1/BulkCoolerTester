@@ -453,5 +453,9 @@ namespace 自記温度計Tester
             }
         }
 
+        private void buttonShowPropPage_Click(object sender, RoutedEventArgs e)
+        {
+            General.cam2.ShowPropertyPage();
+        }
     }
 }
