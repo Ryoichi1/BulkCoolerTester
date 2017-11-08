@@ -26,8 +26,11 @@ namespace 自記温度計Tester
             toggleSw.IsChecked = General.cam1.Opening;
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            State.VmMainWindow.MainWinEnable = false;
+            await Task.Delay(1200);
+            State.VmMainWindow.MainWinEnable = true;
             State.SetCam1Prop();
             tbPoint.Visibility = System.Windows.Visibility.Hidden;
             tbHsv.Visibility = System.Windows.Visibility.Hidden;

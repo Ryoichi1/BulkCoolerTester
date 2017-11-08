@@ -9,6 +9,17 @@ namespace 自記温度計Tester
 
     public class ViewModelMainWindow : BindableBase
     {
+        //メンテナンス画面で、カメラ設定ページと別のページを高速に遷移させると、カメラがヌルポで死ぬ
+        //カメラがdisposeしている最中は、別のカメラをスタートさせてはいけない
+        //カメラ設定ページに遷移したら、1～1.5秒は他のページに遷移できないようにする
+        private bool _MainWinEnable = true;
+        public bool MainWinEnable
+        {
+
+            get { return _MainWinEnable; }
+            set { SetProperty(ref _MainWinEnable, value); }
+        }
+
 
         //試験中は作業者名を変更できないようにする
         private bool _OperatorEnable = true;

@@ -52,8 +52,11 @@ namespace 自記温度計Tester
             State.VmCamera2Point.HueLED7 = "";
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            State.VmMainWindow.MainWinEnable = false;
+            await Task.Delay(1200);
+            State.VmMainWindow.MainWinEnable = true;
             State.SetCam2Prop();
             //TODO:LEDを全点灯させる処理
         }
