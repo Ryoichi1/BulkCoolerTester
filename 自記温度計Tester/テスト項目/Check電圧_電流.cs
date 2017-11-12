@@ -217,7 +217,7 @@ namespace 自記温度計Tester
                             if (!General.multimeter.GetDcCurrent()) return false;
                             measData = General.multimeter.CurrData;
                             State.VmTestResults.Curr3v = (measData * 1.0E+6).ToString("F2") + "uA";
-                            result = (measData < Max);
+                            result = (measData > Min && measData < Max);
                             if (result)
                             {
                                 tm.stop();
