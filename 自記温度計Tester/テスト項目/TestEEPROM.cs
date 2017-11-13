@@ -20,13 +20,67 @@ namespace 自記温度計Tester
         //3700O00,rP,1,20,-.2,01,000,0,1,40,8.0,3.0,32.2,10.0,4.4,060,060,7.0,2.0,3.0,10.0,1.0,6.0,40,050,080,04.0,1000,01500,0,0
         public static async Task<bool> CheckParameter()
         {
-            const string param = "20,-0.2,01,000,0,1,40,8.0,3.0,32.2,10.0,4.4,060,060,7.0,2.0,3.0,10.0,1.0,6.0,40,050,080,04.0,1000,01500,0,0";
+            //パラメータ設定（本機、子機共通）
+            const string param = "20,-0.2,01,000,0,1,40,8.0,3.0,32.2,10.0,4.4,060,060,7.0,2.0,3.0,10.0,1.0,6.0,40,050,080,04.0,5000,08000,0,0";
+
+            //ユーザ情報設定（本機のみ）
+            const string userInfo = "00000000,0,1,1,1,1,0,0,000000000000,1,0,060,000";
+
+            //メニュー設定読み出しコマンド
             const string queryMenu親機 = "3700ORI,P,SR000001,00";
             const string queryMenu子機 = "3700ORI,P,SR000002,00";
+            const string queryUserInfo = "3700ORI,I,SR000000,00";
+
+            //パラメータ設定手順
+            //1)子機パラメータ設定
+            //2)親機パラメータ設定
+            //3)ユーザー情報設定（子機無し設定にする）
+
+
+
+
+
             Flags.AddDecision = false;
             bool result = false;
             try
             {
+                //子機パラメータ設定/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                result = false;
+                await Task.Run(() =>
+                {
+                    State.VmTestStatus.TestLog += "\r\n子機パラメータ設定";//テストログの更新
+                    if (!Target232_BT.SendData("3700OWP," + "2," + param))
+                    {
+                        result = false;
+                        return;
+                    }
+                    Thread.Sleep(300);
+
+                    //485通信により、子機の集乳完了ボタン押しと同じ操作を行う
+                    foreach (var i in Enumerable.Range(0, 3))
+                    {
+                        TargetRs485.SendData("2911030439000OK");
+                        if (TargetRs485.ReadRecieveData())
+                        {
+                            result = true;
+                            return;
+                        }
+                        Thread.Sleep(1000);
+                    }
+
+                    result = false;
+                });
+
+                if (result)
+                    State.VmTestStatus.TestLog += "---PASS";//テストログの更新
+                else
+                    return false;
+
+                await Task.Delay(600);
+
+
+                //本機パラメータ設定///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                result = false;
                 await Task.Run(() =>
                 {
                     //親機パラメータ設定
@@ -34,7 +88,21 @@ namespace 自記温度計Tester
                     result = Target232_BT.SendData("3700OWP," + "1," + param);//メニュー設定
                 });
                 if (!result) return false;
+                State.VmTestStatus.TestLog += "---PASS";//テストログの更新
                 await Task.Delay(300);
+
+
+                //ユーザ情報の変更///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                result = false;
+                await Task.Run(() =>
+                {
+                    State.VmTestStatus.TestLog += "\r\nユーザ情報設定";
+                    result = Target232_BT.SendData("3700OWI," + userInfo);
+                });
+                if (!result) return false;
+                State.VmTestStatus.TestLog += "---PASS";//テストログの更新
+                await Task.Delay(300);
+
 
                 //製品のSW1を長押しする
                 if (State.testMode == TEST_MODE.PWA)
@@ -48,54 +116,37 @@ namespace 自記温度計Tester
                     if (!Flags.DialogReturn) return false;
                 }
 
-                State.VmTestStatus.TestLog += "---PASS";//テストログの更新
+                State.VmTestStatus.TestLog += "\r\n集乳完了ボタンを長押し---PASS";//テストログの更新
                 await Task.Delay(600);
 
-                //子機パラメータ設定
+                //ここから、パラメータ読み出し・確認//////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 result = false;
-                return await Task<bool>.Run(() =>
-               {
-                   State.VmTestStatus.TestLog += "\r\n子機パラメータ設定";//テストログの更新
-                   if (!Target232_BT.SendData("3700OWP," + "2," + param)) return false;//メニュー設定
-                   Thread.Sleep(300);
+                General.PowSupply(false);
+                General.WaitWithRing(2500);
+                General.PowSupply(true);
+                if (!General.CheckComm()) return false;
 
-                   //485通信により、子機の集乳完了ボタン押しと同じ操作を行う
-                   bool Flag485 = false;
-                   foreach (var i in Enumerable.Range(0, 3))
-                   {
-                       TargetRs485.SendData("2911030439000OK");
-                       if (TargetRs485.ReadRecieveData())
-                       {
-                           Flag485 = true;
-                           break;
-                       }
-                       Thread.Sleep(1000);
-                   }
-                   if (!Flag485) return false;
-                   State.VmTestStatus.TestLog += "---PASS";//テストログの更新
+                State.VmTestStatus.TestLog += "\r\n親機パラメータ読み出し・確認";//テストログの更新
+                if (!Target232_BT.SendData(queryMenu親機)) return false;//メニュー読み出し
+                var re親Data = Target232_BT.RecieveData;
+                if (!re親Data.Contains("1," + param)) return false;
+                State.VmTestStatus.TestLog += "---PASS";//テストログの更新
 
+                Thread.Sleep(500);
+                State.VmTestStatus.TestLog += "\r\n子機パラメータ読み出し・確認";//テストログの更新
+                if (!Target232_BT.SendData(queryMenu子機)) return false;//メニュー読み出し
+                var re子Data = Target232_BT.RecieveData;
+                if (!re子Data.Contains("2," + param)) return false;
+                State.VmTestStatus.TestLog += "---PASS\r\n";//テストログの更新
 
-                   //ここから、パラメータ読み出し・確認
-                   General.PowSupply(false);
-                   General.WaitWithRing(2500);
-                   General.PowSupply(true);
-                   if (!General.CheckComm()) return false;
+                Thread.Sleep(500);
+                State.VmTestStatus.TestLog += "\r\nユーザ情報 読み出し・確認";//テストログの更新
+                if (!Target232_BT.SendData(queryUserInfo)) return false;//メニュー読み出し
+                var reUserInfo = Target232_BT.RecieveData;
+                if (!reUserInfo.Contains(userInfo)) return false;
+                State.VmTestStatus.TestLog += "---PASS\r\n";//テストログの更新
 
-                   State.VmTestStatus.TestLog += "\r\n親機パラメータ読み出し・確認";//テストログの更新
-                   if (!Target232_BT.SendData(queryMenu親機)) return false;//メニュー読み出し
-                   var re親Data = Target232_BT.RecieveData;
-                   if (!re親Data.Contains("1," + param)) return false;
-                   State.VmTestStatus.TestLog += "---PASS";//テストログの更新
-
-                   Thread.Sleep(500);
-                   State.VmTestStatus.TestLog += "\r\n子機パラメータ読み出し・確認";//テストログの更新
-                   if (!Target232_BT.SendData(queryMenu子機)) return false;//メニュー読み出し
-                   var re子Data = Target232_BT.RecieveData;
-                   if (!re子Data.Contains("2," + param)) return false;
-                   State.VmTestStatus.TestLog += "---PASS\r\n";//テストログの更新
-
-                   return result = true;
-               });
+                return result = true;
 
             }
             finally
@@ -284,7 +335,7 @@ namespace 自記温度計Tester
                             IsCounting = false;
                             return false;
                         }
-                        if (!Target232_BT.SendData(Data:"3700ORI,I,SR000000,00", Wait:700))
+                        if (!Target232_BT.SendData(Data: "3700ORI,I,SR000000,00", Wait: 700))
                         {
                             IsCounting = false;
                             General.PowSupply(false);
