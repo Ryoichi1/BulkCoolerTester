@@ -184,6 +184,7 @@ namespace 自記温度計Tester
             }
             finally
             {
+                await Task.Delay(1500);
             }
         }
 

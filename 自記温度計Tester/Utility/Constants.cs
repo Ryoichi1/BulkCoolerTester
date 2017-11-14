@@ -88,7 +88,7 @@ namespace 自記温度計Tester
         public const double OpacityImgMin = 0.0;
 
         //リトライ回数
-        public static readonly int RetryCount = 2;
+        public static readonly int RetryCount = 1;
 
 
 

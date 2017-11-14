@@ -335,11 +335,11 @@ namespace 自記温度計Tester
                             goto case 5000;
 
                         case 503://RS485通信確認1
-                            if (await Test通信.CheckRs485(Test通信.経路.経路1, true)) break;
+                            if (await Test通信.CheckRs485(Test通信.経路.経路1)) break;
                             goto case 5000;
 
                         case 504://RS485通信確認2
-                            if (await Test通信.CheckRs485(Test通信.経路.経路2)) break;
+                            if (await Test通信.CheckRs485(Test通信.経路.経路2, false)) break;
                             goto case 5000;
 
                         case 600://タクトスイッチ確認
@@ -633,10 +633,10 @@ namespace 自記温度計Tester
 
             //現在のテーマ透過度の保存
             State.CurrentThemeOpacity = State.VmMainWindow.ThemeOpacity;
-            //テーマ透過度を最小にする
             General.SetRadius(true);
 
-            await Task.Delay(500);
+            State.VmMainWindow.ThemeBlurEffectRadius = 25;
+
 
             FlagTestTime = true;
             Timer();
@@ -761,7 +761,7 @@ namespace 自記温度計Tester
                             goto case 5000;
 
                         case 203://RS485通信確認2
-                            if (await Test通信.CheckRs485(Test通信.経路.経路2)) break;
+                            if (await Test通信.CheckRs485(Test通信.経路.経路2, false)) break;
                             goto case 5000;
 
                         case 300://カレントセンサ確認

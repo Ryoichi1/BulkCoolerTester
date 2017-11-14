@@ -22,7 +22,7 @@
                 <ImageBrush Opacity="{Binding ThemeOpacity}" ImageSource="{Binding Theme, NotifyOnSourceUpdated=True}" Stretch="UniformToFill" />
             </Canvas.Background>
         </Canvas>
-        <Canvas x:Name="MainBack">
+        <Canvas x:Name="MainBack" Height="724" Width="1362">
             <Label Content="自記温度計 TESTER" Height="42" Width="204" FontSize="20" Canvas.Top="14" Canvas.Left="6" FontStyle="Italic" Foreground="White">
                 <Label.Effect>
                     <DropShadowEffect Color="#FF00FFDC" Direction="0" ShadowDepth="0" BlurRadius="20"/>

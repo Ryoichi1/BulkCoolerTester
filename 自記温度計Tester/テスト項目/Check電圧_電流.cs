@@ -203,13 +203,14 @@ namespace 自記温度計Tester
                         General.PowSupply(true);
                         if (!General.CheckComm()) return false;
 
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1500);
+                        General.PowSupply(false);
+                        Thread.Sleep(10000);
+                        General.PowSupply(true);
+                        if (!General.CheckComm()) return false;
                         General.PowSupply(false);
 
-                        if (!General.multimeter.GetDcCurrent()) return false;
-                        if (!General.multimeter.GetDcCurrent()) return false;
-
-                        var tm = new GeneralTimer(15000);
+                        var tm = new GeneralTimer(State.TestSpec.Curr3vWait_MilliSec);
                         tm.start();
                         while (true)
                         {
@@ -220,8 +221,17 @@ namespace 自記温度計Tester
                             result = (measData > Min && measData < Max);
                             if (result)
                             {
-                                tm.stop();
-                                return true;
+                                //念のためリトライ
+                                Thread.Sleep(1000);
+                                if (!General.multimeter.GetDcCurrent()) return false;
+                                measData = General.multimeter.CurrData;
+                                State.VmTestResults.Curr3v = (measData * 1.0E+6).ToString("F2") + "uA";
+                                result = (measData > Min && measData < Max);
+                                if (result)
+                                {
+                                    tm.stop();
+                                    return true;
+                                }
                             }
                             Thread.Sleep(500);
                         }

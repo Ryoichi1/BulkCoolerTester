@@ -32,6 +32,7 @@ namespace 自記温度計Tester
         //消費電流チェック ※単位はAで指定すること ビューモデルは1000を掛けてmA表示する
         public double Curr3vMax { get; set; }
         public double Curr3vMin { get; set; }
+        public int Curr3vWait_MilliSec { get; set; }
 
         public double Curr6vMax { get; set; }
         public double Curr6vMin { get; set; }
