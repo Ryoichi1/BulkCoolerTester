@@ -321,6 +321,10 @@ namespace 自記温度計Tester
                             if (await Test7Seg.CheckLum()) break;
                             goto case 5000;
 
+                        case 403:
+                            if (await Test7Seg.CheckOnOff()) break;
+                            goto case 5000;
+
                         //通信チェック
                         //////////////////////////////////////////////////////
                         case 500://Bluetooth通信確認

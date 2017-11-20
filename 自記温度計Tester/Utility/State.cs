@@ -91,6 +91,7 @@ namespace 自記温度計Tester
             new TestSpecs(400, "粒LEDカラーチェック", false),
             new TestSpecs(401, "粒LED輝度チェック", true),
             new TestSpecs(402, "7セグ 輝度チェック", true),
+            new TestSpecs(403, "7セグ 点灯チェック", true),
 
             new TestSpecs(500, "Bluetooth通信確認", true),
             new TestSpecs(501, "AT通信確認", true),

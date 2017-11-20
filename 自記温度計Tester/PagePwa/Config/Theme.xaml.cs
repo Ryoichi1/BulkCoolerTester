@@ -38,7 +38,7 @@ namespace 自記温度計Tester
         private void Pic1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            State.VmMainWindow.Theme = "Resources/Pic/MS_1.jpg";
+            State.VmMainWindow.Theme = "Resources/Pic/snow.jpg";
             General.Show();
         }
 
@@ -52,7 +52,7 @@ namespace 自記温度計Tester
         private void Pic3_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            State.VmMainWindow.Theme = "Resources/Pic/taki.jpg";
+            State.VmMainWindow.Theme = "Resources/Pic/snow2.jpg";
             General.Show();
         }
 

@@ -13,7 +13,7 @@
         <Image x:Name="Pic1" Canvas.Left="31" Canvas.Top="36" Width="128" Cursor="Hand" PreviewMouseLeftButtonDown="Pic1_PreviewMouseLeftButtonDown">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
-				 UriSource="/自記温度計Tester;component/Resources/Pic/MS_1.jpg"/>
+				 UriSource="/自記温度計Tester;component/Resources/Pic/snow.jpg"/>
             </Image.Source>
         </Image>
         <Image x:Name="Pic2" Canvas.Left="172" Canvas.Top="36" Width="136" Cursor="Hand" PreviewMouseLeftButtonDown="Pic2_PreviewMouseLeftButtonDown" Height="83">
@@ -25,7 +25,7 @@
         <Image x:Name="Pic3" Canvas.Left="320" Canvas.Top="39" Width="129" Cursor="Hand" PreviewMouseLeftButtonDown="Pic3_PreviewMouseLeftButtonDown" Height="77">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
-        			UriSource="/Resources/Pic/taki.jpg"/>
+        			UriSource="/Resources/Pic/snow2.jpg"/>
             </Image.Source>
         </Image>
 

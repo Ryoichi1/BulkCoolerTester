@@ -431,6 +431,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Pic\baby2.jpg" />
+    <Resource Include="Resources\Pic\snow.jpg" />
+    <Resource Include="Resources\Pic\snow2.jpg" />
     <Content Include="Resources\Wav\Alarm.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
