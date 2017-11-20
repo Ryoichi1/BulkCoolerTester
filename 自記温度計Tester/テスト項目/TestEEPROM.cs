@@ -163,7 +163,7 @@ namespace 自記温度計Tester
         {
             try
             {
-                return await Task<bool>.Run(() =>
+                var result = await Task<bool>.Run(() =>
                 {
                     //親機パラメータ設定
                     if (!Target232_BT.SendData("3700ORI,I,SR000000,00")) return false;//メニュー設定
@@ -176,11 +176,23 @@ namespace 自記温度計Tester
                     var newDataArray = dataArray.Skip(3).Take(13).ToArray();
                     var buff = string.Join(",", newDataArray);
                     var finalCommand = "3700OWI," + buff;
-                    if (!Target232_BT.SendData(finalCommand)) return false;
-
-                    //製品のSW1を長押し
-                    return General.Set集乳ボタン();
+                    return Target232_BT.SendData(finalCommand);
                 });
+
+                if (!result) return false;
+
+                //製品のSW1を長押しする
+                if (State.testMode == TEST_MODE.PWA)
+                {
+                    return General.Set集乳ボタン();
+                }
+                else
+                {
+                    DialogMp4 dialog;
+                    dialog = new DialogMp4("集乳完了ボタンを長押して、\r\n表示が点滅→点灯になるのを確認してください", DialogMp4.TEST_NAME.集乳完了); dialog.ShowDialog();
+                    return Flags.DialogReturn;
+                }
+
             }
             finally
             {

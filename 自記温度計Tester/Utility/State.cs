@@ -128,8 +128,9 @@ namespace 自記温度計Tester
 
             new TestSpecs(200, "Bluetooth通信確認", true),
             new TestSpecs(201, "AT通信確認", true),
-            new TestSpecs(202, "RS485通信確認1", true),
-            new TestSpecs(203, "RS485通信確認2", true),
+            new TestSpecs(202, "増設子機有りに設定", true),
+            new TestSpecs(203, "RS485通信確認1", true),
+            new TestSpecs(204, "RS485通信確認2", true),
 
             new TestSpecs(300, "カレントセンサチェック", true),
 
@@ -351,11 +352,6 @@ namespace 自記温度計Tester
             General.cam1.openCnt = cam1Prop.OpenCnt;
             General.cam1.closeCnt = cam1Prop.CloseCnt;
 
-
-            General.cam1.Opening = cam1Prop.Opening;
-            General.cam1.openCnt = cam1Prop.OpenCnt;
-            General.cam1.closeCnt = cam1Prop.CloseCnt;
-
             //TODO: 座標指定
             State.VmCamera1Point.LD1a = cam1Prop.LD1a;
             State.VmCamera1Point.LD1b = cam1Prop.LD1b;
@@ -398,11 +394,6 @@ namespace 自記温度計Tester
             General.cam2.Exposure = cam2Prop.Exposure;
             General.cam2.Theta = cam2Prop.Theta;
             General.cam2.BinLevel = cam2Prop.BinLevel;
-
-            General.cam2.Opening = cam2Prop.Opening;
-            General.cam2.openCnt = cam2Prop.OpenCnt;
-            General.cam2.closeCnt = cam2Prop.CloseCnt;
-
 
             General.cam2.Opening = cam2Prop.Opening;
             General.cam2.openCnt = cam2Prop.OpenCnt;

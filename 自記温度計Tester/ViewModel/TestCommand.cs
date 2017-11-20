@@ -471,6 +471,16 @@ namespace 自記温度計Tester
                 await Task.Delay(500);
                 State.VmTestStatus.Message = Constants.MessRemove;
 
+                await Task.Run(() =>
+                {
+                    State.VmTestStatus.StopButtonEnable = false;
+                    foreach (var i in Enumerable.Range(1, 100))
+                    {
+                        State.VmTestStatus.StopButtonVis = (1 - (i / 100.0));
+                        Thread.Sleep(10);
+                    }
+                });
+
                 //通しで試験が合格したときの処理です(検査データを保存して、シリアルナンバーをインクリメントする)
                 if (State.VmTestStatus.CheckUnitTest != true) //null or False アプリ立ち上げ時はnullになっている！
                 {
@@ -528,6 +538,7 @@ namespace 自記温度計Tester
 
                 await Task.Run(() =>
                 {
+                    State.VmTestStatus.StopButtonEnable = false;
                     foreach (var i in Enumerable.Range(1, 100))
                     {
                         State.VmTestStatus.StopButtonVis = (1 - (i / 100.0));
@@ -757,10 +768,14 @@ namespace 自記温度計Tester
                             goto case 5000;
 
                         case 202://RS485通信確認1
+                            if (await TestEEPROM.SetTestParam()) break;
+                            goto case 5000;
+
+                        case 203://RS485通信確認1
                             if (await Test通信.CheckRs485(Test通信.経路.経路1)) break;
                             goto case 5000;
 
-                        case 203://RS485通信確認2
+                        case 204://RS485通信確認2
                             if (await Test通信.CheckRs485(Test通信.経路.経路2, false)) break;
                             goto case 5000;
 
