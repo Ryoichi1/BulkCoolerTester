@@ -102,7 +102,7 @@ namespace 自記温度計Tester
 
                     //CN9に擬似バッテリ（6.25V）を接続
                     //pmx18の校正
-                    if (!General.CalbPmx18(6.25)) return false;
+                    if (!General.CalbPmx18(State.TestSpec.BattLowHiVol)) return false;
                     //この時点でpmx18からは正確に6.25Vが出力されている
 
                     General.SetRL1(true);

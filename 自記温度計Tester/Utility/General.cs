@@ -919,8 +919,8 @@ namespace 自記温度計Tester
         public static bool CalbPmx18(double outValue)
         {
             bool result = false;
-            double Max = outValue + 0.01;
-            double Min = outValue - 0.01;
+            double Max = outValue + 0.001;
+            double Min = outValue - 0.001;
 
             double setValue = outValue;
 

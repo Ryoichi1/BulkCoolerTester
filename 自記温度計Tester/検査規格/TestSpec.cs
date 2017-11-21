@@ -67,6 +67,6 @@ namespace 自記温度計Tester
         public int YellowHueMax { get; set; }
         public int YellowHueMin { get; set; }
 
-
+        public double BattLowHiVol { get; set; }
     }
 }
