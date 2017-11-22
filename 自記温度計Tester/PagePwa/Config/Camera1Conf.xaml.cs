@@ -142,6 +142,7 @@ namespace 自記温度計Tester
             State.cam1Prop.Gamma = General.cam1.Gamma;
             State.cam1Prop.Gain = General.cam1.Gain;
             State.cam1Prop.Exposure = General.cam1.Exposure;
+            State.cam1Prop.Whitebalance = General.cam1.Wb;
             State.cam1Prop.Theta = General.cam1.Theta;
             State.cam1Prop.BinLevel = General.cam1.BinLevel;
 
@@ -434,9 +435,5 @@ namespace 自記温度計Tester
 
         }
 
-        private void buttonShowPropPage_Click(object sender, RoutedEventArgs e)
-        {
-            General.cam1.ShowPropertyPage();
-        }
     }
 }

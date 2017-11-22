@@ -34,14 +34,31 @@
                 <Controls:ToggleSwitch x:Name="toggleSw" FontFamily="Meiryo UI" Foreground="White" ThumbIndicatorDisabledBrush="#FF1758C9" OffSwitchBrush="#FFD3DBE2" ThumbIndicatorBrush="#FF35A9D4" OnSwitchBrush="#CC0A99FD" FlowDirection="RightToLeft" Margin="147,0,0,283" OffLabel="Closing" OnLabel="Opening" Checked="toggleSw_Checked" Unchecked="toggleSw_Unchecked" HorizontalAlignment="Left" Width="152" HorizontalContentAlignment="Right" />
             </Border>
             <Label Content="カメラプロパティ" Height="30" Canvas.Left="6" Canvas.Top="6" Width="147" Foreground="#FF0EC2D4" BorderBrush="{x:Null}"/>
-            <TextBlock x:Name="tbSmoothParm1_Copy14" Height="17" Canvas.Left="24" TextWrapping="Wrap" Canvas.Top="43" Width="47" Foreground="White" FontSize="14" Text="明るさ"/>
-            <TextBlock x:Name="tbSmoothParm1_Copy15" Height="21" Canvas.Left="23" TextWrapping="Wrap" Canvas.Top="64" Width="48" Foreground="White" FontSize="14" Text="ｺﾝﾄﾗｽﾄ"/>
-            <TextBlock x:Name="tbSmoothParm1_Copy1" Height="21" Canvas.Left="24" TextWrapping="Wrap" Canvas.Top="88" Width="48" Foreground="White" FontSize="14" Text="色合い"/>
-            <TextBlock x:Name="tbSmoothParm1_Copy2" Height="21" Canvas.Left="12" TextWrapping="Wrap" Canvas.Top="112" Width="57" Foreground="White" FontSize="14" Text="鮮やかさ"/>
-            <TextBlock x:Name="tbSmoothParm1_Copy3" Height="21" Canvas.Left="23" TextWrapping="Wrap" Canvas.Top="136" Width="48" Foreground="White" FontSize="14" Text="鮮明度"/>
-            <TextBlock x:Name="tbSmoothParm1_Copy16" Height="21" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="160" Width="31" Foreground="White" FontSize="14" Text="ｶﾞﾝﾏ"/>
-            <TextBlock x:Name="tbSmoothParm1_Copy18" Height="21" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="185" Width="32" Foreground="White" FontSize="14" Text="露出"/>
-            <TextBlock x:Name="tbSmoothParm1_Copy19" Height="21" Canvas.Left="13" TextWrapping="Wrap" Canvas.Top="208" Width="56" Foreground="White" FontSize="14" Text="傾き補正"/>
+            <TextBlock Height="17" Canvas.Left="24" TextWrapping="Wrap" Canvas.Top="43" Width="47" Foreground="White" FontSize="14" Text="明るさ"/>
+            <TextBlock Height="21" Canvas.Left="23" TextWrapping="Wrap" Canvas.Top="64" Width="48" Foreground="White" FontSize="14" Text="ｺﾝﾄﾗｽﾄ"/>
+            <TextBlock Height="21" Canvas.Left="24" TextWrapping="Wrap" Canvas.Top="88" Width="48" Foreground="White" FontSize="14" Text="色合い"/>
+            <TextBlock Height="21" Canvas.Left="12" TextWrapping="Wrap" Canvas.Top="112" Width="57" Foreground="White" FontSize="14" Text="鮮やかさ"/>
+            <TextBlock Height="21" Canvas.Left="23" TextWrapping="Wrap" Canvas.Top="136" Width="48" Foreground="White" FontSize="14" Text="鮮明度"/>
+            <TextBlock Height="21" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="160" Width="31" Foreground="White" FontSize="14" Text="ｶﾞﾝﾏ"/>
+            <TextBlock Height="21" Canvas.Left="35" TextWrapping="Wrap" Canvas.Top="185" Width="32" Foreground="White" FontSize="14" Text="露出"/>
+            <TextBlock Height="21" Canvas.Left="6" TextWrapping="Wrap" Canvas.Top="211" Width="66" Foreground="White" FontSize="14" Text="ﾎﾜｲﾄﾊﾞﾗﾝｽ"/>
+            <TextBlock Height="21" Canvas.Left="13" TextWrapping="Wrap" Canvas.Top="240" Width="56" Foreground="White" FontSize="14" Text="傾き補正"/>
+            <TextBlock Height="21" Canvas.Left="6" TextWrapping="Wrap" Canvas.Top="264" Width="71" Foreground="White" FontSize="14" Text="二値化Lev"/>
+            <TextBlock Height="21" Canvas.Left="11" TextWrapping="Wrap" Canvas.Top="287" Width="61" Foreground="White" FontSize="14" Text="拡張回数"/>
+            <TextBlock Height="21" Canvas.Left="11" TextWrapping="Wrap" Canvas.Top="312" Width="60" Foreground="White" FontSize="14" Text="収縮回数"/>
+            <TextBlock Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropB}" Canvas.Top="40" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock Height="16" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropC}" Canvas.Top="67" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropH}" Canvas.Top="88" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropS}" Canvas.Top="112" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropP}" Canvas.Top="136" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropY}" Canvas.Top="161" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropE}" Canvas.Top="185" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropW}" Canvas.Top="211" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropTheta}" Canvas.Top="240" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderBinLev}" Canvas.Top="264" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderOpenCnt}" Canvas.Top="287" Width="60" Foreground="White" FontSize="14"/>
+            <TextBlock Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCloseCnt}" Canvas.Top="312" Width="60" Foreground="White" FontSize="14"/>
+
             <Slider x:Name="sliderCamPropP" Height="8" Canvas.Left="77" Canvas.Top="140" Width="199" Value="{Binding Sharpness}" IsSnapToTickEnabled="True" Maximum="7" Minimum="1" Style="{DynamicResource FlatSlider}"/>
             <Slider x:Name="sliderCamPropY" Height="8" Canvas.Left="76" Canvas.Top="164" Width="200" Maximum="300" Value="{Binding Gamma}" IsSnapToTickEnabled="True" Minimum="100" Style="{DynamicResource FlatSlider}"/>
             <Slider x:Name="sliderCamPropC" Height="8" Canvas.Left="77" Canvas.Top="69" Width="199" Maximum="95" Value="{Binding Contrast}" IsSnapToTickEnabled="True" Style="{DynamicResource FlatSlider}"/>
@@ -49,26 +66,11 @@
             <Slider x:Name="sliderCamPropS" Height="8" Canvas.Left="77" Canvas.Top="116" Width="199" Value="{Binding Saturation}" IsSnapToTickEnabled="True" Maximum="100" Style="{DynamicResource FlatSlider}"/>
             <Slider x:Name="sliderCamPropB" Height="8" Canvas.Left="76" Canvas.Top="45" Width="200" Minimum="-64" Value="{Binding Brightness}" IsSnapToTickEnabled="True" Maximum="64" Style="{DynamicResource FlatSlider}"/>
             <Slider x:Name="sliderCamPropE" Height="8" Canvas.Left="76" Canvas.Top="188" Width="199" Maximum="0" Minimum="-7" Value="{Binding Exposure}" IsSnapToTickEnabled="True" Style="{DynamicResource FlatSlider}"/>
-            <TextBlock x:Name="tbCamPropB" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropB}" Canvas.Top="40" Width="60" Foreground="White" FontSize="14"/>
-            <TextBlock x:Name="tbCamPropC" Height="16" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropC}" Canvas.Top="67" Width="60" Foreground="White" FontSize="14"/>
-            <TextBlock x:Name="tbCamPropH" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropH}" Canvas.Top="88" Width="60" Foreground="White" FontSize="14"/>
-            <TextBlock x:Name="tbCamPropS" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropS}" Canvas.Top="112" Width="60" Foreground="White" FontSize="14"/>
-            <TextBlock x:Name="tbCamPropP" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropP}" Canvas.Top="136" Width="60" Foreground="White" FontSize="14"/>
-            <TextBlock x:Name="tbCamPropY" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropY}" Canvas.Top="161" Width="60" Foreground="White" FontSize="14"/>
-            <TextBlock x:Name="tbCamPropE" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropE}" Canvas.Top="185" Width="60" Foreground="White" FontSize="14"/>
-
-            <Slider x:Name="sliderCamPropTheta" Height="8" Canvas.Left="77" Canvas.Top="212" Width="199" Value="{Binding Theta}" TickFrequency="0.05" IsSnapToTickEnabled="True" SmallChange="0.05" Maximum="180" Style="{DynamicResource FlatSlider}"/>
-            <TextBlock x:Name="tbCamPropTheta" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCamPropTheta}" Canvas.Top="208" Width="60" Foreground="White" FontSize="14"/>
-            <TextBlock x:Name="tbSmoothParm1_Copy" Height="21" Canvas.Left="6" TextWrapping="Wrap" Canvas.Top="232" Width="71" Foreground="White" FontSize="14" Text="二値化Lev"/>
-            <Slider x:Name="sliderBinLev" Height="8" Canvas.Left="77" Canvas.Top="236" Width="199" Value="{Binding BinLevel}" TickFrequency="0.05" IsSnapToTickEnabled="True" SmallChange="0.05" Maximum="250" Style="{DynamicResource FlatSlider}"/>
-            <TextBlock x:Name="tbCamPropBinLev" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderBinLev}" Canvas.Top="232" Width="60" Foreground="White" FontSize="14"/>
-            <TextBlock x:Name="tbSmoothParm1_Copy4" Height="21" Canvas.Left="11" TextWrapping="Wrap" Canvas.Top="255" Width="61" Foreground="White" FontSize="14" Text="拡張回数"/>
-            <Slider x:Name="sliderOpenCnt" Height="8" Canvas.Left="77" Canvas.Top="259" Width="199" Value="{Binding openCnt}" TickFrequency="0.05" IsSnapToTickEnabled="True" SmallChange="1" Maximum="5" Style="{DynamicResource FlatSlider}"/>
-            <TextBlock x:Name="tbCamPropOpenCnt" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderOpenCnt}" Canvas.Top="255" Width="60" Foreground="White" FontSize="14"/>
-            <TextBlock x:Name="tbSmoothParm1_Copy5" Height="21" Canvas.Left="11" TextWrapping="Wrap" Canvas.Top="280" Width="60" Foreground="White" FontSize="14" Text="収縮回数"/>
-            <Slider x:Name="sliderCloseCnt" Height="8" Canvas.Left="77" Canvas.Top="284" Width="199" Value="{Binding closeCnt}" TickFrequency="0.05" IsSnapToTickEnabled="True" SmallChange="1" Maximum="5" Style="{DynamicResource FlatSlider}"/>
-            <TextBlock x:Name="tbCamPropCloseCnt" Height="21" Canvas.Left="286" TextWrapping="Wrap" Text="{Binding Value, ElementName=sliderCloseCnt}" Canvas.Top="280" Width="60" Foreground="White" FontSize="14"/>
-            <Button x:Name="buttonShowPropPage" Content="カメラプロパティ表示"  Height="30" Canvas.Left="12" Canvas.Top="312" Width="144" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Background="{x:Null}" Click="buttonShowPropPage_Click" BorderThickness="1" Padding="0"/>
+            <Slider x:Name="sliderCamPropW" Height="8" Canvas.Left="76" Canvas.Top="215" Width="199" Maximum="6500" Minimum="2800" Value="{Binding Wb}" IsSnapToTickEnabled="True" Style="{DynamicResource FlatSlider}" SmallChange="1"/>
+            <Slider x:Name="sliderCamPropTheta" Height="8" Canvas.Left="77" Canvas.Top="244" Width="199" Value="{Binding Theta}" TickFrequency="0.05" IsSnapToTickEnabled="True" SmallChange="0.05" Maximum="180" Style="{DynamicResource FlatSlider}"/>
+            <Slider x:Name="sliderBinLev" Height="8" Canvas.Left="77" Canvas.Top="268" Width="199" Value="{Binding BinLevel}" TickFrequency="0.05" IsSnapToTickEnabled="True" SmallChange="0.05" Maximum="250" Style="{DynamicResource FlatSlider}"/>
+            <Slider x:Name="sliderOpenCnt" Height="8" Canvas.Left="77" Canvas.Top="291" Width="199" Value="{Binding openCnt}" TickFrequency="0.05" IsSnapToTickEnabled="True" SmallChange="1" Maximum="5" Style="{DynamicResource FlatSlider}"/>
+            <Slider x:Name="sliderCloseCnt" Height="8" Canvas.Left="77" Canvas.Top="316" Width="199" Value="{Binding closeCnt}" TickFrequency="0.05" IsSnapToTickEnabled="True" SmallChange="1" Maximum="5" Style="{DynamicResource FlatSlider}"/>
         </Canvas>
         <Border BorderBrush="#FF00DCFF" BorderThickness="1" Height="370" Width="650" Canvas.Left="11" Canvas.Top="3"/>
         <Canvas x:Name="CanvasImg" Canvas.Left="16" Canvas.Top="8" Width="640" Height="360">

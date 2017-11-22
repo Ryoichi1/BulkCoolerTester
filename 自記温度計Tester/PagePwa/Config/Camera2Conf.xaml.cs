@@ -109,6 +109,7 @@ namespace 自記温度計Tester
             State.cam2Prop.Gamma = General.cam2.Gamma;
             State.cam2Prop.Gain = General.cam2.Gain;
             State.cam2Prop.Exposure = General.cam2.Exposure;
+            State.cam2Prop.Whitebalance = General.cam2.Wb;
             State.cam2Prop.Theta = General.cam2.Theta;
             State.cam2Prop.BinLevel = General.cam2.BinLevel;
 
@@ -456,9 +457,6 @@ namespace 自記温度計Tester
             }
         }
 
-        private void buttonShowPropPage_Click(object sender, RoutedEventArgs e)
-        {
-            General.cam2.ShowPropertyPage();
-        }
+
     }
 }

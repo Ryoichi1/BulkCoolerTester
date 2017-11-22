@@ -22,6 +22,7 @@ namespace 自記温度計Tester
         public double Gamma { get; set; }
         public double Gain { get; set; }
         public double Exposure { get; set; }
+        public int Whitebalance { get; set; }
         public double Theta { get; set; }
 
         //LEDの座標

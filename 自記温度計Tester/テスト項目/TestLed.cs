@@ -53,7 +53,6 @@ namespace 自記温度計Tester
             int Y = 0;
             int refHueMax = 0;
             int refHueMin = 0;
-            double errHue = 20;
             var ListH = new List<int>();
 
             try
@@ -65,12 +64,7 @@ namespace 自記温度計Tester
                     General.cam2.ResetFlag();//カメラのフラグを初期化 リトライ時にフラグが初期化できてないとだめ
                                              //例 ＮＧリトライ時は、General.cam.FlagFrame = trueになっていてNGフレーム表示の無限ループにいる
                     General.SetLight(true);
-                    Thread.Sleep(500);
-                    General.cam2.Exposure = 0;
-                    Thread.Sleep(2000);
-                    General.cam2.Exposure = -7;
-                    Thread.Sleep(2000);
-                    General.cam2.Exposure = State.cam1Prop.Exposure;
+  
                     Thread.Sleep(1500);
 
                     //cam0の画像を取得する処理

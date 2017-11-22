@@ -808,7 +808,6 @@ namespace 自記温度計Tester
                 Task.Run(() =>
                 {
                     cam1 = new Camera(State.cam1Prop.CamNumber);
-                    State.SetCam1Prop();
 
                     while (true)
                     {
@@ -818,8 +817,11 @@ namespace 自記温度計Tester
                         }
 
                         Flags.StateCamera1 = cam1.InitCamera();
-                        if (Flags.StateCamera1) break;
-
+                        if (Flags.StateCamera1)
+                        {
+                            State.SetCam1Prop();
+                            break;
+                        }
                         Thread.Sleep(500);
                     }
                     StopCAMERA1 = true;
@@ -829,7 +831,6 @@ namespace 自記温度計Tester
                 Task.Run(() =>
                 {
                     cam2 = new Camera(State.cam2Prop.CamNumber);
-                    State.SetCam2Prop();
 
                     while (true)
                     {
@@ -839,7 +840,11 @@ namespace 自記温度計Tester
                         }
 
                         Flags.StateCamera2 = cam2.InitCamera();
-                        if (Flags.StateCamera2) break;
+                        if (Flags.StateCamera2)
+                        {
+                            State.SetCam2Prop();
+                            break;
+                        }
 
                         Thread.Sleep(500);
                     }

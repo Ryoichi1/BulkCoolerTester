@@ -55,17 +55,6 @@ namespace 自記温度計Tester
                     timerStartCamera1.Stop();
                     General.cam1.Start();
                     General.cam1.ImageOpacity = Constants.OpacityImgMin;
-                    Task.Run(() =>
-                    {
-                        Thread.Sleep(3000);
-                        General.cam1.Exposure = 0;
-                        Thread.Sleep(2000);
-                        General.cam1.Exposure = -7;
-                        Thread.Sleep(2000);
-                        General.cam1.Exposure = State.cam1Prop.Exposure;
-
-                    });
-
                 }
             };
             timerStartCamera1.Start();
@@ -80,17 +69,6 @@ namespace 自記温度計Tester
                     timerStartCamera2.Stop();
                     General.cam2.Start();
                     General.cam2.ImageOpacity = Constants.OpacityImgMin;
-                    Task.Run(() =>
-                    {
-                        Thread.Sleep(3000);
-                        General.cam2.Exposure = 0;
-                        Thread.Sleep(2000);
-                        General.cam2.Exposure = -7;
-                        Thread.Sleep(2000);
-                        General.cam2.Exposure = State.cam2Prop.Exposure;
-
-                    });
-
                 }
             };
             timerStartCamera2.Start();

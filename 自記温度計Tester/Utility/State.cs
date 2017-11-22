@@ -346,6 +346,7 @@ namespace 自記温度計Tester
             General.cam1.Gamma = cam1Prop.Gamma;
             General.cam1.Gain = cam1Prop.Gain;
             General.cam1.Exposure = cam1Prop.Exposure;
+            General.cam1.Wb = cam1Prop.Whitebalance;
             General.cam1.Theta = cam1Prop.Theta;
             General.cam1.BinLevel = cam1Prop.BinLevel;
 
@@ -393,6 +394,7 @@ namespace 自記温度計Tester
             General.cam2.Gamma = cam2Prop.Gamma;
             General.cam2.Gain = cam2Prop.Gain;
             General.cam2.Exposure = cam2Prop.Exposure;
+            General.cam2.Wb = cam2Prop.Whitebalance;
             General.cam2.Theta = cam2Prop.Theta;
             General.cam2.BinLevel = cam2Prop.BinLevel;
 

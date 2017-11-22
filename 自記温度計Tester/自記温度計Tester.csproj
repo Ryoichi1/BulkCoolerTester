@@ -185,6 +185,7 @@
     <Compile Include="Utility\Camera.cs" />
     <Compile Include="Utility\ColorHSV.cs" />
     <Compile Include="Utility\GeneralTimer.cs" />
+    <Compile Include="Utility\IAMVideoProcAmp.cs" />
     <Compile Include="Utility\KEYSIGHT34461A.cs" />
     <Compile Include="Utility\Multimeter.cs" />
     <Compile Include="Utility\PMX18.cs" />
@@ -192,6 +193,8 @@
     <Compile Include="Utility\SystemTime.cs" />
     <Compile Include="Utility\TargetRs232c.cs" />
     <Compile Include="Utility\TargetRs485.cs" />
+    <Compile Include="Utility\VideoCaptureDevice.cs" />
+    <Compile Include="Utility\VideoProcAmpProperty.cs" />
     <Compile Include="ViewModel\ViewModelCamera2Point.cs" />
     <Compile Include="ViewModel\ViewModelCamera1Point.cs" />
     <Compile Include="ViewModel\ViewModelTh.cs" />

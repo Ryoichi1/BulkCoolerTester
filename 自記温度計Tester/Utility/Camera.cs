@@ -1,4 +1,5 @@
-﻿using AForge.Video.DirectShow;
+﻿
+using AForge.Video.DirectShow;
 using Microsoft.Practices.Prism.Mvvm;
 using OpenCvSharp;
 using OpenCvSharp.Blob;
@@ -19,6 +20,10 @@ namespace 自記温度計Tester
         static readonly int WIDTH = 640;
         static readonly int HEIGHT = 360;
 
+        //ホワイトバランス調整用（aforge.NETで設定）
+        public FilterInfoCollection videoDevices;
+        public VideoCaptureDevice2 videoDevice;
+
         public CvBlobs blobs;
         public IplImage imageForLabeling;
         public IplImage imageForHsv;
@@ -27,12 +32,6 @@ namespace 自記温度計Tester
         public Action<IplImage> MakeNgFrame;
         private bool FlagPropChange;
         private int CameraNumber;
-
-        //カメラプロパティ画面表示に使用
-        //使用するビデオデバイス
-        public VideoCaptureDevice videoDevice;
-        //接続されている全てのビデオデバイス情報を格納する変数
-        public FilterInfoCollection videoDeviceCollection;
 
 
         public bool FlagLabeling { get; set; }
@@ -86,6 +85,8 @@ namespace 自記温度計Tester
             {
                 using (var cap = Cv.CreateCameraCapture(CameraNumber)) // カメラのキャプチャ
                 { }
+                videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+                videoDevice = new VideoCaptureDevice2(videoDevices[CameraNumber].MonikerString);
                 return true;
             }
             catch
@@ -198,6 +199,18 @@ namespace 自記温度計Tester
             set { this.SetProperty(ref this._Gain, value); FlagPropChange = true; }
         }
 
+
+        //ホワイトバランス
+        private int _Wb;
+        public int Wb
+        {
+            get { return _Wb; }
+            set
+            {
+                this.SetProperty(ref this._Wb, value);
+                videoDevice.SetVideoProperty(VideoProcAmpProperty.WhiteBalance, value, VideoProcAmpFlags.Manual);
+            }
+        }
 
         //露出
         private double _Exposure;
@@ -492,17 +505,6 @@ namespace 自記温度計Tester
             Vdata = re[2];
 
         }
-
-        public void ShowPropertyPage()
-        {
-            //ビデオ入力デバイスのみ取得
-            videoDeviceCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-
-            //最初に見つかったビデオデバイスを使用する場合、以下のようにIndex = 0とすればよい
-            videoDevice = new VideoCaptureDevice(videoDeviceCollection[CameraNumber].MonikerString);
-            videoDevice.DisplayPropertyPage(IntPtr.Zero);
-        }
-
 
     }
 }
