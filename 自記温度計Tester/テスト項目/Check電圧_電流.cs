@@ -205,39 +205,89 @@ namespace 自記温度計Tester
                         Thread.Sleep(1500);
                         //RTCをセットする（電池セットされていない状態で100Vを入れると、RTCの時刻が狂っているため消費電流が多くなる傾向にある）
                         if (!TestRtc.SetTime()) return false;
-                        Thread.Sleep(15000);//15秒待つ
+                        Thread.Sleep(10000);//10秒待つ
                         General.PowSupply(false);
                         Thread.Sleep(1500);//これがないと電源OFF後に---表示となる
 
-                        foreach (var i in Enumerable.Range(0, 10))
+                        //１回計測して、電流値がMax以上なのか、Min以下なのかを判定し、その後の処理を変える
+                        if (!General.multimeter.GetDcCurrent()) return false;
+                        measData = General.multimeter.CurrData;
+                        State.VmTestResults.Curr3v = (measData * 1.0E+6).ToString("F2") + "uA";
+                        if (measData >= Max)
                         {
-                            if (Flags.ClickStopButton) return false;
-
-                            if (!General.multimeter.GetDcCurrent()) return false;
-                            measData = General.multimeter.CurrData;
-                            State.VmTestResults.Curr3v = (measData * 1.0E+6).ToString("F2") + "uA";
-                            result = (measData > Min && measData < Max);
-                            if (result)
+                            foreach (var i in Enumerable.Range(0, 10))
                             {
-                                //念のためリトライ
-                                Thread.Sleep(1000);
+                                if (Flags.ClickStopButton) return false;
+
+                                General.PowSupply(true);
+                                Thread.Sleep(10000);
+                                General.PowSupply(false);
+                                Thread.Sleep(1500);//これがないと電源OFF後に---表示となる
+
                                 if (!General.multimeter.GetDcCurrent()) return false;
                                 measData = General.multimeter.CurrData;
                                 State.VmTestResults.Curr3v = (measData * 1.0E+6).ToString("F2") + "uA";
                                 result = (measData > Min && measData < Max);
                                 if (result)
                                 {
-                                    return true;
+                                    //念のためリトライ
+                                    Thread.Sleep(1000);
+                                    if (!General.multimeter.GetDcCurrent()) return false;
+                                    measData = General.multimeter.CurrData;
+                                    State.VmTestResults.Curr3v = (measData * 1.0E+6).ToString("F2") + "uA";
+                                    result = (measData > Min && measData < Max);
+                                    if (result)
+                                    {
+                                        return true;
+                                    }
                                 }
                             }
-
-                            if (i == 4) break;
-                            General.PowSupply(true);
-                            Thread.Sleep(10000);
-                            General.PowSupply(false);
-                            Thread.Sleep(1500);//これがないと電源OFF後に---表示となる
+                            return false;
                         }
-                        return false;
+                        else if (measData <= Min)
+                        {
+                            foreach (var i in Enumerable.Range(0, 2))
+                            {
+                                Thread.Sleep(10000);
+
+                                if (!General.multimeter.GetDcCurrent()) return false;
+                                measData = General.multimeter.CurrData;
+                                State.VmTestResults.Curr3v = (measData * 1.0E+6).ToString("F2") + "uA";
+                                result = (measData > Min && measData < Max);
+                                if (result)
+                                {
+                                    //念のためリトライ
+                                    Thread.Sleep(1000);
+                                    if (!General.multimeter.GetDcCurrent()) return false;
+                                    measData = General.multimeter.CurrData;
+                                    State.VmTestResults.Curr3v = (measData * 1.0E+6).ToString("F2") + "uA";
+                                    result = (measData > Min && measData < Max);
+                                    if (result)
+                                    {
+                                        return true;
+                                    }
+                                }
+                            }
+                            return false;
+                        }
+                        else
+                        {
+                            //念のためリトライ
+                            Thread.Sleep(1000);
+                            if (!General.multimeter.GetDcCurrent()) return false;
+                            measData = General.multimeter.CurrData;
+                            State.VmTestResults.Curr3v = (measData * 1.0E+6).ToString("F2") + "uA";
+                            result = (measData > Min && measData < Max);
+                            if (result)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+
                     }
                     catch
                     {
