@@ -427,7 +427,7 @@ namespace 自記温度計Tester
                             }
 
                             General.PlaySoundLoop(General.soundAlarm);
-                            General._server.SendMessToClient("リトライ確認 " + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
+                            General._server.SendMessToClient("リトライ確認," + FailTitle + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
                             var YesNoResult = MessageBox.Show("この項目はＮＧですがリトライしますか？", "", MessageBoxButtons.YesNo);
                             General.StopSound();
 

@@ -197,24 +197,22 @@ namespace 自記温度計Tester
                         //この時点でpmx18からは正確に3Vが出力されている
 
 
-                        General.SetK2(true);//3V接続
+                        General.SetK2(true);//3V接続（マルチメータ電流計測ラインに接続されている）
                         Thread.Sleep(300);
 
                         General.PowSupply(true);
                         if (!General.CheckComm()) return false;
-
                         Thread.Sleep(1500);
+                        //RTCをセットする（電池セットされていない状態で100Vを入れると、RTCの時刻が狂っているため消費電流が多くなる傾向にある）
+                        if (!TestRtc.SetTime()) return false;
+                        Thread.Sleep(15000);//15秒待つ
                         General.PowSupply(false);
-                        Thread.Sleep(10000);
-                        General.PowSupply(true);
-                        if (!General.CheckComm()) return false;
-                        General.PowSupply(false);
+                        Thread.Sleep(1500);//これがないと電源OFF後に---表示となる
 
-                        var tm = new GeneralTimer(State.TestSpec.Curr3vWait_MilliSec);
-                        tm.start();
-                        while (true)
+                        foreach (var i in Enumerable.Range(0, 10))
                         {
-                            if (tm.FlagTimeout || Flags.ClickStopButton) return false;
+                            if (Flags.ClickStopButton) return false;
+
                             if (!General.multimeter.GetDcCurrent()) return false;
                             measData = General.multimeter.CurrData;
                             State.VmTestResults.Curr3v = (measData * 1.0E+6).ToString("F2") + "uA";
@@ -229,12 +227,17 @@ namespace 自記温度計Tester
                                 result = (measData > Min && measData < Max);
                                 if (result)
                                 {
-                                    tm.stop();
                                     return true;
                                 }
                             }
-                            Thread.Sleep(500);
+
+                            if (i == 4) break;
+                            General.PowSupply(true);
+                            Thread.Sleep(10000);
+                            General.PowSupply(false);
+                            Thread.Sleep(1500);//これがないと電源OFF後に---表示となる
                         }
+                        return false;
                     }
                     catch
                     {
