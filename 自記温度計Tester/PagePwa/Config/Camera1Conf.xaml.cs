@@ -2,12 +2,9 @@
 using System.Windows;
 using System.Windows.Media;
 using OpenCvSharp;
-using OpenCvSharp.Blob;
 using System.Windows.Input;
 using System.Linq;
 using System;
-using System.Collections.Generic;
-using System.Threading;
 
 namespace 自記温度計Tester
 {

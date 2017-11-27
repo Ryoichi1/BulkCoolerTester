@@ -1,8 +1,5 @@
 ﻿using Microsoft.Practices.Prism.Mvvm;
-using System.Collections.Generic;
-using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Effects;
 
 
 namespace 自記温度計Tester

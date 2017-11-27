@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using Microsoft.Practices.Prism.Mvvm;
 using System.Linq;
 using System.Windows.Media.Animation;
 using System.Threading.Tasks;
@@ -12,14 +11,14 @@ namespace 自記温度計Tester
     /// <summary>
     /// Interaction logic for BasicPage1.xaml
     /// </summary>
-    public partial class 銘板ラベル貼り付け
+    public partial class 銘板ラベル貼り付け_本機
     {
         public static Action RefreshDataContextFromLabelForm;//Test.Xaml内でテスト結果をクリアするために使用すする
 
         private const int MaxRetryCount = 5;
         private int RetryCount;
 
-        public 銘板ラベル貼り付け()
+        public 銘板ラベル貼り付け_本機()
         {
             this.InitializeComponent();
         }

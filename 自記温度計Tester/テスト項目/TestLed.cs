@@ -1,5 +1,4 @@
 ﻿using OpenCvSharp;
-using OpenCvSharp.Blob;
 using System;
 using System.Collections.Generic;
 using System.Linq;

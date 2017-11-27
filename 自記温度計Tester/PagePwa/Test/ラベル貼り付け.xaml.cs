@@ -1,8 +1,6 @@
 ﻿using System.Windows;
 using Microsoft.Practices.Prism.Mvvm;
-using System.Linq;
 using System.Windows.Media.Animation;
-using System.Threading.Tasks;
 using System;
 
 namespace 自記温度計Tester

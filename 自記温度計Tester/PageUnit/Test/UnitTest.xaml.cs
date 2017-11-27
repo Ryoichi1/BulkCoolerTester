@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
 
 namespace 自記温度計Tester
 {
@@ -41,7 +39,14 @@ namespace 自記温度計Tester
 
             });
 
-            銘板ラベル貼り付け.RefreshDataContextFromLabelForm = (() =>
+            銘板ラベル貼り付け_本機.RefreshDataContextFromLabelForm = (() =>
+            {
+                Canvas検査データ.DataContext = State.VmTestResults;
+                tbTestLog.DataContext = State.VmTestStatus;
+
+            });
+
+            銘板ラベル貼り付け_子機.RefreshDataContextFromLabelForm = (() =>
             {
                 Canvas検査データ.DataContext = State.VmTestResults;
                 tbTestLog.DataContext = State.VmTestStatus;

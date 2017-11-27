@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
@@ -43,7 +41,14 @@ namespace 自記温度計Tester
 
                             case VOL_CH.CN3:
                                 SpecMax = State.TestSpec.VolCn3Max;
-                                SpecMin = State.TestSpec.VolCn3Min;
+                                if (State.testMode == TEST_MODE.子機)
+                                {
+                                    SpecMin = 5.9;
+                                }
+                                else
+                                {
+                                    SpecMin = State.TestSpec.VolCn3Min;
+                                }
                                 General.SetK7(true);//
                                 break;
 

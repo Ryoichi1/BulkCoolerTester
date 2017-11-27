@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Practices.Prism.Mvvm;
-using System.Windows.Media;
 
 
 

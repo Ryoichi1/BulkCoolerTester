@@ -1,7 +1,6 @@
 ﻿using System.IO.Ports;
 using System.Threading;
 using System.Linq;
-using System;
 
 namespace 自記温度計Tester
 {

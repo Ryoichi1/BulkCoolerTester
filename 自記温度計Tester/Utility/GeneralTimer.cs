@@ -1,11 +1,4 @@
-﻿using System.Timers;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace 自記温度計Tester
+﻿namespace 自記温度計Tester
 {
     public class GeneralTimer
     {

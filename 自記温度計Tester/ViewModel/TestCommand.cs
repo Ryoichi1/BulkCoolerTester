@@ -764,23 +764,23 @@ namespace 自記温度計Tester
 
                         //通信チェック
                         //////////////////////////////////////////////////////
-                        case 200://Bluetooth通信確認
-                            if (await Test通信.CheckBluetooth()) break;
-                            goto case 5000;
-                        case 201://AT通信確認
-                            if (await Test通信.CheckAtMode()) break;
-                            goto case 5000;
-
-                        case 202://RS485通信確認1
+                        case 200://RS485通信確認1
                             if (await TestEEPROM.SetTestParam()) break;
                             goto case 5000;
 
-                        case 203://RS485通信確認1
+                        case 201://RS485通信確認1
                             if (await Test通信.CheckRs485(Test通信.経路.経路1)) break;
                             goto case 5000;
 
-                        case 204://RS485通信確認2
+                        case 202://RS485通信確認2
                             if (await Test通信.CheckRs485(Test通信.経路.経路2, false)) break;
+                            goto case 5000;
+
+                        case 203://Bluetooth通信確認
+                            if (await Test通信.CheckBluetooth()) break;
+                            goto case 5000;
+                        case 204://AT通信確認
+                            if (await Test通信.CheckAtMode()) break;
                             goto case 5000;
 
                         case 300://カレントセンサ確認
@@ -1059,7 +1059,14 @@ namespace 自記温度計Tester
 
                 if (Flags.ShowLabelPage)
                 {
-                    State.uriOtherInfoPage = new Uri("PageUnit/Test/銘板ラベル貼り付け.xaml", UriKind.Relative);
+                    if (State.testMode == TEST_MODE.本機)
+                    {
+                        State.uriOtherInfoPage = new Uri("PageUnit/Test/銘板ラベル貼り付け_本機.xaml", UriKind.Relative);
+                    }
+                    else
+                    {
+                        State.uriOtherInfoPage = new Uri("PageUnit/Test/銘板ラベル貼り付け_子機.xaml", UriKind.Relative);
+                    }
                     State.VmMainWindow.TabIndex = 3;
                 }
                 else
@@ -1071,7 +1078,7 @@ namespace 自記温度計Tester
 
         }
 
-        //フォームきれいにする処理いろいろ
+         //フォームきれいにする処理いろいろ
         private void ClearForm()
         {
             SbRingLoad();

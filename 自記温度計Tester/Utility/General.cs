@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 using System.Media;
 using System.Windows.Media;
 using System;
-using System.Windows.Media.Animation;
-using System.Windows;
 
 namespace 自記温度計Tester
 {
@@ -336,9 +334,6 @@ namespace 自記温度計Tester
                 "TestSpecVer " + State.TestSpec.TestSpecVer,
                 System.DateTime.Now.ToString("yyyy年MM月dd日(ddd) HH:mm:ss"),
                 State.VmMainWindow.Operator,
-
-                State.VmTestStatus.FwVer,
-                State.VmTestStatus.FwSum,
 
                 State.VmTestResults.VolCn3,
 

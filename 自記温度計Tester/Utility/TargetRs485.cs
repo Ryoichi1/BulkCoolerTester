@@ -1,6 +1,4 @@
 ﻿using System.IO.Ports;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace 自記温度計Tester
 {

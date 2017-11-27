@@ -1,12 +1,7 @@
-﻿using OpenCvSharp;
-using OpenCvSharp.Blob;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media;
 
 namespace 自記温度計Tester
 {

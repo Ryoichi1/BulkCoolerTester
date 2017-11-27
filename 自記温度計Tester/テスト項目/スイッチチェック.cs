@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media;
 
 namespace 自記温度計Tester
 {
@@ -372,6 +369,13 @@ namespace 自記温度計Tester
                             //テストログの更新
                             State.VmTestStatus.TestLog += "\r\n" + L.name.ToString() + " ONチェック";
 
+                            if (L.name == NAME_SW14.SW3 && State.testMode == TEST_MODE.子機)//子機の場合、SW3は未実装のため試験しない
+                            {
+                                //テストログの更新
+                                State.VmTestStatus.TestLog += "---PASS（未実装）";
+                                return true;
+                            }
+
                             var swName = "";
                             //ONチェック
                             switch (L.name)
@@ -560,7 +564,7 @@ namespace 自記温度計Tester
 
                         //出荷設定
                         //テストログの更新
-                        State.VmTestStatus.TestLog += "\r\nALL 出荷設定 4番On";
+                        State.VmTestStatus.TestLog += "\r\nALL 出荷設定";
 
                         General.PlaySound(General.soundNotice);
                         //General.PlaySound(General.soundCutin);

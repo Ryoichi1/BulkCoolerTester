@@ -1,12 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Threading;
-using System.IO;
-using System.Reflection;
-using System.Threading;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Windows;
 
 namespace 自記温度計Tester
 {
