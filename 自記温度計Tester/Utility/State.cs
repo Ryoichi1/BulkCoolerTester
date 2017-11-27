@@ -202,7 +202,7 @@ namespace 自記温度計Tester
             //new TestSpecs(1100, "コイン電池電圧チェック", false),//本機のみ
             //new TestSpecs(1200, "CN9 バッテリ接続作業", false),//本機のみ
             //new TestSpecs(1300, "製品ソフト書き込み", false),//本機のみ
-            //new TestSpecs(1400, "パラメータチェック", true),//本機のみ
+            new TestSpecs(1400, "パラメータチェック", true),
 
 
             //new TestSpecs(1500, "RTCチェック", true),//本機のみ
