@@ -776,10 +776,15 @@ namespace 自記温度計Tester
                             if (await Test通信.CheckRs485(Test通信.経路.経路2, false)) break;
                             goto case 5000;
 
-                        case 203://Bluetooth通信確認
+                        case 203://EEPROMチェック ※子機のみ
+                            if (await TestEEPROM.CheckParameter()) break;
+                            goto case 5000;
+
+                        case 204://Bluetooth通信確認
                             if (await Test通信.CheckBluetooth()) break;
                             goto case 5000;
-                        case 204://AT通信確認
+
+                        case 205://AT通信確認
                             if (await Test通信.CheckAtMode()) break;
                             goto case 5000;
 

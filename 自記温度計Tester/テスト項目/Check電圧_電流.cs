@@ -41,14 +41,7 @@ namespace 自記温度計Tester
 
                             case VOL_CH.CN3:
                                 SpecMax = State.TestSpec.VolCn3Max;
-                                if (State.testMode == TEST_MODE.子機)
-                                {
-                                    SpecMin = 5.9;
-                                }
-                                else
-                                {
-                                    SpecMin = State.TestSpec.VolCn3Min;
-                                }
+                                SpecMin = State.TestSpec.VolCn3Min;
                                 General.SetK7(true);//
                                 break;
 

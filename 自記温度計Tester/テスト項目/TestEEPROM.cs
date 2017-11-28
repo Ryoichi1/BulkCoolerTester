@@ -116,6 +116,7 @@ namespace 自記温度計Tester
                 State.VmTestStatus.TestLog += "\r\n集乳完了ボタンを長押し---PASS";//テストログの更新
                 await Task.Delay(600);
 
+
                 //ここから、パラメータ読み出し・確認//////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 result = false;
                 General.PowSupply(false);
@@ -181,7 +182,7 @@ namespace 自記温度計Tester
                 //製品のSW1を長押しする
                 if (State.testMode == TEST_MODE.PWA)
                 {
-                    return General.Set集乳ボタン();
+                    return await Task<bool>.Run(() => General.Set集乳ボタン());
                 }
                 else
                 {
