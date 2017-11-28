@@ -45,17 +45,20 @@
 
 
         <TabControl x:Name="TabMenu" Height="652" Width="1284" Canvas.Left="6" FlowDirection="RightToLeft" Canvas.Top="2" >
-            <TabItem x:Name="TabMente" Header="メンテナンス" Margin="1120,28,-1120,-27" Width="127" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Loaded="TabMente_Loaded" Controls:ControlsHelper.HeaderFontSize="18" >
-                <Frame x:Name="FrameMente" FlowDirection="LeftToRight" Margin="16,-16,177,-25" />
+            <TabItem x:Name="TabMente" Header="メンテナンス" Margin="1105,28,-1105,-27" Width="127" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Loaded="TabMente_Loaded" Controls:ControlsHelper.HeaderFontSize="18" >
+                <Frame x:Name="FrameMente" FlowDirection="LeftToRight" Margin="9,-16,184,-25" />
             </TabItem>
-            <TabItem x:Name="TabOperator" Header="作業者リスト" Margin="993,64,-993,-65" Width="130" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Loaded="TabOperator_Loaded" Controls:ControlsHelper.HeaderFontSize="18">
-                <Frame x:Name="FrameEdit" FlowDirection="LeftToRight" Margin="4,-13,175,1"/>
+            <TabItem x:Name="TabSerialHeader" Header="シリアルヘッダ設定" Margin="978,59,-1022,-58" Width="171" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Controls:ControlsHelper.HeaderFontSize="18" Loaded="TabSerialHeader_Loaded" >
+                <Frame x:Name="FrameSerialHeader" FlowDirection="LeftToRight" Margin="9,-16,184,-25" />
             </TabItem>
-            <TabItem x:Name="TabTheme" Header="テーマ" Margin="864,103,-896,-103" Loaded="TabTheme_Loaded" Controls:ControlsHelper.HeaderFontSize="18">
-                <Frame x:Name="FrameTheme" FlowDirection="LeftToRight" Margin="24,-28,160,10" Width="1043" />
+            <TabItem x:Name="TabOperator" Header="作業者リスト" Margin="807,92,-807,-93" Width="130" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Loaded="TabOperator_Loaded" Controls:ControlsHelper.HeaderFontSize="18">
+                <Frame x:Name="FrameEdit" FlowDirection="LeftToRight" Margin="-4,-13,183,1"/>
+            </TabItem>
+            <TabItem x:Name="TabTheme" Header="テーマ" Margin="679,123,-711,-123" Loaded="TabTheme_Loaded" Controls:ControlsHelper.HeaderFontSize="18">
+                <Frame x:Name="FrameTheme" FlowDirection="LeftToRight" Margin="46,-28,184,10" Width="1043" />
             </TabItem>
         </TabControl>
-        <Border VerticalAlignment="Stretch" Height="580" BorderBrush="White" BorderThickness="1" HorizontalAlignment="Right" Canvas.Left="178" Canvas.Top="10"/>
+        <Border VerticalAlignment="Stretch" Height="580" BorderBrush="White" BorderThickness="1" HorizontalAlignment="Right" Canvas.Left="188" Canvas.Top="10"/>
     </Canvas>
 
 </Page>

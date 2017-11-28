@@ -80,6 +80,7 @@ namespace 自記温度計Tester
             State.Setting.HeaderSerialPwa = tbPwaSerial.Text;
             State.Setting.HeaderSerialPow = tbPowSerial.Text;
 
+            General.PlaySound(General.soundBattery);
             await Task.Delay(150);
             buttonSaveSerialHeader.Background = Brushes.Transparent;
         }
