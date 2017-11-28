@@ -14,7 +14,7 @@
 	WindowTitle="Page"
 	FlowDirection="LeftToRight"
 
-	WindowWidth="886" WindowHeight="1246" Height="677" Width="1344" HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+	WindowWidth="886" WindowHeight="1246" Height="677" Width="1344" HorizontalAlignment="Left" VerticalAlignment="Top" Unloaded="Page_Unloaded">
     <Page.Resources>
         <my:ProgressConverter x:Key="ProgConverter"/>
         <my:AngleConverter x:Key="AngleConverter"/>

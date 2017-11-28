@@ -103,14 +103,10 @@ namespace 自記温度計Tester
             State.VmTestStatus.Message = Constants.MessOpecode;
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-
-
-
         public class testDataPwa
         {
+            public string fwVer;
+            public string fwSum;
             public string serial;
             public string curr3v;
             public string curr6v;
@@ -122,12 +118,12 @@ namespace 自記温度計Tester
         {
             public string serialUnit;
             public string serialPwa;
-            public string SerialPow;
-            public string SerialBt;
-            public string PassedTime;
-            public string Operator;
-            public string FwVer;
-            public string FwSum;
+            public string serialPow;
+            public string serialBt;
+            public string passedTime;
+            public string operatorName;
+            public string fwVer;
+            public string fwSum;
             public string volCn3;
             public string volCn9;
             public string volBt;
@@ -149,10 +145,8 @@ namespace 自記温度計Tester
         {
             public string serialUnit;
             public string serialPwa;
-            public string PassedTime;
-            public string Operator;
-            public string FwVer;
-            public string FwSum;
+            public string passedTime;
+            public string operatorName;
             public string volCn3;
             public string th2;
             public string th3;
@@ -181,10 +175,12 @@ namespace 自記温度計Tester
                 var _testDatPwa = new testDataPwa
                 {
                     serial = T[0],
-                    curr3v = T[5],
-                    curr6v = T[6],
-                    vol5v = T[7],
-                    vol33v = T[8],
+                    fwVer  = T[5],
+                    fwSum  = T[6],
+                    curr3v = T[7],
+                    curr6v = T[8],
+                    vol5v  = T[9],
+                    vol33v = T[10],
                 };
                 PwaData最終.Add(_testDatPwa);
             });
@@ -199,28 +195,28 @@ namespace 自記温度計Tester
                 var _testDatUnit = new testData本機
                 {
                     serialUnit = T[0],
-                    serialPwa = T[1],
-                    SerialPow = T[2],
-                    SerialBt = T[3],
-                    PassedTime = T[6],
-                    Operator = T[7],
-                    FwVer = T[8],
-                    FwSum = T[9],
-                    volCn3 = T[10],
-                    volCn9 = T[11],
-                    volBt = T[12],
-                    th2 = T[13],
-                    th3 = T[14],
-                    th4 = T[15],
-                    th5 = T[16],
-                    th6 = T[17],
-                    th7 = T[18],
-                    th8 = T[19],
-                    th10 = T[20],
-                    th20 = T[21],
-                    th30 = T[22],
-                    th45 = T[23],
-                    th90 = T[24],
+                    serialPwa  = T[1],
+                    serialPow  = T[2],
+                    serialBt   = T[3],
+                    passedTime = T[6],
+                    operatorName   = T[7],
+                    fwVer      = T[8],
+                    fwSum      = T[9],
+                    volCn3     = T[10],
+                    volCn9     = T[11],
+                    volBt      = T[12],
+                    th2        = T[13],
+                    th3        = T[14],
+                    th4        = T[15],
+                    th5        = T[16],
+                    th6        = T[17],
+                    th7        = T[18],
+                    th8        = T[19],
+                    th10       = T[20],
+                    th20       = T[21],
+                    th30       = T[22],
+                    th45       = T[23],
+                    th90       = T[24],
                 };
                 本機Data最終.Add(_testDatUnit);
             });
@@ -235,24 +231,22 @@ namespace 自記温度計Tester
                 var _testDatUnit = new testData子機
                 {
                     serialUnit = T[0],
-                    serialPwa = T[1],
-                    PassedTime = T[4],
-                    Operator = T[5],
-                    FwVer = T[6],
-                    FwSum = T[7],
-                    volCn3 = T[8],
-                    th2 = T[9],
-                    th3 = T[10],
-                    th4 = T[11],
-                    th5 = T[12],
-                    th6 = T[13],
-                    th7 = T[14],
-                    th8 = T[15],
-                    th10 = T[16],
-                    th20 = T[17],
-                    th30 = T[18],
-                    th45 = T[19],
-                    th90 = T[20],
+                    serialPwa  = T[1],
+                    passedTime = T[4],
+                    operatorName   = T[5],
+                    volCn3     = T[6],
+                    th2        = T[7],
+                    th3        = T[8],
+                    th4        = T[9],
+                    th5        = T[10],
+                    th6        = T[11],
+                    th7        = T[12],
+                    th8        = T[13],
+                    th10       = T[14],
+                    th20       = T[15],
+                    th30       = T[16],
+                    th45       = T[17],
+                    th90       = T[18],
                 };
                 子機Data最終.Add(_testDatUnit);
             });
@@ -268,6 +262,7 @@ namespace 自記温度計Tester
 
                 State.VmTestStatus.進捗度 = 0;
 
+                //入力項目のチェック
                 if (!FlagOpecode) return;
                 if (!(rbPrintAll.IsChecked == true || rbPrintSelect.IsChecked == true)) return;
                 if (!(rb_G1.IsChecked == true || rb_G2.IsChecked == true)) return;
@@ -447,12 +442,12 @@ namespace 自記温度計Tester
             Excel.Range rng; // Rangeオブジェクト
 
             rng = (Excel.Range)oSheet.Cells[4, 2]; rng.Value = rb_G1.IsChecked == true ? "BRTRA-ST-G1" : "BRTRA-ST-G2";//型名
-            rng = (Excel.Range)oSheet.Cells[5, 6]; rng.Value = UnitData.Operator;//作業者名
+            rng = (Excel.Range)oSheet.Cells[5, 6]; rng.Value = UnitData.operatorName;//作業者名
             rng = (Excel.Range)oSheet.Cells[5, 2]; rng.Value = UnitData.serialUnit;//製品シリアル
             rng = (Excel.Range)oSheet.Cells[6, 2]; rng.Value = UnitData.serialPwa;//PWAシリアル
-            rng = (Excel.Range)oSheet.Cells[7, 2]; rng.Value = UnitData.SerialPow;//電源シリアル
-            rng = (Excel.Range)oSheet.Cells[8, 2]; rng.Value = UnitData.SerialBt;//Btシリアル
-            rng = (Excel.Range)oSheet.Cells[9, 2]; rng.Value = UnitData.PassedTime;//試験合格時刻
+            rng = (Excel.Range)oSheet.Cells[7, 2]; rng.Value = UnitData.serialPow;//電源シリアル
+            rng = (Excel.Range)oSheet.Cells[8, 2]; rng.Value = UnitData.serialBt;//Btシリアル
+            rng = (Excel.Range)oSheet.Cells[9, 2]; rng.Value = UnitData.passedTime;//試験合格時刻
 
             rng = (Excel.Range)oSheet.Cells[14, 4]; rng.Value = PwaData.curr3v;//消費電流3V系
             rng = (Excel.Range)oSheet.Cells[15, 4]; rng.Value = PwaData.curr6v;//消費電流6V系
@@ -474,7 +469,7 @@ namespace 自記温度計Tester
             rng = (Excel.Range)oSheet.Cells[34, 4]; rng.Value = UnitData.th30;//Th30℃
             rng = (Excel.Range)oSheet.Cells[35, 4]; rng.Value = UnitData.th45;//Th45℃
             rng = (Excel.Range)oSheet.Cells[36, 4]; rng.Value = UnitData.th90;//Th90℃
-            rng = (Excel.Range)oSheet.Cells[50, 4]; rng.Value = UnitData.FwSum;//製品ソフトチェックサム
+            rng = (Excel.Range)oSheet.Cells[50, 4]; rng.Value = UnitData.fwSum;//製品ソフトチェックサム
 
         }
 
@@ -486,10 +481,10 @@ namespace 自記温度計Tester
             Excel.Range rng; // Rangeオブジェクト
 
             rng = (Excel.Range)oSheet.Cells[4, 2]; rng.Value = rb_G1.IsChecked == true ? "BRTRA-C-G1" : "BRTRA-C-G2";//型名
-            rng = (Excel.Range)oSheet.Cells[5, 6]; rng.Value = UnitData.Operator;//作業者名
+            rng = (Excel.Range)oSheet.Cells[5, 6]; rng.Value = UnitData.operatorName;//作業者名
             rng = (Excel.Range)oSheet.Cells[5, 2]; rng.Value = UnitData.serialUnit;//製品シリアル
             rng = (Excel.Range)oSheet.Cells[6, 2]; rng.Value = UnitData.serialPwa;//PWAシリアル
-            rng = (Excel.Range)oSheet.Cells[7, 2]; rng.Value = UnitData.PassedTime;//試験合格時刻
+            rng = (Excel.Range)oSheet.Cells[7, 2]; rng.Value = UnitData.passedTime;//試験合格時刻
 
             rng = (Excel.Range)oSheet.Cells[14, 4]; rng.Value = PwaData.curr6v;//消費電流6V系
             rng = (Excel.Range)oSheet.Cells[15, 4]; rng.Value = PwaData.vol5v;//電源電圧5V
@@ -508,7 +503,7 @@ namespace 自記温度計Tester
             rng = (Excel.Range)oSheet.Cells[31, 4]; rng.Value = UnitData.th30;//Th30℃
             rng = (Excel.Range)oSheet.Cells[32, 4]; rng.Value = UnitData.th45;//Th45℃
             rng = (Excel.Range)oSheet.Cells[33, 4]; rng.Value = UnitData.th90;//Th90℃
-            rng = (Excel.Range)oSheet.Cells[41, 4]; rng.Value = UnitData.FwSum;//製品ソフトチェックサム
+            rng = (Excel.Range)oSheet.Cells[41, 4]; rng.Value = PwaData.fwSum;//製品ソフトチェックサム
 
         }
 
@@ -559,6 +554,11 @@ namespace 自記温度計Tester
         private enum MODEL { 本機, 子機 }
         private MODEL model;
 
+        /// <summary>
+        /// 完成体試験の合格データ保存フォルダに入力された工番があるかどうか判定して、本機 or 子機 の判別を行う
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbOpecode_TextChanged(object sender, TextChangedEventArgs e)
         {
             //１文字入力されるごとに、タイマーを初期化する
@@ -611,7 +611,7 @@ namespace 自記温度計Tester
 
                 PASS:
 
-                //該当する工番の検査データファイルを開いて全データをロードする
+                //該当する工番の＜完成体＞検査データファイルを開いて全データをロードする
                 State.testData完成体 = LoadTestData(dataFilePath完成体);
                 if (State.testData完成体 == null)
                 {
@@ -621,7 +621,7 @@ namespace 自記温度計Tester
                     return;
                 }
 
-                //該当する工番の検査データファイルを開いて全データをロードする
+                //該当する工番の＜PWA＞検査データファイルを開いて全データをロードする
                 dataFilePathPWA = Constants.PassDataPwaFolderPath + tbOpecode.Text + ".csv";
                 State.testDataPWA = LoadTestData(dataFilePathPWA);
                 if (State.testDataPWA == null)
@@ -635,7 +635,7 @@ namespace 自記温度計Tester
                 State.testData完成体 = State.testData完成体.OrderBy(t => t.Split(',')[0]).ToList();
                 State.testData完成体.ForEach(l =>
                 {
-                    listBoxSerial.Items.Add("<完成体>" + l.Split(',')[0] + ", <PWA>" + l.Split(',')[1]);
+                    listBoxSerial.Items.Add("<完成体>" + l.Split(',')[0] + ", <PWA>" + l.Split(',')[1]);//ex. 7X020,1740Ne020,17100020,F02958,AssemblyVer 1.0.0,TestSpecVer 1.0,・・・・
                     cbStart.Items.Add(l.Split(',')[0]);
                     cbEnd.Items.Add(l.Split(',')[0]);
                 });

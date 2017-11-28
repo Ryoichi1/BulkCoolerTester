@@ -254,6 +254,9 @@ namespace 自記温度計Tester
                 System.DateTime.Now.ToString("yyyy年MM月dd日(ddd) HH:mm:ss"),
                 State.VmMainWindow.Operator,
 
+                State.TestSpec.FwVer,
+                State.TestSpec.FwSum,
+
                 State.VmTestResults.Curr3v,
                 State.VmTestResults.Curr6v,
 

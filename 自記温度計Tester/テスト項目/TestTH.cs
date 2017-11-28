@@ -189,7 +189,7 @@ namespace 自記温度計Tester
                                 else if(temp == dstTemp)
                                 {
                                     Thread.Sleep(1000);
-                                    //温度データ取り込み
+                                    //念のため、もう１回確認する
                                     temp = ReadTempData();
                                     if (temp == dstTemp) return true;
                                 }
