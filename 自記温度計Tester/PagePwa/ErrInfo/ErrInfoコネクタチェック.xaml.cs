@@ -37,11 +37,14 @@ namespace 自記温度計Tester
         public ErrInfoコネクタチェック()
         {
             InitializeComponent();
+
+        }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
             viewmodel = new vm();
             this.DataContext = viewmodel;
             SetErrInfo();
         }
-
         private void SetErrInfo()
         {
             if (コネクタチェック.ListCnSpec == null) return;
@@ -79,7 +82,9 @@ namespace 自記温度計Tester
         private void buttonReturn_Click(object sender, RoutedEventArgs e)
         {
             State.VmMainWindow.TabIndex = 0;
-            
+
         }
+
+
     }
 }

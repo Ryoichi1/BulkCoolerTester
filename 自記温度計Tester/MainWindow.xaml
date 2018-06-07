@@ -71,14 +71,14 @@
     </Controls:MetroWindow.Resources>
     <Controls:MetroWindow.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard x:Name="sbMainWinShow_BeginStoryboard" Storyboard="{StaticResource sbMainWinShow}"/>
-            <BeginStoryboard x:Name="SbPwaLeave_BeginStoryboard" Storyboard="{StaticResource SbPwaLeave}"/>
+            <!--<BeginStoryboard x:Name="sbMainWinShow_BeginStoryboard" Storyboard="{StaticResource sbMainWinShow}"/>-->
+            <!--<BeginStoryboard x:Name="SbPwaLeave_BeginStoryboard" Storyboard="{StaticResource SbPwaLeave}"/>
             <BeginStoryboard x:Name="sb本機Enter_BeginStoryboard" Storyboard="{StaticResource sb本機Enter}"/>
             <BeginStoryboard x:Name="sb本機Leave_BeginStoryboard" Storyboard="{StaticResource sb本機Leave}"/>
             <BeginStoryboard x:Name="sb子機Enter_BeginStoryboard" Storyboard="{StaticResource sb子機Enter}"/>
             <BeginStoryboard x:Name="sb子機Leave_BeginStoryboard" Storyboard="{StaticResource sb子機Leave}"/>
             <BeginStoryboard x:Name="sbPrintEnter_BeginStoryboard" Storyboard="{StaticResource sbPrintEnter}"/>
-            <BeginStoryboard x:Name="sbPrintLeave_BeginStoryboard" Storyboard="{StaticResource sbPrintLeave}"/>
+            <BeginStoryboard x:Name="sbPrintLeave_BeginStoryboard" Storyboard="{StaticResource sbPrintLeave}"/>-->
         </EventTrigger>
         <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="labelPwaTest">
             <BeginStoryboard x:Name="SbPwaEnter_BeginStoryboard" Storyboard="{StaticResource SbPwaLeave}"/>

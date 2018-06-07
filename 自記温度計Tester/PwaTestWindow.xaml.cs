@@ -322,6 +322,11 @@ namespace 自記温度計Tester
                 App._naviHelp.Refresh();
                 App._naviTest.Navigate(uriTestPage);
                 SetFocus();//テスト画面に移行する際にフォーカスを必須項目入力欄にあてる
+
+                if (Flags.Testing)
+                    return;
+
+                //高速にページ切り替えボタンを押すと異常動作する場合があるので、ページが遷移してから500msec間は、他のページに遷移できないようにする
                 State.VmMainWindow.EnableOtherButton = false;
                 await Task.Delay(500);
                 State.VmMainWindow.EnableOtherButton = true;
@@ -331,6 +336,7 @@ namespace 自記温度計Tester
                 Flags.OtherPage = true;
                 App._naviConf.Navigate(uriConfPage);
                 App._naviHelp.Refresh();
+                //高速にページ切り替えボタンを押すと異常動作する場合があるので、ページが遷移してから500msec間は、他のページに遷移できないようにする
                 State.VmMainWindow.EnableOtherButton = false;
                 await Task.Delay(500);
                 State.VmMainWindow.EnableOtherButton = true;
@@ -340,6 +346,7 @@ namespace 自記温度計Tester
                 Flags.OtherPage = true;
                 App._naviHelp.Navigate(uriHelpPage);
                 App._naviConf.Refresh();
+                //高速にページ切り替えボタンを押すと異常動作する場合があるので、ページが遷移してから500msec間は、他のページに遷移できないようにする
                 State.VmMainWindow.EnableOtherButton = false;
                 await Task.Delay(500);
                 State.VmMainWindow.EnableOtherButton = true;

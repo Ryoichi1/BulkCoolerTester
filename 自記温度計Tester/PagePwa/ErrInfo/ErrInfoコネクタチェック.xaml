@@ -6,7 +6,7 @@
 	x:Name="Page"
 	WindowTitle="Page"
 	FlowDirection="LeftToRight"
-	Height="600" Width="1300">
+	Height="600" Width="1300" Loaded="Page_Loaded">
     <Canvas>
         <Button x:Name="buttonReturn" Content="テスト画面に戻る" Height="57" Canvas.Left="10" Canvas.Top="10" Width="174" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontFamily="Meiryo UI" FontWeight="Normal" HorizontalContentAlignment="Center" FontSize="18" Click="buttonReturn_Click"  />
         <TextBlock Height="30" Canvas.Left="23" TextWrapping="Wrap" Text="NGリスト" Canvas.Top="98" Width="119" Foreground="White" FontSize="20"/>

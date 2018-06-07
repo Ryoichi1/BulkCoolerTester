@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace 自記温度計Tester
 {
@@ -244,7 +245,7 @@ namespace 自記温度計Tester
         }
 
 
-        private void TabMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void TabMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var index = TabMenu.SelectedIndex;
             if (index == 0)
@@ -255,18 +256,34 @@ namespace 自記温度計Tester
                 App._naviHelp.Refresh();
                 App._naviTest.Navigate(uriTestPage);
                 SetFocus();//テスト画面に移行する際にフォーカスを必須項目入力欄にあてる
+
+                if (Flags.Testing)
+                    return;
+
+                //高速にページ切り替えボタンを押すと異常動作する場合があるので、ページが遷移してから500msec間は、他のページに遷移できないようにする
+                State.VmMainWindow.EnableOtherButton = false;
+                await Task.Delay(500);
+                State.VmMainWindow.EnableOtherButton = true;
             }
             else if (index == 1)
             {
                 Flags.OtherPage = true;
                 App._naviConf.Navigate(uriConfPage);
                 App._naviHelp.Refresh();
+                //高速にページ切り替えボタンを押すと異常動作する場合があるので、ページが遷移してから500msec間は、他のページに遷移できないようにする
+                State.VmMainWindow.EnableOtherButton = false;
+                await Task.Delay(500);
+                State.VmMainWindow.EnableOtherButton = true;
             }
             else if (index == 2)
             {
                 Flags.OtherPage = true;
                 App._naviHelp.Navigate(uriHelpPage);
                 App._naviConf.Refresh();
+                //高速にページ切り替えボタンを押すと異常動作する場合があるので、ページが遷移してから500msec間は、他のページに遷移できないようにする
+                State.VmMainWindow.EnableOtherButton = false;
+                await Task.Delay(500);
+                State.VmMainWindow.EnableOtherButton = true;
 
             }
             else if (index == 3)//Infoタブ 作業者がこのタブを選択することはない。 TEST画面のエラー詳細ボタンを押した時にこのタブが選択されるようコードビハインドで記述
