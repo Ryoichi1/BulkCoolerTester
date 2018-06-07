@@ -23,7 +23,6 @@ namespace 自記温度計Tester
         public static readonly string filePath_Camera1Property = @"C:\自記温度計\ConfigData\Camera1Property.config";
         public static readonly string filePath_Camera2Property = @"C:\自記温度計\ConfigData\Camera2Property.config";
 
-        public static readonly string RwsPath_Test = @"C:\自記温度計\FW_WRITE\ForTest\自記温度計書き込み\自記温度計書き込み.rws";
         public static readonly string RwsPath_Product = @"C:\自記温度計\FW_WRITE\ForProduct\自記温度計書き込み\自記温度計書き込み.rws";
 
         public static readonly string Path_ManualPwaTest = @"C:\自記温度計\Manual_PWA_FT.pdf";

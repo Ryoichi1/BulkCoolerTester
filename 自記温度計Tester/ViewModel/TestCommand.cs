@@ -278,7 +278,7 @@ namespace 自記温度計Tester
 
                         case 200://テストプログラム書き込み
                             if (State.VmTestStatus.CheckWriteTestFwPass == true) break;
-                            if (await 書き込み.WriteFw(書き込み.WriteMode.TEST)) break;
+                            if (await 書き込み.WriteFw()) break;
                             goto case 5000;
 
                         case 300://3Vライン消費電流チェック
@@ -501,7 +501,7 @@ namespace 自記温度計Tester
                     State.Setting.TodayOkCountPwaTest++;
 
                     //これ重要！！！ シリアルナンバーをインクリメントし、次の試験に備える ビューモデルはまだ更新しない
-                    State.NewSerial++;
+                    State.Setting.NextSerialCpu++;
 
                     Flags.ShowLabelPage = true;
                 }
@@ -758,7 +758,7 @@ namespace 自記温度計Tester
 
                         case 100://テストプログラム書き込み
                             if (State.VmTestStatus.CheckWriteTestFw != true) break;
-                            if (await 書き込み.WriteFw(書き込み.WriteMode.TEST)) break;
+                            if (await 書き込み.WriteFw()) break;
                             goto case 5000;
 
 
@@ -857,7 +857,7 @@ namespace 自記温度計Tester
                             goto case 5000;
 
                         case 1300://製品プログラム書き込み
-                            if (await 書き込み.WriteFw(書き込み.WriteMode.PRODUCT)) break;
+                            if (await 書き込み.WriteFw()) break;
                             goto case 5000;
 
                         case 1400://EEPROMチェック

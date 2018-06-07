@@ -637,7 +637,7 @@ namespace 自記温度計Tester
         {
             if (State.testMode == TEST_MODE.PWA)
             {
-                State.VmMainWindow.SerialNumber = State.VmMainWindow.SerialNumber.Substring(0, 6) + State.NewSerial.ToString("D3");
+                State.VmMainWindow.SerialNumber = State.Setting.HeaderSerialPwa + "Ne" + State.Setting.NextSerialCpu.ToString("D3");
                 //ViewModel OK台数、NG台数、Total台数の更新
                 State.VmTestStatus.OkCount = State.Setting.TodayOkCountPwaTest.ToString() + "台";
                 State.VmTestStatus.NgCount = State.Setting.TodayNgCountPwaTest.ToString() + "台";

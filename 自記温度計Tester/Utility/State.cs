@@ -51,9 +51,6 @@ namespace 自記温度計Tester
 
         public static Uri uriOtherInfoPage { get; set; }
 
-        public static string LastSerial { get; set; }
-
-        public static int NewSerial { get; set; }
 
         //完成体試験時に使用（作業者が入力する情報）
         public static string SerialProduct { get; set; }
@@ -416,32 +413,7 @@ namespace 自記温度計Tester
         }
 
 
-        public static bool LoadLastSerial(string filePath)
-        {
-            try
-            {
-                // csvファイルを開く
-                using (var sr = new System.IO.StreamReader(filePath))
-                {
-                    var listTestResults = new List<string>();
-                    // ストリームの末尾まで繰り返す
-                    while (!sr.EndOfStream)
-                    {
-                        // ファイルから一行読み込んでリストに追加
-                        listTestResults.Add(sr.ReadLine());
-                    }
-
-                    var lastData = listTestResults.Last();
-                    LastSerial = lastData.Split(',')[0];
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
-                // ファイルを開くのに失敗したとき
-            }
-        }
+       
 
     }
 

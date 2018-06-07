@@ -20,6 +20,7 @@ namespace 自記温度計Tester
         public string HeaderSerialUnit { get; set; }
         public string HeaderSerialPwa { get; set; }
         public string HeaderSerialPow { get; set; }
+        public int NextSerialCpu { get; set; }//
 
         public string PathTheme { get; set; }
         public double OpacityTheme { get; set; }
