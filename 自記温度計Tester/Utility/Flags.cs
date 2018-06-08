@@ -5,6 +5,9 @@ namespace 自記温度計Tester
     public static class Flags
     {
 
+        public static bool IsPwaForMente { get; set; }
+        public static bool IsCpuOnly { get; set; }
+        public static bool IsMenteA { get; set; }
         public static bool OtherPage { get; set; }
         public static bool ReturnFromOtherPage { get; set; }
 

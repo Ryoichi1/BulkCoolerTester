@@ -151,6 +151,12 @@
     <Compile Include="PageUnit\Config\Conf.xaml.cs">
       <DependentUpon>Conf.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageUnit\Test\CpuForMente.xaml.cs">
+      <DependentUpon>CpuForMente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageUnit\Test\MenteA.xaml.cs">
+      <DependentUpon>MenteA.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageUnit\Test\UnitTest.xaml.cs">
       <DependentUpon>UnitTest.xaml</DependentUpon>
     </Compile>
@@ -273,6 +279,14 @@
     <Page Include="PageUnit\Config\Conf.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageUnit\Test\CpuForMente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageUnit\Test\MenteA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageUnit\Test\UnitTest.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -443,6 +457,10 @@
     <Resource Include="Resources\Pic\baby2.jpg" />
     <Resource Include="Resources\Pic\snow.jpg" />
     <Resource Include="Resources\Pic\snow2.jpg" />
+    <Resource Include="Resources\Pic\CPU.JPG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Pic\LabelCpu.jpg" />
     <Content Include="Resources\Wav\Alarm.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

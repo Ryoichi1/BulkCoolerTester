@@ -53,7 +53,7 @@ namespace 自記温度計Tester
 
             //システム時計の設定 ネットに接続されていた場合のみ設定する 
             //ネットに接続されていないとアプリの立ち上げが遅くなるのでコメントアウトする
-            //SystemTime.SetSystemTime();
+            SystemTime.SetSystemTime();
 
             InitMainForm();//メインフォーム初期
 

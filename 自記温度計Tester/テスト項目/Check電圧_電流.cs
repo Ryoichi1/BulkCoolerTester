@@ -92,7 +92,7 @@ namespace 自記温度計Tester
                             if (!Target232_BT.SendData("3700ODB,7of")) return false;//充電許可信号をLo
                             Thread.Sleep(1000);
 
-                            //マルチメータでCN9の電圧を測定し、8Vくらい出てることを確認する
+                            //マルチメータでCN9の電圧を測定し、0.5V以下を確認する
                             if (!General.multimeter.GetDcVoltage()) return false;
                             measData = General.multimeter.VoltData;
 

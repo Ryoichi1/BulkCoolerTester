@@ -41,6 +41,14 @@ namespace 自記温度計Tester
         public static readonly string FailData子機FolderPath = @"C:\自記温度計\検査データ\子機\不良品データ\";
         public static readonly string fileName_RetryLog子機  = @"C:\自記温度計\検査データ\子機\不良品データ\リトライ履歴.txt";
 
+        public static readonly string PassDataCpuFolderPath = @"C:\自記温度計\検査データ\CPU\合格品データ\";
+        public static readonly string FailDataCpuFolderPath = @"C:\自記温度計\検査データ\CPU\不良品データ\";
+        public static readonly string fileName_RetryLogCpu  = @"C:\自記温度計\検査データ\CPU\不良品データ\リトライ履歴.txt";
+
+        public static readonly string PassDataMenteAFolderPath = @"C:\自記温度計\検査データ\MENTE_A\合格品データ\";
+        public static readonly string FailDataMenteAFolderPath = @"C:\自記温度計\検査データ\MENTE_A\不良品データ\";
+        public static readonly string fileName_RetryLogMenteA  = @"C:\自記温度計\検査データ\MENTE_A\不良品データ\リトライ履歴.txt";
+
 
         //LED、7セグ点灯用コマンド
         public static readonly string AllOn = "3700ODB,8onOOO";//全点灯

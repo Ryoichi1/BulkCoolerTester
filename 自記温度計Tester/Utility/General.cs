@@ -358,6 +358,76 @@ namespace 自記温度計Tester
             return ListData;
         }
 
+        private static List<string> MakePassTestDataMenteA()//TODO:
+        {
+            var ListData = new List<string>
+            {
+                State.SerialPwa,
+                State.SerialPow,
+                State.SerialBt,
+                "AssemblyVer " + State.AssemblyInfo,
+                "TestSpecVer " + State.TestSpec.TestSpecVer,
+                System.DateTime.Now.ToString("yyyy年MM月dd日(ddd) HH:mm:ss"),
+                State.VmMainWindow.Operator,
+
+                State.VmTestStatus.FwVer,
+                State.VmTestStatus.FwSum,
+
+                State.VmTestResults.VolCn3,
+                State.VmTestResults.VolCn9On,
+                State.VmTestResults.VolBt1,
+
+                State.VmTestResults.Th2,
+                State.VmTestResults.Th3,
+                State.VmTestResults.Th4,
+                State.VmTestResults.Th5,
+                State.VmTestResults.Th6,
+                State.VmTestResults.Th7,
+                State.VmTestResults.Th8,
+                State.VmTestResults.Th10,
+                State.VmTestResults.Th20,
+                State.VmTestResults.Th30,
+                State.VmTestResults.Th45,
+                State.VmTestResults.Th90,
+
+            };
+
+            return ListData;
+        }
+        private static List<string> MakePassTestDataCpu()//TODO:
+        {
+            var ListData = new List<string>
+            {
+                State.SerialPwa,
+                "AssemblyVer " + State.AssemblyInfo,
+                "TestSpecVer " + State.TestSpec.TestSpecVer,
+                System.DateTime.Now.ToString("yyyy年MM月dd日(ddd) HH:mm:ss"),
+                State.VmMainWindow.Operator,
+
+                State.VmTestStatus.FwVer,
+                State.VmTestStatus.FwSum,
+
+                State.VmTestResults.VolCn3,
+                State.VmTestResults.VolCn9On,
+                State.VmTestResults.VolBt1,
+
+                State.VmTestResults.Th2,
+                State.VmTestResults.Th3,
+                State.VmTestResults.Th4,
+                State.VmTestResults.Th5,
+                State.VmTestResults.Th6,
+                State.VmTestResults.Th7,
+                State.VmTestResults.Th8,
+                State.VmTestResults.Th10,
+                State.VmTestResults.Th20,
+                State.VmTestResults.Th30,
+                State.VmTestResults.Th45,
+                State.VmTestResults.Th90,
+
+            };
+
+            return ListData;
+        }
         private static List<string> MakePassTestData本機()//TODO:
         {
             var ListData = new List<string>
@@ -410,8 +480,21 @@ namespace 自記温度計Tester
                         dataList = MakePassTestDataPwa();
                         break;
                     case TEST_MODE.本機:
-                        PassDataFolderPath = Constants.PassData本機FolderPath;
-                        dataList = MakePassTestData本機();
+                        if (Flags.IsCpuOnly)
+                        {
+                            PassDataFolderPath = Constants.PassDataCpuFolderPath;
+                            dataList = MakePassTestDataCpu();
+                        }
+                        else if (Flags.IsMenteA)
+                        {
+                            PassDataFolderPath = Constants.PassDataMenteAFolderPath;
+                            dataList = MakePassTestDataMenteA();
+                        }
+                        else
+                        {
+                            PassDataFolderPath = Constants.PassData本機FolderPath;
+                            dataList = MakePassTestData本機();
+                        }
                         break;
                     case TEST_MODE.子機:
                         PassDataFolderPath = Constants.PassData子機FolderPath;

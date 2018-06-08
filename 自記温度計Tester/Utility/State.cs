@@ -68,6 +68,56 @@ namespace 自記温度計Tester
 
 
 
+        public static List<TestSpecs> テスト項目PwaForMente = new List<TestSpecs>()
+        {
+            new TestSpecs(100, "コネクタ実装チェック", false),
+            new TestSpecs(101, "CN4未半田チェック1", false),
+            new TestSpecs(102, "CN4未半田チェック2", false),
+            new TestSpecs(103, "JP1短絡ソケットチェック", false),
+
+            new TestSpecs(200, "検査ソフト書き込み", false),
+
+            new TestSpecs(300, "3Vライン消費電流チェック", false),
+            new TestSpecs(301, "6Vライン消費電流チェック", false),
+            new TestSpecs(302, "電源電圧チェック 5V", false),
+            new TestSpecs(303, "電源電圧チェック 3.3V", true),
+            new TestSpecs(304, "CN3 出力電圧チェック", true),
+            new TestSpecs(305, "CN9On出力電圧チェック", true),
+            new TestSpecs(306, "CN9Off出力電圧チェック", true),
+
+            //new TestSpecs(400, "粒LEDカラーチェック", false),
+            //new TestSpecs(401, "粒LED輝度チェック", true),
+            //new TestSpecs(402, "7セグ 輝度チェック", true),
+            //new TestSpecs(403, "7セグ 点灯チェック", true),
+
+            //new TestSpecs(500, "Bluetooth通信確認", true),
+            //new TestSpecs(501, "AT通信確認", true),
+            //new TestSpecs(502, "増設子機有りに設定", true),
+            //new TestSpecs(503, "RS485通信確認1", true),
+            //new TestSpecs(504, "RS485通信確認2", true),
+
+            //new TestSpecs(600, "SW1-SW4チェック", true),
+
+            //new TestSpecs(700, "カレントセンサチェック", true),
+
+            new TestSpecs(800, "サーミスタ調整 5℃", true),
+            new TestSpecs(801, "サーミスタチェック", true),
+            new TestSpecs(802, "サーミスタ開放チェック", false),
+            new TestSpecs(803, "サーミスタ短絡チェック", false),
+
+            //new TestSpecs(900, "電源基板SW2チェック", true),
+
+            //new TestSpecs(1000, "停電検出チェック", true),
+
+            //new TestSpecs(1100, "バッテリLowチェック", true),
+
+            //new TestSpecs(1200, "警報リレー出力チェック", true),
+
+            //new TestSpecs(1300, "パラメータチェック", true),
+
+            //new TestSpecs(1400, "RTCチェック", true),
+
+        };
         public static List<TestSpecs> テスト項目Pwa = new List<TestSpecs>()
         {
             new TestSpecs(100, "コネクタ実装チェック", false),
@@ -122,7 +172,7 @@ namespace 自記温度計Tester
         public static List<TestSpecs> テスト項目本機 = new List<TestSpecs>()
         {
 
-            new TestSpecs(100, "検査ソフト書き込み", false),
+            //new TestSpecs(100, "検査ソフト書き込み", false),
 
             new TestSpecs(200, "増設子機有りに設定", true),
             new TestSpecs(201, "RS485通信確認1", true),
@@ -167,7 +217,7 @@ namespace 自記温度計Tester
 
         public static List<TestSpecs> テスト項目子機 = new List<TestSpecs>()
         {
-            new TestSpecs(100, "検査ソフト書き込み", false),
+            //new TestSpecs(100, "検査ソフト書き込み", false),
 
             new TestSpecs(200, "増設子機有りに設定", true),
             new TestSpecs(201, "RS485通信確認1", true),
