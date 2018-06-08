@@ -9,7 +9,7 @@
         BorderThickness="1"
         ShowTitleBar="False"
         mc:Ignorable="d"
-        Height="496" Width="798.5" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Icon="Resources/Pic/VisualStudio_32x.png" HorizontalAlignment="Left" VerticalAlignment="Top" WindowTransitionsEnabled="False" Loaded="metroWindow_Loaded" >
+        Height="544" Width="828.5" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Icon="Resources/Pic/VisualStudio_32x.png" HorizontalAlignment="Left" VerticalAlignment="Top" WindowTransitionsEnabled="False" Loaded="metroWindow_Loaded" >
     <Controls:MetroWindow.Resources>
         <Storyboard x:Key="sbMainWinShow">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(Brush.Opacity)" Storyboard.TargetName="metroWindow">
@@ -31,6 +31,17 @@
         </Storyboard>
         <Storyboard x:Key="SbPwaLeave">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="labelPwaTest">
+                <EasingColorKeyFrame KeyTime="0" Value="#FFF09D25"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="sbPwaForMenteEnter">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="labelPwaTestForMente">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="#FFF09D25"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="sbPwaForMenteLeave">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="labelPwaTestForMente">
                 <EasingColorKeyFrame KeyTime="0" Value="#FFF09D25"/>
                 <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
             </ColorAnimationUsingKeyFrames>
@@ -57,6 +68,28 @@
                 <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="sbCpuForMenteEnter">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="labelCpuForMente">
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFF09D25"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="sbCpuForMenteLeave">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="labelCpuForMente">
+                <EasingColorKeyFrame KeyTime="0" Value="#FFF09D25"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="sbMenteAEnter">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="labelMenteA">
+                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFF09D25"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="sbMenteALeave">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="labelMenteA">
+                <EasingColorKeyFrame KeyTime="0" Value="#FFF09D25"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
         <Storyboard x:Key="sbPrintEnter">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="labelPrint">
                 <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFF09D25"/>
@@ -71,20 +104,19 @@
     </Controls:MetroWindow.Resources>
     <Controls:MetroWindow.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <!--<BeginStoryboard x:Name="sbMainWinShow_BeginStoryboard" Storyboard="{StaticResource sbMainWinShow}"/>-->
-            <!--<BeginStoryboard x:Name="SbPwaLeave_BeginStoryboard" Storyboard="{StaticResource SbPwaLeave}"/>
-            <BeginStoryboard x:Name="sb本機Enter_BeginStoryboard" Storyboard="{StaticResource sb本機Enter}"/>
-            <BeginStoryboard x:Name="sb本機Leave_BeginStoryboard" Storyboard="{StaticResource sb本機Leave}"/>
-            <BeginStoryboard x:Name="sb子機Enter_BeginStoryboard" Storyboard="{StaticResource sb子機Enter}"/>
-            <BeginStoryboard x:Name="sb子機Leave_BeginStoryboard" Storyboard="{StaticResource sb子機Leave}"/>
-            <BeginStoryboard x:Name="sbPrintEnter_BeginStoryboard" Storyboard="{StaticResource sbPrintEnter}"/>
-            <BeginStoryboard x:Name="sbPrintLeave_BeginStoryboard" Storyboard="{StaticResource sbPrintLeave}"/>-->
-        </EventTrigger>
-        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="labelPwaTest">
-            <BeginStoryboard x:Name="SbPwaEnter_BeginStoryboard" Storyboard="{StaticResource SbPwaLeave}"/>
+            <BeginStoryboard x:Name="sbMainWinShow_BeginStoryboard" Storyboard="{StaticResource sbMainWinShow}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="labelPwaTest">
             <BeginStoryboard x:Name="SbPwaEnter_BeginStoryboard1" Storyboard="{StaticResource SbPwaEnter}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="labelPwaTest">
+            <BeginStoryboard x:Name="SbPwaLeave_BeginStoryboard1" Storyboard="{StaticResource SbPwaLeave}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="labelPwaTestForMente">
+            <BeginStoryboard x:Name="sbPwaForMenteEnter_BeginStoryboard1" Storyboard="{StaticResource sbPwaForMenteEnter}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="labelPwaTestForMente">
+            <BeginStoryboard x:Name="sbPwaForMenteLeave_BeginStoryboard1" Storyboard="{StaticResource sbPwaForMenteLeave}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="label本機">
             <BeginStoryboard x:Name="sb本機Enter_BeginStoryboard1" Storyboard="{StaticResource sb本機Enter}"/>
@@ -97,6 +129,18 @@
         </EventTrigger>
         <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="label子機">
             <BeginStoryboard x:Name="sb子機Leave_BeginStoryboard1" Storyboard="{StaticResource sb子機Leave}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="labelCpuForMente">
+            <BeginStoryboard x:Name="sbCpuForMenteEnter_BeginStoryboard1" Storyboard="{StaticResource sbCpuForMenteEnter}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="labelCpuForMente">
+            <BeginStoryboard x:Name="sbCpuForMenteLeave_BeginStoryboard1" Storyboard="{StaticResource sbCpuForMenteLeave}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="labelMenteA">
+            <BeginStoryboard x:Name="sbMenteAEnter_BeginStoryboard1" Storyboard="{StaticResource sbMenteAEnter}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="labelMenteA">
+            <BeginStoryboard x:Name="sbMenteALeave_BeginStoryboard1" Storyboard="{StaticResource sbMenteALeave}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="labelPrint">
             <BeginStoryboard x:Name="sbPrintEnter_BeginStoryboard1" Storyboard="{StaticResource sbPrintEnter}"/>
@@ -118,11 +162,16 @@
         </Canvas.Background>
 
         <Label Content="自記温度計テスター" Height="71" Canvas.Left="8" Width="408" Foreground="#FFF7F7F7" FontSize="48" Padding="0" FontFamily="Segoe UI Light" Background="{x:Null}" Canvas.Top="10"/>
-        <Label x:Name="labelPwaTest" Content="単体テスト" Height="55" Canvas.Left="19" Canvas.Top="157" Width="177" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="labelPwaTest_MouseLeftButtonDown" Cursor="Hand"/>
-        <Label x:Name="label本機" Content="本機(BRTRA-ST)テスト" Height="55" Canvas.Left="19" Canvas.Top="229" Width="405" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label本機_MouseLeftButtonDown" Cursor="Hand"/>
-        <Label x:Name="label子機" Content="子機(BRTRA-C)テスト" Height="55" Canvas.Left="19" Canvas.Top="305" Width="381" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label子機_MouseLeftButtonDown" Cursor="Hand"/>
-        <Image x:Name="image" Height="414" Canvas.Left="436" Canvas.Top="62" Width="355" Source="Resources/Pic/BRTR_ST.png"/>
-        <Label x:Name="labelPrint" Content="成績書印刷" Height="55" Canvas.Left="19" Canvas.Top="380" Width="381" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" Cursor="Hand" MouseLeftButtonDown="labelPrint_MouseLeftButtonDown"/>
+        <Label x:Name="labelPwaTest" Content="単体テスト" Height="44" Canvas.Left="19" Canvas.Top="105" Width="177" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="labelPwaTest_MouseLeftButtonDown" Cursor="Hand"/>
+        <Label x:Name="labelPwaTestForMente" Content="単体テスト(保守用)" Height="44" Canvas.Left="19" Canvas.Top="154" Width="269" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="labelPwaTestForMente_MouseLeftButtonDown" Cursor="Hand"/>
+        <Label x:Name="label本機" Content="本機(BRTRA-ST)テスト" Height="55" Canvas.Left="19" Canvas.Top="224" Width="405" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label本機_MouseLeftButtonDown" Cursor="Hand"/>
+        <Label x:Name="label子機" Content="子機(BRTRA-C)テスト" Height="55" Canvas.Left="19" Canvas.Top="284" Width="381" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="label子機_MouseLeftButtonDown" Cursor="Hand"/>
+        <Label x:Name="labelCpuForMente" Content="CPU基板(保守用)テスト" Height="55" Canvas.Left="19" Canvas.Top="340" Width="381" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="labelCpuForMente_MouseLeftButtonDown" Cursor="Hand"/>
+        <Label x:Name="labelMenteA" Content="メンテナンスA組立" Height="55" Canvas.Left="19" Canvas.Top="388" Width="381" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" MouseLeftButtonDown="labelMenteA_MouseLeftButtonDown" Cursor="Hand"/>
+        <Image x:Name="image" Height="414" Canvas.Left="456" Canvas.Top="62" Width="355" Source="Resources/Pic/BRTR_ST.png"/>
+        <Label x:Name="labelPrint" Content="成績書印刷" Height="55" Canvas.Left="19" Canvas.Top="472" Width="381" Foreground="#FFF7F7F7" FontSize="32" Padding="0" FontFamily="Meiryo UI" Cursor="Hand" MouseLeftButtonDown="labelPrint_MouseLeftButtonDown"/>
+        <Rectangle Fill="#FFF4F4F5" Height="2" Canvas.Left="18" Canvas.Top="211" Width="420"/>
+        <Rectangle Fill="#FFF4F4F5" Height="2" Canvas.Left="18" Canvas.Top="455" Width="420"/>
 
 
     </Canvas>

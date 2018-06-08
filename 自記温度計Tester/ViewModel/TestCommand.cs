@@ -94,7 +94,7 @@ namespace 自記温度計Tester
                             }
                         }
 
-                        State.VmTestStatus.Message = State.testMode == TEST_MODE.PWA ? Constants.MessSetPwa : Constants.MessSetUnit;
+                        State.VmTestStatus.Message = (State.testMode == TEST_MODE.PWA) ? Constants.MessSetPwa : Constants.MessSetUnit;
                         Flags.EnableTestStart = true;
                         Flags.Click確認Button = false;
 
@@ -208,7 +208,18 @@ namespace 自記温度計Tester
                 //チェックしてある項目の百の桁の解析
                 var re = Int32.Parse(State.VmTestStatus.UnitTestName.Split('_').ToArray()[0]);
                 int 上位桁 = Int32.Parse(State.VmTestStatus.UnitTestName.Substring(0, (re >= 1000) ? 2 : 1));
-                var 抽出データ = State.テスト項目Pwa.Where(p => (p.Key / 100) == 上位桁);
+
+
+                IEnumerable<TestSpecs> 抽出データ;
+                if (Flags.IsPwaForMente)
+                {
+                    抽出データ = State.テスト項目PwaForMente.Where(p => (p.Key / 100) == 上位桁);
+                }
+                else
+                {
+                    抽出データ = State.テスト項目Pwa.Where(p => (p.Key / 100) == 上位桁);
+                }
+
                 foreach (var p in 抽出データ)
                 {
                     テスト項目最新.Add(new TestSpecs(p.Key, p.Value, p.PowSw));
@@ -216,7 +227,7 @@ namespace 自記温度計Tester
             }
             else
             {
-                テスト項目最新 = State.テスト項目Pwa;
+                テスト項目最新 = Flags.IsPwaForMente ? State.テスト項目PwaForMente : State.テスト項目Pwa;
             }
 
 
@@ -278,7 +289,7 @@ namespace 自記温度計Tester
 
                         case 200://テストプログラム書き込み
                             if (State.VmTestStatus.CheckWriteTestFwPass == true) break;
-                            if (await 書き込み.WriteFw(書き込み.WriteMode.TEST)) break;
+                            if (await 書き込み.WriteFw()) break;
                             goto case 5000;
 
                         case 300://3Vライン消費電流チェック
@@ -501,7 +512,7 @@ namespace 自記温度計Tester
                     State.Setting.TodayOkCountPwaTest++;
 
                     //これ重要！！！ シリアルナンバーをインクリメントし、次の試験に備える ビューモデルはまだ更新しない
-                    State.NewSerial++;
+                    State.Setting.NextSerialCpu++;
 
                     Flags.ShowLabelPage = true;
                 }
@@ -758,7 +769,7 @@ namespace 自記温度計Tester
 
                         case 100://テストプログラム書き込み
                             if (State.VmTestStatus.CheckWriteTestFw != true) break;
-                            if (await 書き込み.WriteFw(書き込み.WriteMode.TEST)) break;
+                            if (await 書き込み.WriteFw()) break;
                             goto case 5000;
 
 
@@ -857,7 +868,7 @@ namespace 自記温度計Tester
                             goto case 5000;
 
                         case 1300://製品プログラム書き込み
-                            if (await 書き込み.WriteFw(書き込み.WriteMode.PRODUCT)) break;
+                            if (await 書き込み.WriteFw()) break;
                             goto case 5000;
 
                         case 1400://EEPROMチェック
@@ -1066,12 +1077,24 @@ namespace 自記温度計Tester
                 {
                     if (State.testMode == TEST_MODE.本機)
                     {
-                        State.uriOtherInfoPage = new Uri("PageUnit/Test/銘板ラベル貼り付け_本機.xaml", UriKind.Relative);
+                        if (Flags.IsCpuOnly)
+                        {
+                            State.uriOtherInfoPage = new Uri("PageUnit/Test/CpuForMente.xaml", UriKind.Relative);
+                        }
+                        else if (Flags.IsMenteA)
+                        {
+                            State.uriOtherInfoPage = new Uri("PageUnit/Test/MenteA.xaml", UriKind.Relative);
+                        }
+                        else
+                        {
+                            State.uriOtherInfoPage = new Uri("PageUnit/Test/銘板ラベル貼り付け_本機.xaml", UriKind.Relative);
+                        }
                     }
-                    else
+                    else if (State.testMode == TEST_MODE.子機)
                     {
                         State.uriOtherInfoPage = new Uri("PageUnit/Test/銘板ラベル貼り付け_子機.xaml", UriKind.Relative);
                     }
+
                     State.VmMainWindow.TabIndex = 3;
                 }
                 else
@@ -1083,7 +1106,7 @@ namespace 自記温度計Tester
 
         }
 
-         //フォームきれいにする処理いろいろ
+        //フォームきれいにする処理いろいろ
         private void ClearForm()
         {
             SbRingLoad();

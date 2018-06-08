@@ -107,7 +107,16 @@ namespace 自記温度計Tester
 
         private void SetUnitTest()
         {
-            var SelectedItem = State.テスト項目Pwa.Where(item => item.Key % 100 == 0);
+            IEnumerable<TestSpecs> SelectedItem;
+            if (Flags.IsPwaForMente)
+            {
+                SelectedItem = State.テスト項目PwaForMente.Where(item => item.Key % 100 == 0);
+            }
+            else
+            {
+                SelectedItem = State.テスト項目Pwa.Where(item => item.Key % 100 == 0);
+            }
+
             var list = new List<string>();
             foreach (var t in SelectedItem)
             {

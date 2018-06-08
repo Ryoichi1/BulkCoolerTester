@@ -7,24 +7,16 @@ namespace 自記温度計Tester
     {
         public enum WriteMode { TEST, PRODUCT }
 
-        public static async Task<bool> WriteFw(WriteMode mode)
+        public static async Task<bool> WriteFw()
         {
             bool result = false;
             string 抽出したsum = "";
             try
             {
-                string RfpPath = "";
-                if (mode == WriteMode.TEST)
-                {
-                    RfpPath = Constants.RwsPath_Test;
-                }
-                else
-                {
-                    RfpPath = Constants.RwsPath_Product;
-                }
+                string RfpPath = Constants.RwsPath_Product;
 
-                string Sum = (mode == WriteMode.PRODUCT) ? State.TestSpec.FwSum : "";
-                bool calcSum = (mode == WriteMode.PRODUCT) ? true : false;
+                string Sum = State.TestSpec.FwSum;
+                bool calcSum = true;
 
                 //RS232C用のポートが既に開いているため、一度閉じる
                 Target232_BT.Close232();

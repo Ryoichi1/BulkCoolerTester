@@ -222,42 +222,9 @@ namespace 自記温度計Tester
             {
                 timerTextInput.Stop();
                 Flags.SetOpecode = true;
-                string dataFilePath = Constants.PassDataPwaFolderPath + State.VmMainWindow.Opecode + ".csv";
 
-                // 入力した工番の検査データが存在しているかどうか確認する
-                if (!System.IO.File.Exists(dataFilePath))
-                {
-                    //データファイルが存在しなければ、必然的にシリアルナンバーは001です
-                    //西暦・月の部分は、Cinfigurationで設定した値を読み込む（生産ロットが切り替わる度に作業者が設定を行う必要がある）
-                    State.NewSerial = 1;
-                    State.VmMainWindow.SerialNumber = State.Setting.HeaderSerialPwa + "Ne" + State.NewSerial.ToString("D3");
-                    return;
-                }
+                State.VmMainWindow.SerialNumber = State.Setting.HeaderSerialPwa + "Ne" + State.Setting.NextSerialCpu.ToString("D3");
 
-
-                //データファイルが存在するなら、ファイルを開いて最終シリアルナンバーをロードする
-                if (State.LoadLastSerial(dataFilePath))
-                {
-                    try
-                    {
-                        // State.LastSerialの例  1736Ne001番
-                        var buff = State.LastSerial.Substring(6);//連番部分を抽出
-                        int lastSerial = Int32.Parse(buff);
-                        State.NewSerial = lastSerial + 1;
-                        State.VmMainWindow.SerialNumber = State.LastSerial.Substring(0, 6) + State.NewSerial.ToString("D3");
-                    }
-                    catch
-                    {
-                        MessageBox.Show("シリアルナンバーの取得に失敗しました");
-                        Flags.SetOpecode = false;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("シリアルナンバーの取得に失敗しました");
-                    Flags.SetOpecode = false;
-
-                }
             }
         }
 

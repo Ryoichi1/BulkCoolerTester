@@ -23,7 +23,6 @@ namespace 自記温度計Tester
         public static readonly string filePath_Camera1Property = @"C:\自記温度計\ConfigData\Camera1Property.config";
         public static readonly string filePath_Camera2Property = @"C:\自記温度計\ConfigData\Camera2Property.config";
 
-        public static readonly string RwsPath_Test = @"C:\自記温度計\FW_WRITE\ForTest\自記温度計書き込み\自記温度計書き込み.rws";
         public static readonly string RwsPath_Product = @"C:\自記温度計\FW_WRITE\ForProduct\自記温度計書き込み\自記温度計書き込み.rws";
 
         public static readonly string Path_ManualPwaTest = @"C:\自記温度計\Manual_PWA_FT.pdf";
@@ -41,6 +40,14 @@ namespace 自記温度計Tester
         public static readonly string PassData子機FolderPath = @"C:\自記温度計\検査データ\子機\合格品データ\";
         public static readonly string FailData子機FolderPath = @"C:\自記温度計\検査データ\子機\不良品データ\";
         public static readonly string fileName_RetryLog子機  = @"C:\自記温度計\検査データ\子機\不良品データ\リトライ履歴.txt";
+
+        public static readonly string PassDataCpuFolderPath = @"C:\自記温度計\検査データ\CPU\合格品データ\";
+        public static readonly string FailDataCpuFolderPath = @"C:\自記温度計\検査データ\CPU\不良品データ\";
+        public static readonly string fileName_RetryLogCpu  = @"C:\自記温度計\検査データ\CPU\不良品データ\リトライ履歴.txt";
+
+        public static readonly string PassDataMenteAFolderPath = @"C:\自記温度計\検査データ\MENTE_A\合格品データ\";
+        public static readonly string FailDataMenteAFolderPath = @"C:\自記温度計\検査データ\MENTE_A\不良品データ\";
+        public static readonly string fileName_RetryLogMenteA  = @"C:\自記温度計\検査データ\MENTE_A\不良品データ\リトライ履歴.txt";
 
 
         //LED、7セグ点灯用コマンド

@@ -77,7 +77,20 @@ namespace 自記温度計Tester
             buttonSaveSerialHeader.Background = Brushes.DodgerBlue;
 
             State.Setting.HeaderSerialUnit = tbProductSerial.Text;
+
+            //CPU基板のシリアルヘッダを変更したときは、シリアルナンバーを1に初期化する
+            if (State.Setting.HeaderSerialPwa != tbPwaSerial.Text)
+            {
+                State.Setting.NextSerialCpu = 1;
+
+                if (Flags.SetOpecode)
+                {
+                    State.VmMainWindow.SerialNumber = $"{tbPwaSerial.Text}Ne{State.Setting.NextSerialCpu.ToString("D3")}"; 
+                }
+            }
+
             State.Setting.HeaderSerialPwa = tbPwaSerial.Text;
+
             State.Setting.HeaderSerialPow = tbPowSerial.Text;
 
             General.PlaySound(General.soundBattery);
