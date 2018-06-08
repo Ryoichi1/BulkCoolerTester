@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:自記温度計Tester"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1"
-        ShowTitleBar="True"
+        ShowTitleBar="False"
         mc:Ignorable="d"
         Height="726" Width="1364" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Closed="MetroWindow_Closed" Closing="MetroWindow_Closing" Icon="Resources/Pic/VisualStudio_32x.png" IsEnabled="{Binding MainWinEnable}" >
 
