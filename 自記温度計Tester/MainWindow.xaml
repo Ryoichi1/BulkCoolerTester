@@ -105,20 +105,6 @@
     <Controls:MetroWindow.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
             <BeginStoryboard x:Name="sbMainWinShow_BeginStoryboard" Storyboard="{StaticResource sbMainWinShow}"/>
-            <BeginStoryboard x:Name="sbPwaEnter_BeginStoryboard" Storyboard="{StaticResource SbPwaEnter}"/>
-            <BeginStoryboard x:Name="sbPwaLeave_BeginStoryboard" Storyboard="{StaticResource SbPwaLeave}"/>
-            <BeginStoryboard x:Name="sbPwaForMenteEnter_BeginStoryboard" Storyboard="{StaticResource sbPwaForMenteEnter}"/>
-            <BeginStoryboard x:Name="sbPwaForMenteLeave_BeginStoryboard" Storyboard="{StaticResource sbPwaForMenteLeave}"/>
-            <BeginStoryboard x:Name="sb本機Enter_BeginStoryboard" Storyboard="{StaticResource sb本機Enter}"/>
-            <BeginStoryboard x:Name="sb本機Leave_BeginStoryboard" Storyboard="{StaticResource sb本機Leave}"/>
-            <BeginStoryboard x:Name="sb子機Enter_BeginStoryboard" Storyboard="{StaticResource sb子機Enter}"/>
-            <BeginStoryboard x:Name="sb子機Leave_BeginStoryboard" Storyboard="{StaticResource sb子機Leave}"/>
-            <BeginStoryboard x:Name="sbCpuForMenteEnter_BeginStoryboard" Storyboard="{StaticResource sbCpuForMenteEnter}"/>
-            <BeginStoryboard x:Name="sbCpuForMenteLeave_BeginStoryboard" Storyboard="{StaticResource sbCpuForMenteLeave}"/>
-            <BeginStoryboard x:Name="sbMenteAEnter_BeginStoryboard" Storyboard="{StaticResource sbMenteAEnter}"/>
-            <BeginStoryboard x:Name="sbMenteALeave_BeginStoryboard" Storyboard="{StaticResource sbMenteALeave}"/>
-            <BeginStoryboard x:Name="sbPrintEnter_BeginStoryboard" Storyboard="{StaticResource sbPrintEnter}"/>
-            <BeginStoryboard x:Name="sbPrintLeave_BeginStoryboard" Storyboard="{StaticResource sbPrintLeave}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="labelPwaTest">
             <BeginStoryboard x:Name="SbPwaEnter_BeginStoryboard1" Storyboard="{StaticResource SbPwaEnter}"/>
