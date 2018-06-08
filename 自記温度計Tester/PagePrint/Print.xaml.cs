@@ -105,6 +105,7 @@ namespace 自記温度計Tester
 
         public class testDataPwa
         {
+            //基板単体試験の検査データで、成績書に転記する項目
             public string fwVer;
             public string fwSum;
             public string serial;
@@ -116,6 +117,7 @@ namespace 自記温度計Tester
 
         public class testData本機
         {
+            //本機試験の検査データで、成績書に転記する項目
             public string serialUnit;
             public string serialPwa;
             public string serialPow;
@@ -143,6 +145,7 @@ namespace 自記温度計Tester
 
         public class testData子機
         {
+            //子機試験の検査データで、成績書に転記する項目
             public string serialUnit;
             public string serialPwa;
             public string passedTime;

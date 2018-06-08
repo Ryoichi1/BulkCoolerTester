@@ -93,7 +93,7 @@
                 <ImageBrush ImageSource="{Binding Theme}" Stretch="Uniform"/>
             </Canvas.Background>
         </Canvas>
-        <TextBlock x:Name="tbModel" TextWrapping="Wrap" FontSize="24" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="179" RenderTransformOrigin="0.5,0.5" Canvas.Top="76" Canvas.Left="872" Text="BRTRA-ST-G*"/>
+        <TextBlock x:Name="tbModel" TextWrapping="Wrap" FontSize="24" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="262" RenderTransformOrigin="0.5,0.5" Canvas.Top="76" Canvas.Left="872" Text="BRTRA-ST-G*"/>
         <Label x:Name="labelMessage" Content="{Binding Message, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="58" VerticalAlignment="Center" Width="1326" Canvas.Left="6" Canvas.Top="6" FontSize="38" Foreground="White" VerticalContentAlignment="Center">
             <Label.Effect>
                 <DropShadowEffect Color="#FF00FFF3" BlurRadius="20" Direction="0" ShadowDepth="0"/>

@@ -68,6 +68,12 @@ namespace 自記温度計Tester
                             Flags.EnableTestStart = false;
                             continue;
                         }
+                        if (!Flags.SetModel)
+                        {
+                            State.VmTestStatus.Message = Constants.MessModel;
+                            Flags.EnableTestStart = false;
+                            continue;
+                        }
 
                         General.CheckAll周辺機器フラグ();
                         if (!Flags.AllOk周辺機器接続)
@@ -109,7 +115,7 @@ namespace 自記温度計Tester
                                 if (Flags.OtherPage || Flags.Click確認Button) return;
                             }
 
-                            if (!Flags.SetOperator || !Flags.SetOpecode) goto RETRY;
+                            if (!Flags.SetOperator || !Flags.SetOpecode || !Flags.SetModel) goto RETRY;
                         }
                     }
 

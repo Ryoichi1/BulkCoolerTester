@@ -10,6 +10,7 @@ namespace 自記温度計Tester
 
         //作業者へのメッセージ
         public const string MessOpecode = "工番を入力してください";
+        public const string MessModel = "型名を入力してください";
         public const string MessOperator = "作業者名を選択してください";
         public const string MessSetPwa = "製品をセットしてレバーを下げてください";
         public const string MessSetUnit = "製品をセットして開始ボタンを押して下さい";

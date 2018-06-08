@@ -105,11 +105,26 @@ namespace 自記温度計Tester
             set { SetProperty(ref _Opecode, value); }
         }
 
-        private bool _ReadOnlyOpecode;
+
+        private string _Model;
+        public string Model
+        {
+            get { return _Model; }
+            set { SetProperty(ref _Model, value); }
+        }
+
+        private bool _ReadOnlyOpecode = true;
         public bool ReadOnlyOpecode
         {
             get { return _ReadOnlyOpecode; }
             set { SetProperty(ref _ReadOnlyOpecode, value); }
+        }
+
+        private bool _ReadOnlyModel = true;
+        public bool ReadOnlyModel
+        {
+            get { return _ReadOnlyModel; }
+            set { SetProperty(ref _ReadOnlyModel, value); }
         }
 
         private bool _EnableOtherButton;

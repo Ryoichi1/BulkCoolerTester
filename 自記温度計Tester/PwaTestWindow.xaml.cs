@@ -40,7 +40,15 @@ namespace 自記温度計Tester
             //タイマーの設定
             timerTextInput = new DispatcherTimer(DispatcherPriority.Normal);
             timerTextInput.Interval = TimeSpan.FromMilliseconds(1000);
-            timerTextInput.Tick += timerTextInput_Tick;
+            timerTextInput.Tick += (object sender, EventArgs e) =>
+            {
+                timerTextInput.Stop();
+                if (!Flags.SetOpecode)
+                    State.VmMainWindow.Opecode = "";
+                if (!Flags.SetModel)
+                    State.VmMainWindow.Model = "";
+
+            };
             timerTextInput.Start();
 
             //タイマーの設定
@@ -165,30 +173,13 @@ namespace 自記温度計Tester
         }
 
 
-
-        void timerTextInput_Tick(object sender, EventArgs e)
-        {
-            timerTextInput.Stop();
-            if (!Flags.SetOpecode)
-            {
-                State.VmMainWindow.Opecode = "";
-            }
-        }
-
         private void cbOperator_DropDownClosed(object sender, EventArgs e)
         {
             if (cbOperator.SelectedIndex == -1)
                 return;
             Flags.SetOperator = true;
+            SetFocus();
 
-            if (Flags.SetOpecode)
-            {
-                return;
-            }
-
-            State.VmMainWindow.ReadOnlyOpecode = false;
-            Flags.SetOpecode = false;
-            tbOpecode.Focus();
 
         }
 
@@ -196,15 +187,17 @@ namespace 自記温度計Tester
         {
             if (Flags.Testing) return;
 
-            if (!Flags.SetOperator)
-            {
-                cbOperator.Focus();
-            }
-            else
-            {
-                Flags.SetOpecode = false;
-                tbOpecode.Focus();
-            }
+            Flags.SetOpecode = false;
+            Flags.SetModel = false;
+
+            //いったん編集禁止にする
+            State.VmMainWindow.ReadOnlyOpecode = true;
+            State.VmMainWindow.ReadOnlyModel = true;
+
+            if (Flags.SetOperator)
+                State.VmMainWindow.ReadOnlyOpecode = false;//工番編集許可する
+
+            SetFocus();
 
         }
 
@@ -224,10 +217,29 @@ namespace 自記温度計Tester
                 Flags.SetOpecode = true;
 
                 State.VmMainWindow.SerialNumber = State.Setting.HeaderSerialPwa + "Ne" + State.Setting.NextSerialCpu.ToString("D3");
-
+                SetFocus();
             }
         }
 
+        private void tbModel_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //１文字入力されるごとに、タイマーを初期化する
+            timerTextInput.Stop();
+            timerTextInput.Start();
+            if (!State.VmMainWindow.Model.Contains("/R"))
+                return;
+
+            var inputModel = State.VmMainWindow.Model;
+            if (inputModel.Contains("91821345"))//表示基板の履歴表を読み取っていたらダメ
+                return;
+
+            timerTextInput.Stop();
+            Flags.SetModel = true;
+            SetFocus();
+            return;
+
+
+        }
 
         //アセンブリ情報の取得
         private void GetInfo()
@@ -266,15 +278,19 @@ namespace 自記温度計Tester
                 return;
             }
 
-
             if (!Flags.SetOpecode)
             {
-                //if (!tbOpecode.IsFocused)
-                tbOpecode.Focus();
+                if (!tbOpecode.IsFocused)
+                    tbOpecode.Focus();
                 return;
             }
 
-
+            if (!Flags.SetModel)
+            {
+                if (!tbModel.IsFocused)
+                    tbModel.Focus();
+                return;
+            }
         }
 
 
@@ -330,9 +346,7 @@ namespace 自記温度計Tester
 
         }
 
-        private void cbOperator_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
+
     }
 }

@@ -115,7 +115,7 @@ namespace 自記温度計Tester
 
             //new TestSpecs(1300, "パラメータチェック", true),
 
-            //new TestSpecs(1400, "RTCチェック", true),
+            new TestSpecs(1400, "RTCチェック", true),
 
         };
         public static List<TestSpecs> テスト項目Pwa = new List<TestSpecs>()

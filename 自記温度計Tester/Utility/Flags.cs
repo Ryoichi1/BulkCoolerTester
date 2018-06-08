@@ -173,15 +173,22 @@ namespace 自記温度計Tester
                 _SetOperator = value;
                 if (value)
                 {
-                    if (State.VmMainWindow.Operator == "畔上" || State.VmMainWindow.Operator == "畔上2")
+                    if (State.VmMainWindow.Operator == "畔上")
                     {
                         State.VmTestStatus.UnitTestEnable = true;
                     }
                     else
                     {
+                        //一般作業者には、単体テスト選択できないようにする
                         State.VmTestStatus.UnitTestEnable = false;
                         State.VmTestStatus.CheckUnitTest = false;
                     }
+
+                    if (SetOpecode)
+                        return;
+
+                    //工番入力許可する
+                    State.VmMainWindow.ReadOnlyOpecode = false;
                 }
                 else
                 {
@@ -207,13 +214,35 @@ namespace 自記温度計Tester
 
                 if (value)
                 {
-                    State.VmMainWindow.ReadOnlyOpecode = true;
+                    State.VmMainWindow.ReadOnlyOpecode = true;//工番が確定したので、編集不可とする
+                    State.VmMainWindow.ReadOnlyModel = false;//型番入力を許可する
                 }
                 else
                 {
                     State.VmMainWindow.ReadOnlyOpecode = false;
                     State.VmMainWindow.Opecode = "";
                     State.VmMainWindow.SerialNumber = "";
+                }
+
+            }
+        }
+        private static bool _SetModel;
+        public static bool SetModel
+        {
+            get { return _SetModel; }
+
+            set
+            {
+                _SetModel = value;
+
+                if (value)
+                {
+                    State.VmMainWindow.ReadOnlyModel = true;
+                }
+                else
+                {
+                    State.VmMainWindow.ReadOnlyModel = false;
+                    State.VmMainWindow.Model = "";
                 }
 
             }
