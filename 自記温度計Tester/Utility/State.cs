@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace 自記温度計Tester
 {
-    public enum TEST_MODE { PWA, 本機, 子機 }
+    public enum TEST_MODE { PWA, 本機, 子機, 本機保守, 子機保守, MENTE_A }
 
     public class TestSpecs
     {

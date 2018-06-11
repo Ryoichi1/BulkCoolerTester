@@ -66,28 +66,26 @@ namespace 自記温度計Tester
 
             State.VmTestStatus.RetryLabelVis = System.Windows.Visibility.Hidden;
 
-            if (State.testMode == TEST_MODE.本機)
+            var mode = State.testMode;
+            switch (mode)
             {
-                State.VmTestStatus.Theme = "Resources/Pic/BRTR_ST.png";
-                tbTestName.Text = "BRTR_ST(本機) 最終検査";
+                case TEST_MODE.本機:
+                    State.VmTestStatus.Theme = "Resources/Pic/BRTR_ST.png";
+                    tbTestName.Text = "BRTR_ST(本機) 最終検査";
+                    break;
+                case TEST_MODE.子機:
+                    State.VmTestStatus.Theme = "Resources/Pic/BRTR_C.png";
+                    tbTestName.Text = "BRTR_C(子機) 最終検査";
+                    break;
+                case TEST_MODE.子機保守:
+                    State.VmTestStatus.Theme = "Resources/Pic/CPU.jpg";
+                    tbTestName.Text = "CPU基板（保守用） 最終検査";
+                    break;
+                case TEST_MODE.MENTE_A:
+                    State.VmTestStatus.Theme = "";
+                    tbTestName.Text = "メンテナンス組立A 最終検査";
+                    break;
             }
-            if (State.testMode == TEST_MODE.子機)
-            {
-                State.VmTestStatus.Theme = "Resources/Pic/BRTR_C.png";
-                tbTestName.Text = "BRTR_C(子機) 最終検査";
-            }
-            if (Flags.IsCpuOnly)
-            {
-                State.VmTestStatus.Theme = "Resources/Pic/CPU.jpg";
-                tbTestName.Text = "CPU基板（保守用） 最終検査";
-            }
-            if (Flags.IsMenteA)
-            {
-                State.VmTestStatus.Theme = "";
-                tbTestName.Text = "メンテナンス組立A 最終検査";
-            }
-
-
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -129,7 +127,7 @@ namespace 自記温度計Tester
         private void SetUnitTest()
         {
             IEnumerable<TestSpecs> SelectedItem;
-            if (State.testMode == TEST_MODE.本機)
+            if (State.testMode == TEST_MODE.本機 || State.testMode == TEST_MODE.MENTE_A || State.testMode == TEST_MODE.本機保守)
             {
                 SelectedItem = State.テスト項目本機.Where(item => item.Key % 100 == 0);
             }

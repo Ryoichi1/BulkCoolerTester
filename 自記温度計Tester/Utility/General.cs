@@ -480,21 +480,16 @@ namespace 自記温度計Tester
                         dataList = MakePassTestDataPwa();
                         break;
                     case TEST_MODE.本機:
-                        if (Flags.IsCpuOnly)
-                        {
-                            PassDataFolderPath = Constants.PassDataCpuFolderPath;
-                            dataList = MakePassTestDataCpu();
-                        }
-                        else if (Flags.IsMenteA)
-                        {
-                            PassDataFolderPath = Constants.PassDataMenteAFolderPath;
-                            dataList = MakePassTestDataMenteA();
-                        }
-                        else
-                        {
-                            PassDataFolderPath = Constants.PassData本機FolderPath;
-                            dataList = MakePassTestData本機();
-                        }
+                        PassDataFolderPath = Constants.PassData本機FolderPath;
+                        dataList = MakePassTestData本機();
+                        break;
+                    case TEST_MODE.MENTE_A:
+                        PassDataFolderPath = Constants.PassDataMenteAFolderPath;
+                        dataList = MakePassTestDataMenteA();
+                        break;
+                    case TEST_MODE.子機保守:
+                        PassDataFolderPath = Constants.PassDataCpuFolderPath;
+                        dataList = MakePassTestDataCpu();
                         break;
                     case TEST_MODE.子機:
                         PassDataFolderPath = Constants.PassData子機FolderPath;

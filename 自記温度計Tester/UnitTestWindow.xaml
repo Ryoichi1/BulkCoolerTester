@@ -50,6 +50,7 @@
                 </TabItem>
 
 
+
             </TabControl>
 
             <Border Width="1252" Height="1" BorderThickness="2" BorderBrush="White" Canvas.Top="52" Canvas.Left="6">
@@ -57,7 +58,7 @@
                     <DropShadowEffect Color="#FF09BCFF" Direction="0" ShadowDepth="0" BlurRadius="30"/>
                 </Border.Effect>
             </Border>
-            <Canvas Height="36" Canvas.Left="609" Canvas.Top="18" Width="435">
+            <Canvas Height="36" Canvas.Left="569" Canvas.Top="18" Width="660">
                 <Canvas.Effect>
                     <DropShadowEffect Color="#FF00D1FF" BlurRadius="10" ShadowDepth="0" Direction="0"/>
                 </Canvas.Effect>
@@ -65,7 +66,9 @@
                 <ComboBox x:Name="cbOperator" HorizontalAlignment="Center" Height="24" VerticalAlignment="Center" Width="93" BorderBrush="White" ItemsSource="{Binding ListOperator}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="16" Foreground="#FFC1C1C1" DropDownClosed="cbOperator_DropDownClosed" SelectedIndex="{Binding SelectIndex}" SelectedItem="{Binding Operator}" Canvas.Left="60" Canvas.Top="2" Background="{x:Null}" IsEnabled="{Binding OperatorEnable}"/>
                 <TextBlock TextWrapping="Wrap" Text="工番" FontSize="16" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Height="21" Width="38" Canvas.Left="173" Canvas.Top="3"/>
                 <TextBox x:Name="tbOpecode" TextWrapping="Wrap" FontSize="16" Background="{x:Null}" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="24" Width="136" Foreground="#FFC1C1C1" CaretBrush="White" TextChanged="tbOpecode_TextChanged" CharacterCasing="Upper" InputMethod.IsInputMethodEnabled="False" InputMethod.PreferredImeState="Off" Text="{Binding Opecode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="213" Canvas.Top="2" SelectionBrush="{x:Null}" IsReadOnly="{Binding ReadOnlyOpecode}" VerticalContentAlignment="Center" FontFamily="Meiryo UI"/>
-                <Button x:Name="buttonClear" Content="クリア" HorizontalAlignment="Center" VerticalAlignment="Center" Height="22" Width="65" BorderBrush="White" Click="buttonClear_Click" FontSize="14" Canvas.Left="364" Style="{DynamicResource AccentedSquareButtonStyle}" BorderThickness="1" ClipToBounds="True" Background="{x:Null}" Padding="0" Canvas.Top="4"/>
+                <TextBlock TextWrapping="Wrap" Text="型番" FontSize="16" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="38" Canvas.Left="387" Canvas.Top="7"/>
+                <TextBox x:Name="tbModel" TextWrapping="Wrap" FontSize="16" Background="{x:Null}" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="24" Width="148" Foreground="#FFC1C1C1" CaretBrush="White" TextChanged="tbModel_TextChanged" CharacterCasing="Upper" InputMethod.IsInputMethodEnabled="False" InputMethod.PreferredImeState="Off" Text="{Binding Model, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionBrush="{x:Null}" IsReadOnly="{Binding ReadOnlyModel}" VerticalContentAlignment="Center" FontFamily="Meiryo UI" Canvas.Left="425" Canvas.Top="2"/>
+                <Button x:Name="buttonClear" Content="クリア" HorizontalAlignment="Center" VerticalAlignment="Center" Height="22" Width="65" BorderBrush="White" Click="buttonClear_Click" FontSize="14" Canvas.Left="585" Style="{DynamicResource AccentedSquareButtonStyle}" BorderThickness="1" ClipToBounds="True" Background="{x:Null}" Padding="0" Canvas.Top="4"/>
             </Canvas>
 
         </Canvas>

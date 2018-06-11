@@ -53,23 +53,28 @@ namespace 自記温度計Tester
 
         }
 
-        private void labelCpuForMente_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void labelOyakiForMente_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            State.testMode = TEST_MODE.本機;
-            Flags.IsCpuOnly = true;
-            Flags.IsMenteA = false;
+            State.testMode = TEST_MODE.本機保守;
             var unitTestWin = new UnitTestWindow();
             unitTestWin.Show();
             this.Close();
+        }
 
+        private void labelKokiForMente_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            State.testMode = TEST_MODE.子機保守;
+            var unitTestWin = new UnitTestWindow();
+            unitTestWin.Show();
+            this.Close();
         }
 
         private void labelMenteA_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //State.testMode = TEST_MODE.MENTE_A;
-            //var unitTestWin = new UnitTestWindow();
-            //unitTestWin.Show();
-            //this.Close();
+            State.testMode = TEST_MODE.MENTE_A;
+            var unitTestWin = new UnitTestWindow();
+            unitTestWin.Show();
+            this.Close();
 
         }
         private void labelPrint_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
