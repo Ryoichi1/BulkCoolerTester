@@ -145,9 +145,6 @@
     <Compile Include="DialogPic.xaml.cs">
       <DependentUpon>DialogPic.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PagePrint\PrintForMainte.xaml.cs">
-      <DependentUpon>PrintForMainte.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PagePwa\Config\SerialHeader.xaml.cs">
       <DependentUpon>SerialHeader.xaml</DependentUpon>
     </Compile>
@@ -232,8 +229,8 @@
     <Compile Include="PagePwa\Config\EditOpeList.xaml.cs">
       <DependentUpon>EditOpeList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PagePwa\Config\Mente.xaml.cs">
-      <DependentUpon>Mente.xaml</DependentUpon>
+    <Compile Include="PagePwa\Config\Mainte.xaml.cs">
+      <DependentUpon>Mainte.xaml</DependentUpon>
     </Compile>
     <Compile Include="PagePwa\Config\Theme.xaml.cs">
       <DependentUpon>Theme.xaml</DependentUpon>
@@ -274,10 +271,6 @@
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="PagePrint\PrintForMainte.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PagePwa\Config\SerialHeader.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -351,7 +344,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PagePwa\Config\Mente.xaml">
+    <Page Include="PagePwa\Config\Mainte.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

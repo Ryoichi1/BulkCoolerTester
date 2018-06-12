@@ -3,7 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
 	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Actions="clr-namespace:MahApps.Metro.Actions;assembly=MahApps.Metro"
-	x:Class="自記温度計Tester.Mente"
+	x:Class="自記温度計Tester.Mainte"
 	x:Name="Page"
 	WindowTitle="Page"
 	FlowDirection="LeftToRight"

@@ -68,12 +68,11 @@ namespace 自記温度計Tester
                 case 4:
                 case 5:
                 case 6:
-                case 7:
                     var WinUnit = new UnitTestWindow();
                     WinUnit.Show();
                     this.Close();
                     break;
-                case 8:
+                case 7:
                     var WinPrint = new PrintWindow();
                     WinPrint.Show();
                     this.Close();

@@ -8,13 +8,13 @@ namespace 自記温度計Tester
     /// <summary>
     /// Interaction logic for BasicPage1.xaml
     /// </summary>
-    public partial class Mente
+    public partial class Mainte
     {
         private SolidColorBrush ButtonOnBrush = new SolidColorBrush();
         private SolidColorBrush ButtonOffBrush = new SolidColorBrush();
         private const double ButtonOpacity = 0.4;
 
-        public Mente()
+        public Mainte()
         {
             InitializeComponent();
             CanvasComm232.DataContext = State.VmComm;
