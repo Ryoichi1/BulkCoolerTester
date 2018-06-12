@@ -487,8 +487,12 @@ namespace 自記温度計Tester
                         PassDataFolderPath = Constants.PassDataMenteAFolderPath;
                         dataList = MakePassTestDataMenteA();
                         break;
+                    case TEST_MODE.本機保守:
+                        PassDataFolderPath = Constants.PassDataOyakiMenteFolderPath;
+                        dataList = MakePassTestDataCpu();
+                        break;
                     case TEST_MODE.子機保守:
-                        PassDataFolderPath = Constants.PassDataCpuFolderPath;
+                        PassDataFolderPath = Constants.PassDataKokiMenteFolderPath;
                         dataList = MakePassTestDataCpu();
                         break;
                     case TEST_MODE.子機:
@@ -1027,7 +1031,7 @@ namespace 自記温度計Tester
                     multimeter.GetDcVoltage();
                     var Pmx18OutData = multimeter.VoltData;
 
-                    var resultPmx18 = (Pmx18OutData >= Min && Pmx18OutData <= Max);
+                    var resultPmx18 = (Min <= Pmx18OutData && Pmx18OutData <= Max);
                     if (resultPmx18)
                     {
                         tm.stop();

@@ -145,6 +145,9 @@
     <Compile Include="DialogPic.xaml.cs">
       <DependentUpon>DialogPic.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PagePrint\PrintForMainte.xaml.cs">
+      <DependentUpon>PrintForMainte.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PagePwa\Config\SerialHeader.xaml.cs">
       <DependentUpon>SerialHeader.xaml</DependentUpon>
     </Compile>
@@ -271,6 +274,10 @@
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PagePrint\PrintForMainte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PagePwa\Config\SerialHeader.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -421,9 +428,6 @@
     <Resource Include="Resources\Pic\baby6.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Pic\MS_1.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Resources\Pic\baby1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -455,12 +459,14 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Pic\baby2.jpg" />
-    <Resource Include="Resources\Pic\snow.jpg" />
-    <Resource Include="Resources\Pic\snow2.jpg" />
     <Resource Include="Resources\Pic\CPU.JPG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Pic\LabelCpu.jpg" />
+    <Resource Include="Resources\Pic\CPU単体.JPG" />
+    <Resource Include="Resources\Pic\MenteA.JPG" />
+    <Resource Include="Resources\Pic\子機保守.JPG" />
+    <Resource Include="Resources\Pic\本機保守.JPG" />
     <Content Include="Resources\Wav\Alarm.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

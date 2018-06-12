@@ -25,7 +25,7 @@ namespace 自記温度計Tester
         private void Pic1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            State.VmMainWindow.Theme = "Resources/Pic/snow.jpg";
+            State.VmMainWindow.Theme = "Resources/Pic/taki.jpg";
             General.Show();
         }
 

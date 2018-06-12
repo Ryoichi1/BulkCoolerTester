@@ -568,7 +568,9 @@ namespace 自記温度計Tester
 
                         General.PlaySound(General.soundNotice);
                         //General.PlaySound(General.soundCutin);
-                        if (State.testMode == TEST_MODE.本機)
+                        if (State.testMode == TEST_MODE.本機 ||
+                            State.testMode == TEST_MODE.本機保守 ||
+                            State.testMode == TEST_MODE.MENTE_A)
                         {
                             State.VmTestStatus.Message = "S1の4番だけをONにしてください";
                         }
@@ -584,7 +586,9 @@ namespace 自記温度計Tester
                             if (tm.FlagTimeout) break;
                             if (!Target232_BT.SendData("3700ODB,8of000")) return false;
                             var defaultBuff = Target232_BT.RecieveData.Substring(11, 2);//3700O00,of,>7,032,021,0100 この場合 >7 がスイッチデータ（アスキー文字）
-                            if (State.testMode == TEST_MODE.本機)
+                            if (State.testMode == TEST_MODE.本機 ||
+                                State.testMode == TEST_MODE.本機保守 ||
+                                State.testMode == TEST_MODE.MENTE_A)
                             {
                                 AnalysisDataS1(defaultBuff, S1EXP.ONLY4_ON);
                                 resultDefault = ListS1Specs.All(list =>

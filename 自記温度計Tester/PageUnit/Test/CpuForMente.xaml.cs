@@ -79,6 +79,7 @@ namespace 自記温度計Tester
             General.StopSound();
             General.PlaySound(General.soundBattery);
             FAIL:
+            General.StopSound();
             //テーマ透過度を元に戻す
             State.VmMainWindow.ThemeOpacity = State.CurrentThemeOpacity;
 
@@ -120,7 +121,17 @@ namespace 自記温度計Tester
             try
             {
 
-                string path = Constants.PassDataCpuFolderPath;
+                string path = "";
+                switch (State.testMode)
+                {
+                    case TEST_MODE.本機保守:
+                        path = Constants.PassDataOyakiMenteFolderPath;
+                        break;
+                    case TEST_MODE.子機保守:
+                        path = Constants.PassDataKokiMenteFolderPath;
+                        break;
+
+                }
 
                 var filePath = path + State.VmMainWindow.Opecode + ".csv";
                 if (!System.IO.File.Exists(filePath)) return result = true;

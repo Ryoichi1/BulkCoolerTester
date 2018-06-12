@@ -151,8 +151,6 @@ namespace 自記温度計Tester
             bool result = false;
             DialogMp4 dialog;
 
-            double TimeOnToSleep = 0;//TODO: スリープ突入までの時間計測するか？？？？
-
             Flags.AddDecision = false;
 
             try
@@ -194,9 +192,9 @@ namespace 自記温度計Tester
                     if (!General.CheckComm()) return false;
                     Thread.Sleep(1000);
 
-                    //CN9に擬似バッテリ（6.25V）を接続
+                    //CN9に擬似バッテリ（6.25V ※Configファイルで設定）を接続
                     //pmx18の校正
-                    if (!General.CalbPmx18(6.25)) return false;
+                    if (!General.CalbPmx18(State.TestSpec.BattLowHiVol)) return false;
                     //この時点でpmx18からは正確に6.25Vが出力されている
 
                     General.SetRL1(true);

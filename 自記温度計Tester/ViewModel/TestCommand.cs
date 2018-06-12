@@ -682,7 +682,9 @@ namespace 自記温度計Tester
                 int 上位桁 = Int32.Parse(State.VmTestStatus.UnitTestName.Substring(0, (re >= 1000) ? 2 : 1));
 
                 IEnumerable<TestSpecs> 抽出データ;
-                if (State.testMode == TEST_MODE.本機 || State.testMode == TEST_MODE.MENTE_A)
+                if (State.testMode == TEST_MODE.本機 ||
+                    State.testMode == TEST_MODE.本機保守 ||
+                    State.testMode == TEST_MODE.MENTE_A)
                 {
                     抽出データ = State.テスト項目本機.Where(p => (p.Key / 100) == 上位桁);
                 }
@@ -698,7 +700,16 @@ namespace 自記温度計Tester
             }
             else
             {
-                テスト項目最新 = State.testMode == TEST_MODE.本機 || State.testMode == TEST_MODE.MENTE_A ? State.テスト項目本機 : State.テスト項目子機;
+                if (State.testMode == TEST_MODE.本機 ||
+                    State.testMode == TEST_MODE.本機保守 ||
+                    State.testMode == TEST_MODE.MENTE_A)
+                {
+                    テスト項目最新 = State.テスト項目本機;
+                }
+                else
+                {
+                    テスト項目最新 = State.テスト項目子機;
+                }
             }
 
 
@@ -1084,15 +1095,13 @@ namespace 自記温度計Tester
                             State.uriOtherInfoPage = new Uri("PageUnit/Test/銘板ラベル貼り付け_本機.xaml", UriKind.Relative);
                             break;
                         case TEST_MODE.本機保守:
+                        case TEST_MODE.子機保守:
                             State.uriOtherInfoPage = new Uri("PageUnit/Test/CpuForMente.xaml", UriKind.Relative);
                             break;
                         case TEST_MODE.MENTE_A:
                             State.uriOtherInfoPage = new Uri("PageUnit/Test/MenteA.xaml", UriKind.Relative);
                             break;
                         case TEST_MODE.子機:
-                            State.uriOtherInfoPage = new Uri("PageUnit/Test/銘板ラベル貼り付け_子機.xaml", UriKind.Relative);
-                            break;
-                        case TEST_MODE.子機保守:
                             State.uriOtherInfoPage = new Uri("PageUnit/Test/銘板ラベル貼り付け_子機.xaml", UriKind.Relative);
                             break;
                     }

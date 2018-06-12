@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace 自記温度計Tester
 {
-    public enum TEST_MODE { PWA, 本機, 子機, 本機保守, 子機保守, MENTE_A }
+    public enum TEST_MODE { PWA, 本機, 子機, 本機保守, 子機保守, MENTE_A, }
 
     public class TestSpecs
     {
@@ -85,14 +85,14 @@ namespace 自記温度計Tester
             new TestSpecs(305, "CN9On出力電圧チェック", true),
             new TestSpecs(306, "CN9Off出力電圧チェック", true),
 
-            //new TestSpecs(400, "粒LEDカラーチェック", false),
+            new TestSpecs(400, "粒LEDカラーチェック", false),
             //new TestSpecs(401, "粒LED輝度チェック", true),
             //new TestSpecs(402, "7セグ 輝度チェック", true),
             //new TestSpecs(403, "7セグ 点灯チェック", true),
 
-            //new TestSpecs(500, "Bluetooth通信確認", true),
-            //new TestSpecs(501, "AT通信確認", true),
-            //new TestSpecs(502, "増設子機有りに設定", true),
+            new TestSpecs(500, "Bluetooth通信確認", true),
+            new TestSpecs(501, "AT通信確認", true),
+            new TestSpecs(502, "増設子機有りに設定", true),
             //new TestSpecs(503, "RS485通信確認1", true),
             //new TestSpecs(504, "RS485通信確認2", true),
 
@@ -113,7 +113,7 @@ namespace 自記温度計Tester
 
             //new TestSpecs(1200, "警報リレー出力チェック", true),
 
-            //new TestSpecs(1300, "パラメータチェック", true),
+            new TestSpecs(1300, "パラメータチェック", true),
 
             new TestSpecs(1400, "RTCチェック", true),
 
@@ -215,6 +215,8 @@ namespace 自記温度計Tester
 
         };
 
+
+
         public static List<TestSpecs> テスト項目子機 = new List<TestSpecs>()
         {
             //new TestSpecs(100, "検査ソフト書き込み", false),
@@ -260,6 +262,8 @@ namespace 自記温度計Tester
 
 
         };
+
+
 
         //個別設定のロード
         public static void LoadConfigData()
