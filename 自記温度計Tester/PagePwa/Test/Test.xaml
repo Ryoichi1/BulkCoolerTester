@@ -84,7 +84,7 @@
                 </Style>
             </Canvas.Resources>
             <Canvas.Background>
-                <SolidColorBrush Color="White" Opacity="0.15"/>
+                <SolidColorBrush Color="Black" Opacity="0.2"/>
             </Canvas.Background>
 
 
@@ -230,7 +230,7 @@
                 <TextBlock Text="20℃ 31.00k" Foreground="White" RenderTransformOrigin="0.725,0.643" Height="14" Canvas.Left="2" Canvas.Top="192" Width="69" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Text="30℃ 19.93k" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="14" Canvas.Left="3" Canvas.Top="214" Width="67"/>
                 <TextBlock Text="45℃ 10.77k" Foreground="White" RenderTransformOrigin="0.725,0.643" Height="14" Canvas.Left="3" Canvas.Top="234" Width="71" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Text="90℃ 2.249k" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="14" Canvas.Left="3" Canvas.Top="255" Width="72"/>
+                <TextBlock Text="80℃ 3.086k" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="14" Canvas.Left="3" Canvas.Top="255" Width="72"/>
                 <TextBlock Text="SHORT" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="14" Canvas.Top="298" Width="40" Canvas.Left="29"/>
                 <TextBlock Text="OPEN" Foreground="White" RenderTransformOrigin="0.494,0.611" Height="14" Canvas.Left="35" Canvas.Top="277" Width="34"/>
                 <Label BorderBrush="White" BorderThickness="1" Canvas.Left="65" Canvas.Top="23" Background="{Binding ColTh2}" Content="{Binding Th2}" Height="18" Width="44" />
@@ -244,7 +244,7 @@
                 <Label BorderBrush="White" BorderThickness="1" Canvas.Left="71" Canvas.Top="191" Background="{Binding ColTh20}" Content="{Binding Th20}" Height="18" Width="44" />
                 <Label BorderBrush="White" BorderThickness="1" Canvas.Left="71" Canvas.Top="212" Background="{Binding ColTh30}" Content="{Binding Th30}" Height="18" Width="44" />
                 <Label BorderBrush="White" BorderThickness="1" Canvas.Left="71" Canvas.Top="233" Background="{Binding ColTh45}" Content="{Binding Th45}" Height="18" Width="44" />
-                <Label BorderBrush="White" BorderThickness="1" Canvas.Left="71" Canvas.Top="254" Background="{Binding ColTh90}" Content="{Binding Th90}" Height="18" Width="44" />
+                <Label BorderBrush="White" BorderThickness="1" Canvas.Left="71" Canvas.Top="254" Background="{Binding ColTh80}" Content="{Binding Th80}" Height="18" Width="44" />
                 <Label BorderBrush="White" BorderThickness="1" Canvas.Left="71" Canvas.Top="275" Background="{Binding ColThOpen}" Content="{Binding ThOpen}" Height="18" Width="44" />
                 <Label BorderBrush="White" BorderThickness="1" Canvas.Left="71" Canvas.Top="296" Background="{Binding ColThShort}" Content="{Binding ThShort}" Height="18" Width="44" />
             </Canvas>
@@ -407,7 +407,7 @@
                 </Style>
             </Canvas.Resources>
             <Canvas.Background>
-                <SolidColorBrush Color="White" Opacity="0.15"/>
+                <SolidColorBrush Color="Black" Opacity="0.2"/>
             </Canvas.Background>
 
             <TextBlock TextWrapping="Wrap" Text="Status" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22" Width="60" Canvas.Left="7" Canvas.Top="4"/>
@@ -479,7 +479,7 @@
                 </Style>
             </Canvas.Resources>
             <Canvas.Background>
-                <SolidColorBrush Color="White" Opacity="0.15"/>
+                <SolidColorBrush Color="Black" Opacity="0.2"/>
             </Canvas.Background>
 
             <TextBox x:Name="tbTestLog" Height="220" Canvas.Left="8" TextWrapping="Wrap" Canvas.Top="33" Width="352" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" VerticalScrollBarVisibility="Auto" SelectionBrush="{x:Null}" BorderThickness="0" CaretBrush="{x:Null}" IsReadOnly="True" FontSize="14" TextChanged="tbTestLog_TextChanged" Text="{Binding TestLog}">
@@ -521,7 +521,7 @@
 
         <Canvas x:Name="canvasTestSetting" Height="58" Canvas.Left="878" Canvas.Top="65" Width="454" IsEnabled="{Binding TestSettingEnable}">
             <Canvas.Background>
-                <SolidColorBrush Color="White" Opacity="0.15"/>
+                <SolidColorBrush Color="Black" Opacity="0.2"/>
             </Canvas.Background>
             <Canvas x:Name="canvasUnitTest" Height="34" Canvas.Left="162" Canvas.Top="19" Width="283" IsVisibleChanged="canvasUnitTest_IsVisibleChanged" IsEnabled="{Binding UnitTestEnable}">
                 <CheckBox x:Name="CheckBoxUnitTest" Content="単体試験" IsChecked="{Binding CheckUnitTest}" Height="27" Width="75" Background="White" Foreground="#FFFDFDFD" Canvas.Left="5" Canvas.Top="5"/>
@@ -587,16 +587,16 @@
 
             </Canvas.Resources>
             <Canvas.Background>
-                <SolidColorBrush Color="White" Opacity="0.15"/>
+                <SolidColorBrush Color="Black" Opacity="0.2"/>
             </Canvas.Background>
             <TextBlock Height="34" Canvas.Left="30" Canvas.Top="31" Width="511" Padding="5,0,0,0" TextWrapping="Wrap" Text="{Binding RS232C_TX}" Foreground="White">
                 <TextBlock.Background>
-                    <SolidColorBrush Color="#FF00A2FF" Opacity="0.2"/>
+                    <SolidColorBrush Color="White" Opacity="0.06"/>
                 </TextBlock.Background>
             </TextBlock>
             <TextBlock Text="{Binding RS232C_RX}" Height="34" Canvas.Left="30" Canvas.Top="68" Width="511" FontSize="12" Padding="5,0,0,0" TextWrapping="Wrap" Foreground="White">
                 <TextBlock.Background>
-                    <SolidColorBrush Color="#FF00A2FF" Opacity="0.2"/>
+                    <SolidColorBrush Color="White" Opacity="0.06"/>
                 </TextBlock.Background>
             </TextBlock>
             <TextBlock x:Name="textBlock2_Copy" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="36" Canvas.Left="8">
@@ -631,15 +631,7 @@
             <Label x:Name="labelStateRetry_Copy3" Content="AT" Height="16" Canvas.Left="259" Width="43" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" Canvas.Top="7" Background="{Binding ColorLabelAT}"  FontSize="10" Padding="0"/>
             <Label x:Name="labelStateRetry_Copy4" Content="BlueTooth" Height="16" Canvas.Left="309" Width="58" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" Canvas.Top="7" Background="{Binding ColorLabelBT}" FontSize="10" Padding="0"/>
         </Canvas>
-        <Controls:ProgressRing x:Name="RingWait" Canvas.Left="112" Canvas.Top="146" Height="120" Width="120" IsActive="{Binding IsActiveRing}">
-            <!--<Controls:ProgressRing.Effect>
-                <DropShadowEffect Color="#FFF7F9F9" Direction="0" ShadowDepth="0" BlurRadius="10"/>
-            </Controls:ProgressRing.Effect>-->
-            <Controls:ProgressRing.Foreground>
-                <SolidColorBrush Color="#CC1BC1FF" Opacity="0.3"/>
-            </Controls:ProgressRing.Foreground>
-        </Controls:ProgressRing>
-        <Canvas x:Name="CanvasComm485" Height="76" Canvas.Left="386" Canvas.Top="240" Width="551">
+        <Canvas x:Name="CanvasComm485" Height="76" Canvas.Left="386" Canvas.Top="235" Width="551">
             <Canvas.Resources>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="FontSize" Value="11"/>
@@ -654,16 +646,16 @@
                 </Style>
             </Canvas.Resources>
             <Canvas.Background>
-                <SolidColorBrush Color="White" Opacity="0.15"/>
+                <SolidColorBrush Color="Black" Opacity="0.2"/>
             </Canvas.Background>
             <TextBlock Height="19" Canvas.Left="30" Canvas.Top="31" Width="511" FontSize="12" Padding="5,0,0,0" Text="{Binding RS485_TX}" Foreground="White">
                 <TextBlock.Background>
-                    <SolidColorBrush Color="#FF00A2FF" Opacity="0.2"/>
+                    <SolidColorBrush Color="White" Opacity="0.06"/>
                 </TextBlock.Background>
             </TextBlock>
             <TextBlock Text="{Binding RS485_RX}" Height="19" Canvas.Left="30" Canvas.Top="53" Width="511" FontSize="12" Padding="5,0,0,0" Foreground="White">
                 <TextBlock.Background>
-                    <SolidColorBrush Color="#FF00A2FF" Opacity="0.2"/>
+                    <SolidColorBrush Color="White" Opacity="0.06"/>
                 </TextBlock.Background>
             </TextBlock>
             <TextBlock x:Name="textBlock2_Copy3" TextWrapping="Wrap" Text="Tx" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="21" RenderTransformOrigin="0.5,0.5" Canvas.Top="32" Canvas.Left="8">

@@ -57,7 +57,7 @@
     </Page.Resources>
 
     <Canvas x:Name="LayoutRoot" Margin="0,0,0,0" >
-        <Canvas x:Name="canvasRing" Width="260" Height="260" Canvas.Left="536"  Opacity="{Binding RingOpacity}" Visibility="{Binding RingVisibility}" RenderTransformOrigin="0.5,0.5" Canvas.Top="408">
+        <Canvas x:Name="canvasRing" Width="260" Height="260" Canvas.Left="611"  Opacity="{Binding RingOpacity}" Visibility="{Binding RingVisibility}" RenderTransformOrigin="0.5,0.5" Canvas.Top="408">
 
             <ed:Arc x:Name="ProgressBack" ArcThickness="12" ArcThicknessUnit="Pixel" EndAngle="270" Fill="#FF758C99"  Canvas.Left="7" Stretch="None" StartAngle="0" Canvas.Top="6" Width="240" Height="240" Opacity="0.3"/>
 
@@ -83,17 +83,17 @@
             </Label>
 
         </Canvas>
-        <Button x:Name="ButtonPrint" Controls:ControlsHelper.ContentCharacterCasing="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="189" BorderBrush="#FFABD6EA" FontSize="22" Canvas.Left="535" Style="{DynamicResource AccentedSquareButtonStyle}" BorderThickness="1" ClipToBounds="True" Canvas.Top="76" RenderTransformOrigin="11.977,3.9" FontFamily="Segoe UI Light" Content="印刷" Click="ButtonPrint_Click" >
+        <Button x:Name="ButtonPrint" Controls:ControlsHelper.ContentCharacterCasing="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="55" Width="189" BorderBrush="#FFABD6EA" FontSize="22" Canvas.Left="610" Style="{DynamicResource AccentedSquareButtonStyle}" BorderThickness="1" ClipToBounds="True" Canvas.Top="76" RenderTransformOrigin="11.977,3.9" FontFamily="Segoe UI Light" Content="印刷" Click="ButtonPrint_Click" >
             <Button.Background>
                 <SolidColorBrush Color="#FF125191" Opacity="0.6"/>
             </Button.Background>
         </Button>
-        <Canvas x:Name="canvasPic" Height="392" Canvas.Left="861" Canvas.Top="117" Width="381">
+        <Canvas x:Name="canvasPic" Height="392" Canvas.Left="935" Canvas.Top="117" Width="381">
             <Canvas.Background>
                 <ImageBrush ImageSource="{Binding Theme}" Stretch="Uniform"/>
             </Canvas.Background>
         </Canvas>
-        <TextBlock x:Name="tbModel" TextWrapping="Wrap" FontSize="24" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="262" RenderTransformOrigin="0.5,0.5" Canvas.Top="76" Canvas.Left="872" Text="BRTRA-ST-G*"/>
+        <TextBlock x:Name="tbModel" TextWrapping="Wrap" FontSize="24" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="262" RenderTransformOrigin="0.5,0.5" Canvas.Top="76" Canvas.Left="946" Text="BRTRA-ST-G*"/>
         <Label x:Name="labelMessage" Content="{Binding Message, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="58" VerticalAlignment="Center" Width="1326" Canvas.Left="6" Canvas.Top="6" FontSize="38" Foreground="White" VerticalContentAlignment="Center">
             <Label.Effect>
                 <DropShadowEffect Color="#FF00FFF3" BlurRadius="20" Direction="0" ShadowDepth="0"/>
@@ -104,9 +104,9 @@
                 <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
             </Label.Effect>
         </Label>
-        <Canvas Height="159" Canvas.Left="535" Canvas.Top="141" Width="278">
+        <Canvas Height="159" Canvas.Left="610" Canvas.Top="141" Width="278">
             <Canvas.Background>
-                <SolidColorBrush Color="#FF635E5E" Opacity="0.3"/>
+                <SolidColorBrush Color="Black" Opacity="0.3"/>
             </Canvas.Background>
             <TextBlock TextWrapping="Wrap" Text="印刷オプション" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="138" RenderTransformOrigin="0.5,0.5" Canvas.Top="2" Canvas.Left="7"/>
             <RadioButton x:Name="rbPrintAll" Content="すべて印刷" Height="34" Canvas.Left="10" Canvas.Top="28" Width="102" FontSize="16"/>
@@ -127,9 +127,9 @@
             <Button x:Name="buttonClear" Content="クリア" HorizontalAlignment="Center" VerticalAlignment="Center" Height="29" Width="76" BorderBrush="White" FontSize="20" Canvas.Left="265" Style="{DynamicResource AccentedSquareButtonStyle}" BorderThickness="1" ClipToBounds="True" Background="{x:Null}" Padding="0" Canvas.Top="7" Click="buttonClear_Click"/>
             <ListBox x:Name="listBoxSerial" Height="517" Canvas.Left="18" Canvas.Top="53" Width="434" Background="{x:Null}" BorderThickness="1" FontSize="16"/>
         </Canvas>
-        <Canvas x:Name="canvasItemOption" Height="95" Canvas.Left="535" Canvas.Top="308" Width="278">
+        <Canvas x:Name="canvasItemOption" Height="95" Canvas.Left="610" Canvas.Top="308" Width="278">
             <Canvas.Background>
-                <SolidColorBrush Color="#FF635E5E" Opacity="0.3"/>
+                <SolidColorBrush Color="Black" Opacity="0.3"/>
             </Canvas.Background>
             <TextBlock TextWrapping="Wrap" Text="アイテムオプション" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="175" RenderTransformOrigin="0.5,0.5" Canvas.Top="2" Canvas.Left="7"/>
             <RadioButton x:Name="rb_G1" Content="G1添付品有り" Height="34" Canvas.Left="10" Canvas.Top="28" Width="131" FontSize="16"/>

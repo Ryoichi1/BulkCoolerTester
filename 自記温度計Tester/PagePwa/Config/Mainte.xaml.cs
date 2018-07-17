@@ -315,7 +315,7 @@ namespace 自記温度計Tester
 
                             case CH_TH.TH90:
                                 State.VmTh.ResTh90 = (buff).ToString("F4") + "KΩ";
-                                reTh = (buff >= State.TestSpec.ResTh90 * (1 - MaxErr) && buff <= State.TestSpec.ResTh90 * (1 + MaxErr));
+                                reTh = (buff >= State.TestSpec.ResTh80 * (1 - MaxErr) && buff <= State.TestSpec.ResTh80 * (1 + MaxErr));
                                 State.VmTh.ColResTh90 = reTh ? General.OnBrush : General.NgBrush;
                                 break;
 
@@ -414,7 +414,7 @@ namespace 自記温度計Tester
         private void rbTH90_Checked(object sender, RoutedEventArgs e)
         {
             flagRbThOn = true;
-            General.SetTh90();
+            General.SetTh80();
             chTh = CH_TH.TH90;
         }
 

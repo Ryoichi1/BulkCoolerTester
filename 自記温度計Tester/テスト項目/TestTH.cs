@@ -8,7 +8,7 @@ namespace 自記温度計Tester
 {
     public static class TestTH
     {
-        public enum NAME { _2, _3, _4, _5, _6, _7, _8, _10, _20, _30, _45, _90 }
+        public enum NAME { _2, _3, _4, _5, _6, _7, _8, _10, _20, _30, _45, _80 }
 
         public static List<ThSpec> ListThSpecs;
 
@@ -42,7 +42,7 @@ namespace 自記温度計Tester
             State.VmTestResults.ColTh20 = General.OffBrush;
             State.VmTestResults.ColTh30 = General.OffBrush;
             State.VmTestResults.ColTh45 = General.OffBrush;
-            State.VmTestResults.ColTh90 = General.OffBrush;
+            State.VmTestResults.ColTh80 = General.OffBrush;
 
             State.VmTestResults.ThAdj = "";
             State.VmTestResults.Th2 = "";
@@ -56,7 +56,7 @@ namespace 自記温度計Tester
             State.VmTestResults.Th20 = "";
             State.VmTestResults.Th30 = "";
             State.VmTestResults.Th45 = "";
-            State.VmTestResults.Th90 = "";
+            State.VmTestResults.Th80 = "";
 
         }
 
@@ -110,8 +110,8 @@ namespace 自記温度計Tester
                         General.SetTh45();
                         break;
 
-                    case NAME._90:
-                        General.SetTh90();
+                    case NAME._80:
+                        General.SetTh80();
                         break;
 
                 }
@@ -235,13 +235,12 @@ namespace 自記温度計Tester
         public static async Task<bool> CheckTh()
         {
             const double errForTh2_45 = 0.4;
-            const double errForTh90 = 0.5;
+            const double errForTh80 = 0.5;
 
             bool allResult = false;
             double temp = 0;
             double stdTemp = 0;
             double err = 0;
-            string Spec = "";
 
             try
             {
@@ -265,62 +264,50 @@ namespace 自記温度計Tester
                             {
                                 case NAME._2:
                                     stdTemp = 2.0;
-                                    Spec = "2.0℃";
                                     break;
 
                                 case NAME._3:
                                     stdTemp = 3.0;
-                                    Spec = "3.0℃";
                                     break;
 
                                 case NAME._4:
                                     stdTemp = 4.0;
-                                    Spec = "4.0℃";
                                     break;
 
                                 case NAME._5:
                                     stdTemp = 5.0;
-                                    Spec = "5.0℃";
                                     break;
 
                                 case NAME._6:
                                     stdTemp = 6.0;
-                                    Spec = "6.0℃";
                                     break;
 
                                 case NAME._7:
                                     stdTemp = 7.0;
-                                    Spec = "7.0℃";
                                     break;
 
                                 case NAME._8:
                                     stdTemp = 8.0;
-                                    Spec = "8.0℃";
                                     break;
 
                                 case NAME._10:
                                     stdTemp = 10.0;
-                                    Spec = "10.0℃";
                                     break;
 
                                 case NAME._20:
                                     stdTemp = 20.0;
-                                    Spec = "20.0℃";
                                     break;
 
                                 case NAME._30:
                                     stdTemp = 30.0;
-                                    Spec = "30.0℃";
                                     break;
 
                                 case NAME._45:
                                     stdTemp = 45.0;
-                                    Spec = "45.0℃";
                                     break;
 
-                                case NAME._90:
-                                    stdTemp = 90.0;
-                                    Spec = "90.0℃";
+                                case NAME._80:
+                                    stdTemp = 80.0;
                                     break;
                             }
 
@@ -331,9 +318,9 @@ namespace 自記温度計Tester
                             }
 
                             //90℃は規格範囲を少し広げる ※5.0℃をきっちり合わせると、90℃は上限ギリギリになるため
-                            if (L.name == NAME._90)
+                            if (L.name == NAME._80)
                             {
-                                err = errForTh90;
+                                err = errForTh80;
                             }
                             else
                             {
@@ -407,9 +394,9 @@ namespace 自記温度計Tester
                                     if (!result) State.VmTestResults.ColTh45 = General.NgBrush;
                                     break;
 
-                                case NAME._90:
-                                    State.VmTestResults.Th90 = tempString;
-                                    if (!result) State.VmTestResults.ColTh90 = General.NgBrush;
+                                case NAME._80:
+                                    State.VmTestResults.Th80 = tempString;
+                                    if (!result) State.VmTestResults.ColTh80 = General.NgBrush;
                                     break;
 
                             }

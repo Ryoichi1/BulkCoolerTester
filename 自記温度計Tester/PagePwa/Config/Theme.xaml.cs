@@ -32,7 +32,7 @@ namespace 自記温度計Tester
         private void Pic2_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            State.VmMainWindow.Theme = "Resources/Pic/MM-100.jpg";
+            State.VmMainWindow.Theme = "Resources/Pic/yuimetal.jpg";
             General.Show();
         }
 

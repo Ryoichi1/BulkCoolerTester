@@ -19,7 +19,7 @@
         <Image x:Name="Pic2" Canvas.Left="172" Canvas.Top="36" Width="136" Cursor="Hand" PreviewMouseLeftButtonDown="Pic2_PreviewMouseLeftButtonDown" Height="83">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="128"
-        			UriSource="/Resources/Pic/MM-100.jpg"/>
+        			UriSource="/Resources/Pic/yuimetal.jpg"/>
             </Image.Source>
         </Image>
 

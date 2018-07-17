@@ -13,25 +13,27 @@
 
 
 
+    <Grid>
+        <Image Source="{Binding Theme}" Opacity="{Binding ThemeOpacity}" Stretch="UniformToFill">
+            <Image.Effect>
+                <BlurEffect Radius="{Binding ThemeBlurEffectRadius}"/>
+            </Image.Effect>
+        </Image>
+        <Canvas x:Name="MainBack">
+            <Label Content="検査成績書印刷 " Height="42" Width="171" FontSize="20" Canvas.Top="14" Canvas.Left="10" FontStyle="Italic" Foreground="White">
+                <Label.Effect>
+                    <DropShadowEffect Color="#FF00FFDC" Direction="0" ShadowDepth="0" BlurRadius="20"/>
+                </Label.Effect>
+            </Label>
 
-    <Canvas x:Name="MainBack">
-        <Canvas.Background>
-            <ImageBrush Opacity="{Binding ThemeOpacity}" ImageSource="{Binding Theme, NotifyOnSourceUpdated=True}" Stretch="UniformToFill" />
-        </Canvas.Background>
-        <Label Content="検査成績書印刷 " Height="42" Width="171" FontSize="20" Canvas.Top="14" Canvas.Left="10" FontStyle="Italic" Foreground="White">
-            <Label.Effect>
-                <DropShadowEffect Color="#FF00FFDC" Direction="0" ShadowDepth="0" BlurRadius="20"/>
-            </Label.Effect>
-        </Label>
+            <Frame x:Name="FramePrint" Height="662" Width="1326" Canvas.Left="14" Canvas.Top="52" />
 
-        <Frame x:Name="FramePrint" Height="662" Width="1326" Canvas.Left="14" Canvas.Top="52" />
+            <Border Width="1252" Height="1" BorderThickness="2" BorderBrush="White" Canvas.Top="52" Canvas.Left="6">
+                <Border.Effect>
+                    <DropShadowEffect Color="#FF09BCFF" Direction="0" ShadowDepth="0" BlurRadius="30"/>
+                </Border.Effect>
+            </Border>
 
-        <Border Width="1252" Height="1" BorderThickness="2" BorderBrush="White" Canvas.Top="52" Canvas.Left="6">
-            <Border.Effect>
-                <DropShadowEffect Color="#FF09BCFF" Direction="0" ShadowDepth="0" BlurRadius="30"/>
-            </Border.Effect>
-        </Border>
-
-    </Canvas>
-
+        </Canvas>
+    </Grid>
 </Controls:MetroWindow>

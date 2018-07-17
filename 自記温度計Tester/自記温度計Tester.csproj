@@ -460,6 +460,7 @@
     <Resource Include="Resources\Pic\MenteA.JPG" />
     <Resource Include="Resources\Pic\子機保守.JPG" />
     <Resource Include="Resources\Pic\本機保守.JPG" />
+    <Resource Include="Resources\Pic\yuimetal.jpg" />
     <Content Include="Resources\Wav\Alarm.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -220,7 +220,7 @@
             <RadioButton x:Name="rbTH20" Content="20℃(31.00kΩ)" Height="25" Canvas.Left="231" Canvas.Top="139" Width="104" Checked="rbTH20_Checked"/>
             <RadioButton x:Name="rbTH30" Content="30℃(19.93kΩ)" Height="25" Canvas.Left="231" Canvas.Top="169" Width="104" Checked="rbTH30_Checked"/>
             <RadioButton x:Name="rbTH45" Content="45℃(10.77kΩ)" Height="25" Canvas.Left="231" Canvas.Top="199" Width="104" Checked="rbTH45_Checked"/>
-            <RadioButton x:Name="rbTH90" Content="90℃(2.249kΩ)" Height="25" Canvas.Left="231" Canvas.Top="229" Width="104" Checked="rbTH90_Checked"/>
+            <RadioButton x:Name="rbTH80" Content="80℃(3.086kΩ)" Height="25" Canvas.Left="231" Canvas.Top="229" Width="104" Checked="rbTH90_Checked"/>
             <Label Content="{Binding ResTh2}" Background="{Binding ColResTh2}" Height="26" Canvas.Left="121" Canvas.Top="78" Width="92" BorderBrush="White" BorderThickness="1" Padding="0"/>
             <Label Content="{Binding ResTh3}" Background="{Binding ColResTh3}" Height="26" Canvas.Left="121" Canvas.Top="108" Width="92" BorderBrush="White" BorderThickness="1" Padding="0"/>
             <Label Content="{Binding ResTh4}" Background="{Binding ColResTh4}" Height="26" Canvas.Left="121" Canvas.Top="138" Width="92" BorderBrush="White" BorderThickness="1" Padding="0"/>

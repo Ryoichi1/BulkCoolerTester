@@ -320,7 +320,7 @@ namespace 自記温度計Tester
                 State.VmTestResults.Th20,
                 State.VmTestResults.Th30,
                 State.VmTestResults.Th45,
-                State.VmTestResults.Th90,
+                State.VmTestResults.Th80,
 
             };
 
@@ -351,7 +351,7 @@ namespace 自記温度計Tester
                 State.VmTestResults.Th20,
                 State.VmTestResults.Th30,
                 State.VmTestResults.Th45,
-                State.VmTestResults.Th90,
+                State.VmTestResults.Th80,
 
             };
 
@@ -388,7 +388,7 @@ namespace 自記温度計Tester
                 State.VmTestResults.Th20,
                 State.VmTestResults.Th30,
                 State.VmTestResults.Th45,
-                State.VmTestResults.Th90,
+                State.VmTestResults.Th80,
 
             };
 
@@ -422,7 +422,7 @@ namespace 自記温度計Tester
                 State.VmTestResults.Th20,
                 State.VmTestResults.Th30,
                 State.VmTestResults.Th45,
-                State.VmTestResults.Th90,
+                State.VmTestResults.Th80,
 
             };
 
@@ -459,7 +459,7 @@ namespace 自記温度計Tester
                 State.VmTestResults.Th20,
                 State.VmTestResults.Th30,
                 State.VmTestResults.Th45,
-                State.VmTestResults.Th90,
+                State.VmTestResults.Th80,
 
             };
 
@@ -1171,7 +1171,7 @@ namespace 自記温度計Tester
         public static void SetTh20() { SetThOpen(); General.io.OutBit(EPX64S.PORT.P5, EPX64S.BIT.b0, EPX64S.OUT.H); }
         public static void SetTh30() { SetThOpen(); General.io.OutBit(EPX64S.PORT.P5, EPX64S.BIT.b1, EPX64S.OUT.H); }
         public static void SetTh45() { SetThOpen(); General.io.OutBit(EPX64S.PORT.P5, EPX64S.BIT.b2, EPX64S.OUT.H); }
-        public static void SetTh90() { SetThOpen(); General.io.OutBit(EPX64S.PORT.P5, EPX64S.BIT.b3, EPX64S.OUT.H); }
+        public static void SetTh80() { SetThOpen(); General.io.OutBit(EPX64S.PORT.P5, EPX64S.BIT.b3, EPX64S.OUT.H); }
         public static void SetThShort() { SetThOpen(); General.io.OutBit(EPX64S.PORT.P5, EPX64S.BIT.b4, EPX64S.OUT.H); }
         public static void SetThOpen()
         {

@@ -49,7 +49,7 @@ namespace 自記温度計Tester
         public double ResTh20 { get; set; }
         public double ResTh30 { get; set; }
         public double ResTh45 { get; set; }
-        public double ResTh90 { get; set; }
+        public double ResTh80 { get; set; }
 
           //上記抵抗値の誤差(単位は％)
         public double ResErr { get; set; }
