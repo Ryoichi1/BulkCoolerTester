@@ -37,7 +37,7 @@ namespace 自記温度計Tester
 
             //タイマーの設定
             timerTextInput = new DispatcherTimer(DispatcherPriority.Normal);
-            timerTextInput.Interval = TimeSpan.FromMilliseconds(1000);
+            timerTextInput.Interval = TimeSpan.FromMilliseconds(5000);
             timerTextInput.Tick += (object sender, EventArgs e) =>
             {
                 timerTextInput.Stop();

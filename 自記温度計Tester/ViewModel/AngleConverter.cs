@@ -7,7 +7,7 @@ namespace 自記温度計Tester
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return 3.6 * (int)value;
+            return 2.7 * (int)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

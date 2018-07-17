@@ -82,8 +82,8 @@ namespace 自記温度計Tester
             new TestSpecs(302, "電源電圧チェック 5V", false),
             new TestSpecs(303, "電源電圧チェック 3.3V", true),
             new TestSpecs(304, "CN3 出力電圧チェック", true),
-            new TestSpecs(305, "CN9On出力電圧チェック", true),
-            new TestSpecs(306, "CN9Off出力電圧チェック", true),
+            new TestSpecs(305, "CN9Off出力電圧チェック", true),
+            new TestSpecs(306, "CN9Oon出力電圧チェック", true),
 
             new TestSpecs(400, "粒LEDカラーチェック", false),
             //new TestSpecs(401, "粒LED輝度チェック", true),
@@ -132,8 +132,8 @@ namespace 自記温度計Tester
             new TestSpecs(302, "電源電圧チェック 5V", false),
             new TestSpecs(303, "電源電圧チェック 3.3V", true),
             new TestSpecs(304, "CN3 出力電圧チェック", true),
-            new TestSpecs(305, "CN9On出力電圧チェック", true),
-            new TestSpecs(306, "CN9Off出力電圧チェック", true),
+            new TestSpecs(305, "CN9Off出力電圧チェック", true),
+            new TestSpecs(306, "CN9On出力電圧チェック", true),
 
             new TestSpecs(400, "粒LEDカラーチェック", false),
             new TestSpecs(401, "粒LED輝度チェック", true),
@@ -192,8 +192,8 @@ namespace 自記温度計Tester
             new TestSpecs(600, "バッテリLowチェック", true),//本機のみ
 
             new TestSpecs(700, "CN3 出力電圧チェック", false),//本機のみ
-            new TestSpecs(701, "CN9On出力電圧チェック", true),//本機のみ
-            new TestSpecs(702, "CN9Off出力電圧チェック", true),//本機のみ
+            new TestSpecs(701, "CN9Off出力電圧チェック", true),//本機のみ
+            new TestSpecs(702, "CN9Oon出力電圧チェック", true),//本機のみ
 
             new TestSpecs(800, "警報リレー出力チェック", true),//本機のみ
 

@@ -35,7 +35,7 @@
                 <Setter Property="Padding" Value="0,0,0,0"/>
                 <Setter Property="Effect">
                     <Setter.Value>
-                        <DropShadowEffect Color="#FF04FFF4" BlurRadius="20" ShadowDepth="0" Direction="0"/>
+                        <DropShadowEffect Color="#FF04FFF4" BlurRadius="30" ShadowDepth="0" Direction="0"/>
                     </Setter.Value>
                 </Setter>
             </Style>
@@ -45,6 +45,6 @@
         <Label x:Name="labelMessage" Content="シリアル番号を入力してから確認を押してください" Height="66" Canvas.Left="223" Canvas.Top="31" Width="956" FontSize="36"/>
         <Label x:Name="labelMessage_Copy" Content="CPU基板シリアル№" Height="46" Canvas.Left="804" Canvas.Top="222" Width="339" FontSize="36"/>
         <TextBox x:Name="tbPwaSerial" TextWrapping="Wrap" FontSize="60" Background="{x:Null}" BorderBrush="White" Height="80" Width="370" Foreground="White" CaretBrush="White" InputMethod.IsInputMethodEnabled="False" InputMethod.PreferredImeState="Off" Canvas.Left="801" Canvas.Top="280" SelectionBrush="{x:Null}" FontFamily="Meiryo UI" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Top" TabIndex="2"/>
-        <Label Height="38" Canvas.Left="337" Canvas.Top="248" Width="126" Background="#FFE426E4"/>
+        <Label Height="38" Canvas.Left="337" Canvas.Top="248" Width="126" Background="White"/>
     </Canvas>
 </Page>

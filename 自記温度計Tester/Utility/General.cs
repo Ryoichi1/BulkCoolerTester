@@ -255,7 +255,7 @@ namespace 自記温度計Tester
                 State.VmMainWindow.Operator,
 
                 State.TestSpec.FwVer,
-                State.TestSpec.FwSum,
+                State.TestSpec.FwSum + "h",
 
                 State.VmTestResults.Curr3v,
                 State.VmTestResults.Curr6v,
@@ -371,7 +371,7 @@ namespace 自記温度計Tester
                 State.VmMainWindow.Operator,
 
                 State.VmTestStatus.FwVer,
-                State.VmTestStatus.FwSum,
+                State.VmTestStatus.FwSum + "h",
 
                 State.VmTestResults.VolCn3,
                 State.VmTestResults.VolCn9On,
@@ -405,7 +405,7 @@ namespace 自記温度計Tester
                 State.VmMainWindow.Operator,
 
                 State.VmTestStatus.FwVer,
-                State.VmTestStatus.FwSum,
+                State.VmTestStatus.FwSum + "h",
 
                 State.VmTestResults.VolCn3,
                 State.VmTestResults.VolCn9On,
@@ -442,7 +442,7 @@ namespace 自記温度計Tester
                 State.VmMainWindow.Operator,
 
                 State.VmTestStatus.FwVer,
-                State.VmTestStatus.FwSum,
+                State.VmTestStatus.FwSum + "h",
 
                 State.VmTestResults.VolCn3,
                 State.VmTestResults.VolCn9On,

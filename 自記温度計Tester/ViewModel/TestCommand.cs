@@ -319,12 +319,12 @@ namespace 自記温度計Tester
                             if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN3)) break;
                             goto case 5000;
 
-                        case 305://CN9On出力電圧チェック
-                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9On)) break;
+                        case 305://CN9Off出力電圧チェック
+                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9Off)) break;
                             goto case 5000;
 
-                        case 306://CN9Off出力電圧チェック
-                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9Off)) break;
+                        case 306://CN9On出力電圧チェック
+                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9On)) break;
                             goto case 5000;
 
                         case 400://LEDチェック
@@ -843,12 +843,17 @@ namespace 自記温度計Tester
                             if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN3)) break;
                             goto case 5000;
 
-                        case 701://CN9On出力電圧チェック
-                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9On)) break;
+                        case 701://CN9Off出力電圧チェック
+                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9Off)) break;
                             goto case 5000;
 
-                        case 702://CN9Off出力電圧チェック
-                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9Off)) break;
+                        case 702://CN9On出力電圧チェック
+                            if (await Check電圧_電流.CheckVolt(Check電圧_電流.VOL_CH.CN9On))
+                            {
+                                General.PowSupply(false);
+                                await Task.Delay(100);
+                                break;
+                            }
                             goto case 5000;
 
                         case 800://警報リレーチェック

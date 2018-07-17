@@ -18,7 +18,7 @@ namespace 自記温度計Tester
         Uri uriSerialHeaderPage = new Uri("PagePwa/Config/SerialHeader.xaml", UriKind.Relative);
         Uri uriOperatorPage = new Uri("PagePwa/Config/EditOpeList.xaml", UriKind.Relative);
         Uri uriThemePage = new Uri("PagePwa/Config/Theme.xaml", UriKind.Relative);
-        Uri uriMentePage = new Uri("PagePwa/Config/Mente.xaml", UriKind.Relative);
+        Uri uriMentePage = new Uri("PagePwa/Config/Mainte.xaml", UriKind.Relative);
         Uri uriCamera1Page = new Uri("PagePwa/Config/Camera1Conf.xaml", UriKind.Relative);
         Uri uriCamera2Page = new Uri("PagePwa/Config/Camera2Conf.xaml", UriKind.Relative);
 

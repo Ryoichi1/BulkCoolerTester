@@ -493,8 +493,6 @@
                     <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
                 </Label.Effect>
             </Label>
-            <Label x:Name="tbTestTime" Content="{Binding TestTime}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="21" Width="63" Canvas.Left="297" FontSize="18" Foreground="White" FontFamily="Segoe UI Light" Padding="0" Canvas.Top="4"/>
-            <Label x:Name="labelStateRetry" Content="リトライ" Height="20" Canvas.Left="222" Width="59" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" Canvas.Top="5" Background="#FF0C92F0" Visibility="{Binding RetryLabelVis}"/>
         </Canvas>
 
 
@@ -534,16 +532,16 @@
         </Canvas>
         <Canvas x:Name="canvasRing" Width="260" Height="260" Canvas.Left="65"  Opacity="{Binding RingOpacity}" Visibility="{Binding RingVisibility}" RenderTransformOrigin="0.5,0.5" Canvas.Top="368">
 
-            <ed:Arc x:Name="ProgressBack" ArcThickness="4" ArcThicknessUnit="Pixel" EndAngle="360" Fill="#FF758C99"  Canvas.Left="7" Stretch="None" StartAngle="0" Canvas.Top="6" Width="240" Height="240" Opacity="0.3"/>
+            <ed:Arc x:Name="ProgressBack" ArcThickness="12" ArcThicknessUnit="Pixel" EndAngle="270" Fill="#FF758C99"  Canvas.Left="7" Stretch="None" StartAngle="0" Canvas.Top="6" Width="240" Height="240" Opacity="0.3"/>
 
-            <ed:Arc x:Name="ProgressRing" ArcThickness="4" ArcThicknessUnit="Pixel" Fill="#FFFBFBFB" Width="240" Height="240" Canvas.Left="7" Stretch="None" 
+            <ed:Arc x:Name="ProgressRing" ArcThickness="12" ArcThicknessUnit="Pixel" Fill="#FFFBFBFB" Width="240" Height="240" Canvas.Left="7" Stretch="None" 
 				StartAngle="0" EndAngle="{Binding 進捗度, Converter={StaticResource AngleConverter}}" Canvas.Top="6">
                 <ed:Arc.Effect>
                     <DropShadowEffect Color="#FF0072FB" Direction="0" ShadowDepth="0" BlurRadius="60"/>
                 </ed:Arc.Effect>
 
             </ed:Arc>
-            <Label x:Name="labelProgress" Content="{Binding 進捗度, Converter={StaticResource ProgConverter}}" Canvas.Left="44" Canvas.Top="58" FontSize="60" RenderTransformOrigin="0.432,0.208" Width="166" HorizontalContentAlignment="Center" Height="100" FontFamily="Segoe UI Light" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0">
+            <Label x:Name="labelProgress" Canvas.Left="44" Canvas.Top="52" FontSize="50" RenderTransformOrigin="0.432,0.208" Width="166" Height="58" FontFamily="Segoe UI Light" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Content="{Binding 進捗度, Converter={StaticResource ProgConverter}}" HorizontalContentAlignment="Center">
                 <Label.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="1.4"/>
@@ -552,9 +550,19 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Label.RenderTransform>
+
+            </Label>
+            <Label Content="" Height="3" Canvas.Left="45" Canvas.Top="129" Width="165" Background="White">
                 <Label.Effect>
-                    <DropShadowEffect Color="#FF0BF0FB" BlurRadius="20" Direction="0" ShadowDepth="0"/>
+                    <DropShadowEffect Color="#FF09A0F7" Direction="0" ShadowDepth="0" BlurRadius="20"/>
                 </Label.Effect>
+            </Label>
+            <Label x:Name="tbTestTime_Copy" HorizontalAlignment="Left" VerticalAlignment="Center" Height="31" Width="88" Canvas.Left="114" FontSize="26" Foreground="White" FontFamily="Segoe UI Light" Padding="0" Canvas.Top="137" Content="{Binding TestTime}"/>
+            <Label HorizontalAlignment="Left" VerticalAlignment="Center" Height="31" Width="58" Canvas.Left="54" FontSize="26" Foreground="White" FontFamily="Segoe UI Light" Padding="0" Canvas.Top="137" Content="TIME"/>
+            <Label x:Name="labelStateRetry_Copy5" Content="リトライ" Height="28" Canvas.Left="92" Width="72" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" Canvas.Top="180" Visibility="{Binding RetryLabelVis}" BorderBrush="#FF1DB2F7">
+                <Label.Background>
+                    <SolidColorBrush Color="#FF569CF0" Opacity="0.3"/>
+                </Label.Background>
             </Label>
 
         </Canvas>
@@ -576,7 +584,7 @@
                         </Setter.Value>
                     </Setter>
                 </Style>
-                
+
             </Canvas.Resources>
             <Canvas.Background>
                 <SolidColorBrush Color="White" Opacity="0.15"/>

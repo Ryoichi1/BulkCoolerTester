@@ -21,12 +21,13 @@ namespace 自記温度計Tester
                 //RS232C用のポートが既に開いているため、一度閉じる
                 Target232_BT.Close232();
 
+                await Task.Delay(500);
                 //電源ON
                 General.PowSupply(true);
-                await Task.Delay(300);
+                await Task.Delay(800);
                 //製品CN6の5、6、7番を短絡する処理（書き込みモードに変更する）
                 Target232_BT.ChangeMode(Target232_BT.MODE.WRITE);
-                await Task.Delay(500);
+                await Task.Delay(800);
 
                 var re = await FlashProgrammer.WriteFirmware(RfpPath, Sum, calcSum);
                 result = re.Item1;
