@@ -48,7 +48,7 @@ namespace 自記温度計Tester
             {
                 await Task.Run(() =>
                 {
-                    RETRY:
+                RETRY:
                     while (true)
                     {
                         if (Flags.OtherPage) break;
@@ -247,7 +247,7 @@ namespace 自記温度計Tester
 
                 foreach (var d in テスト項目最新.Select((s, i) => new { i, s }))
                 {
-                    Retry:
+                Retry:
                     State.VmTestStatus.Spec = "規格値 : ---";
                     State.VmTestStatus.MeasValue = "計測値 : ---";
                     Flags.AddDecision = true;
@@ -373,23 +373,20 @@ namespace 自記温度計Tester
                             goto case 5000;
 
                         case 800://サーミスタ調整 5℃
-                            if (State.VmMainWindow.Operator == "畔上2")
-                            {
+                            if (State.VmMainWindow.Operator == "畔上")
                                 General.PlaySound(General.soundCutin);
-                                break;
-                            }
-                            if (await TestTH.AdjTh5()) break;
-                            goto case 5000;
 
-                        case 801://サーミスタチェック
+                            if (!await TestTH.AdjTh5()) goto case 5000;
+
+                            //サーミスタチェック
                             if (await TestTH.CheckTh()) break;
                             goto case 5000;
 
-                        case 802://サーミスタチェック 開放
+                        case 801://サーミスタチェック 開放
                             if (await TestTH.CheckOpenShort(TestTH.MODE_OPEN_SHORT.OPEN)) break;
                             goto case 5000;
 
-                        case 803://サーミスタチェック 短絡
+                        case 802://サーミスタチェック 短絡
                             if (await TestTH.CheckOpenShort(TestTH.MODE_OPEN_SHORT.SHORT)) break;
                             goto case 5000;
 
@@ -550,8 +547,8 @@ namespace 自記温度計Tester
 
                 return;
 
-                //不合格時の処理
-                FAIL:
+            //不合格時の処理
+            FAIL:
 
                 await Task.Run(() =>
                 {
@@ -566,7 +563,7 @@ namespace 自記温度計Tester
 
                 General.ResetIo();
                 await Task.Delay(500);
-                FAIL_DATA_SAVE:
+            FAIL_DATA_SAVE:
 
 
                 FlagTestTime = false;
@@ -723,7 +720,7 @@ namespace 自記温度計Tester
 
                 foreach (var d in テスト項目最新.Select((s, i) => new { i, s }))
                 {
-                    Retry:
+                Retry:
                     State.VmTestStatus.Spec = "規格値 : ---";
                     State.VmTestStatus.MeasValue = "計測値 : ---";
                     Flags.AddDecision = true;
@@ -734,7 +731,7 @@ namespace 自記温度計Tester
                     {
                         if (!Flags.PowOn)
                         {
-                            RETRY_CHECK_COMM:
+                        RETRY_CHECK_COMM:
                             var flagComm = false;
                             Thread.Sleep(1000);
                             General.PowSupply(true);
@@ -1017,8 +1014,8 @@ namespace 自記温度計Tester
 
                 return;
 
-                //不合格時の処理
-                FAIL:
+            //不合格時の処理
+            FAIL:
                 General.ResetIo();
                 await Task.Delay(500);
 

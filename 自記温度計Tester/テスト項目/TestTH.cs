@@ -222,7 +222,7 @@ namespace 自記温度計Tester
             finally
             {
                 General.PowSupply(false);//調整値がEEPROMに保存されているか確認するため、一度電源をOFFする
-                await Task.Delay(500);
+                await Task.Delay(1000);
                 if (!result)
                 {
                     State.VmTestResults.ColThAdj = General.NgBrush;
@@ -244,6 +244,14 @@ namespace 自記温度計Tester
 
             try
             {
+                var flagComm = false;
+                General.PowSupply(true);
+                await Task.Run(() =>
+                {
+                    flagComm = General.CheckComm();
+                });
+                if (!flagComm) return false;
+
                 return await Task<bool>.Run(() =>
                 {
                     try

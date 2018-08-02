@@ -203,7 +203,7 @@ namespace 自記温度計Tester
                         Thread.Sleep(1500);
                         //RTCをセットする（電池セットされていない状態で100Vを入れると、RTCの時刻が狂っているため消費電流が多くなる傾向にある）
                         if (!TestRtc.SetTime()) return false;
-                        Thread.Sleep(10000);//10秒待つ
+                        Thread.Sleep(5000);//10秒待つ
                         General.PowSupply(false);
                         Thread.Sleep(1500);//これがないと電源OFF後に---表示となる
 
@@ -218,7 +218,7 @@ namespace 自記温度計Tester
                                 if (Flags.ClickStopButton) return false;
 
                                 General.PowSupply(true);
-                                Thread.Sleep(10000);
+                                Thread.Sleep(4000);
                                 General.PowSupply(false);
                                 Thread.Sleep(1500);//これがないと電源OFF後に---表示となる
 
@@ -244,9 +244,9 @@ namespace 自記温度計Tester
                         }
                         else if (measData <= Min)
                         {
-                            foreach (var i in Enumerable.Range(0, 2))
+                            foreach (var i in Enumerable.Range(0, 15))
                             {
-                                Thread.Sleep(10000);
+                                Thread.Sleep(2000);
 
                                 if (!General.multimeter.GetDcCurrent()) return false;
                                 measData = General.multimeter.CurrData;
@@ -353,9 +353,11 @@ namespace 自記温度計Tester
                         Thread.Sleep(500);
 
                         if (!General.multimeter.GetDcCurrent()) return false;
+                        Thread.Sleep(6500);
+                        if (!General.multimeter.GetDcCurrent()) return false;
                         Thread.Sleep(1500);
                         if (!General.multimeter.GetDcCurrent()) return false;
-
+                        Thread.Sleep(1500);
                         measData = General.multimeter.CurrData;
 
                         return result = (measData > Min && measData < Max);
