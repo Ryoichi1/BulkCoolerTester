@@ -322,7 +322,7 @@ namespace 自記温度計Tester
                             //完成体検査の場合、デフォルトパラメータが書き込まれているため-0.2℃のバイアスがかかる
                             if (State.testMode != TEST_MODE.PWA)
                             {
-                                stdTemp -= 0.2;
+                                stdTemp = (stdTemp*10 - 2)/10.0;//コンピュータ特有丸め誤差対策
                             }
 
                             //90℃は規格範囲を少し広げる ※5.0℃をきっちり合わせると、90℃は上限ギリギリになるため
@@ -344,7 +344,7 @@ namespace 自記温度計Tester
                             var tempBuff = Target232_BT.RecieveData.Substring(14, 3);//3700O00,of,>7,032,021,0100 この場合 032が温度（小数点を省いているので3.2℃）
                             temp = Double.Parse(tempBuff) / 10.0;
                             var tempString = temp.ToString("F1") + "℃";
-                            var result = (temp >= stdTemp - err && temp <= stdTemp + err);
+                            var result = (stdTemp - err <= temp && temp <= stdTemp + err);
                             switch (L.name)
                             {
                                 case NAME._2:
