@@ -84,7 +84,7 @@ namespace 自記温度計Tester
         private async void metroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             //システム時計の設定
-            SystemTime.SetSystemTime();
+            //SystemTime.SetSystemTime();
             General._server = new Server();
             await General._server.Init();
         }

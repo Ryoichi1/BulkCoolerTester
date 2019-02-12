@@ -284,7 +284,7 @@ namespace 自記温度計Tester
             int X = 0;
             int Y = 0;
             int refLum = 0;
-            double errLum = 25;
+            double errLum = 50;
             string command = "";
             Flags.AddDecision = false;
             State.VmTestStatus.TestLog += "\r\n";//テストログに改行入れておく
@@ -376,7 +376,7 @@ namespace 自記温度計Tester
                         if ((int)pointY < Y - 10 || (int)pointY > Y + 10) return false;
 
                         //面積の計算
-                        var re = area >= refLum * (1 - (errLum / 100.0)) && area <= refLum * (1 + (errLum / 100.0));
+                        var re = refLum * (1 - (errLum / 100.0)) <= area && area <= refLum * (1 + (errLum / 100.0));
 
                         switch (l.name)
                         {

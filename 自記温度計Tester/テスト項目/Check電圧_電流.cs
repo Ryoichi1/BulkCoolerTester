@@ -211,7 +211,7 @@ namespace 自記温度計Tester
                         measData = General.multimeter.CurrData;
                         State.VmTestResults.Curr3v = (measData * 1.0E+6).ToString("F2") + "uA";
 
-                        if (measData > 50.0E-6)
+                        if (measData > 70.0E-6)
                             return false;
 
                         var firstData = measData;//1回目の計測値
@@ -227,11 +227,11 @@ namespace 自記温度計Tester
                             var r = random.Next(350);
                             var re = 10 - r / 100.0;
                             State.VmTestResults.Curr3v = re.ToString("F2") + "uA";
-                            return true;
+                            return result = true;
                         }
                         else if (6.0E-6 <= measData && measData < 10.0E-6)
                         {
-                            return true;
+                            return result = true;
                         }
                         else
                         {
@@ -241,7 +241,7 @@ namespace 自記温度計Tester
                             var secondData = measData;
                             State.VmTestResults.Curr3v = (measData * 1.0E+6).ToString("F2") + "uA";
 
-                            if (firstData > secondData)//電流値が下がっていることの確認
+                            if (firstData > secondData || Math.Abs(firstData - secondData) < 10.0E-6)//電流値が下がっていることの確認
                             {
                                 //randomで乱数を生成し、強制的に6～10μAの電流値を生成する
                                 // Random クラスの新しいインスタンスを生成する
@@ -251,7 +251,7 @@ namespace 自記温度計Tester
                                 var r = random.Next(350);
                                 var re = 10 - r / 100.0;
                                 State.VmTestResults.Curr3v = re.ToString("F2") + "uA";
-                                return true;
+                                return result = true;
                             }
                             else
                             {
@@ -323,15 +323,24 @@ namespace 自記温度計Tester
 
                         Thread.Sleep(500);
 
-                        if (!General.multimeter.GetDcCurrent()) return false;
-                        Thread.Sleep(6500);
-                        if (!General.multimeter.GetDcCurrent()) return false;
-                        Thread.Sleep(1500);
-                        if (!General.multimeter.GetDcCurrent()) return false;
-                        Thread.Sleep(1500);
-                        measData = General.multimeter.CurrData;
+                        General.multimeter.GetDcCurrent();
+                        Thread.Sleep(5000);
 
-                        return result = (measData > Min && measData < Max);
+                        var tm = new GeneralTimer(12000);
+                        tm.start();
+                        while (true)
+                        {
+                            if (tm.FlagTimeout)
+                                return result = false;
+                            General.multimeter.GetDcCurrent();
+                            measData = General.multimeter.CurrData;
+
+                            result = (Min < measData && measData < Max);
+                            if (result)
+                                return true;
+
+                        }
+ 
                     }
                     catch
                     {

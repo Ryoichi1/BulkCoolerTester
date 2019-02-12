@@ -188,9 +188,10 @@ namespace 自記温度計Tester
 
                    if (flagSeriPwa)     tbPwaSerial.Background = General.NgBrush; 
                    if (flagSeriPow)     tbPowSerial.Background = General.NgBrush; 
-                   if (flagSeriBt)      tbBtSerial.Background = General.NgBrush; 
+                   if (flagSeriBt)      tbBtSerial.Background = General.NgBrush;
 
-                   return flagSeriPwa || flagSeriPow || flagSeriBt;
+                   //return flagSeriPwa || flagSeriPow || flagSeriBt;//メンテナンス基板BTあり
+                   return flagSeriPwa || flagSeriPow /*|| flagSeriBt*/;//メンテナンス基板BTなし
                });
 
             }
