@@ -16,9 +16,9 @@
         <Label Content="電源" Height="37" Canvas.Left="48" Canvas.Top="181" Width="54" FontSize="20"/>
         <TextBox x:Name="tbPowSerial" TextWrapping="Wrap" FontSize="36" Background="{x:Null}" BorderBrush="White" Height="52" Width="114" Foreground="White" CaretBrush="White" InputMethod.IsInputMethodEnabled="False" InputMethod.PreferredImeState="Off" Canvas.Left="100" Canvas.Top="174" SelectionBrush="{x:Null}" FontFamily="Meiryo UI" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Top" TabIndex="3"/>
         <TextBlock Height="28" Canvas.Left="18" TextWrapping="Wrap" Text="シリアルのヘッダ設定" Canvas.Top="18" Width="196" Foreground="White" FontSize="18"/>
-        <Label x:Name="labelMessage_Copy2" Content="例）7X、7Y、7Z、81、・・・・" Height="34" Canvas.Left="188" Canvas.Top="65" Width="317" FontSize="20"/>
-        <Label x:Name="labelMessage_Copy3" Content="例）1740、1744、1748、・・・・" Height="34" Canvas.Left="220" Canvas.Top="128" Width="344" FontSize="20"/>
-        <Label x:Name="labelMessage_Copy4" Content="例）710、711、712、801・・・・" Height="34" Canvas.Left="220" Canvas.Top="190" Width="344" FontSize="20"/>
+        <Label x:Name="labelMessage_Copy2" Content="例）K193・・・K19X、K19Y、K19Z　　　K(固定)・西暦下2桁・月1桁" Height="34" Canvas.Left="188" Canvas.Top="65" Width="703" FontSize="20"/>
+        <Label x:Name="labelMessage_Copy3" Content="例）1740、1744、1748、・・・・　　西暦下2桁・月×4" Height="34" Canvas.Left="220" Canvas.Top="128" Width="571" FontSize="20"/>
+        <Label x:Name="labelMessage_Copy4" Content="例）1902、1903、・・・1912　　西暦下2桁・月2桁" Height="34" Canvas.Left="220" Canvas.Top="190" Width="514" FontSize="20"/>
         <Button x:Name="buttonSaveSerialHeader" Content="保存"  Height="33" Canvas.Left="48" Canvas.Top="252" Width="90" FontSize="16" Style="{DynamicResource SquareButtonStyle}" Controls:ControlsHelper.ContentCharacterCasing="Normal" FontWeight="Normal" Background="{x:Null}" Padding="0" BorderThickness="1" Click="buttonSaveSerialHeader_Click"/>
 
 

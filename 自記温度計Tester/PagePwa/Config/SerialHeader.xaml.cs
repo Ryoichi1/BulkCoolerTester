@@ -26,7 +26,7 @@ namespace 自記温度計Tester
 
             //製品シリアルのチェック
             if (!System.Text.RegularExpressions.Regex.IsMatch(
-                tbProductSerial.Text, @"^\d[XYZ1-9]$",
+                tbProductSerial.Text, @"K[1-9]\d[XYZ1-9]$",
                 System.Text.RegularExpressions.RegexOptions.ECMAScript))
             {
                 General.PlaySound(General.soundFail);
@@ -55,7 +55,7 @@ namespace 自記温度計Tester
 
             //電源基板シリアルのチェック
             if (!System.Text.RegularExpressions.Regex.IsMatch(
-                tbPowSerial.Text, @"^\d\d\d$",
+                tbPowSerial.Text, @"^\d\d\d\d$",
                 System.Text.RegularExpressions.RegexOptions.ECMAScript))
             {
                 General.PlaySound(General.soundFail);

@@ -34,9 +34,9 @@ namespace 自記温度計Tester
             RetryCount = 0;
 
             //下記はLoadedイベントでないと機能しないので注意！！！ コンストラクタでは最初の１回しか実行されない
-            tbProductSerial.Text = State.Setting.HeaderSerialUnit;
+            tbProductSerial.Text = State.Setting.HeaderSerialUnit + "000";
             tbPwaSerial.Text = State.Setting.HeaderSerialPwa + "Ne";
-            tbPowSerial.Text = State.Setting.HeaderSerialPow + "000";
+            tbPowSerial.Text = State.Setting.HeaderSerialPow + "00";
 
             tbBtSerial.Text = Target232_BT.BtID;
             tbBtSerial.IsReadOnly = true;
@@ -101,14 +101,14 @@ namespace 自記温度計Tester
 
             //製品シリアルのチェック
             if (!System.Text.RegularExpressions.Regex.IsMatch(
-                tbProductSerial.Text, @"^\d[XYZ1-9]\d\d\d$",
+                tbProductSerial.Text, @"K[1-9]\d[XYZ1-9]\d\d\d\d\d$",
                 System.Text.RegularExpressions.RegexOptions.ECMAScript))
             {
                 General.PlaySound(General.soundFail);
                 tbProductSerial.Background = General.NgBrush;
                 await Task.Delay(1000);
                 tbProductSerial.Background = Brushes.Transparent;
-                tbProductSerial.Text = State.Setting.HeaderSerialUnit;
+                tbProductSerial.Text = State.Setting.HeaderSerialUnit + "000";
                 tbProductSerial.Focus();
                 return false;
             }
@@ -137,7 +137,7 @@ namespace 自記温度計Tester
                 tbPowSerial.Background = General.NgBrush;
                 await Task.Delay(1000);
                 tbPowSerial.Background = Brushes.Transparent;
-                tbPowSerial.Text = State.Setting.HeaderSerialPow + "000";
+                tbPowSerial.Text = State.Setting.HeaderSerialPow + "00";
                 tbPowSerial.Focus();
                 return false;
             }
