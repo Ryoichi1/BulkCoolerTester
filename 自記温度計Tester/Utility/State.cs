@@ -385,6 +385,28 @@ namespace 自記温度計Tester
 
         }
 
+        /// <summary>
+        /// 試験合格時に毎回セーブする
+        /// </summary>
+        /// <returns></returns>
+        public static bool SaveConfData()
+        {
+            try
+            {
+                //Configファイルの保存
+
+                Serialization<Configuration>(Setting, Constants.filePath_Configuration);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+
+            }
+
+        }
+
 
         public static void SetCam1Prop()
         {

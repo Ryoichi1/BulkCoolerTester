@@ -512,7 +512,7 @@ namespace 自記温度計Tester
 
                     //これ重要！！！ シリアルナンバーをインクリメントし、次の試験に備える ビューモデルはまだ更新しない
                     State.Setting.NextSerialCpu++;
-
+                    State.SaveConfData();
                     Flags.ShowLabelPage = true;
                 }
 
@@ -984,6 +984,7 @@ namespace 自記温度計Tester
                         State.Setting.TodayOkCount子機Test++;
                     }
 
+                    State.SaveConfData();
                     Flags.ShowLabelPage = true;
                 }
 
