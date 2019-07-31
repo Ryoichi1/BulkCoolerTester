@@ -98,7 +98,7 @@ namespace 自記温度計Tester
 
             //製品シリアルのチェック
             if (!System.Text.RegularExpressions.Regex.IsMatch(
-                tbProductSerial.Text, @"^\d[XYZ1-9]\d\d\d$",
+                tbProductSerial.Text, @"K[1-9]\d[XYZ1-9]\d\d\d\d\d$",
                 System.Text.RegularExpressions.RegexOptions.ECMAScript))
             {
                 General.PlaySound(General.soundFail);
