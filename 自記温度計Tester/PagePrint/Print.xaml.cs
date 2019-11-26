@@ -349,16 +349,9 @@ namespace 自記温度計Tester
                 if (rbPrintSelect.IsChecked == true)
                 {
                     if (cbStart.SelectedIndex == -1 || cbEnd.SelectedIndex == -1) return;
-                    if (model == MODEL.本機 || model == MODEL.子機)
-                    {
-                        start = Int32.Parse(cbStart.SelectedItem.ToString().Substring(2));
-                        end = Int32.Parse(cbEnd.SelectedItem.ToString().Substring(2));
-                    }
-                    else
-                    {
-                        start = Int32.Parse(cbStart.SelectedItem.ToString().Substring(6));
-                        end = Int32.Parse(cbEnd.SelectedItem.ToString().Substring(6));
-                    }
+
+                    start = int.Parse(new string(cbStart.SelectedItem.ToString().Reverse().Take(3).Reverse().ToArray()));//末尾から3文字抜き出して数値化
+                    end = int.Parse(new string(cbEnd.SelectedItem.ToString().Reverse().Take(3).Reverse().ToArray()));//末尾から3文字抜き出して数値化
 
                     if (start > end) return;
                 }
@@ -472,14 +465,8 @@ namespace 自記温度計Tester
             }
             else
             {
-                if (model == MODEL.本機 || model == MODEL.子機)
-                {
-                    抽出データ = 完成Data最終.Where(data => start <= Int32.Parse(data.serialUnit.Substring(2)) && Int32.Parse(data.serialUnit.Substring(2)) <= end).ToList();
-                }
-                else
-                {
-                    抽出データ = 完成Data最終.Where(data => start <= Int32.Parse(data.serialPwa.Substring(6)) && Int32.Parse(data.serialPwa.Substring(6)) <= end).ToList();
-                }
+                抽出データ = 完成Data最終.Where(data => start <= Int32.Parse(new string(data.serialUnit.Reverse().Take(3).Reverse().ToArray())) && 
+                                                               Int32.Parse(new string(data.serialUnit.Reverse().Take(3).Reverse().ToArray())) <= end).ToList(); //末尾から3文字抜き出して数値化
             }
 
             foreach (var d in 抽出データ.Select((s, i) => new { i, s }))
@@ -833,7 +820,7 @@ namespace 自記温度計Tester
                 State.VmTestStatus.Message = Constants.MessOpecode;
                 return;
 
-                PASS:
+            PASS:
 
                 //該当する工番の＜完成体＞検査データファイルを開いて全データをロードする
                 State.testData完成体 = LoadTestData(dataFilePath完成体);
